@@ -161,7 +161,9 @@ def create_invoice_pdf(order):
 
     total = float(order.get("total_price", 0))
     tax = float(order.get("total_tax", 0))
-    netto = total - tax
+    if tax == 0 and total > 0:
+        tax = round(total / 1.19 * 0.19, 2)
+    netto = round(total - tax, 2)
     st = Table([
         ["","", Paragraph("Nettobetrag:", body), Paragraph(f"{netto:.2f} €", right)],
         ["","", Paragraph("zzgl. 19% MwSt.:", body), Paragraph(f"{tax:.2f} €", right)],
