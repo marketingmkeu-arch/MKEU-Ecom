@@ -51,8 +51,10 @@ def save_processed(processed):
         json.dump(list(processed), f)
 
 
+SHOPIFY_API_KEY = os.environ.get("SHOPIFY_API_KEY", "41f4e8e72cc495ce16b27f2f1e0e9f70")
+
+
 def get_all_orders():
-    headers = {"X-Shopify-Access-Token": SHOPIFY_TOKEN}
     all_orders = []
     url = f"https://{SHOPIFY_SHOP}/admin/api/2024-04/orders.json"
     params = {
@@ -61,7 +63,10 @@ def get_all_orders():
         "fields": "id,order_number,created_at,email,billing_address,line_items,total_price,total_tax",
     }
     while url:
-        r = requests.get(url, headers=headers, params=params)
+        # Try token auth first, fall back to basic auth
+        r = requests.get(url, headers={"X-Shopify-Access-Token": SHOPIFY_TOKEN}, params=params)
+        if r.status_code == 401:
+            r = requests.get(url, auth=(SHOPIFY_API_KEY, SHOPIFY_TOKEN), params=params)
         r.raise_for_status()
         all_orders.extend(r.json().get("orders", []))
         link = r.headers.get("Link", "")
