@@ -118,7 +118,7 @@ def create_invoice_pdf(order):
     story.append(HRFlowable(width="100%", thickness=1.5, color=PINK, spaceAfter=12, spaceBefore=8))
 
     addr = order.get("billing_address") or {}
-    kunde_name = f"{addr.get('first_name','').strip()} {addr.get('last_name','').strip()}".strip() or order.get("email","Kunde")
+    kunde_name = f"{(addr.get('first_name') or '').strip()} {(addr.get('last_name') or '').strip()}".strip() or order.get("email","Kunde")
     zeilen = [kunde_name]
     if addr.get("address1"): zeilen.append(addr["address1"])
     if addr.get("zip") or addr.get("city"): zeilen.append(f"{addr.get('zip','')} {addr.get('city','')}".strip())
