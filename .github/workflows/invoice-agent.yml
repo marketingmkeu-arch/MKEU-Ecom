@@ -2,12 +2,14 @@ name: Levora Rechnungs-Agent
 
 on:
   schedule:
-    - cron: "*/15 * * * *"  # every 15 minutes
+    - cron: "*/5 * * * *"  # every 5 minutes
   workflow_dispatch:
 
 jobs:
   run-invoice-agent:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -28,3 +30,11 @@ jobs:
           AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
         run: python invoice-agent/invoice_agent.py
+
+      - name: Save processed orders
+        run: |
+          git config user.email "agent@levora-skin.de"
+          git config user.name "Levora Invoice Agent"
+          git add invoice-agent/processed_orders.json || true
+          git diff --staged --quiet || git commit -m "Update processed orders [skip ci]"
+          git push || true
