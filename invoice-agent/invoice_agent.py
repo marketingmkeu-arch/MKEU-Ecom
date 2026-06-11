@@ -34,7 +34,6 @@ COMPANY = {
 }
 
 PINK = HexColor("#D4667A")
-LIGHT_PINK = HexColor("#FAF0F2")
 DARK = HexColor("#2D2D2D")
 GRAY = HexColor("#888888")
 LIGHT_GRAY = HexColor("#F7F7F7")
@@ -59,13 +58,12 @@ def get_all_orders():
     params = {
         "status": "any",
         "limit": 250,
-        "fields": "id,order_number,created_at,email,billing_address,line_items,total_price,subtotal_price,total_tax,currency",
+        "fields": "id,order_number,created_at,email,billing_address,line_items,total_price,total_tax",
     }
     while url:
         r = requests.get(url, headers=headers, params=params)
         r.raise_for_status()
-        orders = r.json().get("orders", [])
-        all_orders.extend(orders)
+        all_orders.extend(r.json().get("orders", []))
         link = r.headers.get("Link", "")
         url = None
         params = {}
@@ -77,8 +75,7 @@ def get_all_orders():
 
 
 def rechnungsnummer(order_number):
-    year = datetime.now().year
-    return f"RE-{year}-{str(order_number).zfill(5)}"
+    return f"RE-{datetime.now().year}-{str(order_number).zfill(5)}"
 
 
 def create_invoice_pdf(order):
@@ -92,97 +89,71 @@ def create_invoice_pdf(order):
     small = ParagraphStyle("small", fontSize=8, textColor=GRAY, leading=12, fontName="Helvetica")
     h1 = ParagraphStyle("h1", fontSize=20, textColor=PINK, fontName="Helvetica-Bold", spaceAfter=4)
     right = ParagraphStyle("right", fontSize=9, textColor=DARK, leading=14, fontName="Helvetica", alignment=TA_RIGHT)
-    right_pink = ParagraphStyle("right_pink", fontSize=9, textColor=PINK, leading=14, fontName="Helvetica-Bold", alignment=TA_RIGHT)
+    right_pink = ParagraphStyle("rp", fontSize=9, textColor=PINK, leading=14, fontName="Helvetica-Bold", alignment=TA_RIGHT)
 
     story = []
 
-    # Header
-    header_data = [[
+    ht = Table([[
         Paragraph("<b>Levora Skin</b>", ParagraphStyle("", fontSize=16, textColor=PINK, fontName="Helvetica-Bold")),
         Paragraph(f"{COMPANY['name']}<br/>{COMPANY['zusatz']}<br/>{COMPANY['strasse']}<br/>{COMPANY['plz_ort']}<br/>{COMPANY['email']}<br/>{COMPANY['web']}", small),
-    ]]
-    ht = Table(header_data, colWidths=[9*cm, 7*cm])
-    ht.setStyle(TableStyle([("VALIGN", (0,0), (-1,-1), "TOP"), ("ALIGN", (1,0), (1,0), "RIGHT")]))
+    ]], colWidths=[9*cm, 7*cm])
+    ht.setStyle(TableStyle([("VALIGN",(0,0),(-1,-1),"TOP"),("ALIGN",(1,0),(1,0),"RIGHT")]))
     story.append(ht)
     story.append(HRFlowable(width="100%", thickness=1.5, color=PINK, spaceAfter=12, spaceBefore=8))
 
-    # Empfänger & Rechnungsinfo
     addr = order.get("billing_address") or {}
     kunde_name = f"{addr.get('first_name','').strip()} {addr.get('last_name','').strip()}".strip() or order.get("email","Kunde")
-    kunde_zeilen = [kunde_name]
-    if addr.get("address1"): kunde_zeilen.append(addr["address1"])
-    if addr.get("zip") or addr.get("city"): kunde_zeilen.append(f"{addr.get('zip','')} {addr.get('city','')}".strip())
-    if addr.get("country"): kunde_zeilen.append(addr["country"])
-    if order.get("email"): kunde_zeilen.append(order["email"])
+    zeilen = [kunde_name]
+    if addr.get("address1"): zeilen.append(addr["address1"])
+    if addr.get("zip") or addr.get("city"): zeilen.append(f"{addr.get('zip','')} {addr.get('city','')}".strip())
+    if addr.get("country"): zeilen.append(addr["country"])
+    if order.get("email"): zeilen.append(order["email"])
 
     re_nr = rechnungsnummer(order["order_number"])
     re_datum = datetime.now().strftime("%d.%m.%Y")
-    bestell_datum = datetime.fromisoformat(order["created_at"].replace("Z", "+00:00")).strftime("%d.%m.%Y")
+    bestell_datum = datetime.fromisoformat(order["created_at"].replace("Z","+00:00")).strftime("%d.%m.%Y")
 
-    info_data = [[
-        Paragraph("<br/>".join(kunde_zeilen), body),
+    it = Table([[
+        Paragraph("<br/>".join(zeilen), body),
         Paragraph(f"<b>Rechnungsnummer:</b> {re_nr}<br/><b>Rechnungsdatum:</b> {re_datum}<br/><b>Bestelldatum:</b> {bestell_datum}<br/><b>Bestellnummer:</b> #{order['order_number']}", right),
-    ]]
-    it = Table(info_data, colWidths=[9*cm, 7*cm])
-    it.setStyle(TableStyle([("VALIGN", (0,0), (-1,-1), "TOP")]))
+    ]], colWidths=[9*cm, 7*cm])
+    it.setStyle(TableStyle([("VALIGN",(0,0),(-1,-1),"TOP")]))
     story.append(it)
     story.append(Spacer(1, 0.6*cm))
-
     story.append(Paragraph("Rechnung", h1))
     story.append(Paragraph("Vielen Dank für deine Bestellung!", body))
     story.append(Spacer(1, 0.4*cm))
 
-    # Positionen
-    rows = [[
-        Paragraph("<b>Pos.</b>", bold),
-        Paragraph("<b>Beschreibung</b>", bold),
-        Paragraph("<b>Menge</b>", bold),
-        Paragraph("<b>Einzelpreis</b>", bold),
-        Paragraph("<b>Gesamt</b>", bold),
-    ]]
+    rows = [[Paragraph(f"<b>{h}</b>", bold) for h in ["Pos.", "Beschreibung", "Menge", "Einzelpreis", "Gesamt"]]]
     for i, item in enumerate(order.get("line_items", []), 1):
         qty = item.get("quantity", 1)
         price = float(item.get("price", 0))
-        rows.append([
-            Paragraph(str(i), body),
-            Paragraph(item.get("title", ""), body),
-            Paragraph(str(qty), body),
-            Paragraph(f"{price:.2f} €", body),
-            Paragraph(f"{qty*price:.2f} €", body),
-        ])
+        rows.append([Paragraph(str(i), body), Paragraph(item.get("title",""), body),
+                     Paragraph(str(qty), body), Paragraph(f"{price:.2f} €", body),
+                     Paragraph(f"{qty*price:.2f} €", body)])
 
     pt = Table(rows, colWidths=[1*cm, 9*cm, 2*cm, 3*cm, 3*cm])
     pt.setStyle(TableStyle([
-        ("BACKGROUND", (0,0), (-1,0), PINK),
-        ("TEXTCOLOR", (0,0), (-1,0), white),
-        ("ROWBACKGROUNDS", (0,1), (-1,-1), [white, LIGHT_GRAY]),
-        ("GRID", (0,0), (-1,-1), 0.3, HexColor("#DDDDDD")),
-        ("PADDING", (0,0), (-1,-1), 6),
-        ("ALIGN", (2,0), (-1,-1), "RIGHT"),
-        ("VALIGN", (0,0), (-1,-1), "MIDDLE"),
+        ("BACKGROUND",(0,0),(-1,0),PINK), ("TEXTCOLOR",(0,0),(-1,0),white),
+        ("ROWBACKGROUNDS",(0,1),(-1,-1),[white,LIGHT_GRAY]),
+        ("GRID",(0,0),(-1,-1),0.3,HexColor("#DDDDDD")),
+        ("PADDING",(0,0),(-1,-1),6), ("ALIGN",(2,0),(-1,-1),"RIGHT"),
+        ("VALIGN",(0,0),(-1,-1),"MIDDLE"),
     ]))
     story.append(pt)
     story.append(Spacer(1, 0.3*cm))
 
-    # Summen – Netto berechnet aus Brutto
     total = float(order.get("total_price", 0))
     tax = float(order.get("total_tax", 0))
     netto = total - tax
-
-    summen = [
-        ["", "", Paragraph("Nettobetrag:", body), Paragraph(f"{netto:.2f} €", right)],
-        ["", "", Paragraph("zzgl. 19% MwSt.:", body), Paragraph(f"{tax:.2f} €", right)],
-        ["", "", Paragraph("<b>Gesamtbetrag:</b>", bold), Paragraph(f"<b>{total:.2f} €</b>", right_pink)],
-    ]
-    st = Table(summen, colWidths=[1*cm, 8*cm, 5*cm, 4*cm])
-    st.setStyle(TableStyle([
-        ("LINEABOVE", (2,2), (3,2), 1, PINK),
-        ("PADDING", (0,0), (-1,-1), 4),
-    ]))
+    st = Table([
+        ["","", Paragraph("Nettobetrag:", body), Paragraph(f"{netto:.2f} €", right)],
+        ["","", Paragraph("zzgl. 19% MwSt.:", body), Paragraph(f"{tax:.2f} €", right)],
+        ["","", Paragraph("<b>Gesamtbetrag:</b>", bold), Paragraph(f"<b>{total:.2f} €</b>", right_pink)],
+    ], colWidths=[1*cm, 8*cm, 5*cm, 4*cm])
+    st.setStyle(TableStyle([("LINEABOVE",(2,2),(3,2),1,PINK),("PADDING",(0,0),(-1,-1),4)]))
     story.append(st)
     story.append(Spacer(1, 0.5*cm))
-
-    # Footer
     story.append(HRFlowable(width="100%", thickness=0.5, color=HexColor("#DDDDDD"), spaceAfter=6))
     story.append(Paragraph(f"<b>Bankverbindung:</b> {COMPANY['name']} · IBAN: {COMPANY['iban']} · BIC: {COMPANY['bic']} · {COMPANY['bank']}", small))
     story.append(Paragraph(f"USt-IdNr.: {COMPANY['ust_id']} · Steuernummer: {COMPANY['steuernummer']}", small))
@@ -193,23 +164,39 @@ def create_invoice_pdf(order):
 
 
 def get_ms_token():
-    url = f"https://login.microsoftonline.com/{AZURE_TENANT_ID}/oauth2/v2.0/token"
-    r = requests.post(url, data={
-        "grant_type": "client_credentials",
-        "client_id": AZURE_CLIENT_ID,
-        "client_secret": AZURE_CLIENT_SECRET,
-        "scope": "https://graph.microsoft.com/.default",
-    })
+    r = requests.post(
+        f"https://login.microsoftonline.com/{AZURE_TENANT_ID}/oauth2/v2.0/token",
+        data={"grant_type":"client_credentials","client_id":AZURE_CLIENT_ID,
+              "client_secret":AZURE_CLIENT_SECRET,"scope":"https://graph.microsoft.com/.default"}
+    )
     r.raise_for_status()
     return r.json()["access_token"]
 
 
-def send_invoice_to_me(ms_token, order_number, kunde_name, pdf_bytes):
+def send_batch_email(ms_token, attachments, order_count):
+    """Schickt eine E-Mail mit mehreren PDF-Anhängen (max 20 pro Mail)."""
+    subject = f"Levora Skin – {order_count} Rechnungen (Gesamtübersicht)"
+    body_text = f"Hallo Malia,\n\nim Anhang findest du alle {order_count} bisherigen Rechnungen als PDF.\n\nLevora Invoice Agent"
+    payload = {
+        "message": {
+            "subject": subject,
+            "body": {"contentType": "Text", "content": body_text},
+            "toRecipients": [{"emailAddress": {"address": FROM_EMAIL}}],
+            "attachments": attachments,
+        },
+        "saveToSentItems": True,
+    }
+    headers = {"Authorization": f"Bearer {ms_token}", "Content-Type": "application/json"}
+    r = requests.post(f"https://graph.microsoft.com/v1.0/users/{FROM_EMAIL}/sendMail", headers=headers, json=payload)
+    r.raise_for_status()
+
+
+def send_single_email(ms_token, order_number, kunde_name, pdf_bytes):
     re_nr = rechnungsnummer(order_number)
     payload = {
         "message": {
-            "subject": f"Rechnung {re_nr} – Bestellung #{order_number} ({kunde_name})",
-            "body": {"contentType": "Text", "content": f"Automatisch erstellte Rechnung für Bestellung #{order_number} von {kunde_name}."},
+            "subject": f"Neue Rechnung: {re_nr} – #{order_number} ({kunde_name})",
+            "body": {"contentType": "Text", "content": f"Neue Bestellung #{order_number} von {kunde_name}.\nRechnung im Anhang."},
             "toRecipients": [{"emailAddress": {"address": FROM_EMAIL}}],
             "attachments": [{
                 "@odata.type": "#microsoft.graph.fileAttachment",
@@ -228,7 +215,8 @@ def send_invoice_to_me(ms_token, order_number, kunde_name, pdf_bytes):
 def main():
     print(f"[{datetime.now(timezone.utc).isoformat()}] Rechnungs-Agent gestartet.")
     processed = load_processed()
-    print(f"Bereits verarbeitet: {len(processed)} Bestellungen.")
+    is_first_run = len(processed) == 0
+    print(f"Erster Run: {is_first_run} | Bereits verarbeitet: {len(processed)}")
 
     orders = get_all_orders()
     new_orders = [o for o in orders if str(o["id"]) not in processed]
@@ -240,18 +228,46 @@ def main():
 
     ms_token = get_ms_token()
 
-    for order in new_orders:
-        order_number = order["order_number"]
-        addr = order.get("billing_address") or {}
-        kunde_name = f"{addr.get('first_name','').strip()} {addr.get('last_name','').strip()}".strip() or order.get("email", "Unbekannt")
-        print(f"  Verarbeite #{order_number} – {kunde_name}...")
-        try:
-            pdf = create_invoice_pdf(order)
-            send_invoice_to_me(ms_token, order_number, kunde_name, pdf)
-            processed.add(str(order["id"]))
-            print(f"  ✓ Rechnung gespeichert")
-        except Exception as e:
-            print(f"  ✗ Fehler: {e}")
+    if is_first_run and len(new_orders) > 1:
+        # Alle bisherigen Rechnungen in gebündelten E-Mails (max 15 Anhänge pro Mail)
+        batch_size = 15
+        all_pdfs = []
+        for order in new_orders:
+            try:
+                pdf = create_invoice_pdf(order)
+                re_nr = rechnungsnummer(order["order_number"])
+                all_pdfs.append({
+                    "@odata.type": "#microsoft.graph.fileAttachment",
+                    "name": f"{re_nr}.pdf",
+                    "contentType": "application/pdf",
+                    "contentBytes": base64.b64encode(pdf).decode(),
+                })
+                processed.add(str(order["id"]))
+                print(f"  ✓ PDF erstellt: {re_nr}")
+            except Exception as e:
+                print(f"  ✗ Fehler bei #{order['order_number']}: {e}")
+
+        # In Batches versenden
+        for i in range(0, len(all_pdfs), batch_size):
+            batch = all_pdfs[i:i+batch_size]
+            teil = f" (Teil {i//batch_size + 1})" if len(all_pdfs) > batch_size else ""
+            try:
+                send_batch_email(ms_token, batch, len(new_orders))
+                print(f"  ✓ Batch-E-Mail{teil} mit {len(batch)} Rechnungen gesendet")
+            except Exception as e:
+                print(f"  ✗ Fehler beim Senden{teil}: {e}")
+    else:
+        # Einzelne neue Bestellung
+        for order in new_orders:
+            addr = order.get("billing_address") or {}
+            kunde_name = f"{addr.get('first_name','').strip()} {addr.get('last_name','').strip()}".strip() or order.get("email","Unbekannt")
+            try:
+                pdf = create_invoice_pdf(order)
+                send_single_email(ms_token, order["order_number"], kunde_name, pdf)
+                processed.add(str(order["id"]))
+                print(f"  ✓ Rechnung für #{order['order_number']} gesendet")
+            except Exception as e:
+                print(f"  ✗ Fehler: {e}")
 
     save_processed(processed)
     print("Fertig.")
