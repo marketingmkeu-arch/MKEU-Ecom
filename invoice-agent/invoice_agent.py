@@ -278,7 +278,7 @@ def main():
         # Einzelne neue Bestellung
         for order in new_orders:
             addr = order.get("billing_address") or {}
-            kunde_name = f"{addr.get('first_name','').strip()} {addr.get('last_name','').strip()}".strip() or order.get("email","Unbekannt")
+            kunde_name = f"{(addr.get('first_name') or '').strip()} {(addr.get('last_name') or '').strip()}".strip() or order.get("email","Unbekannt")
             try:
                 pdf = create_invoice_pdf(order)
                 send_single_email(ms_token, order["order_number"], kunde_name, pdf)
