@@ -25,10 +25,8 @@ jobs:
         env:
           SHOPIFY_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
           SHOPIFY_SHOP: "levora-skin.myshopify.com"
-          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          GOOGLE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_SERVICE_ACCOUNT }}
+          DRIVE_FOLDER_ID: "1WbR_p1bKJ5_H2HAGy_dvYfcPj9JTOT_R"
         run: python invoice-agent/invoice_agent.py
 
       - name: Save processed orders

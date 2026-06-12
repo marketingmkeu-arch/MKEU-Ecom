@@ -1,9 +1,11 @@
 import os
 import json
 import requests
-import base64
 import io
 from datetime import datetime, timezone
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaIoBaseUpload
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import cm
@@ -13,10 +15,8 @@ from reportlab.lib.enums import TA_RIGHT
 
 SHOPIFY_TOKEN = os.environ["SHOPIFY_ACCESS_TOKEN"]
 SHOPIFY_SHOP = os.environ.get("SHOPIFY_SHOP", "levora-skin.myshopify.com")
-AZURE_TENANT_ID = os.environ["AZURE_TENANT_ID"]
-AZURE_CLIENT_ID = os.environ["AZURE_CLIENT_ID"]
-AZURE_CLIENT_SECRET = os.environ["AZURE_CLIENT_SECRET"]
-FROM_EMAIL = os.environ.get("EMAIL_ADDRESS", "info@levora-skin.de")
+GOOGLE_CREDENTIALS = json.loads(os.environ["GOOGLE_SERVICE_ACCOUNT"])
+DRIVE_FOLDER_ID = os.environ.get("DRIVE_FOLDER_ID", "1WbR_p1bKJ5_H2HAGy_dvYfcPj9JTOT_R")
 PROCESSED_FILE = "invoice-agent/processed_orders.json"
 
 COMPANY = {
@@ -51,7 +51,18 @@ def save_processed(processed):
         json.dump(list(processed), f)
 
 
-SHOPIFY_API_KEY = os.environ.get("SHOPIFY_API_KEY", "41f4e8e72cc495ce16b27f2f1e0e9f70")
+def get_drive_service():
+    creds = service_account.Credentials.from_service_account_info(
+        GOOGLE_CREDENTIALS,
+        scopes=["https://www.googleapis.com/auth/drive.file"]
+    )
+    return build("drive", "v3", credentials=creds)
+
+
+def upload_to_drive(drive_service, filename, pdf_bytes):
+    file_metadata = {"name": filename, "parents": [DRIVE_FOLDER_ID]}
+    media = MediaIoBaseUpload(io.BytesIO(pdf_bytes), mimetype="application/pdf")
+    drive_service.files().create(body=file_metadata, media_body=media, fields="id").execute()
 
 
 def get_orders_with_status(status):
@@ -185,60 +196,10 @@ def create_invoice_pdf(order):
     return buffer.read()
 
 
-def get_ms_token():
-    r = requests.post(
-        f"https://login.microsoftonline.com/{AZURE_TENANT_ID}/oauth2/v2.0/token",
-        data={"grant_type":"client_credentials","client_id":AZURE_CLIENT_ID,
-              "client_secret":AZURE_CLIENT_SECRET,"scope":"https://graph.microsoft.com/.default"}
-    )
-    r.raise_for_status()
-    return r.json()["access_token"]
-
-
-def send_batch_email(ms_token, attachments, order_count):
-    """Schickt eine E-Mail mit mehreren PDF-Anhängen (max 20 pro Mail)."""
-    subject = f"Levora Skin – {order_count} Rechnungen (Gesamtübersicht)"
-    body_text = f"Hallo Malia,\n\nim Anhang findest du alle {order_count} bisherigen Rechnungen als PDF.\n\nLevora Invoice Agent"
-    payload = {
-        "message": {
-            "subject": subject,
-            "body": {"contentType": "Text", "content": body_text},
-            "toRecipients": [{"emailAddress": {"address": FROM_EMAIL}}],
-            "attachments": attachments,
-        },
-        "saveToSentItems": True,
-    }
-    headers = {"Authorization": f"Bearer {ms_token}", "Content-Type": "application/json"}
-    r = requests.post(f"https://graph.microsoft.com/v1.0/users/{FROM_EMAIL}/sendMail", headers=headers, json=payload)
-    r.raise_for_status()
-
-
-def send_single_email(ms_token, order_number, kunde_name, pdf_bytes):
-    re_nr = rechnungsnummer(order_number)
-    payload = {
-        "message": {
-            "subject": f"Neue Rechnung: {re_nr} – #{order_number} ({kunde_name})",
-            "body": {"contentType": "Text", "content": f"Neue Bestellung #{order_number} von {kunde_name}.\nRechnung im Anhang."},
-            "toRecipients": [{"emailAddress": {"address": FROM_EMAIL}}],
-            "attachments": [{
-                "@odata.type": "#microsoft.graph.fileAttachment",
-                "name": pdf_filename(order["order_number"]),
-                "contentType": "application/pdf",
-                "contentBytes": base64.b64encode(pdf_bytes).decode(),
-            }],
-        },
-        "saveToSentItems": True,
-    }
-    headers = {"Authorization": f"Bearer {ms_token}", "Content-Type": "application/json"}
-    r = requests.post(f"https://graph.microsoft.com/v1.0/users/{FROM_EMAIL}/sendMail", headers=headers, json=payload)
-    r.raise_for_status()
-
-
 def main():
     print(f"[{datetime.now(timezone.utc).isoformat()}] Rechnungs-Agent gestartet.")
     processed = load_processed()
-    is_first_run = len(processed) == 0
-    print(f"Erster Run: {is_first_run} | Bereits verarbeitet: {len(processed)}")
+    print(f"Bereits verarbeitet: {len(processed)}")
 
     orders = get_all_orders()
     new_orders = [o for o in orders if str(o["id"]) not in processed]
@@ -248,48 +209,17 @@ def main():
         print("Fertig.")
         return
 
-    ms_token = get_ms_token()
+    drive_service = get_drive_service()
 
-    if is_first_run and len(new_orders) > 1:
-        # Alle bisherigen Rechnungen in gebündelten E-Mails (max 15 Anhänge pro Mail)
-        batch_size = 15
-        all_pdfs = []
-        for order in new_orders:
-            try:
-                pdf = create_invoice_pdf(order)
-                re_nr = rechnungsnummer(order["order_number"])
-                all_pdfs.append({
-                    "@odata.type": "#microsoft.graph.fileAttachment",
-                    "name": pdf_filename(order["order_number"]),
-                    "contentType": "application/pdf",
-                    "contentBytes": base64.b64encode(pdf).decode(),
-                })
-                processed.add(str(order["id"]))
-                print(f"  ✓ PDF erstellt: {re_nr}")
-            except Exception as e:
-                print(f"  ✗ Fehler bei #{order['order_number']}: {e}")
-
-        # In Batches versenden
-        for i in range(0, len(all_pdfs), batch_size):
-            batch = all_pdfs[i:i+batch_size]
-            teil = f" (Teil {i//batch_size + 1})" if len(all_pdfs) > batch_size else ""
-            try:
-                send_batch_email(ms_token, batch, len(new_orders))
-                print(f"  ✓ Batch-E-Mail{teil} mit {len(batch)} Rechnungen gesendet")
-            except Exception as e:
-                print(f"  ✗ Fehler beim Senden{teil}: {e}")
-    else:
-        # Einzelne neue Bestellung
-        for order in new_orders:
-            addr = order.get("billing_address") or {}
-            kunde_name = f"{(addr.get('first_name') or '').strip()} {(addr.get('last_name') or '').strip()}".strip() or order.get("email","Unbekannt")
-            try:
-                pdf = create_invoice_pdf(order)
-                send_single_email(ms_token, order["order_number"], kunde_name, pdf)
-                processed.add(str(order["id"]))
-                print(f"  ✓ Rechnung für #{order['order_number']} gesendet")
-            except Exception as e:
-                print(f"  ✗ Fehler: {e}")
+    for order in new_orders:
+        try:
+            pdf = create_invoice_pdf(order)
+            filename = pdf_filename(order["order_number"])
+            upload_to_drive(drive_service, filename, pdf)
+            processed.add(str(order["id"]))
+            print(f"  ✓ Hochgeladen: {filename}")
+        except Exception as e:
+            print(f"  ✗ Fehler bei #{order['order_number']}: {e}")
 
     save_processed(processed)
     print("Fertig.")
