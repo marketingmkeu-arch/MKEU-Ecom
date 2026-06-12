@@ -197,7 +197,7 @@ def create_invoice_pdf(order):
 
 
 def main():
-    print(f"[{datetime.now(timezone.utc).isoformat()}] Rechnungs-Agent gestartet.")
+    print(f"[{datetime.now(timezone.utc).isoformat()}] Justus (Rechnungs-Agent) gestartet.")
     processed = load_processed()
     print(f"Bereits verarbeitet: {len(processed)}")
 

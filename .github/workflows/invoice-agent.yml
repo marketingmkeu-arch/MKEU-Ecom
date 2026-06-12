@@ -1,4 +1,4 @@
-name: Levora Rechnungs-Agent
+name: Justus – Levora Rechnungs-Agent
 
 on:
   schedule:
@@ -32,7 +32,7 @@ jobs:
       - name: Save processed orders
         run: |
           git config user.email "agent@levora-skin.de"
-          git config user.name "Levora Invoice Agent"
+          git config user.name "Justus (Levora Invoice Agent)"
           git add invoice-agent/processed_orders.json || true
           git diff --staged --quiet || git commit -m "Update processed orders [skip ci]"
           git push || true
