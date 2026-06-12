@@ -202,7 +202,10 @@ def main():
     print(f"Bereits verarbeitet: {len(processed)}")
 
     orders = get_all_orders()
-    new_orders = [o for o in orders if str(o["id"]) not in processed]
+    new_orders = sorted(
+        [o for o in orders if str(o["id"]) not in processed],
+        key=lambda o: o["order_number"]
+    )
     print(f"{len(new_orders)} neue Bestellung(en) zu verarbeiten.")
 
     if not new_orders:

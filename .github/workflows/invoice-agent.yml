@@ -2,7 +2,7 @@ name: Levora Rechnungs-Agent
 
 on:
   schedule:
-    - cron: "*/5 * * * *"  # every 5 minutes
+    - cron: "0 18 * * *"  # daily at 20:00 CET (18:00 UTC)
   workflow_dispatch:
 
 jobs:
