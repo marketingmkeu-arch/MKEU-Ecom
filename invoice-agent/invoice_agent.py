@@ -59,10 +59,19 @@ def get_drive_service():
     return build("drive", "v3", credentials=creds)
 
 
+DRIVE_OWNER_EMAIL = os.environ.get("DRIVE_OWNER_EMAIL", "marketing.mkeu@gmail.com")
+
+
 def upload_to_drive(drive_service, filename, pdf_bytes):
     file_metadata = {"name": filename, "parents": [DRIVE_FOLDER_ID]}
     media = MediaIoBaseUpload(io.BytesIO(pdf_bytes), mimetype="application/pdf")
-    drive_service.files().create(body=file_metadata, media_body=media, fields="id").execute()
+    file = drive_service.files().create(body=file_metadata, media_body=media, fields="id").execute()
+    file_id = file["id"]
+    drive_service.permissions().create(
+        fileId=file_id,
+        transferOwnership=True,
+        body={"type": "user", "role": "owner", "emailAddress": DRIVE_OWNER_EMAIL},
+    ).execute()
 
 
 def get_orders_with_status(status):
