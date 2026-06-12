@@ -3,7 +3,8 @@ import json
 import requests
 import io
 from datetime import datetime, timezone
-from google.oauth2 import service_account
+from google.oauth2.credentials import Credentials
+from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseUpload
 from reportlab.lib.pagesizes import A4
@@ -15,7 +16,9 @@ from reportlab.lib.enums import TA_RIGHT
 
 SHOPIFY_TOKEN = os.environ["SHOPIFY_ACCESS_TOKEN"]
 SHOPIFY_SHOP = os.environ.get("SHOPIFY_SHOP", "levora-skin.myshopify.com")
-GOOGLE_CREDENTIALS = json.loads(os.environ["GOOGLE_SERVICE_ACCOUNT"])
+GOOGLE_CLIENT_ID = os.environ["GOOGLE_CLIENT_ID"]
+GOOGLE_CLIENT_SECRET = os.environ["GOOGLE_CLIENT_SECRET"]
+GOOGLE_REFRESH_TOKEN = os.environ["GOOGLE_REFRESH_TOKEN"]
 DRIVE_FOLDER_ID = os.environ.get("DRIVE_FOLDER_ID", "1WbR_p1bKJ5_H2HAGy_dvYfcPj9JTOT_R")
 PROCESSED_FILE = "invoice-agent/processed_orders.json"
 
@@ -52,26 +55,21 @@ def save_processed(processed):
 
 
 def get_drive_service():
-    creds = service_account.Credentials.from_service_account_info(
-        GOOGLE_CREDENTIALS,
-        scopes=["https://www.googleapis.com/auth/drive.file"]
+    creds = Credentials(
+        token=None,
+        refresh_token=GOOGLE_REFRESH_TOKEN,
+        client_id=GOOGLE_CLIENT_ID,
+        client_secret=GOOGLE_CLIENT_SECRET,
+        token_uri="https://oauth2.googleapis.com/token",
     )
+    creds.refresh(Request())
     return build("drive", "v3", credentials=creds)
-
-
-DRIVE_OWNER_EMAIL = os.environ.get("DRIVE_OWNER_EMAIL", "marketing.mkeu@gmail.com")
 
 
 def upload_to_drive(drive_service, filename, pdf_bytes):
     file_metadata = {"name": filename, "parents": [DRIVE_FOLDER_ID]}
     media = MediaIoBaseUpload(io.BytesIO(pdf_bytes), mimetype="application/pdf")
-    file = drive_service.files().create(body=file_metadata, media_body=media, fields="id").execute()
-    file_id = file["id"]
-    drive_service.permissions().create(
-        fileId=file_id,
-        transferOwnership=True,
-        body={"type": "user", "role": "owner", "emailAddress": DRIVE_OWNER_EMAIL},
-    ).execute()
+    drive_service.files().create(body=file_metadata, media_body=media, fields="id").execute()
 
 
 def get_orders_with_status(status):
