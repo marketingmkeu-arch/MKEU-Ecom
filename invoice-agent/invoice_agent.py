@@ -94,6 +94,10 @@ def rechnungsnummer(order_number):
     return f"RE-{datetime.now().year}-{str(order_number).zfill(5)}"
 
 
+def pdf_filename(order_number):
+    return f"Levora-Skin_#{order_number}.pdf"
+
+
 def create_invoice_pdf(order):
     buffer = io.BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=A4,
@@ -218,7 +222,7 @@ def send_single_email(ms_token, order_number, kunde_name, pdf_bytes):
             "toRecipients": [{"emailAddress": {"address": FROM_EMAIL}}],
             "attachments": [{
                 "@odata.type": "#microsoft.graph.fileAttachment",
-                "name": f"{re_nr}.pdf",
+                "name": pdf_filename(order["order_number"]),
                 "contentType": "application/pdf",
                 "contentBytes": base64.b64encode(pdf_bytes).decode(),
             }],
@@ -256,7 +260,7 @@ def main():
                 re_nr = rechnungsnummer(order["order_number"])
                 all_pdfs.append({
                     "@odata.type": "#microsoft.graph.fileAttachment",
-                    "name": f"{re_nr}.pdf",
+                    "name": pdf_filename(order["order_number"]),
                     "contentType": "application/pdf",
                     "contentBytes": base64.b64encode(pdf).decode(),
                 })
