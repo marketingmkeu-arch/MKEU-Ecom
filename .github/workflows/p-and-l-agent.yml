@@ -1,0 +1,27 @@
+name: Levora P&L Agent – Täglicher Report
+
+on:
+  schedule:
+    - cron: "0 21 * * *"  # daily at 23:00 CET (21:00 UTC)
+  workflow_dispatch:
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r p-and-l-agent/requirements.txt
+
+      - name: Run P&L agent
+        env:
+          SHOPIFY_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          SHEET_WEBHOOK_URL: ${{ secrets.SHEET_WEBHOOK_URL }}
+        run: python p-and-l-agent/agent.py
