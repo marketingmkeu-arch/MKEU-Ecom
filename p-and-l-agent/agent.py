@@ -2,17 +2,38 @@ import os
 import json
 import requests
 from datetime import datetime, timedelta, timezone
+from google.oauth2.credentials import Credentials
+from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
 
 SHOPIFY_TOKEN = os.environ["SHOPIFY_ACCESS_TOKEN"]
 SHOPIFY_SHOP = os.environ.get("SHOPIFY_SHOP", "levora-skin.myshopify.com")
 META_ACCESS_TOKEN = os.environ["META_ACCESS_TOKEN"]
 META_AD_ACCOUNT_ID = os.environ.get("META_AD_ACCOUNT_ID", "1316660256925670")
-SHEET_WEBHOOK_URL = os.environ["SHEET_WEBHOOK_URL"]
-SHEET_SECRET = "levora-sheet-2026"
+GOOGLE_CLIENT_ID = os.environ["GOOGLE_CLIENT_ID"]
+GOOGLE_CLIENT_SECRET = os.environ["GOOGLE_CLIENT_SECRET"]
+GOOGLE_REFRESH_TOKEN = os.environ["GOOGLE_REFRESH_TOKEN"]
+SPREADSHEET_ID = "16ht9M4uxDZrRi2uWg2ohzZJbQUEkEPHG9tLAFrofzB4"
 
 COGS_1_USD = 7.74
 COGS_2_EUR = 12.17
 FEES_RATE = 0.03
+
+MONTHS_DE = ["JANUAR","FEBRUAR","MÄRZ","APRIL","MAI","JUNI",
+             "JULI","AUGUST","SEPTEMBER","OKTOBER","NOVEMBER","DEZEMBER"]
+
+
+def get_sheets_service():
+    creds = Credentials(
+        token=None,
+        refresh_token=GOOGLE_REFRESH_TOKEN,
+        client_id=GOOGLE_CLIENT_ID,
+        client_secret=GOOGLE_CLIENT_SECRET,
+        token_uri="https://oauth2.googleapis.com/token",
+        scopes=["https://www.googleapis.com/auth/spreadsheets"],
+    )
+    creds.refresh(Request())
+    return build("sheets", "v4", credentials=creds)
 
 
 def get_eur_usd_rate():
@@ -76,25 +97,46 @@ def get_meta_adspend(date_str):
     return 0.0
 
 
-def post_to_sheet(date_iso, revenue, cogs, adspend_fb, fees, order_count):
-    payload = {
-        "secret": SHEET_SECRET,
-        "date": date_iso,
-        "revenue": revenue,
-        "cogs": cogs,
-        "adspend_fb": adspend_fb,
-        "fees": fees,
-        "order_count": order_count,
-    }
-    r = requests.post(SHEET_WEBHOOK_URL, json=payload, timeout=15)
-    return r.text
+def write_to_sheet(service, date_iso, revenue, cogs, adspend_fb, fees, order_count):
+    d = datetime.fromisoformat(date_iso)
+    tab_name = f"{MONTHS_DE[d.month - 1]} {d.year}"
+    date_str = d.strftime("%d.%m.%Y")
+
+    result = service.spreadsheets().values().get(
+        spreadsheetId=SPREADSHEET_ID,
+        range=f"'{tab_name}'!A:A",
+        valueRenderOption="FORMATTED_VALUE",
+    ).execute()
+
+    col_a = result.get("values", [])
+    print(f"Tab: {tab_name} | Suche: {date_str} | {len(col_a)} Zeilen")
+    print(f"Erste 5 Werte: {[r[0] if r else '' for r in col_a[:5]]}")
+
+    for i, row in enumerate(col_a):
+        if row and row[0] == date_str:
+            row_num = i + 1
+            updates = [
+                {"range": f"'{tab_name}'!B{row_num}", "values": [[revenue]]},
+                {"range": f"'{tab_name}'!C{row_num}", "values": [[cogs]]},
+                {"range": f"'{tab_name}'!D{row_num}", "values": [[adspend_fb]]},
+                {"range": f"'{tab_name}'!G{row_num}", "values": [[fees]]},
+                {"range": f"'{tab_name}'!L{row_num}", "values": [[order_count]]},
+            ]
+            body = {"valueInputOption": "RAW", "data": updates}
+            service.spreadsheets().values().batchUpdate(
+                spreadsheetId=SPREADSHEET_ID, body=body
+            ).execute()
+            print(f"Erfolgreich eingetragen in Zeile {row_num}")
+            return
+
+    print(f"Datum nicht gefunden: {date_str}")
 
 
 def main():
     yesterday = datetime.now(timezone.utc).date() - timedelta(days=1)
     date_iso = yesterday.strftime("%Y-%m-%d")
 
-    print(f"P&L Agent gestartet für {date_iso}")
+    print(f"Leon (P&L Agent) gestartet für {date_iso}")
 
     eur_rate = get_eur_usd_rate()
     print(f"USD→EUR Rate: {eur_rate}")
@@ -113,8 +155,8 @@ def main():
     roas = round(revenue / adspend_fb, 2) if adspend_fb > 0 else 0
     print(f"Profit: €{profit} | ROAS: {roas}")
 
-    result = post_to_sheet(date_iso, revenue, cogs, adspend_fb, fees, order_count)
-    print(f"Sheet Antwort: {result}")
+    service = get_sheets_service()
+    write_to_sheet(service, date_iso, revenue, cogs, adspend_fb, fees, order_count)
 
 
 if __name__ == "__main__":

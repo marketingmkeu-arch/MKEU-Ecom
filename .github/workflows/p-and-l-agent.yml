@@ -23,5 +23,7 @@ jobs:
         env:
           SHOPIFY_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
           META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
-          SHEET_WEBHOOK_URL: ${{ secrets.SHEET_WEBHOOK_URL }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
         run: python p-and-l-agent/agent.py
