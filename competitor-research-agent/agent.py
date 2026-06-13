@@ -1,15 +1,15 @@
 import os
 import io
-import json
-import requests
+import time
 import anthropic
 from datetime import datetime, timezone
+from urllib.parse import quote
+from playwright.sync_api import sync_playwright
 from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseUpload
 
-META_ACCESS_TOKEN = os.environ["META_ACCESS_TOKEN"]
 ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
 GOOGLE_CLIENT_ID = os.environ["GOOGLE_CLIENT_ID"]
 GOOGLE_CLIENT_SECRET = os.environ["GOOGLE_CLIENT_SECRET"]
@@ -17,10 +17,9 @@ GOOGLE_REFRESH_TOKEN = os.environ["GOOGLE_REFRESH_TOKEN"]
 DRIVE_FOLDER_ID = os.environ.get("DRIVE_RESEARCH_FOLDER_ID", "")
 
 KEYWORDS = [
-    "nail fungus", "nagelpilz", "fungal nail", "nail fungus laser",
-    "nagelpilz laser", "onychomycosis", "nail fungus treatment",
-    "nagelpilz behandlung", "anti-fungal nail", "toenail fungus",
-    "nail fungus device", "nagelpilz gerät",
+    "nail fungus", "nagelpilz", "fungal nail laser",
+    "nagelpilz laser", "toenail fungus", "nail fungus treatment",
+    "nagelpilz behandlung", "nail fungus device",
 ]
 
 
@@ -36,110 +35,106 @@ def get_drive_service():
     return build("drive", "v3", credentials=creds)
 
 
-COUNTRIES = [
-    "DE","AT","CH","US","GB","AU","CA","FR","IT","ES","NL","BE","SE","NO","DK",
-    "FI","PL","PT","CZ","HU","RO","SK","HR","SI","LT","LV","EE","IE","GR","BG",
-    "BR","MX","AR","ZA","IN","SG","MY","PH","ID","NZ","JP","KR","TW","HK","TR",
-    "AE","SA","IL","NG","KE","EG","MA","TH","VN","CL","CO","PE",
-]
+def scrape_keyword(page, keyword):
+    url = (
+        f"https://www.facebook.com/ads/library/"
+        f"?active_status=active&ad_type=all&country=ALL"
+        f"&q={quote(keyword)}&search_type=keyword_unordered"
+    )
+    try:
+        page.goto(url, wait_until="domcontentloaded", timeout=25000)
+    except Exception:
+        pass
+
+    # Accept cookie banner if shown
+    for selector in [
+        '[data-cookiebanner="accept_button"]',
+        'button[title="Accept All"]',
+        'button[title="Alle Cookies akzeptieren"]',
+        'div[aria-label="Allow all cookies"] button',
+    ]:
+        try:
+            page.click(selector, timeout=2000)
+            break
+        except Exception:
+            pass
+
+    time.sleep(3)
+
+    # Scroll to load more ads
+    for _ in range(5):
+        page.evaluate("window.scrollBy(0, 1500)")
+        time.sleep(1.2)
+
+    return page.inner_text("body")[:8000]
 
 
-def search_ad_library(keyword):
-    url = "https://graph.facebook.com/v19.0/ads_archive"
-    params = {
-        "access_token": META_ACCESS_TOKEN,
-        "search_terms": keyword,
-        "ad_active_status": "ACTIVE",
-        "ad_reached_countries": json.dumps(COUNTRIES),
-        "fields": "id,ad_creative_bodies,ad_creative_link_captions,ad_creative_link_descriptions,ad_creative_link_titles,ad_delivery_start_time,page_name,ad_snapshot_url",
-        "limit": 30,
-    }
-    r = requests.get(url, params=params, timeout=15)
-    if r.status_code != 200:
-        print(f"  Fehler bei '{keyword}': {r.text[:200]}")
-        return []
-    return r.json().get("data", [])
+def collect_raw_texts():
+    results = {}
+    with sync_playwright() as p:
+        browser = p.chromium.launch(
+            headless=True,
+            args=["--no-sandbox", "--disable-dev-shm-usage"],
+        )
+        context = browser.new_context(
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            ),
+            locale="de-DE",
+        )
+        page = context.new_page()
+
+        for keyword in KEYWORDS:
+            print(f"Scrape: '{keyword}'...")
+            text = scrape_keyword(page, keyword)
+            results[keyword] = text
+            print(f"  {len(text)} Zeichen gesammelt")
+            time.sleep(2)
+
+        browser.close()
+    return results
 
 
-def collect_ads():
-    all_ads = {}
-    for keyword in KEYWORDS:
-        print(f"Suche: '{keyword}'...")
-        ads = search_ad_library(keyword)
-        for ad in ads:
-            ad_id = ad.get("id")
-            if ad_id and ad_id not in all_ads:
-                all_ads[ad_id] = ad
-        print(f"  {len(ads)} Ads gefunden")
-    return list(all_ads.values())
-
-
-def format_ads_for_analysis(ads):
-    by_page = {}
-    for ad in ads:
-        page = ad.get("page_name", "Unbekannt")
-        if page not in by_page:
-            by_page[page] = []
-        by_page[page].append(ad)
-
-    lines = []
-    for page, page_ads in list(by_page.items())[:40]:
-        lines.append(f"\n### Marke: {page} ({len(page_ads)} Ads aktiv)")
-        for ad in page_ads[:3]:
-            bodies = ad.get("ad_creative_bodies") or []
-            titles = ad.get("ad_creative_link_titles") or []
-            descs = ad.get("ad_creative_link_descriptions") or []
-            captions = ad.get("ad_creative_link_captions") or []
-            start = ad.get("ad_delivery_start_time", "")
-            if titles:
-                lines.append(f"  Headline: {titles[0][:200]}")
-            if bodies:
-                lines.append(f"  Copy: {bodies[0][:400]}")
-            if descs:
-                lines.append(f"  Beschreibung: {descs[0][:200]}")
-            if captions:
-                lines.append(f"  Caption: {captions[0][:100]}")
-            if start:
-                lines.append(f"  Läuft seit: {start[:10]}")
-            lines.append("")
-
-    return "\n".join(lines)
-
-
-def analyze_with_claude(ads_text, total_ads, total_pages):
+def analyze_with_claude(raw_texts):
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+
+    combined = ""
+    for kw, text in raw_texts.items():
+        combined += f"\n\n=== Keyword: '{kw}' ===\n{text}"
 
     prompt = f"""Du bist ein Senior Performance Marketing Analyst spezialisiert auf Direct-Response E-Commerce.
 
-Ich habe {total_ads} aktive Facebook/Instagram Ads von {total_pages} verschiedenen Marken aus der Meta Ad Library gesammelt. Alle bewerben Produkte rund um Nagelpilz-Behandlung (Laser-Geräte, Cremes, Behandlungen etc.) weltweit.
+Ich habe die Facebook Ad Library für folgende Keywords gescraped: {', '.join(raw_texts.keys())}
 
-Hier sind die gesammelten Ads:
+Hier ist der rohe Seitentext aus der Ad Library für jedes Keyword:
 
-{ads_text}
+{combined[:25000]}
 
 ---
 
-Erstelle jetzt einen detaillierten Competitor Intelligence Report auf Deutsch. Sei extrem konkret und zitiere echte Beispiele aus den Ads.
+Extrahiere aus diesem Text alle erkennbaren Werbeanzeigen (Markennamen, Ad-Texte, Headlines, CTAs) und erstelle dann einen detaillierten Competitor Intelligence Report auf Deutsch.
 
-# Competitor Intelligence Report – {{datum}}
+# Competitor Intelligence Report – {datetime.now(timezone.utc).strftime("%d.%m.%Y")}
 
-## 1. Marktüberblick
-Wer schaltet wie viel, wer ist am aggressivsten aktiv, Marktdynamik.
+## 1. Identifizierte Marken & Wettbewerber
+Liste alle erkennbaren Brands/Seiten die Ads schalten.
 
 ## 2. Dominante Angles & Hooks
-Welche Probleme/Emotionen werden angesprochen? Liste die Top-Angles mit konkreten Zitaten aus den Ads.
+Welche Probleme/Emotionen werden angesprochen? Konkrete Zitate aus den Ads.
 
 ## 3. Zielgruppensprache & Wording
-Welche Begriffe, Formulierungen, Versprechen dominieren? Was resoniert offensichtlich?
+Welche Begriffe, Formulierungen, Versprechen dominieren?
 
 ## 4. Funnel-Muster
-Erkennbare Muster bei Headline → Body Copy → CTA. Wie wird der Kaufimpuls aufgebaut?
+Erkennbare Muster bei Headline → Body Copy → CTA.
 
 ## 5. Creative-Ansätze
-Welche Formate und Storytelling-Ansätze werden genutzt (UGC, Vorher/Nachher, Testimonial, Educational, etc.)?
+Welche Storytelling-Ansätze werden genutzt (UGC, Vorher/Nachher, Testimonial, Educational)?
 
 ## 6. Top 5 Empfehlungen für Levora Skin
-Konkrete, sofort umsetzbare Maßnahmen was Levora (Anti-Nagelpilz Laser-Device, ~€49,90, DACH-Markt) von den Wettbewerbern lernen und implementieren sollte.
+Konkrete, sofort umsetzbare Maßnahmen was Levora (Anti-Nagelpilz Laser-Device, ~€49,90, DACH-Markt) implementieren sollte.
 
 ## 7. Was vermeiden
 Angles/Ansätze die übersättigt wirken oder schlechte Signale senden."""
@@ -171,27 +166,23 @@ def main():
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     print(f"Competitor Research Agent gestartet – {today}")
 
-    ads = collect_ads()
-    print(f"\nGesamt: {len(ads)} unique Ads gesammelt")
+    raw_texts = collect_raw_texts()
+    total_chars = sum(len(t) for t in raw_texts.values())
+    print(f"\nGesamt: {total_chars} Zeichen aus {len(raw_texts)} Keywords gesammelt")
 
-    if not ads:
-        print("Keine Ads gefunden. Abbruch.")
+    if total_chars < 500:
+        print("Zu wenig Daten gesammelt. Abbruch.")
         return
 
-    pages = set(ad.get("page_name") for ad in ads)
-    print(f"Von {len(pages)} verschiedenen Marken/Seiten")
-
-    ads_text = format_ads_for_analysis(ads)
-    print(f"\nAnalysiere mit Claude...")
-    report = analyze_with_claude(ads_text, len(ads), len(pages))
+    print("Analysiere mit Claude...")
+    report = analyze_with_claude(raw_texts)
 
     print("Erstelle Google Doc...")
     drive_service = get_drive_service()
     title = f"Competitor Intel – {today}"
     doc_url = create_google_doc(drive_service, title, report)
 
-    print(f"Fertig!")
-    print(f"Doc: {doc_url}")
+    print(f"Fertig! Doc: {doc_url}")
 
 
 if __name__ == "__main__":
