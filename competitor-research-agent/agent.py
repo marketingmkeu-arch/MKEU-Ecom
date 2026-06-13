@@ -22,12 +22,78 @@ NICHE = "Anti-Nagelpilz / Fußpflege / Health-Device"
 TARGET_MARKET = "DACH (Deutschland, Österreich, Schweiz) + global"
 AVATAR_TARGET = "Frauen und Männer 40–65+, DACH-Markt"
 
-FB_KEYWORDS = [
-    "nail fungus", "nagelpilz", "fungal nail laser",
-    "nagelpilz laser", "toenail fungus", "nail fungus treatment",
-    "nagelpilz behandlung", "nail fungus device",
-    "onychomycosis", "fungal nail", "nail fungus cure",
-    "toenail fungus treatment", "nail laser device",
+# 7-day keyword rotation — each day scrapes different angles
+FB_KEYWORDS_ROTATION = [
+    # Tag 0 (Mo): Core Nagelpilz — Basis-Wettbewerber
+    ["nail fungus", "nagelpilz", "toenail fungus", "nagelpilz behandlung", "fungal nail"],
+    # Tag 1 (Di): Laser & Device — direkteste Konkurrenz zu Levora
+    ["nail fungus laser", "nagelpilz laser", "fungal nail laser", "nail laser device", "nail fungus device"],
+    # Tag 2 (Mi): Englischsprachig global — US/UK/AU Märkte
+    ["toenail fungus treatment", "nail fungus cure", "onychomycosis treatment", "nail fungus home remedy", "fix toenail fungus"],
+    # Tag 3 (Do): Emotionale Angles — Scham, Sommer, Sandalen
+    ["embarrassing toenails", "hiding feet summer", "sandals toenail fungus", "nail fungus embarrassing", "peinliche nägel"],
+    # Tag 4 (Fr): Zielgruppen-Erweiterung — Diabetes, Senioren, Sport
+    ["diabetes nail fungus", "athlete foot fungus", "senior nail care", "diabetiker nagelpilz", "fußpilz sport"],
+    # Tag 5 (Sa): Konkurrenten direkt — bekannte Brands
+    ["Canesten", "Loceryl", "Scholl nail fungus", "Excilor", "Mycocide nail"],
+    # Tag 6 (So): Neue Angles — UGC, Testimonials, Reviews
+    ["nail fungus review", "toenail fungus before after", "nail fungus testimonial", "nagelpilz erfahrung", "nail fungus success story"],
+]
+
+YOUTUBE_QUERIES_ROTATION = [
+    # Tag 0
+    ["nail fungus treatment ad", "nagelpilz werbung", "toenail fungus before after"],
+    # Tag 1
+    ["nail fungus laser device review", "laser nail treatment home", "nail fungus laser before after"],
+    # Tag 2
+    ["toenail fungus cure testimonial", "nail fungus success story", "how i cured toenail fungus"],
+    # Tag 3
+    ["hiding feet toenail fungus", "embarrassing nail fungus story", "nail fungus summer sandals"],
+    # Tag 4
+    ["diabetes toenail care", "nail fungus elderly", "athlete foot nail fungus"],
+    # Tag 5
+    ["canesten nail fungus review", "loceryl review", "scholl fungal nail review"],
+    # Tag 6
+    ["nail fungus ugc ad", "nail fungus facebook ad", "toenail fungus tiktok"],
+]
+
+# Focus theme per day for the prompts
+DAILY_FOCUS = [
+    {
+        "name": "Basis-Competitor-Analyse",
+        "description": "Heute liegt der Fokus auf den KERN-Wettbewerbern und ihrer generellen Positionierung. Identifiziere alle aktiven Brands, ihre Haupt-Angles und wer am meisten Budget hat.",
+        "deep_dive": "Welche Brands haben die meisten Ads laufen? Was ist ihr übergeordnetes Positioning? Welcher Angle dominiert den Markt am stärksten?",
+    },
+    {
+        "name": "Laser & Device Deep-Dive",
+        "description": "Heute Fokus auf direkteste Wettbewerber für Levora: alle At-Home Laser- und Device-Produkte gegen Nagelpilz. Wie verkaufen sie Technologie? Wie erklären sie das Device dem Kunden?",
+        "deep_dive": "Wie erklären Wettbewerber die Laser-Technologie verständlich? Welche Proof-Elemente nutzen sie für Devices? Welche Einwände adressieren sie (sicher? schmerzhaft? wirksam?)?",
+    },
+    {
+        "name": "Globale Märkte & Englische Angles",
+        "description": "Heute Fokus auf den US/UK/AU-Markt. Was funktioniert dort das noch nicht im DACH-Markt angekommen ist? Welche Angles, Hooks und Funnel-Strukturen sind international erfolgreich?",
+        "deep_dive": "Was machen US-Brands anders als DACH-Brands? Welche Angles könnte Levora aus dem englischsprachigen Markt adaptieren? Gibt es Formate die noch niemand im DACH testet?",
+    },
+    {
+        "name": "Emotionale Angles & Scham-Trigger",
+        "description": "Heute Fokus auf die emotionalen und sozialen Aspekte: Scham, Sommer, Sandalen, Partnerschaft, Schwimmbad. Wie nutzen Wettbewerber diese Emotionen in Ads?",
+        "deep_dive": "Welche Scham-Trigger funktionieren am besten? Wie unterscheidet sich emotionales Messaging bei Männern vs. Frauen? Gibt es neue emotionale Angles die noch niemand nutzt?",
+    },
+    {
+        "name": "Zielgruppen-Erweiterung (Diabetes, Senioren, Sport)",
+        "description": "Heute Fokus auf Nischen-Zielgruppen mit höherer Nagelpilz-Prävalenz: Diabetiker, Senioren, Sportler. Wie sprechen Wettbewerber diese an? Welche spezifischen Pain Points haben sie?",
+        "deep_dive": "Wie unterscheidet sich das Messaging für Diabetiker vs. Sportler vs. Senioren? Welche Zielgruppe ist am wenigsten umkämpft? Wo hat Levora die größte Chance zur Differenzierung?",
+    },
+    {
+        "name": "Konkurrenten-Funnel & Offer-Stack",
+        "description": "Heute Fokus auf die Offer-Struktur der Hauptwettbewerber: Preise, Bundles, Garantien, Upsells. Wie bauen sie ihr Angebot um maximale Conversion zu erzielen?",
+        "deep_dive": "Was sind die Preis-Ankerpunkte im Markt? Welche Garantien werden kommuniziert? Wie sehen typische Upsell-Sequenzen aus? Wie positioniert sich Levora mit €49,90 vs. dem Markt?",
+    },
+    {
+        "name": "UGC, Testimonials & Social Proof",
+        "description": "Heute Fokus auf User-Generated Content, Testimonials und Social Proof. Was für Erfolgsgeschichten funktionieren? Wie sind sie aufgebaut? Welche Details machen Testimonials glaubwürdig?",
+        "deep_dive": "Wie sind die überzeugendsten Testimonials aufgebaut (Vorher-Situation → Versuch → Ergebnis)? Welche Elemente machen UGC-Ads glaubwürdig? Was sollte Levora in Testimonials unbedingt zeigen?",
+    },
 ]
 
 YOUTUBE_QUERIES = [
@@ -176,8 +242,10 @@ def scrape_youtube_video_comments(page, video_url):
         return ""
 
 
-def collect_all_data():
+def collect_all_data(day_index):
     results = {"fb_ads": {}, "youtube": {}}
+    fb_keywords = FB_KEYWORDS_ROTATION[day_index]
+    yt_queries = YOUTUBE_QUERIES_ROTATION[day_index]
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
@@ -196,7 +264,7 @@ def collect_all_data():
         )
         page_fb = context_fb.new_page()
 
-        for keyword in FB_KEYWORDS:
+        for keyword in fb_keywords:
             print(f"  FB Ad Library: '{keyword}'...")
             text = scrape_fb_ads_deep(page_fb, keyword)
             results["fb_ads"][keyword] = text
@@ -217,7 +285,7 @@ def collect_all_data():
         )
         page_yt = context_yt.new_page()
 
-        for query in YOUTUBE_QUERIES:
+        for query in yt_queries:
             print(f"  YouTube: '{query}'...")
             text = scrape_youtube_for_scripts(page_yt, query)
             results["youtube"][query] = text
@@ -240,7 +308,7 @@ def run_claude(client, prompt, max_tokens=4500):
     return message.content[0].text
 
 
-def analyze_competitor_intel(client, data):
+def analyze_competitor_intel(client, data, focus):
     today = datetime.now(timezone.utc).strftime("%d.%m.%Y")
 
     fb_combined = ""
@@ -255,6 +323,14 @@ def analyze_competitor_intel(client, data):
 
 Produkt: {PRODUCT}
 Datum: {today}
+
+## HEUTIGER FOKUS-SCHWERPUNKT: {focus['name']}
+{focus['description']}
+
+**Besonders tief analysieren heute:**
+{focus['deep_dive']}
+
+WICHTIG: Das ist ein TÄGLICHER Report der aufeinander aufbaut. Gehe heute TIEFER in den Fokusbereich als gestern. Keine allgemeinen Wiederholungen von Basis-Fakten die jeden Tag gleich wären — stattdessen neue Erkenntnisse, neue Beispiele, neue Angles die du heute in den Daten siehst.
 
 Du hast folgende Rohdaten aus Facebook Ad Library und YouTube gescraped:
 
@@ -343,9 +419,16 @@ Priorisiert nach Hebel-Wirkung:
     return run_claude(client, prompt, max_tokens=5000)
 
 
-def analyze_market_awareness(client):
+def analyze_market_awareness(client, focus):
     today = datetime.now(timezone.utc).strftime("%d.%m.%Y")
     prompt = f"""Du bist ein Market Research Strategist ausgebildet in Eugene Schwartz' "Breakthrough Advertising".
+
+## HEUTIGER FOKUS: {focus['name']}
+{focus['description']}
+Beziehe diesen Fokus auf die Awareness-Analyse: Wo auf der Awareness-Skala befinden sich speziell die Menschen die heute gescrapt wurden (z.B. Diabetiker, Laser-Interessenten, etc.)?
+
+WICHTIG: Baue auf dem Basis-Awareness-Modell aus vorherigen Tagen auf. Heute neue Erkenntnisse, nicht die gleiche generelle Übersicht.
+
 
 Produkt: {PRODUCT}
 Zielmarkt: {TARGET_MARKET}
@@ -459,9 +542,16 @@ Für jeden Avatar sehr konkret:
     return run_claude(client, prompt, max_tokens=5000)
 
 
-def analyze_avatar_psychographics(client):
+def analyze_avatar_psychographics(client, focus):
     today = datetime.now(timezone.utc).strftime("%d.%m.%Y")
     prompt = f"""Du bist ein erfahrener Direct-Response-Stratege und Konsumentenpsychologe.
+
+## HEUTIGER FOKUS: {focus['name']}
+{focus['description']}
+Vertiefe die Psychografie heute im Kontext dieses Schwerpunkts. Welche SPEZIFISCHEN emotionalen Muster tauchen bei dieser Zielgruppe / diesem Angle auf?
+
+WICHTIG: Heute neue psychografische Ebenen erkunden, nicht die gleiche Basis-Analyse wiederholen. Wenn der Fokus heute z.B. auf Diabetikern liegt, dann gehe tief in DEREN spezifische Ängste, Sprache und Kaufbarrieren.
+
 
 Produkt: {PRODUCT}
 Zielgruppe: {AVATAR_TARGET}, speziell mit chronischem Nagelpilz (6+ Monate, multiple Behandlungsversuche)
@@ -588,7 +678,7 @@ Für jeden Hook: Wort-für-Wort Text + Avatar der angesprochen wird + Awareness-
     return run_claude(client, prompt, max_tokens=5500)
 
 
-def create_next_steps(client, competitor_intel, market_awareness, avatar_psycho):
+def create_next_steps(client, competitor_intel, market_awareness, avatar_psycho, focus):
     today = datetime.now(timezone.utc).strftime("%d.%m.%Y")
     prompt = f"""Du bist der Lead-Stratege für Levora Skin. Du hast heute drei tiefe Research-Reports erhalten:
 1. Competitor Intelligence (FB Ad Library + YouTube)
@@ -596,8 +686,11 @@ def create_next_steps(client, competitor_intel, market_awareness, avatar_psycho)
 3. Psychografische Tiefenanalyse (Emotionen, Sprache, Belief Chains)
 
 Produkt: {PRODUCT} | Datum: {today}
+Heutiger Fokus-Schwerpunkt: **{focus['name']}** — {focus['description']}
 
-Erstelle jetzt den finalen strategischen Action-Plan:
+WICHTIG: Die Next Steps müssen heute SPEZIFISCH auf den Fokus-Schwerpunkt eingehen. Keine generischen Empfehlungen die jeden Tag gleich wären. Was hat der heutige Research-Fokus KONKRET Neues ergeben das Levora umsetzen sollte?
+
+Erstelle den finalen strategischen Action-Plan:
 
 # TEIL 4: LEVORA NEXT STEPS & STRATEGISCHER ACTION PLAN – {today}
 
@@ -696,12 +789,19 @@ def create_google_doc(drive_service, title, full_content):
 
 
 def main():
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    today_de = datetime.now(timezone.utc).strftime("%d.%m.%Y")
+    now = datetime.now(timezone.utc)
+    today = now.strftime("%Y-%m-%d")
+    today_de = now.strftime("%d.%m.%Y")
+
+    # 7-day rotation based on day of week (0=Mo, 6=So)
+    day_index = now.weekday()
+    focus = DAILY_FOCUS[day_index]
+
     print(f"GOD TIER Research Agent gestartet – {today}")
+    print(f"Heutiger Fokus ({['Mo','Di','Mi','Do','Fr','Sa','So'][day_index]}): {focus['name']}")
 
     print("\n[1/5] Scraping Facebook Ad Library + YouTube...")
-    data = collect_all_data()
+    data = collect_all_data(day_index)
 
     total_fb = sum(len(t) for t in data["fb_ads"].values())
     total_yt = sum(len(t) for t in data["youtube"].values())
@@ -713,19 +813,19 @@ def main():
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
     print("\n[2/5] Competitor Intelligence (Ad-Skripte, Hooks, Angles)...")
-    competitor_intel = analyze_competitor_intel(client, data)
+    competitor_intel = analyze_competitor_intel(client, data, focus)
     print(f"  {len(competitor_intel)} Zeichen")
 
     print("\n[3/5] Market Awareness & Zielgruppen-Analyse...")
-    market_awareness = analyze_market_awareness(client)
+    market_awareness = analyze_market_awareness(client, focus)
     print(f"  {len(market_awareness)} Zeichen")
 
     print("\n[4/5] Psychografische Avatar-Analyse...")
-    avatar_psycho = analyze_avatar_psychographics(client)
+    avatar_psycho = analyze_avatar_psychographics(client, focus)
     print(f"  {len(avatar_psycho)} Zeichen")
 
     print("\n[5/5] Next Steps & Action Plan...")
-    next_steps = create_next_steps(client, competitor_intel, market_awareness, avatar_psycho)
+    next_steps = create_next_steps(client, competitor_intel, market_awareness, avatar_psycho, focus)
     print(f"  {len(next_steps)} Zeichen")
 
     full_report = f"""{competitor_intel}
@@ -744,7 +844,7 @@ def main():
 
     print("\nErstelle Google Doc...")
     drive_service = get_drive_service()
-    title = f"{today_de} Marktresearch"
+    title = f"{today_de} Marktresearch – {focus['name']}"
     doc_url = create_google_doc(drive_service, title, full_report)
 
     print(f"\nFertig! {len(full_report)} Zeichen Gesamt-Report")
