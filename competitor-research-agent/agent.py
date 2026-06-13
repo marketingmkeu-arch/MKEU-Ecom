@@ -744,7 +744,7 @@ def main():
 
     print("\nErstelle Google Doc...")
     drive_service = get_drive_service()
-    title = f"GOD TIER Research – Levora – {today_de}"
+    title = f"{today_de} Marktresearch"
     doc_url = create_google_doc(drive_service, title, full_report)
 
     print(f"\nFertig! {len(full_report)} Zeichen Gesamt-Report")
