@@ -2,6 +2,7 @@ import os
 import io
 import time
 import anthropic
+import markdown as md
 from datetime import datetime, timezone
 from urllib.parse import quote
 from playwright.sync_api import sync_playwright
@@ -148,9 +149,27 @@ Angles/Ansätze die übersättigt wirken oder schlechte Signale senden."""
 
 
 def create_google_doc(drive_service, title, content):
-    html = f"""<html><meta charset="utf-8"><body>
+    body_html = md.markdown(content, extensions=["tables", "fenced_code", "nl2br"])
+    html = f"""<html><meta charset="utf-8">
+<head><style>
+  body {{ font-family: Arial, sans-serif; font-size: 11pt; line-height: 1.6; color: #222; max-width: 900px; margin: 40px auto; padding: 0 20px; }}
+  h1 {{ font-size: 22pt; color: #1a1a2e; border-bottom: 3px solid #e63946; padding-bottom: 8px; }}
+  h2 {{ font-size: 16pt; color: #1a1a2e; margin-top: 28px; border-left: 4px solid #e63946; padding-left: 10px; }}
+  h3 {{ font-size: 13pt; color: #333; margin-top: 18px; }}
+  table {{ border-collapse: collapse; width: 100%; margin: 12px 0; }}
+  th {{ background: #e63946; color: white; padding: 8px 12px; text-align: left; }}
+  td {{ border: 1px solid #ddd; padding: 8px 12px; }}
+  tr:nth-child(even) {{ background: #f9f9f9; }}
+  blockquote {{ border-left: 4px solid #e63946; margin: 10px 0; padding: 8px 16px; background: #fff5f5; font-style: italic; }}
+  code {{ background: #f4f4f4; padding: 2px 6px; border-radius: 3px; }}
+  hr {{ border: none; border-top: 1px solid #ddd; margin: 24px 0; }}
+  ul, ol {{ padding-left: 24px; }}
+  li {{ margin: 4px 0; }}
+  strong {{ color: #1a1a2e; }}
+</style></head>
+<body>
 <h1>{title}</h1>
-<div style="font-family: Arial, sans-serif; line-height: 1.6; white-space: pre-wrap;">{content}</div>
+{body_html}
 </body></html>"""
 
     metadata = {"name": title, "mimeType": "application/vnd.google-apps.document"}
