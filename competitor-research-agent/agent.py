@@ -36,12 +36,21 @@ def get_drive_service():
     return build("drive", "v3", credentials=creds)
 
 
+COUNTRIES = [
+    "DE","AT","CH","US","GB","AU","CA","FR","IT","ES","NL","BE","SE","NO","DK",
+    "FI","PL","PT","CZ","HU","RO","SK","HR","SI","LT","LV","EE","IE","GR","BG",
+    "BR","MX","AR","ZA","IN","SG","MY","PH","ID","NZ","JP","KR","TW","HK","TR",
+    "AE","SA","IL","NG","KE","EG","MA","TH","VN","CL","CO","PE",
+]
+
+
 def search_ad_library(keyword):
     url = "https://graph.facebook.com/v19.0/ads_archive"
     params = {
         "access_token": META_ACCESS_TOKEN,
         "search_terms": keyword,
         "ad_active_status": "ACTIVE",
+        "ad_reached_countries": json.dumps(COUNTRIES),
         "fields": "id,ad_creative_bodies,ad_creative_link_captions,ad_creative_link_descriptions,ad_creative_link_titles,ad_delivery_start_time,page_name,ad_snapshot_url",
         "limit": 30,
     }
