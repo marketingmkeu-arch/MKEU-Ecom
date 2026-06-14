@@ -1,0 +1,36 @@
+name: Levora Copy Review Agent
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  review-copy:
+    if: github.event.label.name == 'copy-review'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r copy-agent/requirements.txt
+
+      - name: Install Playwright browsers
+        run: playwright install chromium
+
+      - name: Run Copy Review Agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: python copy-agent/agent.py
