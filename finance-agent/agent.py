@@ -21,9 +21,9 @@ SPREADSHEET_ID = "16ht9M4uxDZrRi2uWg2ohzZJbQUEkEPHG9tLAFrofzB4"
 
 COGS_SINGLE_EUR = 6.11    # NailMed einzeln
 COGS_BUNDLE_EUR = 12.19   # Bundle: NailMed x2 + Keratinpfeile + NagelPatch
-SUPPLIER_PAYPAL_FEE_RATE = 0.049  # ~€3.12 auf €60.99 = ~4.9% PayPal Gebühr Supplier
 FEES_RATE = 0.03          # eigene PayPal/Stripe Gebühren
-EXTERNAL_BUDGET_EUR = 500.0  # monatliches externes Budget
+VAT_RATE = 0.19           # deutsche MwSt — im Shopify Brutto-Umsatz enthalten
+EXTERNAL_BUDGET_EUR = 500.0  # monatliches externes Budget (netto, MwSt-frei)
 MONTHS_DE = ["JANUAR","FEBRUAR","MÄRZ","APRIL","MAI","JUNI",
              "JULI","AUGUST","SEPTEMBER","OKTOBER","NOVEMBER","DEZEMBER"]
 
@@ -309,14 +309,14 @@ def build_cell_format_requests(sheet_id):
     purple_bg = rgb(100, 50, 200)
 
     requests_list.append(header_row(0, white, dark_bg))    # Title
-    requests_list.append(header_row(2, white, blue_bg))    # PayPal (rows 3-9)
+    requests_list.append(header_row(2, white, blue_bg))    # PayPal       rows 3-9
     requests_list.append(value_row(3, 9))
-    requests_list.append(header_row(9, white, green_bg))   # Monthly P&L (rows 10-18)
-    requests_list.append(value_row(10, 19))
-    requests_list.append(header_row(19, white, orange_bg)) # Cash Flow (rows 20-29)
-    requests_list.append(value_row(20, 29))
-    requests_list.append(header_row(29, white, purple_bg)) # Ad Budget (rows 30-36)
-    requests_list.append(value_row(30, 36))
+    requests_list.append(header_row(9, white, green_bg))   # P&L          rows 10-21
+    requests_list.append(value_row(10, 22))
+    requests_list.append(header_row(22, white, orange_bg)) # Cash Flow    rows 23-33
+    requests_list.append(value_row(23, 34))
+    requests_list.append(header_row(34, white, purple_bg)) # Ad Budget    rows 35-41
+    requests_list.append(value_row(35, 41))
 
     # Column widths
     requests_list.append({
@@ -353,40 +353,66 @@ def write_dashboard(service, data: dict):
     pp_pending = data["pp_pending"]
     pp_total = round(pp_available + pp_pending, 2)
 
-    revenue = data["revenue"]
+    revenue_brutto = data["revenue"]   # Shopify Umsatz inkl. 19% MwSt
     adspend = data["adspend"]
-    cogs = data["cogs"]  # exakte COGS aus Shopify Bestellungen
-    fees = round(revenue * FEES_RATE, 2)
-    gross_profit = round(revenue - adspend - cogs - fees, 2)
-    roas = round(revenue / adspend, 2) if adspend > 0 else 0.0
-    margin_pct = round(gross_profit / revenue * 100, 1) if revenue else 0.0
-
-    today_spend = data["today_spend"]
+    cogs = data["cogs"]
     orders = data["orders"]
+    today_spend = data["today_spend"]
 
-    # Break-even ROAS: (COGS + Fees) / Revenue muss durch Ads gedeckt sein
-    # Bei ROAS x: Revenue = x * Adspend → Profit = x*Adspend - Adspend - COGS_rate*x*Adspend - Fee_rate*x*Adspend
-    cogs_rate = cogs / revenue if revenue else 0.0
+    # MwSt herausrechnen — Brutto enthält MwSt, Netto ist die echte Einnahme
+    vat_amount = round(revenue_brutto * VAT_RATE / (1 + VAT_RATE), 2)  # = Brutto * 19/119
+    revenue_netto = round(revenue_brutto - vat_amount, 2)
+
+    # P&L auf Netto-Basis
+    fees = round(revenue_netto * FEES_RATE, 2)
+    net_profit = round(revenue_netto - adspend - cogs - fees, 2)
+    margin_pct = round(net_profit / revenue_netto * 100, 1) if revenue_netto else 0.0
+    roas = round(revenue_netto / adspend, 2) if adspend > 0 else 0.0
+
+    # Break-even ROAS auf Netto-Basis
+    cogs_rate = cogs / revenue_netto if revenue_netto else 0.0
     break_even_roas = round(1 / (1 - cogs_rate - FEES_RATE), 2) if (cogs_rate + FEES_RATE) < 1 else 0.0
 
-    # Cash Flow
+    # Tages-Durchschnitte
     daily_orders_avg = max(orders / now.day, 1)
     cogs_per_order_avg = cogs / orders if orders else COGS_SINGLE_EUR
-    cogs_7day_est = round(daily_orders_avg * cogs_per_order_avg * 7, 2)
+    daily_profit_avg = round(net_profit / now.day, 2) if net_profit > 0 else 0.0
 
-    # Verfügbares Cash für Ads = PayPal Available + Externes Budget - COGS Reserve (7 Tage)
-    days_left_in_month = (datetime(now.year, now.month + 1 if now.month < 12 else 1,
-                                   1, tzinfo=timezone.utc) - now).days
-    external_remaining = round(EXTERNAL_BUDGET_EUR * (days_left_in_month / 30), 2)
-    total_available = round(pp_available + external_remaining, 2)
-    cash_for_ads = round(total_available - cogs_7day_est, 2)
+    # Verbleibende Tage im Monat
+    next_month = datetime(now.year, now.month + 1 if now.month < 12 else 1, 1, tzinfo=timezone.utc)
+    days_left = (next_month - now).days
+    days_in_month = now.day + days_left
+
+    # Hochrechnung Gewinn bis Monatsende (linear, basierend auf bisherigem Schnitt)
+    profit_projected_rest = round(daily_profit_avg * days_left, 2)
+
+    # COGS Reserve für 7 Tage (laufende Lieferantenzahlungen)
+    cogs_7day_reserve = round(daily_orders_avg * cogs_per_order_avg * 7, 2)
+
+    # MwSt Reserve: noch nicht abgeführte MwSt (läuft monatlich / quartalsweise)
+    # Konservativ: volle monatliche MwSt reservieren
+    vat_reserve = vat_amount
+
+    # Externes Budget anteilig nach verbleibenden Tagen
+    external_remaining = round(EXTERNAL_BUDGET_EUR * (days_left / days_in_month), 2)
+
+    # ── Verfügbares Cash für Ads ──
+    # PayPal Available (bereits eingegangen, aber MwSt-Anteil muss reserviert bleiben)
+    # + Reinvestierbarer Gewinn (bereits realisiert, MwSt raus, Kosten raus)
+    # + Externes Budget (Rest Monat)
+    # − MwSt Reserve (läuft ans Finanzamt)
+    # − COGS Reserve 7 Tage (Lieferant)
+    reinvestable_profit = max(net_profit, 0.0)
+    total_inflows = round(pp_available + reinvestable_profit + external_remaining, 2)
+    total_reserves = round(vat_reserve + cogs_7day_reserve, 2)
+    cash_for_ads = round(total_inflows - total_reserves, 2)
 
     daily_ad_budget_conservative = round(max(cash_for_ads * 0.50 / 7, 0), 2)
     daily_ad_budget_aggressive = round(max(cash_for_ads * 0.75 / 7, 0), 2)
 
     values = [
         # Row 1: Title
-        [f"💰 FINANCE DASHBOARD", f"Stand: {now.strftime('%d.%m.%Y %H:%M')} UTC", "", ""],
+        ["💰 FINANCE DASHBOARD", f"Stand: {now.strftime('%d.%m.%Y %H:%M')} UTC", "", ""],
         ["", "", "", ""],
 
         # Row 3: PayPal Header
@@ -398,32 +424,39 @@ def write_dashboard(service, data: dict):
         ["Hold-Freigabe (nächste 7 Tage)", "—", "Manuell eintragen ↓", ""],
         ["Hold-Freigabe (nächste 14 Tage)", "—", "Manuell eintragen ↓", ""],
 
-        # Row 10: Monthly P&L Header
+        # Row 10: Monthly P&L Header (Netto)
         [f"📊 MONATLICHE P&L — {month_name} {now.year}", "Betrag (€)", "Details", ""],
-        ["Umsatz (Shopify, paid)", f"€{revenue:,.2f}", f"{orders} Bestellungen", ""],
-        ["Meta Ad Spend", f"€{adspend:,.2f}", f"ROAS: {roas:.2f}x", ""],
-        ["COGS (exakt)", f"€{cogs:,.2f}", f"Single €{COGS_SINGLE_EUR} / Bundle €{COGS_BUNDLE_EUR}", ""],
-        ["Payment Fees (3%)", f"€{fees:,.2f}", "PayPal/Stripe Gebühren", ""],
-        ["Rohgewinn", f"€{gross_profit:,.2f}", f"Marge: {margin_pct}%", ""],
+        ["Umsatz BRUTTO (Shopify, inkl. 19% MwSt)", f"€{revenue_brutto:,.2f}", f"{orders} Bestellungen", ""],
+        ["− MwSt 19% (ans Finanzamt)", f"−€{vat_amount:,.2f}", "= Brutto × 19/119", ""],
+        ["= Umsatz NETTO", f"€{revenue_netto:,.2f}", "Deine echte Einnahme", ""],
+        ["− Meta Ad Spend", f"−€{adspend:,.2f}", f"ROAS (netto): {roas:.2f}x", ""],
+        ["− COGS (exakt)", f"−€{cogs:,.2f}", f"Single €{COGS_SINGLE_EUR} / Bundle €{COGS_BUNDLE_EUR}", ""],
+        ["− Payment Fees (3%)", f"−€{fees:,.2f}", "PayPal/Stripe Gebühren", ""],
+        ["= Reingewinn", f"€{net_profit:,.2f}", f"Marge: {margin_pct}%", ""],
         ["", "", "", ""],
+        ["Ø Gewinn pro Tag (Ist)", f"€{daily_profit_avg:,.2f}", f"Basis: {now.day} Tage", ""],
+        ["Hochrechnung Gewinn (Rest Monat)", f"€{profit_projected_rest:,.2f}",
+         f"~{days_left} Tage verbleibend", ""],
         ["Ad Spend Heute", f"€{today_spend:,.2f}", now.strftime("%d.%m.%Y"), ""],
-        ["Ads % vom Umsatz", f"{round(adspend/revenue*100,1) if revenue else 0}%", "Ziel: <40%", ""],
 
-        # Row 19: Cash Flow Header
-        ["💸 CASH FLOW PLANNER", "Betrag (€)", "Hinweis", ""],
-        ["PayPal Available", f"€{pp_available:,.2f}", "Aktuell verfügbar", ""],
-        [f"Externes Budget (Rest Monat, ~{days_left_in_month}d)", f"€{external_remaining:,.2f}",
+        # Row 22: Cash Flow Header
+        ["💸 CASH FLOW & VERFÜGBARKEIT", "Betrag (€)", "Herkunft / Hinweis", ""],
+        ["(+) PayPal Available", f"€{pp_available:,.2f}", "Bereits eingegangen", ""],
+        ["(+) Reinvestierbarer Gewinn (Ist)", f"€{reinvestable_profit:,.2f}",
+         "Netto-Gewinn diesen Monat", ""],
+        [f"(+) Externes Budget (Rest ~{days_left}d)", f"€{external_remaining:,.2f}",
          f"von €{EXTERNAL_BUDGET_EUR:.0f}/Monat fix", ""],
-        ["Total verfügbar", f"€{total_available:,.2f}", "PayPal + Extern", ""],
-        ["COGS Reserve (7 Tage)", f"€{cogs_7day_est:,.2f}",
-         f"Basis: {daily_orders_avg:.0f} Orders/Tag × €{cogs_per_order_avg:.2f}", ""],
+        ["= Total Zuflüsse", f"€{total_inflows:,.2f}", "", ""],
+        ["", "", "", ""],
+        ["(−) MwSt Reserve", f"−€{vat_reserve:,.2f}", "Finanzamt — nicht anfassen!", ""],
+        ["(−) COGS Reserve (7 Tage)", f"−€{cogs_7day_reserve:,.2f}",
+         f"{daily_orders_avg:.0f} Orders/Tag × €{cogs_per_order_avg:.2f}", ""],
+        ["= Netto Cash für Ads", f"€{cash_for_ads:,.2f}", "Sicher verwendbar", ""],
         ["", "", "", ""],
         ["⚠️ Hold Release (manuell)", "—", "Wann kommen Holds frei?", ""],
-        ["Sonstiges / Rücklagen (manuell)", "—", "z.B. Chargebacks, Puffer", ""],
-        ["", "", "", ""],
-        ["Netto Cash für Ads", f"€{cash_for_ads:,.2f}", "= Total - COGS Reserve", ""],
+        ["Sonstiges / Puffer (manuell)", "—", "z.B. Chargebacks", ""],
 
-        # Row 29: Ad Budget Header
+        # Row 34: Ad Budget Header
         ["🎯 AD BUDGET RECHNER", "Tagesbudget (€)", "Wochenbudget (€)", "Empfehlung"],
         ["Konservativ (50% des Cash)", f"€{daily_ad_budget_conservative:,.2f}",
          f"€{daily_ad_budget_conservative*7:,.2f}", "Sicher / Stabil"],
@@ -431,9 +464,8 @@ def write_dashboard(service, data: dict):
          f"€{daily_ad_budget_aggressive*7:,.2f}", "Wachstum"],
         ["Aktuelles Tages-Budget (Meta)", f"€{today_spend:,.2f}", "—", "Ist-Zustand"],
         ["", "", "", ""],
-        ["Break-Even ROAS", f"{break_even_roas}x",
-         f"Unter diesem ROAS machst du Verlust", ""],
-        ["Aktueller ROAS", f"{roas}x", "Meta diesen Monat",
+        ["Break-Even ROAS (netto)", f"{break_even_roas}x", "Unter diesem Wert = Verlust", ""],
+        ["Aktueller ROAS (netto)", f"{roas}x", "Meta diesen Monat",
          "✅ Profitabel" if roas >= break_even_roas else "⚠️ Unter Break-Even"],
     ]
 
