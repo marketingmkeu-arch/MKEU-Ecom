@@ -19,9 +19,11 @@ GOOGLE_CLIENT_SECRET = os.environ["GOOGLE_CLIENT_SECRET"]
 GOOGLE_REFRESH_TOKEN = os.environ["GOOGLE_REFRESH_TOKEN"]
 SPREADSHEET_ID = "16ht9M4uxDZrRi2uWg2ohzZJbQUEkEPHG9tLAFrofzB4"
 
-COGS_1_USD = 7.74
-COGS_2_EUR = 12.17
-FEES_RATE = 0.03
+COGS_SINGLE_EUR = 6.11    # NailMed einzeln
+COGS_BUNDLE_EUR = 12.19   # Bundle: NailMed x2 + Keratinpfeile + NagelPatch
+SUPPLIER_PAYPAL_FEE_RATE = 0.049  # ~€3.12 auf €60.99 = ~4.9% PayPal Gebühr Supplier
+FEES_RATE = 0.03          # eigene PayPal/Stripe Gebühren
+EXTERNAL_BUDGET_EUR = 500.0  # monatliches externes Budget
 MONTHS_DE = ["JANUAR","FEBRUAR","MÄRZ","APRIL","MAI","JUNI",
              "JULI","AUGUST","SEPTEMBER","OKTOBER","NOVEMBER","DEZEMBER"]
 
@@ -177,7 +179,30 @@ def get_shopify_month_revenue(year, month):
         page_info = link.split("page_info=")[1].split(">")[0]
 
     revenue = round(sum(float(o["total_price"]) for o in orders), 2)
-    return revenue, len(orders)
+    cogs = round(_calculate_cogs(orders), 2)
+    return revenue, len(orders), cogs
+
+
+def _is_bundle(line_item):
+    title = (line_item.get("title") or "").lower()
+    variant = (line_item.get("variant_title") or "").lower()
+    for kw in ["2er", "duo", "bundle", "2x", "doppel", "zwei", "2-pack", "keratinpfeile", "nagelpatch"]:
+        if kw in title or kw in variant:
+            return True
+    return False
+
+
+def _calculate_cogs(orders):
+    total = 0.0
+    for order in orders:
+        items = order.get("line_items", [])
+        has_bundle_items = any(_is_bundle(i) for i in items)
+        if has_bundle_items:
+            total += COGS_BUNDLE_EUR
+        else:
+            for item in items:
+                total += COGS_SINGLE_EUR * item.get("quantity", 1)
+    return total
 
 
 # ── Meta ──────────────────────────────────────────────────────────────────────
@@ -283,14 +308,14 @@ def build_cell_format_requests(sheet_id):
     orange_bg = rgb(230, 120, 20)
     purple_bg = rgb(100, 50, 200)
 
-    requests_list.append(header_row(0, white, dark_bg))   # Title
-    requests_list.append(header_row(2, white, blue_bg))   # PayPal
-    requests_list.append(value_row(3, 8))
-    requests_list.append(header_row(9, white, green_bg))  # Monthly P&L
-    requests_list.append(value_row(10, 18))
-    requests_list.append(header_row(19, white, orange_bg))  # Cash Flow
-    requests_list.append(value_row(20, 28))
-    requests_list.append(header_row(29, white, purple_bg))  # Ad Budget
+    requests_list.append(header_row(0, white, dark_bg))    # Title
+    requests_list.append(header_row(2, white, blue_bg))    # PayPal (rows 3-9)
+    requests_list.append(value_row(3, 9))
+    requests_list.append(header_row(9, white, green_bg))   # Monthly P&L (rows 10-18)
+    requests_list.append(value_row(10, 19))
+    requests_list.append(header_row(19, white, orange_bg)) # Cash Flow (rows 20-29)
+    requests_list.append(value_row(20, 29))
+    requests_list.append(header_row(29, white, purple_bg)) # Ad Budget (rows 30-36)
     requests_list.append(value_row(30, 36))
 
     # Column widths
@@ -330,23 +355,34 @@ def write_dashboard(service, data: dict):
 
     revenue = data["revenue"]
     adspend = data["adspend"]
-    cogs_est = round(revenue * (COGS_1_USD * data["eur_rate"]) / 25, 2)  # rough estimate if no order detail
+    cogs = data["cogs"]  # exakte COGS aus Shopify Bestellungen
     fees = round(revenue * FEES_RATE, 2)
-    gross_profit = round(revenue - adspend - cogs_est - fees, 2)
+    gross_profit = round(revenue - adspend - cogs - fees, 2)
     roas = round(revenue / adspend, 2) if adspend > 0 else 0.0
+    margin_pct = round(gross_profit / revenue * 100, 1) if revenue else 0.0
 
     today_spend = data["today_spend"]
     orders = data["orders"]
 
-    # How much cash available for ads:
-    # Available PayPal - estimated next COGS bill - buffer
-    cogs_per_order = COGS_1_USD * data["eur_rate"]
-    daily_orders_avg = max(orders / now.day, 1)
-    cogs_7day_est = round(daily_orders_avg * cogs_per_order * 7, 2)
-    cash_for_ads = round(pp_available - cogs_7day_est, 2)
+    # Break-even ROAS: (COGS + Fees) / Revenue muss durch Ads gedeckt sein
+    # Bei ROAS x: Revenue = x * Adspend → Profit = x*Adspend - Adspend - COGS_rate*x*Adspend - Fee_rate*x*Adspend
+    cogs_rate = cogs / revenue if revenue else 0.0
+    break_even_roas = round(1 / (1 - cogs_rate - FEES_RATE), 2) if (cogs_rate + FEES_RATE) < 1 else 0.0
 
-    daily_ad_budget_conservative = round(cash_for_ads * 0.50 / 7, 2)
-    daily_ad_budget_aggressive = round(cash_for_ads * 0.75 / 7, 2)
+    # Cash Flow
+    daily_orders_avg = max(orders / now.day, 1)
+    cogs_per_order_avg = cogs / orders if orders else COGS_SINGLE_EUR
+    cogs_7day_est = round(daily_orders_avg * cogs_per_order_avg * 7, 2)
+
+    # Verfügbares Cash für Ads = PayPal Available + Externes Budget - COGS Reserve (7 Tage)
+    days_left_in_month = (datetime(now.year, now.month + 1 if now.month < 12 else 1,
+                                   1, tzinfo=timezone.utc) - now).days
+    external_remaining = round(EXTERNAL_BUDGET_EUR * (days_left_in_month / 30), 2)
+    total_available = round(pp_available + external_remaining, 2)
+    cash_for_ads = round(total_available - cogs_7day_est, 2)
+
+    daily_ad_budget_conservative = round(max(cash_for_ads * 0.50 / 7, 0), 2)
+    daily_ad_budget_aggressive = round(max(cash_for_ads * 0.75 / 7, 0), 2)
 
     values = [
         # Row 1: Title
@@ -355,9 +391,9 @@ def write_dashboard(service, data: dict):
 
         # Row 3: PayPal Header
         ["🏦 PAYPAL STATUS", "Betrag (€)", "Info", ""],
-        [f"Verfügbares Guthaben", f"€{pp_available:,.2f}", "Sofort verwendbar", ""],
-        [f"Ausstehend / Holds", f"€{pp_pending:,.2f}", "In 21-Tag Hold", ""],
-        [f"Gesamt PayPal Balance", f"€{pp_total:,.2f}", "", ""],
+        ["Verfügbares Guthaben", f"€{pp_available:,.2f}", "Sofort verwendbar", ""],
+        ["Ausstehend / Holds (21 Tage)", f"€{pp_pending:,.2f}", "Noch nicht freigegeben", ""],
+        ["Gesamt PayPal Balance", f"€{pp_total:,.2f}", "", ""],
         ["", "", "", ""],
         ["Hold-Freigabe (nächste 7 Tage)", "—", "Manuell eintragen ↓", ""],
         ["Hold-Freigabe (nächste 14 Tage)", "—", "Manuell eintragen ↓", ""],
@@ -366,9 +402,9 @@ def write_dashboard(service, data: dict):
         [f"📊 MONATLICHE P&L — {month_name} {now.year}", "Betrag (€)", "Details", ""],
         ["Umsatz (Shopify, paid)", f"€{revenue:,.2f}", f"{orders} Bestellungen", ""],
         ["Meta Ad Spend", f"€{adspend:,.2f}", f"ROAS: {roas:.2f}x", ""],
-        ["COGS (geschätzt)", f"€{cogs_est:,.2f}", "Produktkosten", ""],
+        ["COGS (exakt)", f"€{cogs:,.2f}", f"Single €{COGS_SINGLE_EUR} / Bundle €{COGS_BUNDLE_EUR}", ""],
         ["Payment Fees (3%)", f"€{fees:,.2f}", "PayPal/Stripe Gebühren", ""],
-        ["Rohgewinn", f"€{gross_profit:,.2f}", f"Marge: {round(gross_profit/revenue*100,1) if revenue else 0}%", ""],
+        ["Rohgewinn", f"€{gross_profit:,.2f}", f"Marge: {margin_pct}%", ""],
         ["", "", "", ""],
         ["Ad Spend Heute", f"€{today_spend:,.2f}", now.strftime("%d.%m.%Y"), ""],
         ["Ads % vom Umsatz", f"{round(adspend/revenue*100,1) if revenue else 0}%", "Ziel: <40%", ""],
@@ -376,25 +412,29 @@ def write_dashboard(service, data: dict):
         # Row 19: Cash Flow Header
         ["💸 CASH FLOW PLANNER", "Betrag (€)", "Hinweis", ""],
         ["PayPal Available", f"€{pp_available:,.2f}", "Aktuell verfügbar", ""],
-        ["COGS Schätzung (7 Tage)", f"€{cogs_7day_est:,.2f}", f"Basis: {daily_orders_avg:.0f} Orders/Tag", ""],
-        ["Cash nach COGS Reserve", f"€{cash_for_ads:,.2f}", "Für Ads verwendbar", ""],
+        [f"Externes Budget (Rest Monat, ~{days_left_in_month}d)", f"€{external_remaining:,.2f}",
+         f"von €{EXTERNAL_BUDGET_EUR:.0f}/Monat fix", ""],
+        ["Total verfügbar", f"€{total_available:,.2f}", "PayPal + Extern", ""],
+        ["COGS Reserve (7 Tage)", f"€{cogs_7day_est:,.2f}",
+         f"Basis: {daily_orders_avg:.0f} Orders/Tag × €{cogs_per_order_avg:.2f}", ""],
         ["", "", "", ""],
         ["⚠️ Hold Release (manuell)", "—", "Wann kommen Holds frei?", ""],
-        ["Sonstiges (manuell)", "—", "z.B. Chargebacks, Rücklagen", ""],
+        ["Sonstiges / Rücklagen (manuell)", "—", "z.B. Chargebacks, Puffer", ""],
         ["", "", "", ""],
-        ["Netto Cash für Ads", f"€{cash_for_ads:,.2f}", "= Available - COGS Reserve", ""],
+        ["Netto Cash für Ads", f"€{cash_for_ads:,.2f}", "= Total - COGS Reserve", ""],
 
         # Row 29: Ad Budget Header
         ["🎯 AD BUDGET RECHNER", "Tagesbudget (€)", "Wochenbudget (€)", "Empfehlung"],
         ["Konservativ (50% des Cash)", f"€{daily_ad_budget_conservative:,.2f}",
-         f"€{daily_ad_budget_conservative*7:,.2f}", "Sicher"],
+         f"€{daily_ad_budget_conservative*7:,.2f}", "Sicher / Stabil"],
         ["Aggressiv (75% des Cash)", f"€{daily_ad_budget_aggressive:,.2f}",
          f"€{daily_ad_budget_aggressive*7:,.2f}", "Wachstum"],
-        ["Aktuelles Budget (Meta)", f"€{today_spend:,.2f}", "—", "Ist-Zustand"],
+        ["Aktuelles Tages-Budget (Meta)", f"€{today_spend:,.2f}", "—", "Ist-Zustand"],
         ["", "", "", ""],
-        ["Break-Even ROAS", f"{round((adspend+cogs_est+fees)/adspend,2) if adspend else '—'}x",
-         "Min. ROAS für Profitabilität", ""],
-        ["Aktueller ROAS", f"{roas}x", "Meta diesen Monat", "✅" if roas >= 2 else "⚠️"],
+        ["Break-Even ROAS", f"{break_even_roas}x",
+         f"Unter diesem ROAS machst du Verlust", ""],
+        ["Aktueller ROAS", f"{roas}x", "Meta diesen Monat",
+         "✅ Profitabel" if roas >= break_even_roas else "⚠️ Unter Break-Even"],
     ]
 
     service.spreadsheets().values().update(
@@ -421,9 +461,6 @@ def main():
     now = datetime.now(timezone.utc)
     print(f"Finance Dashboard Agent gestartet — {now.strftime('%d.%m.%Y %H:%M')} UTC")
 
-    eur_rate = get_eur_usd_rate()
-    print(f"EUR/USD Rate: {eur_rate}")
-
     # PayPal
     print("Fetching PayPal balances...")
     try:
@@ -436,8 +473,8 @@ def main():
 
     # Shopify
     print("Fetching Shopify revenue...")
-    revenue, orders = get_shopify_month_revenue(now.year, now.month)
-    print(f"Shopify: €{revenue} | {orders} Bestellungen")
+    revenue, orders, cogs = get_shopify_month_revenue(now.year, now.month)
+    print(f"Shopify: €{revenue} | {orders} Bestellungen | COGS: €{cogs}")
 
     # Meta
     print("Fetching Meta ad spend...")
@@ -452,10 +489,10 @@ def main():
         "pp_available": pp_available,
         "pp_pending": pp_pending,
         "revenue": revenue,
+        "cogs": cogs,
         "adspend": adspend,
         "today_spend": today_spend,
         "orders": orders,
-        "eur_rate": eur_rate,
     })
 
 
