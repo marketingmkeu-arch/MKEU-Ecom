@@ -90,6 +90,8 @@ def get_meta_adspend(date_str):
         "level": "account",
     }
     r = requests.get(url, params=params, timeout=10)
+    if not r.ok:
+        print(f"Meta API Fehler {r.status_code}: {r.text}")
     r.raise_for_status()
     data = r.json().get("data", [])
     if data:
