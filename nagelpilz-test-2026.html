@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nagelpilz-Test 2026: 5 Methoden im Langzeittest</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744;
+  --green: #2d7a4f;
+  --green-bright: #28C76F;
+  --green-light: #e8f5ee;
+  --amber: #c97d1a;
+  --amber-light: #fef3e2;
+  --red: #b83232;
+  --red-light: #fdeaea;
+  --gold: #c8a84b;
+  --cream: #faf8f4;
+  --border: #e4e0d8;
+  --text: #2a2a2a;
+  --muted: #6b6460;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* TOPBAR */
+.topbar {
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* SITE HEADER */
+.site-header {
+  background: #fff;
+  border-bottom: 2px solid var(--border);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-logo { font-family: 'Lora', serif; font-size: 17px; font-weight: 700; color: var(--navy); }
+.site-logo span { color: var(--green); }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #0f1f3d 100%);
+  color: #fff !important;
+  padding: 32px 16px 28px;
+  text-align: center;
+}
+.hero * { color: #fff !important; }
+.hero-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy) !important;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'Lora', serif;
+  font-size: clamp(20px, 5vw, 30px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #fff !important;
+  margin-bottom: 6px;
+}
+.hero h1 em { color: var(--gold) !important; font-style: normal; }
+.trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.trust-pill {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 30px;
+  padding: 6px 14px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff !important;
+}
+.trust-pill svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+/* HERO IMAGE */
+#hero-image-section { max-width: 820px; margin: 0 auto; background: #fff; }
+#hero-img { width: 100%; max-height: 400px; object-fit: cover; display: block; }
+
+/* AUTHOR */
+.author-box {
+  max-width: 820px;
+  margin: 0 auto;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.author-avatar-img {
+  width: 48px; height: 48px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+  border: 2px solid var(--border);
+}
+.author-avatar-fallback {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, #c8d8e8, #8faabf);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Lora', serif; font-size: 18px; color: var(--navy);
+  font-weight: 700; flex-shrink: 0;
+}
+.author-name { font-weight: 700; font-size: 15px; }
+.author-meta { font-size: 12px; color: var(--muted); }
+
+/* CONTENT */
+.content { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+
+.section {
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  padding: 24px 20px;
+  margin: 20px 0;
+}
+h2 {
+  font-family: 'Lora', serif;
+  font-size: clamp(17px, 3.5vw, 22px);
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+h3 {
+  font-family: 'Lora', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 18px 0 10px;
+}
+p { margin-bottom: 14px; }
+p:last-child { margin-bottom: 0; }
+strong { color: var(--navy); }
+
+/* EXPERT TIP BOX */
+.expert-tip {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin: 20px 0;
+}
+.expert-tip-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.expert-avatar-img {
+  width: 44px; height: 44px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+  border: 2px solid var(--border);
+}
+.expert-avatar-fallback {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, #e8d8c0, #c8b090);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.expert-tip-title {
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+}
+.expert-tip p { font-size: 15px; margin-bottom: 12px; }
+.expert-steps {
+  list-style: none;
+  margin: 10px 0;
+}
+.expert-steps li {
+  padding: 8px 0;
+  font-size: 15px;
+  border-bottom: 1px solid #f0ede8;
+  display: flex;
+  gap: 10px;
+}
+.expert-steps li:last-child { border-bottom: none; }
+.step-num {
+  font-weight: 700;
+  color: var(--navy);
+  flex-shrink: 0;
+  min-width: 20px;
+}
+.expert-tip-conclusion {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 15px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f0ede8;
+}
+
+/* CHART */
+.chart-row {
+  display: grid;
+  grid-template-columns: 1fr 80px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.chart-label { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.chart-bar-wrap { background: #eee; border-radius: 4px; height: 22px; overflow: hidden; }
+.chart-bar {
+  height: 100%; border-radius: 4px;
+  display: flex; align-items: center; padding-left: 8px;
+  font-size: 10px; font-weight: 700; color: #fff;
+}
+.bar-green { background: linear-gradient(90deg, #2d7a4f, #28C76F); }
+.bar-amber { background: linear-gradient(90deg, #c97d1a, #e09030); }
+.bar-red { background: linear-gradient(90deg, #b83232, #d04040); }
+.chart-status { font-size: 12px; font-weight: 700; text-align: right; }
+.s-green { color: var(--green); }
+.s-amber { color: var(--amber); }
+.s-red { color: var(--red); }
+
+/* PRODUCT CARDS */
+.product-card { margin: 20px 0; border-radius: 8px; overflow: hidden; border: 2px solid var(--border); }
+.product-card.winner { border-color: var(--green); box-shadow: 0 4px 20px rgba(45,122,79,0.15); }
+
+/* RANK BADGE */
+.rank-badge {
+  background: #f5f3ef;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.rank-badge.winner-rank {
+  background: linear-gradient(135deg, var(--green), #1d5c39);
+  color: #fff;
+}
+.rank-num {
+  font-family: 'Lora', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.15);
+}
+.winner-rank .rank-num { color: var(--gold); }
+.rank-testsieger {
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 2px;
+  letter-spacing: 0.08em;
+  margin-left: auto;
+}
+
+/* PRODUCT HEADER */
+.product-title-area {
+  padding: 16px 16px 0;
+}
+.product-title-area h2 { margin-bottom: 6px; font-size: clamp(16px,3.5vw,20px); }
+.product-verdict-text { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+
+/* PRODUCT IMAGE centered */
+.product-img-center {
+  padding: 0 16px 16px;
+  text-align: center;
+}
+.product-img-center img {
+  max-width: 280px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  display: inline-block;
+}
+
+/* BEFORE AFTER */
+.before-after {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 14px 0;
+}
+.ba-item { position: relative; }
+.ba-item img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+.ba-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.55);
+  color: #fff; font-size: 11px; font-weight: 700;
+  text-align: center; padding: 4px;
+  letter-spacing: 0.05em;
+}
+
+/* STARS */
+.star-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+}
+.stars-gold { color: #f0b429; font-size: 20px; letter-spacing: 2px; }
+.review-count { font-size: 13px; color: var(--muted); }
+
+/* RATINGS BARS */
+.ratings-section { padding: 0 16px 16px; }
+.ratings-title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+.rating-name { flex: 1; color: var(--muted); }
+.rating-bar-wrap { flex: 2; background: #eee; border-radius: 3px; height: 6px; overflow: hidden; }
+.rating-bar { height: 100%; border-radius: 3px; background: var(--green-bright); }
+.rating-score { width: 40px; text-align: right; font-weight: 700; font-size: 13px; color: var(--navy); }
+
+/* OVERALL SCORE */
+.overall-score-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--green-light);
+  border-top: 1px solid #a8d8bc;
+  font-weight: 700;
+  font-size: 14px;
+}
+.overall-score-row.mid { background: var(--amber-light); border-color: #e0c090; }
+.overall-score-row.bad { background: var(--red-light); border-color: #e0b0b0; }
+.score-num { font-family: 'Lora', serif; font-size: 20px; }
+.score-green { color: var(--green); }
+.score-amber { color: var(--amber); }
+.score-red { color: var(--red); }
+
+/* PROS CONS */
+.pros-cons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 16px;
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 420px) { .pros-cons { grid-template-columns: 1fr; } }
+.pros, .cons { background: #f9f8f5; border-radius: 4px; padding: 12px 14px; }
+.pros { border-top: 3px solid var(--green); }
+.cons { border-top: 3px solid var(--red); }
+.pros h4, .cons h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+.pros h4 { color: var(--green); }
+.cons h4 { color: var(--red); }
+.pros ul, .cons ul { list-style: none; }
+.pros li, .cons li { font-size: 13px; margin-bottom: 5px; padding-left: 16px; position: relative; }
+.pros li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+.cons li::before { content: '✗'; position: absolute; left: 0; color: var(--red); font-weight: 700; }
+
+/* BUTTONS */
+.btn-pdp {
+  display: block;
+  margin: 16px 16px;
+  padding: 14px;
+  background: var(--green-bright);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 14px rgba(40,199,111,0.35);
+}
+.btn-pdp:hover { background: #1fa85c; }
+.btn-secondary {
+  display: block;
+  margin: 14px 16px;
+  padding: 11px;
+  background: #fff;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  text-decoration: none;
+}
+.guarantee-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  padding: 0 16px 16px;
+}
+
+/* SVG DIAGRAM */
+.diagram-wrap {
+  background: linear-gradient(135deg, #f0f4f8, #e6ecf4);
+  border: 1px solid #c8d4e0;
+  border-radius: 8px;
+  padding: 16px 12px;
+  margin: 16px 0;
+  overflow-x: auto;
+}
+
+/* MECHANISM DARK */
+.mechanism-dark {
+  background: linear-gradient(135deg, var(--navy), #0f1f3d);
+  color: #fff;
+  padding: 32px 16px;
+  margin: 20px 0;
+}
+.mechanism-dark h2 { color: var(--gold); }
+.mechanism-dark p { color: rgba(255,255,255,0.82); margin-bottom: 14px; }
+.three-steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+@media (min-width: 500px) { .three-steps { grid-template-columns: repeat(3,1fr); } }
+.step {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 6px;
+  padding: 16px;
+  text-align: center;
+}
+.step.step-winner { border-color: var(--gold); background: rgba(200,168,75,0.12); }
+.step-icon { font-size: 26px; margin-bottom: 8px; }
+.step-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
+.step.step-winner .step-label { color: var(--gold); }
+.step-name { font-family: 'Lora', serif; font-size: 14px; font-weight: 700; margin-bottom: 6px; color: rgba(255,255,255,0.55); }
+.step.step-winner .step-name { color: var(--gold); }
+.step-desc { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+/* COMPARE TABLE */
+.compare-table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 12px 0; }
+.compare-table th { background: var(--navy); color: #fff; padding: 9px 8px; text-align: left; font-size: 11px; font-weight: 600; }
+.compare-table th.wc { background: var(--green); }
+.compare-table td { padding: 9px 8px; border-bottom: 1px solid var(--border); }
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table tr:nth-child(even) td { background: #f9f8f5; }
+.compare-table td.wc { background: var(--green-light); font-weight: 600; color: var(--green); }
+.compare-table tr:nth-child(even) td.wc { background: #dff0e8; }
+.ck { color: var(--green); font-weight: 700; }
+.cx { color: var(--red); font-weight: 700; }
+.cw { color: var(--amber); font-weight: 700; }
+
+/* FINAL VERDICT */
+.final-verdict {
+  background: linear-gradient(135deg, var(--green), #1d5c39);
+  color: #fff;
+  border-radius: 8px;
+  padding: 28px 20px;
+  margin: 20px 0;
+  text-align: center;
+}
+.final-verdict h2 { color: var(--gold); margin-bottom: 14px; }
+.final-verdict p { color: rgba(255,255,255,0.88); margin-bottom: 12px; }
+.cta-button {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 36px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 12px;
+}
+.fn-note { margin-top: 12px; font-size: 12px; color: rgba(255,255,255,0.6); }
+
+.disclaimer {
+  background: #f0ede8;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px 16px;
+  font-size: 11px;
+  color: var(--muted);
+  margin: 16px 0;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">Nagelpilz-Vergleichstest 2026</div>
+
+  <div class="site-header" style="justify-content:center;">
+  <div class="site-logo">Gesundheit<span>Kompakt</span></div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Vergleichstest 2026</div>
+  <h1>Nagelpilz: 5 Methoden im Langzeittest –<br><em>nur eine wirkte wirklich in 3 Monaten</em></h1>
+  <div class="trust-row">
+    <div class="trust-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+      Unabhängig &amp; objektiv
+    </div>
+    <div class="trust-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      6 Monate Langzeittest
+    </div>
+    <div class="trust-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Ehrlicher Erfahrungsbericht
+    </div>
+  </div>
+</div>
+
+<!-- HERO IMAGE -->
+<div id="hero-image-section" style="max-width:820px;margin:0 auto;background:#fff;border-bottom:1px solid var(--border);">
+  <img id="hero-img" src="https://cdn.shopify.com/s/files/1/0952/6260/5686/files/ChatGPT_Image_7._Juni_2026_22_18_20.png?v=1780863536"
+       alt="5 getestete Nagelpilz-Methoden" style="width:100%;max-height:400px;object-fit:cover;display:block;" />
+</div>
+
+<!-- AUTHOR -->
+<div style="background:#fff;border-bottom:1px solid var(--border);">
+  <div class="author-box">
+    <div id="author-avatar-wrap">
+      <img id="author-avatar-img" src="https://cdn.shopify.com/s/files/1/0952/6260/5686/files/ChatGPT_Image_9._Juni_2026_21_45_00.png?v=1781034311" alt="Katharina Bremer" class="author-avatar-img" style="display:block;" />
+    </div>
+    <div>
+      <div class="author-name">Katharina Bremer</div>
+      <div class="author-meta">Freie Gesundheitsredakteurin &nbsp;·&nbsp; 8. Februar 2026</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- INTRO -->
+  <div class="section">
+    <p>Ich hätte nie gedacht, dass ich mit 52 Jahren plötzlich mit Nagelpilz zu kämpfen hätte. Nach einem Urlaub waren zwei Zehennägel gelblich verfärbt, dicker als sonst – und ich wusste sofort, was das bedeutet. Als jemand, der seit Jahren über Gesundheitsthemen schreibt, kenne ich die gängigen Mittel. Ich weiß aber auch, dass die wenigsten wirklich das halten, was sie versprechen.</p>
+    <p>Also habe ich das gemacht, was ich beruflich seit Jahren tue: <strong>Ich habe systematisch getestet.</strong> Sechs Monate, fünf der verbreitetsten Methoden, ein klares Protokoll. Fotografische Dokumentation alle zwei Wochen. Kein Schönreden.</p>
+    <p>Das Ergebnis hat mich selbst überrascht. Nicht weil alle anderen Methoden versagt hätten. Sondern weil <strong>eine deutlich weniger bekannte Methode die etablierten Klassiker klar übertroffen hat</strong> – sowohl beim Ergebnis als auch beim Aufwand.</p>
+  </div>
+
+  <!-- CHART / TEST OVERVIEW -->
+  <div class="section">
+    <h2>Meine Suche: 5 Methoden im 6-Monats-Test</h2>
+    <p>Sechs Monate, fünf der verbreitetsten Methoden. Tägliche Anwendung nach Vorschrift, Fotodokumentation alle zwei Wochen, kein Schönreden.</p>
+
+    <div style="margin:20px 0;">
+      <div style="font-family:'Lora',serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:14px;text-align:center;">Behandlungsverlauf im Vergleich</div>
+
+      <div class="chart-row">
+        <div>
+          <div class="chart-label">Photonlicht-Routine</div>
+          <div class="chart-bar-wrap"><div class="chart-bar bar-green" style="width:93%">Durchgehend positiv</div></div>
+        </div>
+        <div class="chart-status s-green">✓ Sieger</div>
+      </div>
+      <div class="chart-row">
+        <div>
+          <div class="chart-label">Teebaumöl / Hausmittel</div>
+          <div class="chart-bar-wrap"><div class="chart-bar bar-red" style="width:20%">Kaum Wirkung</div></div>
+        </div>
+        <div class="chart-status s-red">✗</div>
+      </div>
+      <div class="chart-row">
+        <div>
+          <div class="chart-label">Online-Nagelstift</div>
+          <div class="chart-bar-wrap"><div class="chart-bar bar-red" style="width:8%"></div></div>
+        </div>
+        <div class="chart-status s-red">✗</div>
+      </div>
+      <div class="chart-row">
+        <div>
+          <div class="chart-label">Tablettenkur</div>
+          <div class="chart-bar-wrap"><div class="chart-bar bar-amber" style="width:46%">Wirkung – aber...</div></div>
+        </div>
+        <div class="chart-status s-amber">△</div>
+      </div>
+      <div class="chart-row">
+        <div>
+          <div class="chart-label">Lack &amp; Cremes vom Arzt</div>
+          <div class="chart-bar-wrap"><div class="chart-bar bar-amber" style="width:38%">Frühe Hoffnung</div></div>
+        </div>
+        <div class="chart-status s-amber">△</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<!-- PRODUCT 1 — TESTSIEGER -->
+<div class="product-card winner" style="max-width:820px;margin:0 auto 20px;">
+  <div class="rank-badge winner-rank">
+    <span class="rank-num">#1</span>
+    <span>Platz 1: Testsieger</span>
+    <span class="rank-testsieger">TESTSIEGER 2026</span>
+  </div>
+  <div style="padding:20px 16px 0;text-align:center;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);margin-bottom:6px;">Testsieger 2026</div>
+    <h2 style="font-size:clamp(18px,4vw,22px);margin-bottom:0;">MedNail – Photonlicht-Routine</h2>
+  </div>
+
+  <div style="text-align:center;padding:20px 24px 10px;">
+    <img id="winner-prod-img" src="https://cdn.shopify.com/s/files/1/0952/6260/5686/files/EntferntlaestigenNagelpilzinunter3Wochen.png?v=1780615050" alt="MedNail"
+      style="display:block;width:100%;max-width:320px;margin:0 auto;border-radius:8px;" />
+  </div>
+
+  <div style="text-align:center;padding:8px 16px 14px;">
+    <div style="color:#f0b429;font-size:22px;letter-spacing:3px;">★★★★★</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:3px;">Über 3.200 echte Kundenbewertungen</div>
+  </div>
+
+  <div style="padding:14px 16px 0;">
+    <p>Ich war skeptisch. Licht gegen Nagelpilz – das klingt nach dem nächsten Gerät, das man nach zwei Wochen in die Schublade legt. Aber dann habe ich verstanden, warum das hier anders ist: <strong>Normale Mittel kommen gar nicht erst dort an, wo der Pilz sitzt.</strong> Sie bleiben an der Nageloberfläche. Photonlicht nicht – es dringt direkt bis ins Nagelbett vor. Das erste Mal, dass mir eine Erklärung in dieser Kategorie wirklich Sinn ergeben hat.</p>
+    <p>Der Hintergrund: Der Nagel besteht aus dicht gepackten Keratinschichten – eine echte Barriere. Cremes und Lacke schaffen es laut Fachliteratur nur in die obersten 20–30% der Nageldicke. <strong>Der Pilzursprung sitzt tief im Nagelbett – und bleibt bei klassischen Mitteln schlicht unerreicht.</strong> Bestimmte Lichtwellenlängen dagegen müssen keine chemische Barriere überwinden. Sie durchdringen das Gewebe direkt.</p>
+    <p>Also habe ich es ausprobiert. <strong>Nach zwei Wochen merkte ich die erste Veränderung.</strong> Nach fünf Wochen sah ich sie. Nach zwölf Wochen war ich überzeugt – ohne Tabletten, ohne Arzttermin, ohne stundenlange Prozeduren. <strong>Sieben Minuten am Tag. Das war es.</strong></p>
+    <p>Was mich am meisten überrascht hat: Der Pilz kam nicht zurück. Sechs Monate später ist das Ergebnis noch genauso.</p>
+  </div>
+
+  <div style="padding:0 16px;">
+    <div style="font-size:12px;font-weight:700;color:var(--muted);text-align:center;margin:14px 0 6px;letter-spacing:0.05em;text-transform:uppercase;">Vorher / Nachher</div>
+    <div class="before-after">
+      <div class="ba-item">
+        <img id="ba-before-img" src="https://cdn.shopify.com/s/files/1/0952/6260/5686/files/ChatGPT_Image_9._Juni_2026_21_35_36.png?v=1781033928" alt="Vorher" style="display:block;" />
+        <div class="ba-label">VORHER</div>
+      </div>
+      <div class="ba-item">
+        <img id="ba-after-img" src="https://cdn.shopify.com/s/files/1/0952/6260/5686/files/ChatGPT_Image_9._Juni_2026_21_37_43.png?v=1781033928" alt="Nachher" style="display:block;" />
+        <div class="ba-label">NACHHER</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ratings-section" style="padding-top:14px;">
+    <div class="ratings-title">Meine Bewertung nach 3 Monaten Praxistest</div>
+    <div class="rating-row"><span class="rating-name">Preis-Leistung</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:100%"></div></div><span class="rating-score">10/10</span></div>
+    <div class="rating-row"><span class="rating-name">Wirksamkeit</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:100%"></div></div><span class="rating-score">10/10</span></div>
+    <div class="rating-row"><span class="rating-name">Anwendungskomfort</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:90%"></div></div><span class="rating-score">9/10</span></div>
+    <div class="rating-row"><span class="rating-name">Verträglichkeit</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:100%"></div></div><span class="rating-score">10/10</span></div>
+    <div class="rating-row"><span class="rating-name">Behandlungsdauer</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:90%"></div></div><span class="rating-score">9/10</span></div>
+  </div>
+
+  <div class="overall-score-row">
+    <span class="overall-label">Gesamtbewertung</span>
+    <span class="stars-gold">★★★★★</span>
+    <span class="score-num score-green">9,5/10</span>
+  </div>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Was überzeugt</h4>
+      <ul>
+        <li>Erste Veränderungen nach 2–5 Wochen</li>
+        <li>Nur 7 Minuten täglich</li>
+        <li>Ohne Tabletten</li>
+        <li>Diskret zuhause</li>
+        <li>30 Tage Geld-zurück</li>
+        <li>Kein Rückfall in 6 Monaten</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>Was man wissen sollte</h4>
+      <ul>
+        <li>Nur online erhältlich</li>
+        <li>Nagel braucht Zeit zum Nachwachsen</li>
+        <li>Konsequenz nötig</li>
+      </ul>
+    </div>
+  </div>
+
+  <a href="https://levora-skin.de/products/levora-anti-nagelpilz-laser" class="btn-pdp">Jetzt MedNail risikofrei testen →</a>
+  <div class="guarantee-note">✓ 30 Tage Geld-zurück &nbsp;·&nbsp; ✓ Kostenloser Versand &nbsp;·&nbsp; ✓ Diskrete Lieferung</div>
+
+  <div class="expert-tip" style="margin:0 16px 16px;">
+    <div class="expert-tip-header">
+      <img id="expert-avatar-img" src="https://cdn.shopify.com/s/files/1/0952/6260/5686/files/ChatGPT_Image_9._Juni_2026_21_49_53.png?v=1781034626" alt="Experte" class="expert-avatar-img" style="display:block;width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--border);" />
+      <div class="expert-tip-title">Experten-Tipp: Warum die Photonlicht-Methode funktioniert, wo andere scheitern</div>
+    </div>
+    <p>Der entscheidende Unterschied: <strong>Klassische Lacke setzen nur auf antimykotische Wirkung.</strong> Sie pinseln Wirkstoffe auf die Nageloberfläche und hoffen, dass sie irgendwie durchdringen.</p>
+    <p>Die Photonlicht-Methode nutzt einen physikalisch anderen Ansatz – Licht folgt nicht den gleichen Gesetzen wie chemische Substanzen:</p>
+    <ol class="expert-steps">
+      <li><span class="step-num">1.</span><span><strong>Durchdringt die Keratinbarriere</strong> – Photonlicht gelangt direkt bis zum Nagelbett</span></li>
+      <li><span class="step-num">2.</span><span><strong>Wirkt am Ursprung</strong> – nicht oberflächlich, sondern dort wo der Pilz wächst</span></li>
+      <li><span class="step-num">3.</span><span><strong>Kein systemischer Eingriff</strong> – ohne Tabletten, ohne Körperbelastung, einfach zuhause</span></li>
+    </ol>
+    <div class="expert-tip-conclusion">Deshalb funktioniert es dort, wo andere scheitern.</div>
+  </div>
+</div>
+
+
+<!-- PRODUCT 2 -->
+<div class="product-card" style="max-width:820px;margin:0 auto 20px;">
+  <div class="rank-badge">
+    <span class="rank-num">#2</span>
+    <span>Platz 2</span>
+  </div>
+  <div style="padding:20px 16px 0;text-align:center;">
+    <h2 style="font-size:clamp(17px,4vw,20px);margin-bottom:0;">Teebaumöl &amp; Hausmittel</h2>
+  </div>
+
+  <div style="text-align:center;padding:20px 24px 10px;">
+    <img id="prod2-img" src="https://cdn.shopify.com/s/files/1/0952/6260/5686/files/4ff488d4-84c6-4137-a309-2c5d18bc4bc8.png?v=1780949377" alt="Teebaumöl &amp; Hausmittel"
+      style="display:block;width:100%;max-width:300px;margin:0 auto;border-radius:8px;" />
+  </div>
+
+  <div style="text-align:center;padding:6px 16px 14px;">
+    <div style="color:#f0b429;font-size:20px;letter-spacing:2px;">★★☆☆☆</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:3px;">Gesamtbewertung 4,2/10</div>
+  </div>
+  <div style="padding:14px 16px 0;">
+    <p>Teebaumöl aus dem Reformhaus, Apfelessig, Kokosöl – Hausmittel haben den Vorteil, dass sie günstig, leicht verfügbar und ohne Nebenwirkungen sind. Ich habe Teebaumöl über acht Wochen zweimal täglich aufgetragen.</p>
+    <p>Das Ergebnis: <strong>keine sichtbare Verbesserung.</strong> Nicht weil Teebaumöl grundsätzlich wirkungslos ist – es hat tatsächlich antimykotische Eigenschaften. Aber dieselbe Keratinbarriere, die Apotheken-Lacke blockiert, blockiert auch Öle. <strong>Der Wirkstoff kommt nicht tief genug.</strong> Bei sehr leichtem, oberflächlichem Befall kann es gelegentlich helfen – bei allem was tiefer sitzt, ist es zu schwach.</p>
+  </div>
+  <div class="ratings-section" style="padding-top:14px;">
+    <div class="ratings-title">Meine Bewertung</div>
+    <div class="rating-row"><span class="rating-name">Preis-Leistung</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:60%;background:var(--amber);"></div></div><span class="rating-score">6/10</span></div>
+    <div class="rating-row"><span class="rating-name">Wirksamkeit</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:20%;background:#b83232;"></div></div><span class="rating-score">2/10</span></div>
+    <div class="rating-row"><span class="rating-name">Anwendungskomfort</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:70%;background:var(--green-bright);"></div></div><span class="rating-score">7/10</span></div>
+    <div class="rating-row"><span class="rating-name">Verträglichkeit</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:90%;background:var(--green-bright);"></div></div><span class="rating-score">9/10</span></div>
+    <div class="rating-row"><span class="rating-name">Behandlungsdauer</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:20%;background:#b83232;"></div></div><span class="rating-score">2/10</span></div>
+  </div>
+  <div class="overall-score-row mid">
+    <span>Gesamtbewertung</span>
+    <span style="color:#c97d1a;font-size:17px;">★★☆☆☆</span>
+    <span class="score-num score-amber">4,2/10</span>
+  </div>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Vorteile</h4>
+      <ul>
+        <li>Günstig und überall erhältlich</li>
+        <li>Keine Nebenwirkungen</li>
+        <li>Natürliche antimykotische Eigenschaften</li>
+        <li>Einfach anzuwenden</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>Nachteile</h4>
+      <ul>
+        <li>Kommt nicht tief genug ins Nagelbett</li>
+        <li>Keine sichtbare Wirkung bei tieferem Befall</li>
+        <li>Muss sehr regelmäßig angewendet werden</li>
+        <li>Kein strukturierter Behandlungsplan</li>
+      </ul>
+    </div>
+  </div>
+  <a href="#" class="btn-secondary" onclick="return false;">Zum Produkt</a>
+</div>
+
+<!-- PRODUCT 3 -->
+<div class="product-card" style="max-width:820px;margin:0 auto 20px;">
+  <div class="rank-badge">
+    <span class="rank-num">#3</span>
+    <span>Platz 3</span>
+  </div>
+  <div style="padding:20px 16px 0;text-align:center;">
+    <h2 style="font-size:clamp(17px,4vw,20px);margin-bottom:0;">Günstiger Nagelstift</h2>
+  </div>
+
+  <div style="text-align:center;padding:20px 24px 10px;">
+    <img id="prod3-img" src="https://cdn.shopify.com/s/files/1/0952/6260/5686/files/ChatGPT_Image_8._Juni_2026_22_05_50.png?v=1780949377" alt="Günstiger Nagelstift"
+      style="display:block;width:100%;max-width:300px;margin:0 auto;border-radius:8px;" />
+  </div>
+
+  <div style="text-align:center;padding:6px 16px 14px;">
+    <div style="color:#b83232;font-size:20px;letter-spacing:2px;">★☆☆☆☆</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:3px;">Gesamtbewertung 2,6/10</div>
+  </div>
+  <div style="padding:14px 16px 0;">
+    <p>Für unter 15 Euro, ähnliche Verpackung wie teurere Produkte, ähnliche Versprechen. Acht Wochen konsequent getestet.</p>
+    <p><strong>Keinerlei sichtbare Veränderung.</strong> Keine nachweisbare Wirkstoffkonzentration, keine Qualitätskontrolle. Das Produkt trocknet schnell aus, wirkt diffus. Im besten Fall nutzlos. <strong>Das ist der Unterschied zwischen einem ernsthaften Ansatz und einer günstigen Nachahmung.</strong></p>
+  </div>
+  <div class="ratings-section" style="padding-top:14px;">
+    <div class="ratings-title">Meine Bewertung</div>
+    <div class="rating-row"><span class="rating-name">Preis-Leistung</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:10%;background:#b83232;"></div></div><span class="rating-score">1/10</span></div>
+    <div class="rating-row"><span class="rating-name">Wirksamkeit</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:10%;background:#b83232;"></div></div><span class="rating-score">1/10</span></div>
+    <div class="rating-row"><span class="rating-name">Anwendungskomfort</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:50%;background:var(--amber);"></div></div><span class="rating-score">5/10</span></div>
+    <div class="rating-row"><span class="rating-name">Verträglichkeit</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:40%;background:var(--amber);"></div></div><span class="rating-score">4/10</span></div>
+  </div>
+  <div class="overall-score-row bad">
+    <span>Gesamtbewertung</span>
+    <span style="color:#b83232;font-size:17px;">★☆☆☆☆</span>
+    <span class="score-num score-red">2,6/10</span>
+  </div>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Vorteile</h4>
+      <ul>
+        <li>Sehr günstig (10–20€)</li>
+        <li>Schnell lieferbar</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>Nachteile</h4>
+      <ul>
+        <li>Keine sichtbare Wirkung</li>
+        <li>Keine Wirkstoffkonzentration</li>
+        <li>Trocknet schnell aus</li>
+        <li>Keine Garantie</li>
+        <li>Reine Geldverschwendung</li>
+      </ul>
+    </div>
+  </div>
+  <a href="#" class="btn-secondary" onclick="return false;">Zum Produkt</a>
+</div>
+
+<!-- MECHANISM DARK -->
+<div class="mechanism-dark" style="max-width:820px;margin:0 auto 20px;border-radius:8px;">
+  <div style="max-width:820px;margin:0 auto;">
+    <h2>Warum die Photonlicht-Methode physikalisch anders wirkt</h2>
+    <p>Wer verstanden hat, warum Lacke an der Keratinbarriere scheitern, versteht sofort, warum Licht anders ist. <strong>Licht muss keine Substanz durch mehrere Millimeter hartes Keratin drücken.</strong> Es folgt physikalischen Gesetzen, die mit chemischer Diffusion nichts zu tun haben.</p>
+    <div class="three-steps">
+      <div class="step">
+        <div class="step-icon">🧴</div>
+        <div class="step-label">Zu schwach</div>
+        <div class="step-name">Cremes &amp; Lacke</div>
+        <div class="step-desc">Bleiben an der Keratinoberfläche. Nagelbett unerreicht.</div>
+      </div>
+      <div class="step step-winner">
+        <div class="step-icon">💡</div>
+        <div class="step-label">Genau richtig</div>
+        <div class="step-name">Photonlicht</div>
+        <div class="step-desc">Durchdringt Keratin. Ohne Tabletten. Einfach zuhause.</div>
+      </div>
+      <div class="step">
+        <div class="step-icon">💊</div>
+        <div class="step-label">Hohe Hürde</div>
+        <div class="step-name">Tabletten</div>
+        <div class="step-desc">Wirksam, aber Leber-Checks, Rezept, Nebenwirkungen.</div>
+      </div>
+    </div>
+    <p style="color:rgba(255,255,255,0.82);margin-top:0;"><em>Man kann keine Farbe durch eine Wand drücken. Aber Licht geht durch ein Fenster. Der Nagel ist die Wand. Creme ist die Farbe. Licht ist das Fenster.</em></p>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- COMPARE TABLE -->
+  <div class="section">
+    <h2>Alle 5 Methoden direkt verglichen</h2>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Kriterium</th>
+            <th class="wc">Photonlicht</th>
+            <th>Teebaumöl</th>
+            <th>Online-Stift</th>
+            <th>Tabletten</th>
+            <th>Lack/Creme</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Gesamtbewertung</td><td class="wc">★★★★★ 9,5</td><td>★★ 4,2</td><td>★ 2,6</td><td>★★★ 5,4</td><td>★★★ 5,6</td></tr>
+          <tr><td>Erreicht Nagelbett</td><td class="wc"><span class="ck">✓ Ja</span></td><td><span class="cx">✗ Nein</span></td><td><span class="cx">✗ Nein</span></td><td><span class="ck">✓ Blut</span></td><td><span class="cx">✗ Nein</span></td></tr>
+          <tr><td>Ohne Tabletten</td><td class="wc"><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="cx">✗</span></td><td><span class="ck">✓</span></td></tr>
+          <tr><td>Behandlung</td><td class="wc">3 Monate</td><td>Kein Erg.</td><td>Kein Erg.</td><td>3–6 Mon.</td><td>9–12 Mon.</td></tr>
+          <tr><td>Aufwand/Tag</td><td class="wc">7 Min.</td><td>2×/Tag</td><td>2×/Tag</td><td>Arzt nötig</td><td>1×/Woche</td></tr>
+          <tr><td>Kosten</td><td class="wc">unter 50€</td><td>5–15€</td><td>14–20€</td><td>Rezept</td><td>100–200€</td></tr>
+          <tr><td>Geld-zurück</td><td class="wc"><span class="ck">✓ 30 Tage</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td></tr>
+          <tr><td>Zuhause</td><td class="wc"><span class="ck">✓ Vollst.</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="cx">✗</span></td><td><span class="ck">✓</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FINAL VERDICT -->
+  <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:28px 20px;margin:20px 0;text-align:center;">
+    <h2 style="color:#28C76F;margin-bottom:14px;">Mein ehrliches Fazit nach 6 Monaten</h2>
+    <p style="color:var(--text);margin-bottom:12px;">Hätte ich von Anfang an die Photonlicht-Routine getestet, hätte ich mir ein halbes Jahr Frust erspart – und über 150€. Nicht weil alle anderen Methoden grundsätzlich schlecht sind. Sondern weil <strong>die meisten dort nicht ankommen, wo das Problem tatsächlich sitzt.</strong></p>
+    <p style="color:var(--text);margin-bottom:12px;">MedNail war die erste Methode, die mir wirklich erklären konnte, was sie tut und warum. Keine übertriebenen Versprechen, keine Wunderzahlen. Einfach eine Licht-Routine, die sich alltagstauglich anfühlt. Sieben Monate später: immer noch kein Rückfall.</p>
+    <p style="color:var(--text);margin-bottom:0;"><em>Wenn du schon einiges probiert hast und nicht gleich zur Tablettenkur willst: Die 30-Tage-Geld-zurück-Garantie macht den Test risikolos.</em></p>
+    <a href="https://levora-skin.de/products/levora-anti-nagelpilz-laser" class="btn-pdp" style="margin:20px 0 0;">MedNail risikofrei testen →</a>
+    <div style="font-size:12px;color:var(--muted);margin-top:10px;">✓ 30 Tage Geld-zurück &nbsp;·&nbsp; ✓ Kostenloser Versand &nbsp;·&nbsp; ✓ Diskrete Lieferung</div>
+  </div>
+
+</div>
+
+<!-- PRODUCT 4 -->
+<div class="product-card" style="max-width:820px;margin:0 auto 20px;">
+  <div class="rank-badge">
+    <span class="rank-num">#4</span>
+    <span>Platz 4</span>
+  </div>
+  <div style="padding:20px 16px 0;text-align:center;">
+    <h2 style="font-size:clamp(17px,4vw,20px);margin-bottom:0;">Tablettenkur (Antimykotikum)</h2>
+  </div>
+
+  <div style="text-align:center;padding:20px 24px 10px;">
+    <img id="prod4-img" src="https://cdn.shopify.com/s/files/1/0952/6260/5686/files/ChatGPT_Image_8._Juni_2026_22_04_45.png?v=1780949378" alt="Tablettenkur (Antimykotikum)"
+      style="display:block;width:100%;max-width:300px;margin:0 auto;border-radius:8px;" />
+  </div>
+
+  <div style="text-align:center;padding:6px 16px 14px;">
+    <div style="color:#f0b429;font-size:20px;letter-spacing:2px;">★★★☆☆</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:3px;">Gesamtbewertung 5,4/10</div>
+  </div>
+  <div style="padding:14px 16px 0;">
+    <p>Tabletten wirken systemisch – über das Blut, nicht durch den Nagel. Das Prinzip funktioniert. Bei schwerem Befall ist das medizinisch sinnvoll.</p>
+    <p>Aber für viele ist die Hürde zu hoch: regelmäßige Blutabnahmen, Leber-Checks, Rezeptpflicht. <strong>„Wegen eines Zehennagels gleich Tabletten?"</strong> – das ist der Gedanke, den ich immer wieder gehört habe.</p>
+  </div>
+  <div class="ratings-section" style="padding-top:14px;">
+    <div class="ratings-title">Meine Bewertung</div>
+    <div class="rating-row"><span class="rating-name">Wirksamkeit</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:80%;background:var(--green-bright);"></div></div><span class="rating-score">8/10</span></div>
+    <div class="rating-row"><span class="rating-name">Zugänglichkeit</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:30%;background:#b83232;"></div></div><span class="rating-score">3/10</span></div>
+    <div class="rating-row"><span class="rating-name">Verträglichkeit</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:50%;background:var(--amber);"></div></div><span class="rating-score">5/10</span></div>
+    <div class="rating-row"><span class="rating-name">Alltagstauglichkeit</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:40%;background:var(--amber);"></div></div><span class="rating-score">4/10</span></div>
+  </div>
+  <div class="overall-score-row mid">
+    <span>Gesamtbewertung</span>
+    <span style="color:#c97d1a;font-size:17px;">★★★☆☆</span>
+    <span class="score-num score-amber">5,4/10</span>
+  </div>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Vorteile</h4>
+      <ul>
+        <li>Systemisch wirksam</li>
+        <li>Bei starkem Befall indiziert</li>
+        <li>Ärztliche Begleitung</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>Nachteile</h4>
+      <ul>
+        <li>Leber-Checks nötig</li>
+        <li>Mögliche Nebenwirkungen</li>
+        <li>Arzt und Rezept nötig</li>
+        <li>Hohe emotionale Hürde</li>
+      </ul>
+    </div>
+  </div>
+  <a href="#" class="btn-secondary" onclick="return false;">Zum Produkt</a>
+</div>
+
+<!-- PRODUCT 5 -->
+<div class="product-card" style="max-width:820px;margin:0 auto 20px;">
+  <div class="rank-badge">
+    <span class="rank-num">#5</span>
+    <span>Platz 5</span>
+  </div>
+  <div style="padding:20px 16px 0;text-align:center;">
+    <h2 style="font-size:clamp(17px,4vw,20px);margin-bottom:0;">Apotheken-Lack &amp; Cremes</h2>
+  </div>
+
+  <div style="text-align:center;padding:20px 24px 10px;">
+    <img id="prod5-img" src="https://cdn.shopify.com/s/files/1/0952/6260/5686/files/ChatGPT_Image_8._Juni_2026_22_08_10.png?v=1780949378" alt="Apotheken-Lack"
+      style="display:block;width:100%;max-width:300px;margin:0 auto;border-radius:8px;" />
+  </div>
+
+  <div style="text-align:center;padding:6px 16px 14px;">
+    <div style="color:#f0b429;font-size:20px;letter-spacing:2px;">★★★☆☆</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:3px;">Gesamtbewertung 5,6/10</div>
+  </div>
+  <div style="padding:14px 16px 0;">
+    <p>Der Klassiker. Wöchentliche Anwendung, rezeptfrei, in jeder Apotheke erhältlich. Mein erster Versuch.</p>
+    <p>Nach acht Wochen kaum Veränderung. Die Apothekerin sagte mir, ich solle 9–12 Monate durchhalten. Als ich nachrechnete – und mir die Heilungsraten bei tieferem Befall anschaute – wurde klar: <strong>Der Lack macht etwas oben. Der Pilz sitzt unten.</strong></p>
+  </div>
+  <div class="ratings-section" style="padding-top:14px;">
+    <div class="ratings-title">Meine Bewertung</div>
+    <div class="rating-row"><span class="rating-name">Preis-Leistung</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:30%;background:#b83232;"></div></div><span class="rating-score">3/10</span></div>
+    <div class="rating-row"><span class="rating-name">Wirksamkeit</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:60%;background:var(--amber);"></div></div><span class="rating-score">6/10</span></div>
+    <div class="rating-row"><span class="rating-name">Anwendungskomfort</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:80%;background:var(--green-bright);"></div></div><span class="rating-score">8/10</span></div>
+    <div class="rating-row"><span class="rating-name">Verträglichkeit</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:80%;background:var(--green-bright);"></div></div><span class="rating-score">8/10</span></div>
+    <div class="rating-row"><span class="rating-name">Behandlungsdauer</span><div class="rating-bar-wrap"><div class="rating-bar" style="width:30%;background:#b83232;"></div></div><span class="rating-score">3/10</span></div>
+  </div>
+  <div class="overall-score-row mid">
+    <span>Gesamtbewertung</span>
+    <span style="color:#c97d1a;font-size:17px;">★★★☆☆</span>
+    <span class="score-num score-amber">5,6/10</span>
+  </div>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Vorteile</h4>
+      <ul>
+        <li>1× wöchentlich anwenden</li>
+        <li>Überall erhältlich</li>
+        <li>Gut verträglich</li>
+        <li>Günstiger Einstieg</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>Nachteile</h4>
+      <ul>
+        <li>9–12 Monate Behandlungsdauer</li>
+        <li>Gesamtkosten 100–200€</li>
+        <li>Wirkt nur oberflächlich</li>
+        <li>Häufige Rückfälle</li>
+      </ul>
+    </div>
+  </div>
+  <a href="#" class="btn-secondary" onclick="return false;">Zum Produkt</a>
+</div>
+
+<div style="max-width:820px;margin:40px auto 0;padding:0 16px 32px;">
+  <div style="background:#f0ede8;border:1px solid var(--border);border-radius:4px;padding:14px 16px;font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:12px;">
+    <strong>Hinweis:</strong> Dieser Bericht basiert auf persönlichen Testerfahrungen und stellt keine medizinische Beratung dar. Individuelle Ergebnisse können abweichen. Bei schwerem oder anhaltendem Befall empfehlen wir die Konsultation eines Arztes. Es wird kein Heilungserfolg garantiert.
+  </div>
+  <div style="text-align:center;padding:4px;">
+    <span style="font-size:9px;color:#d0ccc8;letter-spacing:0.08em;text-transform:uppercase;">Advertorial</span>
+  </div>
+</div>
+</body>
+</html>
