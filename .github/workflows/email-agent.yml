@@ -26,6 +26,8 @@ jobs:
           AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SHOPIFY_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ACCESS_TOKEN }}
+          SHOPIFY_SHOP: "levora-skin.myshopify.com"
           DRAFT_MODE: "true"
         run: python email-agent/agent.py
 
