@@ -111,25 +111,60 @@ Kundensupport | Levora Skin"""
 
 # ── Shopify ───────────────────────────────────────────────────────────────────
 
-def get_shopify_order_by_email(customer_email):
-    """Find the most recent Shopify order for this customer email."""
+def _shopify_get(params):
     if not SHOPIFY_TOKEN:
         return None
     url = f"https://{SHOPIFY_SHOP}/admin/api/2024-04/orders.json"
-    params = {
-        "email": customer_email,
-        "status": "any",
-        "limit": 5,
-        "fields": "id,created_at,fulfillment_status,financial_status,fulfillments",
-    }
+    fields = "id,created_at,fulfillment_status,fulfillments,customer"
     try:
-        r = requests.get(url, headers={"X-Shopify-Access-Token": SHOPIFY_TOKEN}, params=params, timeout=10)
+        r = requests.get(
+            url,
+            headers={"X-Shopify-Access-Token": SHOPIFY_TOKEN},
+            params={**params, "status": "any", "limit": 1, "fields": fields},
+            timeout=10,
+        )
         r.raise_for_status()
         orders = r.json().get("orders", [])
         return orders[0] if orders else None
     except Exception as e:
         print(f"  Shopify-Fehler: {e}")
         return None
+
+
+def get_shopify_order_by_number(order_number):
+    num = order_number.strip().lstrip("#")
+    order = _shopify_get({"name": f"#{num}"})
+    if order:
+        print(f"  Order #{num} via Bestellnummer gefunden")
+    return order
+
+
+def get_shopify_order_by_email(customer_email):
+    order = _shopify_get({"email": customer_email})
+    if order:
+        print(f"  Order via Kunden-Email gefunden")
+    return order
+
+
+def find_shopify_order(sender_email, body_text):
+    """Try order number from body first, then fall back to sender email."""
+    match = re.search(r"#\s*(\d{3,6})", body_text)
+    if match:
+        order = get_shopify_order_by_number(match.group(1))
+        if order:
+            return order
+    return get_shopify_order_by_email(sender_email)
+
+
+def get_customer_first_name(order, fallback_name):
+    """First name from Shopify customer data — never from sender display name."""
+    if order:
+        customer = order.get("customer") or {}
+        first_name = customer.get("first_name", "").strip()
+        if first_name:
+            return first_name
+    # Last resort: parse the email body for a name (not sender display name)
+    return fallback_name or "du"
 
 
 def get_widerruf_context(order):
@@ -342,19 +377,18 @@ def main():
             # ── Widerruf-Erkennung ──────────────────────────────────────────
             if is_widerruf(subject, body_text):
                 print(f"  → Widerruf erkannt – Shopify-Lookup...")
-                order = get_shopify_order_by_email(sender_email)
+                order = find_shopify_order(sender_email, body_text)
                 days, template = get_widerruf_context(order)
 
                 if template:
-                    vorname = extract_first_name(sender_name)
+                    vorname = get_customer_first_name(order, None)
                     reply = template.format(vorname=vorname)
                     stage = "noch unterwegs" if template == WIDERRUF_TEMPLATE_1 else ("frisch erhalten" if template == WIDERRUF_TEMPLATE_2 else "längere Nutzung")
-                    print(f"  → Template: {stage} ({days} Tage seit Bestellung)")
+                    print(f"  → Template: {stage} | {days} Tage | Vorname: {vorname}")
                 else:
-                    # Kein Shopify-Order gefunden – generisches Widerruf-Template
-                    vorname = extract_first_name(sender_name)
-                    reply = WIDERRUF_TEMPLATE_2.format(vorname=vorname)
-                    print(f"  → Kein Shopify-Order gefunden, nutze Standard-Template")
+                    vorname = get_customer_first_name(order, None)
+                    reply = WIDERRUF_TEMPLATE_1.format(vorname=vorname)
+                    print(f"  → Kein Order gefunden, Template 1 als Fallback")
 
                 if DRAFT_MODE:
                     save_draft(token, sender_email, sender_name, subject, reply)
@@ -375,11 +409,10 @@ def main():
                 continue
 
             if reply.strip() == "WIDERRUF":
-                # Claude hat Widerruf erkannt aber Keyword-Filter hat's verpasst
-                order = get_shopify_order_by_email(sender_email)
+                order = find_shopify_order(sender_email, body_text)
                 days, template = get_widerruf_context(order)
-                vorname = extract_first_name(sender_name)
-                reply = (template or WIDERRUF_TEMPLATE_2).format(vorname=vorname)
+                vorname = get_customer_first_name(order, None)
+                reply = (template or WIDERRUF_TEMPLATE_1).format(vorname=vorname)
 
             if DRAFT_MODE:
                 save_draft(token, sender_email, sender_name, subject, reply)
