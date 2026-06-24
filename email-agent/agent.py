@@ -19,7 +19,7 @@ GRAPH_URL = "https://graph.microsoft.com/v1.0"
 
 WIDERRUF_TEMPLATE_1 = """Hallo {vorname},
 
-ich bin Yvonne vom Levora-Kundenservice. Ich schreibe dir, weil dein Paket laut unserer Versandinfo noch gar nicht bei dir angekommen sein kann – es ist noch auf dem Weg zu dir.
+ich bin Yvonne vom Levora-Kundenservice. Ich schreibe dir, weil deine Bestellung bei uns noch gar nicht versendet wurde – das Paket liegt noch bei uns im Lager.
 
 Das bedeutet: Du hast das Gerät noch nicht in der Hand gehabt. Und trotzdem hast du dich entschieden, es zurückzuschicken.
 
