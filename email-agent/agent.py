@@ -19,9 +19,7 @@ GRAPH_URL = "https://graph.microsoft.com/v1.0"
 
 WIDERRUF_TEMPLATE_1 = """Hallo {vorname},
 
-dein Widerruf ist bei uns eingegangen – du erhältst in Kürze eine separate Bestätigung.
-
-Ich bin Yvonne vom Levora-Kundenservice. Ich schreibe dir, weil dein Paket laut unserer Versandinfo noch gar nicht bei dir angekommen sein kann – es ist noch auf dem Weg zu dir.
+ich bin Yvonne vom Levora-Kundenservice. Ich schreibe dir, weil dein Paket laut unserer Versandinfo noch gar nicht bei dir angekommen sein kann – es ist noch auf dem Weg zu dir.
 
 Das bedeutet: Du hast das Gerät noch nicht in der Hand gehabt. Und trotzdem hast du dich entschieden, es zurückzuschicken.
 
@@ -45,11 +43,12 @@ Antworte einfach auf diese E-Mail. Ich melde mich persönlich.
 
 Herzliche Grüße,
 Yvonne
-Kundensupport | Levora Skin"""
+Kundensupport | Levora Skin
+
+––
+Dein Widerruf wurde von uns erfasst und wird bearbeitet."""
 
 WIDERRUF_TEMPLATE_2 = """Hallo {vorname},
-
-wir haben deinen Widerruf erhalten und bearbeiten ihn – eine Bestätigung geht dir separat zu.
 
 Dein Paket müsste in den letzten Tagen bei dir angekommen sein. Und direkt danach kam der Widerruf – das sagt mir, dass beim Auspacken oder beim ersten Eindruck irgendetwas nicht gestimmt hat.
 
@@ -76,11 +75,12 @@ Falls du magst, erkläre ich dir kurz, was in den ersten Wochen im Nagel passier
 
 Herzliche Grüße,
 Yvonne
-Kundensupport | Levora Skin"""
+Kundensupport | Levora Skin
+
+––
+Dein Widerruf wurde von uns erfasst und wird bearbeitet."""
 
 WIDERRUF_TEMPLATE_3 = """Hallo {vorname},
-
-dein Widerruf ist angekommen – wir kümmern uns darum, eine Bestätigung folgt in Kürze.
 
 Du hast das Gerät jetzt schon eine Weile bei dir. Das bedeutet, du hattest Zeit, es auszuprobieren – und trotzdem bist du zum Schluss gekommen, es zurückzuschicken.
 
@@ -107,7 +107,10 @@ Antworte einfach kurz auf diese Mail. Ich schaue mir deinen Fall persönlich an.
 
 Herzliche Grüße,
 Yvonne
-Kundensupport | Levora Skin"""
+Kundensupport | Levora Skin
+
+––
+Dein Widerruf wurde von uns erfasst und wird bearbeitet."""
 
 # ── Shopify ───────────────────────────────────────────────────────────────────
 
