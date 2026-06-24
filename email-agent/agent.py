@@ -179,7 +179,7 @@ def get_widerruf_context(order):
     # Check if any fulfillment was actually shipped
     shipped = fulfillment_status in ("fulfilled", "partial")
 
-    if not shipped or days < 10:
+    if not shipped or days < 2:
         return days, WIDERRUF_TEMPLATE_1
     elif days < 20:
         return days, WIDERRUF_TEMPLATE_2
