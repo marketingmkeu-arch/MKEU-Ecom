@@ -118,7 +118,7 @@ def _shopify_get(params):
     if not SHOPIFY_TOKEN:
         return None
     url = f"https://{SHOPIFY_SHOP}/admin/api/2024-04/orders.json"
-    fields = "id,created_at,fulfillment_status,fulfillments,customer"
+    fields = "id,created_at,fulfillment_status,fulfillments,customer,email"
     try:
         r = requests.get(
             url,
@@ -165,6 +165,15 @@ def get_customer_first_name(order):
         if first_name:
             return first_name
     return "du"
+
+
+def get_customer_email(order):
+    if order:
+        customer = order.get("customer") or {}
+        email = customer.get("email", "").strip()
+        if email:
+            return email
+    return None
 
 
 def get_widerruf_context(order):
@@ -372,14 +381,16 @@ def main():
                 stage = ("Lager (0-2d)" if template == WIDERRUF_TEMPLATE_1
                          else "frisch erhalten (2-20d)" if template == WIDERRUF_TEMPLATE_2
                          else "längere Nutzung (20d+)")
-                print(f"  → {stage} | {days} Tage | Vorname: {vorname}")
+                customer_email = get_customer_email(order) or sender_email
+                customer_name = vorname if vorname != "du" else sender_name
+                print(f"  → {stage} | {days} Tage | Vorname: {vorname} | An: {customer_email}")
 
                 if DRAFT_MODE:
-                    save_draft(token, sender_email, sender_name, subject, reply)
+                    save_draft(token, customer_email, customer_name, subject, reply)
                     mark_as_read(token, email_id)
                     print(f"  ✓ Widerruf-Entwurf gespeichert")
                 else:
-                    send_reply(token, sender_email, sender_name, subject, reply)
+                    send_reply(token, customer_email, customer_name, subject, reply)
                     mark_as_read(token, email_id)
                     print(f"  ✓ Widerruf-Antwort gesendet")
                 continue
@@ -393,18 +404,22 @@ def main():
                 mark_as_read(token, email_id)
                 continue
 
+            to_email = sender_email
+            to_name = sender_name
             if reply.strip() == "WIDERRUF":
                 order = find_shopify_order(sender_email, body_text)
                 days, template = get_widerruf_context(order)
                 vorname = get_customer_first_name(order)
                 reply = (template or WIDERRUF_TEMPLATE_1).format(vorname=vorname)
+                to_email = get_customer_email(order) or sender_email
+                to_name = vorname if vorname != "du" else sender_name
 
             if DRAFT_MODE:
-                save_draft(token, sender_email, sender_name, subject, reply)
+                save_draft(token, to_email, to_name, subject, reply)
                 mark_as_read(token, email_id)
                 print(f"  ✓ Entwurf gespeichert")
             else:
-                send_reply(token, sender_email, sender_name, subject, reply)
+                send_reply(token, to_email, to_name, subject, reply)
                 mark_as_read(token, email_id)
                 print(f"  ✓ Antwort gesendet")
 
