@@ -88,6 +88,27 @@ def scroll_page(page, steps=8, delay=1.2):
         time.sleep(delay)
 
 
+def extract_ad_links(page):
+    """Extrahiert alle Ziel-URLs aus den Ads auf der aktuellen Seite."""
+    links = set()
+    try:
+        # CTA Buttons mit Links
+        for el in page.query_selector_all('a[href]'):
+            href = el.get_attribute("href") or ""
+            # Facebook redirect links auflösen
+            if "l.facebook.com/l.php" in href or "facebook.com/ads" not in href:
+                if href.startswith("http") and "facebook.com" not in href:
+                    links.add(href.split("?fbclid")[0].split("&h=")[0])
+            # Manchmal steckt die URL in data-attrs
+        for el in page.query_selector_all('[data-ad-preview-url], [data-link-url]'):
+            href = el.get_attribute("data-ad-preview-url") or el.get_attribute("data-link-url") or ""
+            if href.startswith("http") and "facebook.com" not in href:
+                links.add(href)
+    except Exception:
+        pass
+    return list(links)[:10]
+
+
 def scrape_fb_ads_for_brand(page, search_term):
     url = (
         f"https://www.facebook.com/ads/library/"
@@ -129,10 +150,15 @@ def scrape_fb_ads_for_brand(page, search_term):
     except Exception:
         pass
 
+    # Links aus den Ads extrahieren
+    ad_links = extract_ad_links(page)
+
     result = raw
     if cards:
         result += "\n\n=== AD CARDS ===\n" + "\n---\n".join(cards[:15])
-    return result[:18000]
+    if ad_links:
+        result += "\n\n=== GEFUNDENE AD-LINKS (Ziel-URLs) ===\n" + "\n".join(ad_links)
+    return result[:18000], ad_links
 
 
 def scrape_fb_page_ads(page, page_id):
@@ -157,7 +183,11 @@ def scrape_fb_page_ads(page, page_id):
         except Exception:
             pass
 
-    return page.inner_text("body")[:15000]
+    ad_links = extract_ad_links(page)
+    text = page.inner_text("body")[:15000]
+    if ad_links:
+        text += "\n\n=== GEFUNDENE AD-LINKS (Ziel-URLs) ===\n" + "\n".join(ad_links)
+    return text, ad_links
 
 
 def scrape_website(page, url):
@@ -228,6 +258,8 @@ def collect_all_data():
             print(f"\n--- Scraping: {brand_name} ---")
             data[brand_name] = {"fb_ads": {}, "website": {}}
 
+            all_ad_links = set()
+
             # Facebook Ad Library – Keyword Suche
             ctx_fb = browser.new_context(
                 user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -237,33 +269,48 @@ def collect_all_data():
 
             for term in config["fb_search_terms"]:
                 print(f"  FB Keyword: '{term}'...")
-                result = scrape_fb_ads_for_brand(page_fb, term)
+                result, links = scrape_fb_ads_for_brand(page_fb, term)
                 data[brand_name]["fb_ads"][term] = result
-                print(f"    {len(result)} Zeichen")
+                all_ad_links.update(links)
+                print(f"    {len(result)} Zeichen, {len(links)} Links gefunden")
                 time.sleep(3)
 
             # Facebook Page Ads
-            print(f"  FB Page ID: '{config['fb_page_id']}'...")
-            page_ads = scrape_fb_page_ads(page_fb, config["fb_page_id"])
-            data[brand_name]["fb_ads"]["__page__"] = page_ads
-            print(f"    {len(page_ads)} Zeichen")
+            print(f"  FB Page: '{config['fb_page_id']}'...")
+            page_text, links = scrape_fb_page_ads(page_fb, config["fb_page_id"])
+            data[brand_name]["fb_ads"]["__page__"] = page_text
+            all_ad_links.update(links)
+            print(f"    {len(page_text)} Zeichen, {len(links)} Links gefunden")
 
             page_fb.close()
             ctx_fb.close()
 
-            # Website Scraping
+            # Website/Funnel Scraping – automatisch aus Ad-Links + Fallback
             ctx_web = browser.new_context(
                 user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
                 locale="de-DE",
             )
             page_web = ctx_web.new_page()
 
-            for url in config["website_urls"]:
-                print(f"  Website: '{url}'...")
+            # Zuerst die aus den Ads extrahierten Links scrapen
+            scraped_links = list(all_ad_links)[:6]
+            print(f"  Scrape {len(scraped_links)} Ad-Links (automatisch gefunden)...")
+            for url in scraped_links:
+                print(f"  → {url[:80]}...")
                 result = scrape_website(page_web, url)
                 data[brand_name]["website"][url] = result
                 print(f"    {len(result)} Zeichen")
                 time.sleep(2)
+
+            # Fallback: hardcodierte URLs falls keine Links aus Ads gefunden
+            if len(scraped_links) == 0:
+                print(f"  Keine Ad-Links gefunden – nutze Fallback-URLs...")
+                for url in config.get("website_urls", []):
+                    print(f"  → {url}...")
+                    result = scrape_website(page_web, url)
+                    data[brand_name]["website"][url] = result
+                    print(f"    {len(result)} Zeichen")
+                    time.sleep(2)
 
             page_web.close()
             ctx_web.close()
