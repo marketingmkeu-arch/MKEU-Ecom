@@ -254,7 +254,7 @@ def collect_all_data():
 
 def run_claude(client, prompt, max_tokens=5000):
     message = client.messages.create(
-        model="claude-sonnet-4-6",
+        model="claude-haiku-4-5-20251001",
         max_tokens=max_tokens,
         messages=[{"role": "user", "content": prompt}],
     )
