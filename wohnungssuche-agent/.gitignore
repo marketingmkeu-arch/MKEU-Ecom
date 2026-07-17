@@ -1,0 +1,6 @@
+data/*.json
+data/bericht.md
+imports/*.html
+imports/*.htm
+__pycache__/
+*.pyc
