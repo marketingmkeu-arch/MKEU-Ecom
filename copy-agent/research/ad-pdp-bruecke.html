@@ -1,0 +1,564 @@
+<title>Von der Ad zur Seite</title>
+<style>
+  :root{
+    --paper:#EFF0F3;
+    --surface:#FCFCFD;
+    --surface-2:#F4F5F9;
+    --ink:#15171E;
+    --ink-2:#3D4250;
+    --ink-3:#697083;
+    --rule:#D6D9E2;
+    --rule-2:#BCC1CE;
+    --accent:#2F4487;
+    --accent-2:#E1E6F4;
+    --bruch:#9B2C2C;   --bruch-bg:#F7E6E6;
+    --halt:#1F5B54;    --halt-bg:#E0EDEA;
+    --edu:#4A505E;     --edu-bg:#E8EAEF;
+    --warn:#8A5A18;    --warn-bg:#F6EDDC;
+    --shadow:0 1px 2px rgba(21,23,30,.05), 0 8px 24px -16px rgba(21,23,30,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#11131A; --surface:#191C25; --surface-2:#1F232E;
+      --ink:#E7E9F0; --ink-2:#B4B9C7; --ink-3:#878DA0;
+      --rule:#2B303C; --rule-2:#3C4351;
+      --accent:#93A7E4; --accent-2:#232A42;
+      --bruch:#E89393; --bruch-bg:#2E1B1B;
+      --halt:#6FBDAF;  --halt-bg:#172B29;
+      --edu:#A6ADBD;   --edu-bg:#242832;
+      --warn:#D9AE6B;  --warn-bg:#2C2418;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#11131A; --surface:#191C25; --surface-2:#1F232E;
+    --ink:#E7E9F0; --ink-2:#B4B9C7; --ink-3:#878DA0;
+    --rule:#2B303C; --rule-2:#3C4351;
+    --accent:#93A7E4; --accent-2:#232A42;
+    --bruch:#E89393; --bruch-bg:#2E1B1B;
+    --halt:#6FBDAF;  --halt-bg:#172B29;
+    --edu:#A6ADBD;   --edu-bg:#242832;
+    --warn:#D9AE6B;  --warn-bg:#2C2418;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:16.5px;line-height:1.65;-webkit-font-smoothing:antialiased;margin:0;padding:0 20px 96px;
+  }
+  .wrap{max-width:880px;margin:0 auto}
+  .prose{max-width:68ch}
+
+  h1,h2,h3{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weight:600;text-wrap:balance;margin:0}
+  h1{font-size:clamp(2rem,5vw,2.9rem);line-height:1.1;letter-spacing:-.015em}
+  h2{font-size:clamp(1.45rem,3.4vw,1.85rem);line-height:1.2;letter-spacing:-.01em}
+  h3{font-size:1.1rem;line-height:1.3}
+  h4{font-size:1rem;font-family:system-ui,sans-serif;font-weight:650;line-height:1.4;margin:0}
+  p{margin:0}
+  a{color:var(--accent)}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+
+  .eyebrow{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+  header.mast{padding:64px 0 0;display:flex;flex-direction:column;gap:22px}
+  .kicker{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline}
+  .kicker span:not(:last-child)::after{content:"";display:inline-block;width:14px;border-top:1px solid var(--rule-2);margin-left:10px;vertical-align:middle}
+  .lede{font-size:1.14rem;color:var(--ink-2);max-width:62ch}
+  .mast hr{border:0;border-top:2px solid var(--ink);margin:6px 0 0}
+
+  section{padding:56px 0 0}
+  .shead{display:flex;flex-direction:column;gap:8px;margin-bottom:26px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+  .shead .num{color:var(--accent)}
+  .stack{display:flex;flex-direction:column;gap:18px}
+  .stack-wide{display:flex;flex-direction:column;gap:28px}
+
+  .card{background:var(--surface);border:1px solid var(--rule);border-radius:6px;
+    border-left:4px solid var(--rule-2);padding:18px 20px;display:flex;flex-direction:column;gap:11px}
+  .card.b{border-left-color:var(--bruch)}
+  .card.h{border-left-color:var(--halt)}
+  .card.e{border-left-color:var(--accent)}
+  .card.w{border-left-color:var(--warn)}
+  .card .top{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+
+  .pill{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.64rem;letter-spacing:.1em;
+    text-transform:uppercase;padding:3px 8px;border-radius:3px;white-space:nowrap}
+  .p-b{background:var(--bruch-bg);color:var(--bruch)}
+  .p-h{background:var(--halt-bg);color:var(--halt)}
+  .p-e{background:var(--accent-2);color:var(--accent)}
+  .p-w{background:var(--warn-bg);color:var(--warn)}
+  .p-n{background:var(--edu-bg);color:var(--edu)}
+
+  .quote{background:var(--surface-2);border-radius:4px;padding:10px 13px;
+    font-family:Georgia,serif;font-size:.97rem;border-left:2px solid var(--rule-2)}
+  .fix{display:flex;gap:9px;align-items:baseline}
+  .fix .lbl{font-family:ui-monospace,Menlo,monospace;font-size:.64rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--halt);flex:0 0 auto;padding-top:3px}
+
+  .callout{background:var(--accent-2);border:1px solid var(--rule);border-left:3px solid var(--accent);
+    border-radius:0 6px 6px 0;padding:18px 20px;display:flex;flex-direction:column;gap:11px}
+  .callout.warn{background:var(--bruch-bg);border-left-color:var(--bruch)}
+
+  .tscroll{overflow-x:auto;border:1px solid var(--rule);border-radius:6px;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:700px;font-size:.89rem}
+  caption{caption-side:bottom;text-align:left;padding:10px 14px 0;font-size:.82rem;color:var(--ink-3)}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+  thead th{font-family:ui-monospace,Menlo,monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);font-weight:500;background:var(--surface-2);border-bottom:1px solid var(--rule-2)}
+  tbody tr:last-child td{border-bottom:0}
+  .mono{font-family:ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
+
+  ul.plain,ol.plain{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:7px}
+  ul.plain li::marker{color:var(--ink-3)}
+  ol.plain li::marker{color:var(--accent);font-family:ui-monospace,monospace;font-size:.85em}
+  ul.none{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+
+  /* page blueprint */
+  .blueprint{display:flex;flex-direction:column;gap:0;counter-reset:bp}
+  .bp{display:grid;grid-template-columns:auto 1fr;gap:0 18px;counter-increment:bp}
+  .bp .rail{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .bp .dot{width:30px;height:30px;border-radius:50%;background:var(--surface);border:1px solid var(--rule-2);
+    display:grid;place-items:center;font-family:ui-monospace,Menlo,monospace;font-size:.72rem;color:var(--accent);flex:0 0 auto}
+  .bp .dot::before{content:counter(bp,decimal-leading-zero)}
+  .bp .line{width:1px;flex:1 1 auto;background:var(--rule);min-height:14px}
+  .bp:last-child .line{display:none}
+  .bp .body{padding-bottom:22px;display:flex;flex-direction:column;gap:8px;padding-top:2px}
+  .bp .body .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+  /* rechner */
+  .calc{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:20px 22px;
+    display:flex;flex-direction:column;gap:14px}
+  .calc .row{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end}
+  .calc label{display:flex;flex-direction:column;gap:5px;font-size:.85rem;color:var(--ink-3)}
+  .calc input{width:120px;padding:8px 10px;border:1px solid var(--rule-2);border-radius:4px;
+    background:var(--surface-2);color:var(--ink);font:inherit;font-variant-numeric:tabular-nums}
+  .calc output{display:block;font-family:Georgia,serif;font-size:1.5rem;line-height:1.3}
+  .calc .out-wrap{background:var(--halt-bg);border-radius:5px;padding:14px 16px;display:flex;flex-direction:column;gap:5px}
+  .calc .note{font-size:.84rem;color:var(--ink-3)}
+
+  footer{margin-top:64px;padding-top:24px;border-top:2px solid var(--ink);display:flex;flex-direction:column;gap:12px}
+  .fine{font-size:.86rem;color:var(--ink-3)}
+
+  nav.toc{margin:34px 0 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 0}
+  nav.toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px 26px;counter-reset:t}
+  nav.toc li{counter-increment:t;display:flex;gap:10px;align-items:baseline;padding:4px 0}
+  nav.toc li::before{content:counter(t,decimal-leading-zero);font-family:ui-monospace,Menlo,monospace;font-size:.7rem;color:var(--ink-3)}
+  nav.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
+  nav.toc a:hover{border-bottom-color:var(--accent)}
+
+  @media (max-width:560px){
+    body{font-size:16px;padding:0 16px 72px}
+    header.mast{padding-top:40px}
+    .bp{gap:0 13px}
+  }
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker eyebrow">
+    <span>Message Match</span><span>Cartoon-Ad → PDP</span><span>Education &amp; Proof</span><span>17.08.2026</span>
+  </div>
+  <h1>Die Ad öffnet eine Frage, die die Seite nie beantwortet</h1>
+  <p class="lede">
+    Wo Cartoon-Winkel und Produktseite auseinanderlaufen, wie die Seite für dieses
+    Traffic-Profil umgebaut werden müsste, und welcher Proof rechtlich in welcher Form geht.
+  </p>
+  <hr>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <ol>
+    <li><a href="#s1">Das Grundproblem</a></li>
+    <li><a href="#s2">Elf Bruchstellen</a></li>
+    <li><a href="#s3">Der neue Seitenaufbau</a></li>
+    <li><a href="#s4">Sieben Education-Blöcke</a></li>
+    <li><a href="#s5">Proof in fünf Stufen</a></li>
+    <li><a href="#s6">Was in zwölf Wochen da sein kann</a></li>
+    <li><a href="#s7">Was gestrichen wird</a></li>
+  </ol>
+</nav>
+
+<!-- 1 -->
+<section id="s1">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">01</span> &nbsp;Diagnose</span>
+    <h2>Das Grundproblem</h2>
+  </div>
+
+  <div class="stack">
+    <div class="callout">
+      <p><strong>Grundlage:</strong> Ich habe die Ad nicht gesehen, nur die Beschreibung — Cartoon, der Pilz erzählt, dann treten die gescheiterten Lösungen auf, dann das Produkt. Wenn die Umsetzung davon abweicht, verschieben sich einzelne Punkte. Die Seite kenne ich aus dem Screenshot vom 17.08.2026.</p>
+    </div>
+
+    <div class="card b">
+      <div class="top"><span class="pill p-b">Kern</span></div>
+      <h3>Die Seite ist für einen anderen Bewusstseinszustand gebaut als den, den die Ad erzeugt</h3>
+      <p>Wer über einen Cartoon kommt, ist <strong>unterhalten und problembewusst</strong> — nicht produktbewusst. Er hat gerade eine Geschichte gesehen, keinen Vergleich gelesen. Er weiß, dass sein Problem woanders sitzt, als er dachte, und er will wissen, was daraus folgt.</p>
+      <p>Die aktuelle Seite ist für den produktbewussten Käufer gebaut: Preisraster, Countdown, Bundle, Garantie stehen ganz oben, Erklärung kommt darunter und in kleinen Portionen. Das ist die richtige Reihenfolge für jemanden, der drei Geräte vergleicht — und die falsche für jemanden, der gerade über einen sprechenden Pilz gelacht hat.</p>
+      <p><strong>Folge:</strong> Traffic aus einem Unterhaltungs-Hook braucht <em>mehr</em> Vorverkauf, nicht weniger. Genau das meint „mehr Education". Es ist keine Geschmacksfrage, es ist die Anpassung an den Awareness-Zustand, den ihr selbst erzeugt.</p>
+    </div>
+
+    <div class="card b">
+      <div class="top"><span class="pill p-b">Kern</span></div>
+      <h3>Der Hook öffnet eine Schleife, die die Seite nicht schließt</h3>
+      <div class="quote">„… weil du einfach nicht weißt, was mich wirklich stört."</div>
+      <p>Das ist der Motor der ganzen Ad: eine Wissenslücke, kein Versprechen. Deshalb funktioniert sie — sie behauptet nichts, sie macht neugierig. Aber sie erzeugt damit eine <strong>Bringschuld</strong>: Irgendwo muss stehen, was den Pilz wirklich stört.</p>
+      <p>Auf der Seite steht das nirgends above the fold. Der Abschnitt „Deswegen ist dein Pilz noch da" kommt der Sache am nächsten — er liegt aber unterhalb des kompletten Kaufblocks und ist nicht als Auflösung markiert. Der Besucher landet mit einer offenen Frage im Preisraster.</p>
+      <div class="fix"><span class="lbl">Konsequenz</span><p>Die Auflösung gehört nach ganz oben. Sie ist nicht der Erklärteil der Seite, sie ist der <em>Einstieg</em>. Alles andere kommt danach.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">02</span> &nbsp;Abgleich</span>
+    <h2>Elf Bruchstellen</h2>
+  </div>
+
+  <div class="stack">
+    <div class="tscroll">
+      <table>
+        <caption>Grün markierte Zeilen tragen bereits — die dürfen beim Umbau nicht verloren gehen.</caption>
+        <thead><tr><th>Dimension</th><th>Die Ad</th><th>Die Seite</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Offene Frage</strong></td><td>„Du weißt nicht, was mich wirklich stört"</td><td>Antwort steht weit unten und ist nicht als Antwort erkennbar</td><td><span class="pill p-b">Bruch</span></td></tr>
+          <tr><td><strong>Wer spricht</strong></td><td>Der Pilz — Antagonist mit Charakter</td><td>Die Marke — Verkäufer</td><td><span class="pill p-b">Bruch</span></td></tr>
+          <tr><td><strong>Bildwelt</strong></td><td>Cartoon, überzeichnet</td><td>Fotos, Verpackung, Praxis</td><td><span class="pill p-b">Bruch</span></td></tr>
+          <tr><td><strong>Zeitrahmen</strong></td><td>„seit einem Jahrzehnt" — langer Horizont</td><td>„Erste Ergebnisse … in 6 Wochen"</td><td><span class="pill p-b">Bruch</span></td></tr>
+          <tr><td><strong>Gescheiterte Lösungen</strong></td><td>Ganzer Mittelakt: Lack, Creme, Tabletten treten auf</td><td>Kein Vergleich, nur eine FAQ-Zeile</td><td><span class="pill p-b">Bruch</span></td></tr>
+          <tr><td><strong>Erwartete Tiefe</strong></td><td>Erklärung versprochen</td><td>Kaufblock zuerst, Erklärung als Beiwerk</td><td><span class="pill p-b">Bruch</span></td></tr>
+          <tr><td><strong>Tonhöhe</strong></td><td>Humor, Selbstironie, leicht</td><td>Countdown, Großbuchstaben, Dringlichkeit</td><td><span class="pill p-b">Bruch</span></td></tr>
+          <tr><td><strong>Produktname</strong></td><td>Vermutlich einer</td><td>Vier: Laser, Nailmed, MedNail, Photonlicht-Methode</td><td><span class="pill p-b">Bruch</span></td></tr>
+          <tr><td><strong>Schuldfrage</strong></td><td>Die Lösungen haben versagt, nicht du</td><td>„Deswegen ist dein Pilz noch da" sagt dasselbe</td><td><span class="pill p-h">Hält</span></td></tr>
+          <tr><td><strong>Ansprache</strong></td><td>Duzen</td><td>Duzen</td><td><span class="pill p-h">Hält</span></td></tr>
+          <tr><td><strong>Externalisierung</strong></td><td>Der Pilz ist der Gegner, nicht dein Makel</td><td>Ansatzweise vorhanden im Erklärabschnitt</td><td><span class="pill p-h">Hält</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card b">
+      <div class="top"><span class="pill p-b">Größte Einzellücke</span></div>
+      <h3>Der Mittelakt der Ad hat auf der Seite keine Entsprechung</h3>
+      <p>Die Ad verbringt ihre gesamte Mitte damit, Lack, Creme und Tablette auftreten und scheitern zu lassen. Der Besucher kommt also <strong>vorgewärmt für einen Vergleich</strong> auf die Seite — und findet keinen. Es gibt kein Gegenüberstellungs-Element, nur die FAQ-Zeile „Warum hilft das, wenn Lacke und Cremes nicht geholfen haben?".</p>
+      <p>Das ist die Stelle mit dem größten unmittelbaren Hebel: Ein ehrlicher Vier-Wege-Vergleich ist gleichzeitig die Auflösung des Mittelakts, ein Education-Block und — richtig formuliert — rechtlich unproblematisch, weil er Vorgehensweisen beschreibt statt Überlegenheit zu behaupten.</p>
+    </div>
+
+    <div class="card w">
+      <div class="top"><span class="pill p-w">Achtung</span></div>
+      <h3>Eine Kongruenz, die ihr nicht wollt</h3>
+      <p>Ein Cartoon mit besiegtem Bösewicht und ein Banner mit „NAGELPILZFREI ODER DU ZAHLST KEINEN CENT" passen <em>zu gut</em> zusammen. Beide erzählen den totalen, schnellen Sieg. Zusammen verstärken sie eine Erwartung, die weder eure eigenen Vorher-Nachher-Bilder (16 bis 30 Wochen) noch die Biologie (rund 1,5 mm Nagelwachstum pro Monat) einlösen können — und die die 100-Tage-Frist strukturell zu Erstattungen führt.</p>
+      <div class="fix"><span class="lbl">Beides ändern</span><p>In der Ad: kein Vernichtungs-Ende, sondern die Kündigungsfrist. In der Seite: Zusage vom Ergebnis lösen. Die Ad kann die lange Dauer sogar verkaufen, wenn der Pilz sich darüber beschwert.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">03</span> &nbsp;Umbau</span>
+    <h2>Der neue Seitenaufbau</h2>
+  </div>
+
+  <div class="stack">
+    <p class="prose">Reihenfolge für Cartoon-Traffic. Der Kaufblock verschwindet nicht, er bekommt nur Gesellschaft — und die Erklärung kommt vor dem Druck.</p>
+
+    <div class="blueprint">
+
+      <div class="bp"><div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="body">
+          <div class="meta"><h4>Kontinuitäts-Element</h4><span class="pill p-e">neu</span></div>
+          <p>Eine Zeile in der Stimme der Ad, ganz oben. Der Besucher muss in der ersten Sekunde erkennen, dass er richtig ist. Das kann eine Illustrationsfigur sein, ein einzelner Satz aus dem Spot oder beides. Ohne dieses Element ist der Sprung von Cartoon zu Verpackungsfoto ein kalter Schnitt.</p>
+        </div></div>
+
+      <div class="bp"><div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="body">
+          <div class="meta"><h4>Die Auflösung der Frage</h4><span class="pill p-e">hochziehen</span></div>
+          <p>Was den Pilz wirklich stört, in zwei bis drei Sätzen: Er sitzt nicht auf dem Nagel, sondern darunter — deshalb kommt oben aufgetragenes Mittel nicht an. Das ist der Inhalt eures bestehenden Abschnitts „Deswegen ist dein Pilz noch da", nur an der richtigen Stelle und ohne den letzten Satz.</p>
+          <p><strong>Wichtig für die Rechtsprüfung:</strong> Die Auflösung ist eine Aussage über den <em>Ort des Problems</em>, nicht über die Wirkung des Geräts. Genau deshalb ist sie sicher.</p>
+        </div></div>
+
+      <div class="bp"><div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="body">
+          <div class="meta"><h4>Kaufblock</h4><span class="pill p-n">bleibt, entschärft</span></div>
+          <p>Preis, Varianten, Versand, Garantie, CTA. Ohne Countdown, mit korrigiertem Rabatt, mit einer Garantieformulierung, die nicht das Ergebnis zusagt. Wer schon kaufen will, soll nicht scrollen müssen.</p>
+        </div></div>
+
+      <div class="bp"><div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="body">
+          <div class="meta"><h4>Der Vier-Wege-Vergleich</h4><span class="pill p-e">neu</span><span class="pill p-b">größter Hebel</span></div>
+          <p>Die Entsprechung zum Mittelakt der Ad. Lack, Creme mit Abtragen, Tabletten, Licht-Routine — jeweils: was es tut, für wen es passt, was es verlangt. Ehrlich, inklusive der Fälle, in denen die anderen Wege die besseren sind.</p>
+        </div></div>
+
+      <div class="bp"><div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="body">
+          <div class="meta"><h4>Zeitrechner</h4><span class="pill p-e">neu</span></div>
+          <p>Interaktiv, ehrlich, komplett claim-frei. Demo unten in Abschnitt 5.</p>
+        </div></div>
+
+      <div class="bp"><div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="body">
+          <div class="meta"><h4>Anwendungsbeweis</h4><span class="pill p-n">ausbauen</span></div>
+          <p>Die drei Schritt-Fotos bleiben, ergänzt um ein ungeschnittenes Echtzeitvideo der vollständigen Routine. Beweist Machbarkeit, behauptet nichts.</p>
+        </div></div>
+
+      <div class="bp"><div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="body">
+          <div class="meta"><h4>Fotodokumentation mit Maßstab</h4><span class="pill p-n">umbauen</span></div>
+          <p>Der bestehende Slider, ergänzt um Millimeter-Referenz, Datum und die markierte Grenze zwischen altem und neuem Nagel. Aus Vorher-Nachher wird ein nachprüfbares Maß.</p>
+        </div></div>
+
+      <div class="bp"><div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="body">
+          <div class="meta"><h4>Ist es überhaupt Pilz?</h4><span class="pill p-e">neu</span></div>
+          <p>Unterscheidungshilfe plus klare Empfehlung, wann ärztlich abzuklären ist. Kostet ein paar Käufe, schützt die Bewertungsbasis.</p>
+        </div></div>
+
+      <div class="bp"><div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="body">
+          <div class="meta"><h4>Technische Daten und Sicherheit</h4><span class="pill p-e">neu</span></div>
+          <p>Wellenlänge, Leistungsdichte, Sitzungsdauer, Produktklasse, Kontraindikationen. Für den nüchternen Käufertyp ist das der Punkt, an dem die Seite Prüfung besteht oder nicht.</p>
+        </div></div>
+
+      <div class="bp"><div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="body">
+          <div class="meta"><h4>Was die Studienlage hergibt — und was nicht</h4><span class="pill p-e">neu</span></div>
+          <p>Der Abschnitt, den kein Wettbewerber hat. Laborkontext zu blauem Licht, klar als Kontext gekennzeichnet, plus die deutsche Bewertung zu Laserbehandlung. Wer zuerst spricht, bestimmt den Rahmen.</p>
+        </div></div>
+
+      <div class="bp"><div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="body">
+          <div class="meta"><h4>FAQ</h4><span class="pill p-n">bleibt, teils hochziehen</span></div>
+          <p>Der Fragenkatalog ist gut. Zwei bis drei Fragen — Internet-Gerät, Endpunkt, Rückfall — gehören zusätzlich direkt unter den Kaufblock.</p>
+        </div></div>
+
+      <div class="bp"><div class="rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="body">
+          <div class="meta"><h4>Bewertungen</h4><span class="pill p-n">umbauen</span></div>
+          <p>Mit Echtheitsangabe, mit sichtbaren mittleren Bewertungen, ohne Heilungsüberschriften. Martin W. nach oben.</p>
+        </div></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">04</span> &nbsp;Education</span>
+    <h2>Sieben Blöcke — und warum sie rechtlich sicher sind</h2>
+  </div>
+
+  <div class="stack">
+    <div class="callout">
+      <h4>Das Prinzip hinter „mehr Education"</h4>
+      <p>Education ist die einzige Form der Überzeugung, die euch rechtlich nichts kostet. Der Grund ist einfach: <strong>Aussagen über Nägel, Keratin, Pilzbiologie und Nachwachsen sind keine Wirkungsaussagen über euer Produkt.</strong> Das HWG greift bei dem, was ihr eurem Gerät zuschreibt — nicht bei dem, was ihr über die Anatomie eines Zehennagels erklärt.</p>
+      <p>Deshalb ist Education hier nicht der weichere Ersatz für starke Claims. Sie ist der einzige Weg, viel zu sagen und wenig zu behaupten. Die einzige echte Falle: Kontextwissen so nah an die Produktaussage rücken, dass daraus eine implizite Wirkungsbehauptung wird. Trennung durch Layout und Beschriftung ist dabei entscheidend.</p>
+    </div>
+
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>Block</th><th>Was erklärt wird</th><th>Welchen Belief er löst</th><th>Warum unbedenklich</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Wo der Pilz sitzt</strong></td><td>Nagelbett unter der Keratinplatte; warum aufgetragene Mittel dort schwer ankommen</td><td>Frust ist berechtigt — du hast nicht versagt</td><td>Anatomie und Pharmakokinetik, keine Produktaussage</td></tr>
+          <tr><td><strong>Warum es dauert</strong></td><td>Nagelwachstum rund 1,5 mm/Monat; ein Großzehennagel braucht 9–18 Monate; die wandernde Grenze als Fortschrittsmaß</td><td>Ich weiß, woran ich sehe, dass es sich lohnt</td><td>Biologie. Sagt nichts über die Wirkung, nur über Wachstum</td></tr>
+          <tr><td><strong>Ist es überhaupt Pilz?</strong></td><td>Verfärbung, Verdickung, Brüchigkeit — und was sonst noch dahinterstecken kann; wann abklären lassen</td><td>Ich habe wirklich das Problem, das ihr beschreibt</td><td>Aufklärung mit Arztempfehlung — senkt Risiko, statt es zu erzeugen</td></tr>
+          <tr><td><strong>Die vier Wege</strong></td><td>Lack, Creme mit Abtragen, Tabletten, Licht-Routine: was jeder tut, für wen er passt, was er verlangt</td><td>Es ist logisch, etwas zwischen Lack und Tabletten zu wollen</td><td>Beschreibt Vorgehensweisen, behauptet keine Überlegenheit</td></tr>
+          <tr><td><strong>Was das Gerät tut — und was nicht</strong></td><td>Technische Daten, Anwendungsgrenzen, für wen es nicht geeignet ist</td><td>Diese Marke ist seriöser als die lauten Anbieter</td><td>Selbstbeschränkung. Der einzige Hebel, der Belief 4 wirklich bewegt</td></tr>
+          <tr><td><strong>Rückfälle</strong></td><td>Warum Nagelpilz häufig wiederkommt; was eine Nachroutine leisten soll</td><td>Kommt das sowieso wieder?</td><td>Allgemeine Verlaufsdaten; begründet Wiederkauf sachlich statt verkäuferisch</td></tr>
+          <tr><td><strong>Im Alltag</strong></td><td>Wann anwenden, wie es sich in eine bestehende Routine einfügt, was bei Reisen und Sport gilt</td><td>Das könnte ich tatsächlich durchziehen</td><td>Anwendungsbeschreibung</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card w">
+      <div class="top"><span class="pill p-w">Die eine Falle</span></div>
+      <h3>Kontext, der zur Behauptung wird</h3>
+      <p>„405 nm inaktivierte Pilzsporen im Labor" direkt neben „unser Gerät nutzt 405 nm" ergibt für den Leser eine Wirkungsaussage, auch wenn kein Satz sie ausspricht. Das ist rechtlich die riskanteste Konstruktion überhaupt, weil sie wie Zurückhaltung aussieht und wie ein Versprechen wirkt.</p>
+      <div class="fix"><span class="lbl">Regel</span><p>Laborkontext bekommt einen eigenen, abgesetzten Abschnitt mit expliziter Einordnung: was untersucht wurde, unter welchen Bedingungen, und dass daraus keine Aussage über den einzelnen Anwendungsfall folgt. Getrennt vom Produktabschnitt, nicht daneben.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">05</span> &nbsp;Proof</span>
+    <h2>Fünf Stufen, nach Rechtsexposition sortiert</h2>
+  </div>
+
+  <div class="stack-wide">
+    <p class="prose">Von unbedenklich nach heikel. Stufe 1 und 2 könnt ihr sofort ausbauen, Stufe 5 solltet ihr streichen, bis die Belege existieren.</p>
+
+    <div class="card h">
+      <div class="top"><span class="pill p-h">Stufe 1</span><span class="pill p-n">keine Wirkungsaussage</span></div>
+      <h3>Proof, der nichts über Wirksamkeit sagt</h3>
+      <p>Der am meisten unterschätzte Bereich. Alles hier beweist etwas Wahres und Überprüfbares, ohne das Gerät mit einem Ergebnis zu verknüpfen.</p>
+      <ul class="plain">
+        <li><strong>Ungeschnittenes Anwendungsvideo</strong> in Echtzeit, echtes Bad, eine Person. Beweist die Machbarkeit der Routine — also Belief 6, den letzten vor dem Kauf.</li>
+        <li><strong>Handhabung im Detail:</strong> Größe in der Hand, Gewicht, Geräusch, Wärmeentwicklung, Passform an verschiedenen Zehen. Das sind die Fragen, die niemand stellt und alle haben.</li>
+        <li><strong>Unboxing des tatsächlichen Lieferumfangs</strong>, inklusive des Nagelpatch-Pflasters, das derzeit nur in Schritt 3 auftaucht.</li>
+        <li><strong>Die Rückgabe gezeigt statt zugesagt:</strong> Wer schreibt an wen, welche Frist, wer zahlt den Rückversand, wie lange dauert die Erstattung. Ein Screenshot des Formulars schlägt jedes Garantie-Siegel.</li>
+        <li><strong>Zeitrechner</strong> — siehe Prototyp unten.</li>
+      </ul>
+    </div>
+
+    <div class="calc">
+      <span class="eyebrow">Prototyp — Nachwachs-Rechner</span>
+      <p class="note">So könnte das Element auf der Seite aussehen. Es rechnet ausschließlich mit der Nagelwachstumsrate und sagt nichts über die Wirkung des Geräts — deshalb ist es rechtlich unbedenklich und trotzdem überzeugend.</p>
+      <div class="row">
+        <label for="anteil">Betroffener Anteil des Nagels
+          <input type="number" id="anteil" min="5" max="100" step="5" value="50"> </label>
+        <label for="laenge">Nagellänge in mm
+          <input type="number" id="laenge" min="8" max="40" step="1" value="22"></label>
+      </div>
+      <div class="out-wrap">
+        <output id="ergebnis" for="anteil laenge">–</output>
+        <span class="note" id="hinweis"></span>
+      </div>
+      <p class="note">Rechengrundlage: rund 1,5 mm Zehennagelwachstum pro Monat. Individuelle Wachstumsraten schwanken mit Alter, Durchblutung und Jahreszeit.</p>
+    </div>
+
+    <div class="card h">
+      <div class="top"><span class="pill p-h">Stufe 2</span><span class="pill p-n">Tatsachen über das Gerät</span></div>
+      <h3>Technischer Proof</h3>
+      <ul class="plain">
+        <li><strong>Spec-Blatt:</strong> Wellenlänge, Leistungsdichte in mW/cm², Sitzungsdauer, resultierende Dosis. Tatsachenangaben, keine Wirkungsaussagen.</li>
+        <li><strong>Produktklasse und CE-Konformität</strong>, mit Nennung der zugrunde liegenden Konformitätsbewertung.</li>
+        <li><strong>Prüfberichte</strong> zu elektrischer und photobiologischer Sicherheit. Für lichtemittierende Geräte dürfte hier eine Normenreihe zur photobiologischen Sicherheit einschlägig sein — welche genau und ob eine Prüfung vorliegt, muss euer Lieferant beantworten. Falls sie existiert, ist sie ein starkes und völlig risikoloses Vertrauenselement.</li>
+        <li><strong>Kontraindikationen und Warnhinweise.</strong> Paradox, aber belegbar: Die Liste dessen, wofür das Gerät <em>nicht</em> geeignet ist, wirkt vertrauensbildender als jede Nutzenbehauptung — und ihr Fehlen ist derzeit ein eigenes Risiko.</li>
+      </ul>
+    </div>
+
+    <div class="card w">
+      <div class="top"><span class="pill p-w">Stufe 3</span><span class="pill p-n">formatabhängig</span></div>
+      <h3>Sozialer Proof</h3>
+      <p>Zulässig, aber die Form entscheidet. Bewertungen dürfen nicht als Heilungsberichte auftreten und müssen echt sein.</p>
+      <ul class="plain">
+        <li><strong>Strukturierte Erhebung</strong> mit drei Pflichtfeldern: Ausgangslage, Anwendungswochen, was sich verändert hat und was nicht. Ergibt automatisch die ruhige, leicht unperfekte Textsorte, die eure Research als glaubwürdiger beschreibt.</li>
+        <li><strong>Echtheitsangabe nach § 5b Abs. 3 UWG</strong> direkt an der Bewertungsübersicht.</li>
+        <li><strong>Mittlere und negative Bewertungen sichtbar lassen.</strong> Senkt das Irreführungsrisiko und erhöht die Glaubwürdigkeit gleichzeitig. Eine reine Fünf-Sterne-Seite ist beides nicht.</li>
+        <li><strong>Betriebszahlen offenlegen</strong> — Wiederkaufquote, Rücksendequote. Wenn eure Zahlen es hergeben, ist das der seltenste Proof im Markt: Niemand tut das, und es ist unangreifbar, weil es gegen euer eigenes Interesse spricht.</li>
+      </ul>
+    </div>
+
+    <div class="card w">
+      <div class="top"><span class="pill p-w">Stufe 4</span><span class="pill p-n">nur mit klarer Trennung</span></div>
+      <h3>Kontextevidenz</h3>
+      <p>Fremde Forschung, die nicht euer Produkt betrifft. Verwendbar als Einordnung, sobald sie sichtbar als solche gekennzeichnet ist.</p>
+      <ul class="plain">
+        <li>Laborbefunde zu blauem Licht gegen Dermatophyten — mit Bedingungen, Dosen und der ausdrücklichen Einordnung, dass es sich um In-vitro-Arbeiten handelt.</li>
+        <li>Nagelwachstumsraten, Verbreitung, Rückfallquoten.</li>
+        <li>Die deutsche Bewertung der Lasertherapie bei Nagelpilz. Selbst zu nennen ist der stärkste verfügbare Zug auf den Engpass-Belief.</li>
+      </ul>
+      <div class="fix"><span class="lbl">Bedingung</span><p>Eigener Abschnitt, eigene Überschrift, keine Nachbarschaft zum Kaufblock. Sonst kippt Stufe 4 in Stufe 5.</p></div>
+    </div>
+
+    <div class="card b">
+      <div class="top"><span class="pill p-b">Stufe 5</span><span class="pill p-n">derzeit nicht verfügbar</span></div>
+      <h3>Was ihr nicht behaupten könnt, solange die Belege fehlen</h3>
+      <ul class="plain">
+        <li>„Klinisch geprüft" oder „klinisch erprobt" ohne vorliegende Studie zu diesem Gerät</li>
+        <li>Empfehlungen von Fachärzten oder Fachpersonal in der Publikumswerbung</li>
+        <li>Erfolgsquoten wie „15.100+ Betroffene konnten ihren Nagel wieder gesund nachwachsen lassen" ohne belegbare Herkunft</li>
+        <li>„Ohne Nebenwirkungen", solange keine Sicherheitsangaben und Kontraindikationen auf der Seite stehen</li>
+        <li>Fremde Studien so darstellen, als beträfen sie euer Gerät</li>
+      </ul>
+      <p>Der wichtigste Punkt an dieser Stufe: Sie ist nicht dauerhaft gesperrt. Eine eigene Anwendungsbeobachtung mit sauberem Protokoll bringt euch legitim in diesen Bereich. Das ist ein Projekt von Monaten, kein Textproblem.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="s6">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">06</span> &nbsp;Zeitachse</span>
+    <h2>Was in zwölf Wochen da sein kann</h2>
+  </div>
+
+  <div class="stack">
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>Zeitraum</th><th>Was entsteht</th><th>Wer</th><th>Was es freischaltet</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">Woche 1</td><td>Spec-Blatt und Prüfunterlagen vom Lieferanten anfordern; Frage nach dem Inhalt des Nagelpatch-Pflasters</td><td>Einkauf</td><td>Stufe 2 komplett; Mechanismus-Copy wird überhaupt erst schreibbar</td></tr>
+          <tr><td class="mono">Woche 1</td><td>Rechtsprüfung der Claim-Tabelle und der Seite</td><td>extern</td><td>Definiert die Obergrenze für alles Weitere</td></tr>
+          <tr><td class="mono">Woche 1–2</td><td>Anwendungsvideo, Unboxing, Handhabung; Rückgabeprozess dokumentieren</td><td>intern, ein Nachmittag</td><td>Stufe 1 fast vollständig</td></tr>
+          <tr><td class="mono">Woche 2</td><td>Zeitrechner und Vier-Wege-Vergleich auf die Seite</td><td>Web</td><td>Der Mittelakt der Ad bekommt seine Entsprechung</td></tr>
+          <tr><td class="mono">Woche 2–3</td><td>Bewertungserhebung umstellen; Echtheitsangabe ergänzen; Dubletten bereinigen</td><td>Web, Support</td><td>Stufe 3 rechtlich sauber</td></tr>
+          <tr><td class="mono">ab Woche 1</td><td>Fotodokumentation starten: fester Aufbau, Millimeter-Referenz, wöchentlich, 8–10 Teilnehmer, auch die schwachen Verläufe</td><td>Support, Teilnehmer</td><td>Ab Woche 12 die ersten belastbaren Serien — das stärkste Asset überhaupt</td></tr>
+          <tr><td class="mono">Woche 4–6</td><td>Education-Blöcke schreiben und einbauen</td><td>Copy</td><td>Der Umbau für Cartoon-Traffic ist funktionsfähig</td></tr>
+          <tr><td class="mono">Woche 6+</td><td>Advertorial in der Stimme der Ad als Pre-Sell</td><td>Copy</td><td>Schließt die Tonlücke zwischen Spot und Seite</td></tr>
+          <tr><td class="mono">Monat 3+</td><td>Protokollierte Anwendungsbeobachtung planen</td><td>extern</td><td>Der einzige Weg in Stufe 5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <p><strong>Die Fotodokumentation gehört in Woche 1, nicht in Woche 8.</strong> Sie ist das einzige Asset mit einer festen Vorlaufzeit — jede Woche Verzögerung verschiebt den Zeitpunkt, an dem ihr echten eigenen Proof zeigen könnt, um genau eine Woche. Alles andere lässt sich nachholen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">07</span> &nbsp;Abbau</span>
+    <h2>Was gestrichen wird</h2>
+  </div>
+
+  <div class="stack">
+    <p class="prose">Mehr Education und mehr Proof heißt zwangsläufig auch: weniger Behauptung. Sonst wird die Seite länger, aber nicht glaubwürdiger.</p>
+    <div class="card b">
+      <ul class="plain">
+        <li><strong>Countdown</strong> — außer das Angebot endet wirklich</li>
+        <li><strong>„Klinisch erprobte Methode von Fachärzten"</strong> und „KLINISCH GEPRÜFT" auf dem Produktbild</li>
+        <li><strong>„Ohne Nebenwirkungen" / „NEBENWIRKUNGSFREI"</strong> — ersetzt durch echte Sicherheitsangaben</li>
+        <li><strong>„nachhaltig ein für alle Male bekämpft"</strong> — der Absatz endet stärker einen Satz früher</li>
+        <li><strong>„Erste Ergebnisse … in 6 Wochen"</strong> — ersetzt durch die Nachwachs-Logik</li>
+        <li><strong>„Nagelpilzfrei oder du zahlst keinen Cent"</strong> — ersetzt durch „100 Tage in Ruhe testen"</li>
+        <li><strong>„an der Wurzel"</strong> — der Begriff differenziert nicht mehr, weil ihn die ganze Kategorie fährt</li>
+        <li><strong>Drei von vier Produktnamen</strong></li>
+        <li><strong>Badge „Am effektivsten"</strong> auf dem Zweierpack</li>
+        <li><strong>Die durchgestrichenen Gratis-Werte</strong> auf Garantie und Versand</li>
+      </ul>
+    </div>
+
+    <div class="card h">
+      <div class="top"><span class="pill p-h">Der Tausch</span></div>
+      <p>Was ihr abgebt, sind zehn Behauptungen, die ein skeptischer Leser ohnehin abzieht. Was ihr bekommt, sind sieben Erklärstücke und vier Proof-Formen, die jeder Prüfung standhalten — und ein Seitenaufbau, der die Frage beantwortet, die eure eigene Ad stellt.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="fine">Message-Match-Analyse Cartoon-Ad zu Produktseite levoraskin.de, Stand des Seiten-Screenshots 17.08.2026. Die Ad liegt nur als Beschreibung vor, nicht als Datei — bei abweichender Umsetzung verschieben sich einzelne Punkte in Abschnitt 2.</p>
+  <p class="fine">Keine Rechtsberatung. Die Einordnung der Proof-Stufen ersetzt keine Prüfung durch eine zugelassene Rechtsberatung; sie sortiert lediglich nach erwartbarer Angriffsfläche.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var a=document.getElementById('anteil'),l=document.getElementById('laenge'),
+      o=document.getElementById('ergebnis'),h=document.getElementById('hinweis');
+  if(!a||!l||!o) return;
+  var RATE=1.5;
+  function rechne(){
+    var anteil=Math.min(100,Math.max(5,Number(a.value)||50));
+    var laenge=Math.min(40,Math.max(8,Number(l.value)||22));
+    var mm=laenge*anteil/100;
+    var monate=mm/RATE;
+    var von=Math.round(monate*0.8),bis=Math.round(monate*1.3);
+    o.textContent='Etwa '+von+' bis '+bis+' Monate, bis der betroffene Teil herausgewachsen ist.';
+    h.textContent=Math.round(mm*10)/10+' mm betroffener Nagel bei rund '+RATE+' mm Wachstum pro Monat. '
+      +'Sichtbar wird die Veränderung früher — an der Grenze zwischen altem und neuem Nagel.';
+  }
+  a.addEventListener('input',rechne);
+  l.addEventListener('input',rechne);
+  rechne();
+})();
+</script>
