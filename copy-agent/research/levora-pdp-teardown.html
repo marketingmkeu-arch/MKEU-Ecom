@@ -1,0 +1,528 @@
+<title>Levora PDP Teardown</title>
+<style>
+  :root{
+    --paper:#EFF0F3;
+    --surface:#FCFCFD;
+    --surface-2:#F4F5F9;
+    --ink:#15171E;
+    --ink-2:#3D4250;
+    --ink-3:#697083;
+    --rule:#D6D9E2;
+    --rule-2:#BCC1CE;
+    --accent:#2F4487;
+    --accent-2:#E1E6F4;
+    --krit:#9B2C2C;      --krit-bg:#F7E6E6;
+    --hoch:#8A5A18;      --hoch-bg:#F6EDDC;
+    --mittel:#4A505E;    --mittel-bg:#E8EAEF;
+    --gut:#1F5B54;       --gut-bg:#E0EDEA;
+    --shadow:0 1px 2px rgba(21,23,30,.05), 0 8px 24px -16px rgba(21,23,30,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#11131A; --surface:#191C25; --surface-2:#1F232E;
+      --ink:#E7E9F0; --ink-2:#B4B9C7; --ink-3:#878DA0;
+      --rule:#2B303C; --rule-2:#3C4351;
+      --accent:#93A7E4; --accent-2:#232A42;
+      --krit:#E89393;   --krit-bg:#2E1B1B;
+      --hoch:#D9AE6B;   --hoch-bg:#2C2418;
+      --mittel:#A6ADBD; --mittel-bg:#242832;
+      --gut:#6FBDAF;    --gut-bg:#172B29;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#11131A; --surface:#191C25; --surface-2:#1F232E;
+    --ink:#E7E9F0; --ink-2:#B4B9C7; --ink-3:#878DA0;
+    --rule:#2B303C; --rule-2:#3C4351;
+    --accent:#93A7E4; --accent-2:#232A42;
+    --krit:#E89393;   --krit-bg:#2E1B1B;
+    --hoch:#D9AE6B;   --hoch-bg:#2C2418;
+    --mittel:#A6ADBD; --mittel-bg:#242832;
+    --gut:#6FBDAF;    --gut-bg:#172B29;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size:16.5px;line-height:1.65;-webkit-font-smoothing:antialiased;
+    margin:0;padding:0 20px 96px;
+  }
+  .wrap{max-width:880px;margin:0 auto}
+  .prose{max-width:68ch}
+
+  h1,h2,h3{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-weight:600;text-wrap:balance;margin:0}
+  h1{font-size:clamp(2rem,5vw,2.9rem);line-height:1.1;letter-spacing:-.015em}
+  h2{font-size:clamp(1.45rem,3.4vw,1.85rem);line-height:1.2;letter-spacing:-.01em}
+  h3{font-size:1.1rem;line-height:1.3}
+  h4{font-size:1rem;font-family:system-ui,sans-serif;font-weight:650;line-height:1.4;margin:0}
+  p{margin:0}
+  a{color:var(--accent)}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+  .eyebrow{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+  header.mast{padding:64px 0 0;display:flex;flex-direction:column;gap:22px}
+  .kicker{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline}
+  .kicker span:not(:last-child)::after{content:"";display:inline-block;width:14px;border-top:1px solid var(--rule-2);margin-left:10px;vertical-align:middle}
+  .lede{font-size:1.14rem;color:var(--ink-2);max-width:62ch}
+  .mast hr{border:0;border-top:2px solid var(--ink);margin:6px 0 0}
+
+  section{padding:56px 0 0}
+  .shead{display:flex;flex-direction:column;gap:8px;margin-bottom:26px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+  .shead .num{color:var(--accent)}
+  .stack{display:flex;flex-direction:column;gap:18px}
+  .stack-wide{display:flex;flex-direction:column;gap:28px}
+
+  /* scorecard */
+  .score{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .tile{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px 18px;
+    display:flex;flex-direction:column;gap:4px;border-top:3px solid var(--rule-2)}
+  .tile .n{font-size:2rem;font-family:Georgia,serif;line-height:1;font-variant-numeric:tabular-nums}
+  .tile .l{font-size:.82rem;color:var(--ink-3)}
+  .tile.k{border-top-color:var(--krit)} .tile.k .n{color:var(--krit)}
+  .tile.h{border-top-color:var(--hoch)} .tile.h .n{color:var(--hoch)}
+  .tile.m{border-top-color:var(--mittel)} .tile.m .n{color:var(--mittel)}
+  .tile.g{border-top-color:var(--gut)} .tile.g .n{color:var(--gut)}
+
+  /* findings */
+  .find{background:var(--surface);border:1px solid var(--rule);border-radius:6px;
+    border-left:4px solid var(--rule-2);padding:18px 20px;display:flex;flex-direction:column;gap:11px}
+  .find.k{border-left-color:var(--krit)}
+  .find.h{border-left-color:var(--hoch)}
+  .find.m{border-left-color:var(--mittel)}
+  .find.g{border-left-color:var(--gut)}
+  .find .top{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+  .pill{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.64rem;letter-spacing:.1em;
+    text-transform:uppercase;padding:3px 8px;border-radius:3px;white-space:nowrap}
+  .p-k{background:var(--krit-bg);color:var(--krit)}
+  .p-h{background:var(--hoch-bg);color:var(--hoch)}
+  .p-m{background:var(--mittel-bg);color:var(--mittel)}
+  .p-g{background:var(--gut-bg);color:var(--gut)}
+  .loc{font-family:ui-monospace,Menlo,monospace;font-size:.7rem;color:var(--ink-3)}
+
+  .quote{background:var(--surface-2);border-radius:4px;padding:10px 13px;
+    font-family:Georgia,serif;font-size:.97rem;border-left:2px solid var(--rule-2)}
+  .fix{display:flex;gap:9px;align-items:baseline}
+  .fix .lbl{font-family:ui-monospace,Menlo,monospace;font-size:.64rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--gut);flex:0 0 auto;padding-top:3px}
+
+  .callout{background:var(--accent-2);border:1px solid var(--rule);border-left:3px solid var(--accent);
+    border-radius:0 6px 6px 0;padding:18px 20px;display:flex;flex-direction:column;gap:11px}
+  .callout.warn{background:var(--krit-bg);border-left-color:var(--krit)}
+
+  .tscroll{overflow-x:auto;border:1px solid var(--rule);border-radius:6px;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:680px;font-size:.89rem}
+  caption{caption-side:bottom;text-align:left;padding:10px 14px 0;font-size:.82rem;color:var(--ink-3)}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+  thead th{font-family:ui-monospace,Menlo,monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);font-weight:500;background:var(--surface-2);border-bottom:1px solid var(--rule-2)}
+  tbody tr:last-child td{border-bottom:0}
+  .mono{font-family:ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  ul.plain,ol.plain{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:7px}
+  ul.plain li::marker{color:var(--ink-3)}
+  ol.plain li::marker{color:var(--accent);font-family:ui-monospace,monospace;font-size:.85em}
+  ul.none{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+
+  nav.toc{margin:34px 0 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 0}
+  nav.toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px 26px;counter-reset:t}
+  nav.toc li{counter-increment:t;display:flex;gap:10px;align-items:baseline;padding:4px 0}
+  nav.toc li::before{content:counter(t,decimal-leading-zero);font-family:ui-monospace,Menlo,monospace;font-size:.7rem;color:var(--ink-3)}
+  nav.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
+  nav.toc a:hover{border-bottom-color:var(--accent)}
+
+  footer{margin-top:64px;padding-top:24px;border-top:2px solid var(--ink);display:flex;flex-direction:column;gap:12px}
+  .fine{font-size:.86rem;color:var(--ink-3)}
+  .fine a{color:var(--ink-2)}
+
+  @media (max-width:560px){
+    body{font-size:16px;padding:0 16px 72px}
+    header.mast{padding-top:40px}
+  }
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker eyebrow">
+    <span>PDP-Teardown</span><span>levoraskin.de</span><span>Levora MedNail</span><span>17.08.2026</span>
+  </div>
+  <h1>Die Seite verkauft die Strategie, die eure Research verwirft</h1>
+  <p class="lede">
+    Durchsicht der Produktseite gegen die eigenen Foundational Docs, gegen sich selbst
+    und gegen die deutsche Rechtslage. Sortiert nach Schwere, jeweils mit Ersatzformulierung.
+  </p>
+  <hr>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <ol>
+    <li><a href="#s1">Verdikt und Bewertung</a></li>
+    <li><a href="#s2">Was gut ist</a></li>
+    <li><a href="#s3">Rechtliche Prüfpunkte</a></li>
+    <li><a href="#s4">Widersprüche auf der Seite</a></li>
+    <li><a href="#s5">Claim für Claim</a></li>
+    <li><a href="#s6">Die Garantiefalle</a></li>
+    <li><a href="#s7">Was fehlt</a></li>
+    <li><a href="#s8">Reihenfolge der Umsetzung</a></li>
+  </ol>
+</nav>
+
+<!-- 1 -->
+<section id="s1">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">01</span> &nbsp;Einordnung</span>
+    <h2>Verdikt und Bewertung</h2>
+  </div>
+
+  <div class="stack">
+    <div class="callout">
+      <h4>Zuerst die Einschränkung: mir liegen keine Zahlen vor</h4>
+      <p>Keine Conversion Rate, kein AOV, keine Retourenquote, keine Ad-Daten. Wenn diese Seite gut konvertiert, ist ein Teil der Kritik unten eine Stil- und Risikofrage, keine Umsatzfrage. <strong>Was unabhängig von der Performance gilt:</strong> die rechtlichen Prüfpunkte, die Zahlenfehler und die zwei wortgleichen Bewertungen. Die sind objektiv und kosten euch nichts außer Korrekturzeit.</p>
+    </div>
+
+    <div class="score">
+      <div class="tile k"><span class="n">6</span><span class="l">Rechtliche Prüfpunkte</span></div>
+      <div class="tile h"><span class="n">7</span><span class="l">Widersprüche und Fehler</span></div>
+      <div class="tile m"><span class="n">9</span><span class="l">Claims gegen die eigenen Regeln</span></div>
+      <div class="tile g"><span class="n">7</span><span class="l">Starke Assets zum Behalten</span></div>
+    </div>
+
+    <div class="find k">
+      <div class="top"><span class="pill p-k">Kernbefund</span></div>
+      <h3>Ihr fahrt zwei einander ausschließende Strategien gleichzeitig</h3>
+      <p>Euer Deepresearch-Dokument analysiert Orthovital ausführlich und kommt zu dem Schluss, das sei „ein Paradebeispiel dafür, wie man im DACH-Markt zu schnell scammy wirken kann, wenn man dieselbe Härte 1:1 übernimmt". Die Liste der zu vermeidenden Formulierungen umfasst „für immer pilzfrei", „klinisch bewiesen in einem allzu absoluten Sinn", „ohne jede Nebenwirkung in einem absoluten Sinn", „perfekte Nägel in kurzer Zeit" und „an der Wurzel".</p>
+      <p>Die Seite verwendet <strong>alle fünf</strong>. Sie ist eine saubere deutsche Umsetzung genau des Playbooks, das eure eigene Analyse als für DACH ungeeignet einstuft. Das ist kein Ausrutscher an einer Stelle, das ist die durchgehende Bauweise der Seite: Countdown, Streichpreise, Gratis-Werte, Fachärzte, „ein für alle Male", Outcome-Garantie.</p>
+      <p>Das ist ein legitimer Weg — er ist nur nicht der, den eure Positionierungsarbeit beschreibt. <strong>Diese Entscheidung muss bewusst fallen, nicht nebenbei.</strong> Solange beide Linien parallel laufen, arbeitet die Research gegen die Seite und die Seite gegen die Research.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">02</span> &nbsp;Bestand</span>
+    <h2>Was gut ist und bleiben muss</h2>
+  </div>
+
+  <div class="stack">
+    <p class="prose">Sieben Dinge auf dieser Seite sind stärker, als sie derzeit ausgespielt werden. Bei einem Umbau zuerst sichern.</p>
+
+    <div class="find g">
+      <div class="top"><span class="pill p-g">Behalten</span><span class="loc">FAQ-Block</span></div>
+      <h3>Der Fragenkatalog ist der beste Teil der Seite</h3>
+      <p>Zehn Fragen, davon mehrere in echter Kundensprache und exakt auf den Einwänden, die auch in der Research ganz oben stehen: „Warum hilft das, wenn Lacke und Cremes nicht geholfen haben?", „Ist das wieder nur so ein Internet-Gerät oder steckt da wirklich etwas dahinter?", „Muss ich das ewig machen oder gibt es einen Endpunkt?", „Kann der Pilz nach der Behandlung wiederkommen?"</p>
+      <p>Besonders die letzte und die vorletzte Frage: Die Endpunkt-Frage beantwortet ein Failure Narrative, das in der Research dokumentiert und sonst nirgends im Markt bedient wird. Die Antworten waren im Screenshot eingeklappt — wenn sie so ruhig ausfallen wie die Fragen gestellt sind, ist das euer stärkstes Vertrauenselement.</p>
+      <div class="fix"><span class="lbl">Hebel</span><p>Diese Fragen gehören nicht ans Seitenende. Zwei bis drei davon gehören direkt unter den Kaufblock.</p></div>
+    </div>
+
+    <div class="find g">
+      <div class="top"><span class="pill p-g">Behalten</span><span class="loc">Kundenbewertungen, oberste</span></div>
+      <h3>Die Bewertung von Martin W. ist euer wertvollstes Textstück</h3>
+      <div class="quote">„Man muss das Ganze halt als Marathon und nicht Sprint sehen. Bei mir hats knapp 4,5 Monate gedauert bis der Pilz weg war und der Nagel wieder nachgewachsen war. Mit dem Teil war das echt super entspannt und nicht so ein Geschmiere wie bei den anderen Sachen die ich davor probiert hatte."</div>
+      <p>Unrund, konkret, mit einer realistischen Zeitangabe und einem beiläufigen Vergleich zum Vorherigen. Genau die Sprache, die eure VOC-Analyse als glaubwürdig beschreibt — und sie verkauft die lange Dauer, statt sie zu verstecken.</p>
+      <div class="fix"><span class="lbl">Hebel</span><p>Als Zitat nach oben ziehen, in die Nähe der Zeitfrage. Es entschärft den Einwand „wie lange dauert das realistisch" besser als jede Marken-Formulierung.</p></div>
+    </div>
+
+    <div class="find g">
+      <div class="top"><span class="pill p-g">Behalten</span><span class="loc">Erfolgsformel in drei Schritten</span></div>
+      <h3>Die Anwendungsbilder sind unglamourös — und deshalb richtig</h3>
+      <p>Echter Holzboden, echter Fuß, kein Studiolicht. Das ist der Anwendungsbeweis, den die Research als einen der zwei tragfähigsten Proof-Typen benennt, und die Amateurqualität ist hier ein Vorteil, kein Mangel.</p>
+      <div class="fix"><span class="lbl">Hebel</span><p>Ergänzen um eine ungeschnittene Videoaufnahme der vollständigen Routine in Echtzeit. Beweist die Machbarkeit ohne jede Wirkungsaussage.</p></div>
+    </div>
+
+    <div class="find g">
+      <div class="top"><span class="pill p-g">Behalten</span><span class="loc">Vorher-Nachher-Slider</span></div>
+      <h3>Die Wochenangaben sind ehrlich — nutzt sie gegen eure eigene Headline</h3>
+      <p>„Nach 16 Wochen", „Nach 23 Wochen", „Nach 24 Wochen", „Nach 30 Wochen", mit Vornamen und Alter. Diese Zahlen sind plausibel und decken sich mit dem, was biologisch möglich ist. Sie sind das Gegengift zur 6-Wochen-Behauptung weiter oben.</p>
+      <div class="fix"><span class="lbl">Hebel</span><p>Eine Millimeter-Referenz ins Bild legen und die wandernde Grenze zwischen altem und neuem Nagel markieren. Aus einem Vorher-Nachher wird so ein nachprüfbares Fortschrittsmaß.</p></div>
+    </div>
+
+    <div class="find g">
+      <div class="top"><span class="pill p-g">Behalten</span><span class="loc">„Deswegen ist dein Pilz noch da"</span></div>
+      <h3>Die Keratin-Erklärung sitzt — bis zum letzten Satz</h3>
+      <p>Die ersten zwei Sätze leisten genau das, was der Mechanism leisten soll: Verständnis und Schuldentlastung. Der Abschnitt kippt erst mit „nachhaltig ein für alle Male bekämpft". Siehe Abschnitt 5.</p>
+    </div>
+
+    <div class="find g">
+      <div class="top"><span class="pill p-g">Behalten</span><span class="loc">Gesamte Seite</span></div>
+      <h3>Konsequentes Duzen, vollständiger Rechts-Footer, klare Trust-Row</h3>
+      <p>Impressum, AGB, Datenschutz, Widerrufsrecht und ein Widerrufsformular sind vorhanden. Zahlungsarten, DHL, Support-Angabe stehen sauber im Kaufblock. Das Duzen ist durchgehend, ohne Bruch.</p>
+      <p><strong>Anmerkung, kein Fehler:</strong> Eure Offer-Doc-Headlines siezen durchgehend („Wenn Lacke Sie nur Geduld kosten"). Die Seite duzt. Bei einer Zielgruppe von 42 bis 61 ist beides vertretbar, aber es sollte eine getroffene Entscheidung sein — und dann überall gelten, auch in Ads und E-Mails.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">03</span> &nbsp;Höchste Priorität</span>
+    <h2>Rechtliche Prüfpunkte</h2>
+  </div>
+
+  <div class="stack">
+    <div class="callout warn">
+      <h4>Ich bin kein Anwalt — das hier ist eine Liste für die Rechtsprüfung, keine Rechtsberatung</h4>
+      <p>Nagelpilz ist eine Krankheit (Onychomykose, ICD-10 B35.1). Damit fällt Werbung, die Behandlung oder Beseitigung verspricht, in Deutschland in den Anwendungsbereich des Heilmittelwerbegesetzes. Die Punkte unten sind die, bei denen ich nach Recherche eine konkrete Norm benennen kann. Lasst sie von jemandem mit Zulassung bewerten, bevor ihr etwas ändert oder stehen lasst.</p>
+    </div>
+
+    <div class="find k">
+      <div class="top"><span class="pill p-k">Kritisch</span><span class="loc">Bewertungen, Position 4 und 5</span></div>
+      <h3>Zwei Bewertungen enthalten einen wortgleichen Satz</h3>
+      <p>Ingrid W. (20.04.2026) und Claudia L. (19.04.2026) enthalten beide identisch:</p>
+      <div class="quote">„Monatelang konsequent gefeilt und lackiert. Und trotzdem keine dauerhafte Verbesserung."</div>
+      <p>Zwei verschiedene Personen, an aufeinanderfolgenden Tagen, mit demselben Satz. Das ist der Punkt, an dem ein skeptischer Leser aufhört zu lesen — und es ist der einzige Befund auf dieser Seite, der mit einem Screenshot belegbar ist. Gefälschte oder unzutreffend als echt dargestellte Verbrauchermeinungen sind wettbewerbsrechtlich angreifbar.</p>
+      <div class="fix"><span class="lbl">Sofort</span><p>Beide Texte entfernen oder durch tatsächliche Kundenaussagen ersetzen. Danach den gesamten Bewertungsbestand auf weitere Dubletten prüfen — bei 1.003 Bewertungen ist ein einzelnes Paar unwahrscheinlich.</p></div>
+    </div>
+
+    <div class="find k">
+      <div class="top"><span class="pill p-k">Kritisch</span><span class="loc">Hero-Bullets, Produktbild, Abschnitt „Bewährtes Prinzip"</span></div>
+      <h3>Wirkungsaussagen ohne vorliegenden Beleg</h3>
+      <p>„Klinisch erprobte Methode von Fachärzten", „KLINISCH GEPRÜFT", „Bewährtes Prinzip aus der Medizin", „ohne Nebenwirkungen", „SCHMERZLOS &amp; NEBENWIRKUNGSFREI", „nachhaltig ein für alle Male bekämpft". § 3 HWG verbietet irreführende Werbung, ausdrücklich das Beilegen einer Wirkung, die das Produkt nicht hat, sowie das Verschweigen oder Verharmlosen von Anwendungsrisiken.</p>
+      <p>In keinem eurer fünf Foundational Docs findet sich eine Studie, ein Test oder eine Anwendungsbeobachtung zu diesem Gerät. Wenn eine existiert, muss sie zitierbar auf die Seite. Wenn nicht, sind diese Formulierungen nicht haltbar.</p>
+    </div>
+
+    <div class="find k">
+      <div class="top"><span class="pill p-k">Kritisch</span><span class="loc">Hero-Bullet 3, Abschnitt mit Praxisfoto</span></div>
+      <h3>Werbung mit fachlicher Empfehlung in der Publikumswerbung</h3>
+      <p>„Klinisch erprobte Methode von Fachärzten" in Verbindung mit dem Bild einer Person in Kittel und Handschuhen in Praxisumgebung. § 11 HWG untersagt in der Publikumswerbung die Werbung mit Empfehlungen von Wissenschaftlern, Angehörigen der Heilberufe oder Fachpersonal, wenn diese zum Gebrauch anregen kann — unabhängig davon, ob die Aussage im Sinne von § 3 HWG irreführend ist.</p>
+      <div class="fix"><span class="lbl">Prüfen</span><p>Sowohl die Formulierung als auch die Bildsprache in der Rechtsprüfung vorlegen. Das Bild allein, ohne Empfehlungsaussage, ist voraussichtlich unkritischer als die Kombination.</p></div>
+    </div>
+
+    <div class="find k">
+      <div class="top"><span class="pill p-k">Kritisch</span><span class="loc">Bewertungssektion, Überschriften</span></div>
+      <h3>Erfahrungsberichte, die Heilungserfolge beschreiben</h3>
+      <p>Testimonial-Werbung ist für Medizinprodukte in der Publikumswerbung grundsätzlich zulässig, sofern sie sachlich und nicht irreführend ist. Unzulässig sind nach der recherchierten Darstellung jedoch Patientenberichte, die Heilungserfolge beschreiben, zur Selbstdiagnose verleiten oder die Vorteile einseitig herausstellen.</p>
+      <p>Bewertungsüberschriften wie „Endlich etwas, das wirklich hilft" und „Hätte nicht gedacht, dass das so gut funktioniert", kombiniert mit „bis der Pilz weg war", liegen genau in diesem Bereich. Auf Seite 1 der Bewertungen sind ausschließlich Fünf-Sterne-Texte sichtbar.</p>
+      <div class="fix"><span class="lbl">Nebenbefund</span><p>Ausschließlich Bestbewertungen auf der ersten Seite kosten zusätzlich Glaubwürdigkeit. Eure eigene Research sagt es deutlich: ruhige, leicht unperfekte Berichte wirken im DACH-Markt stärker als begeisterte.</p></div>
+    </div>
+
+    <div class="find k">
+      <div class="top"><span class="pill p-k">Kritisch</span><span class="loc">Bewertungssektion, Kopfzeile</span></div>
+      <h3>Keine Angabe zur Echtheitsprüfung der Bewertungen</h3>
+      <p>Seit dem 28.05.2022 verlangt § 5b Abs. 3 UWG von Unternehmen, die Verbraucherbewertungen zugänglich machen, die Angabe, <em>ob</em> und gegebenenfalls <em>wie</em> sichergestellt wird, dass die Bewertungen von Verbrauchern stammen, die das Produkt tatsächlich gekauft oder genutzt haben. Eine Prüfung ist nicht vorgeschrieben — die Information darüber schon, auch wenn nicht geprüft wird. Im Screenshot ist ein solcher Hinweis nicht zu sehen.</p>
+      <div class="fix"><span class="lbl">Sofort</span><p>Ein Satz direkt bei „4.8 · 1.003 Bewertungen". Aufwand: Minuten. Es ist ein bekanntes Abmahnthema.</p></div>
+    </div>
+
+    <div class="find k">
+      <div class="top"><span class="pill p-k">Kritisch</span><span class="loc">Kaufblock</span></div>
+      <h3>Countdown und Streichpreise</h3>
+      <p>„Angebot endet heute in 01:07:59 Std." ist nur zulässig, wenn das Angebot danach tatsächlich endet. Ein Timer, der bei jedem Seitenaufruf neu startet, ist Irreführung. Ebenso müssen die Streichpreise (€69,90 und €139,80) echte, vorher verlangte Preise sein — bei Preisermäßigungen gelten zudem die Vorgaben der Preisangabenverordnung zum niedrigsten Preis der letzten 30 Tage.</p>
+      <div class="fix"><span class="lbl">Klären</span><p>Zwei Fragen intern beantworten: Endet das Angebot wirklich? Wurden 69,90 und 139,80 tatsächlich verlangt? Bei zweimal Nein ist das der schnellste Weg zu einer Abmahnung, den diese Seite anbietet.</p></div>
+    </div>
+
+    <div class="find m">
+      <div class="top"><span class="pill p-m">Entwarnung</span><span class="loc">Vorher-Nachher-Slider</span></div>
+      <h3>Die Vorher-Nachher-Bilder sind vermutlich unproblematisch</h3>
+      <p>Ich hatte das zunächst als Risiko notiert und habe es geprüft: Das HWG-Verbot vergleichender Vorher-Nachher-Darstellungen zielt auf operativ plastisch-chirurgische Eingriffe ohne medizinische Notwendigkeit. Für Medizinprodukte bei indizierter Behandlung gelten solche Darstellungen als grundsätzlich zulässig. Es bleibt die allgemeine Irreführungsgrenze: die Bilder müssen echt und repräsentativ sein.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">04</span> &nbsp;Objektive Fehler</span>
+    <h2>Widersprüche auf der Seite</h2>
+  </div>
+
+  <div class="stack">
+    <p class="prose">Diese sieben Punkte sind unabhängig von jeder Strategiefrage falsch oder inkonsistent. Ein misstrauischer Leser findet sie in zwei Minuten — und misstrauisch ist diese Zielgruppe laut eurer eigenen Analyse per Definition.</p>
+
+    <div class="tscroll">
+      <table>
+        <caption>Alle Angaben aus dem übermittelten Seiten-Screenshot vom 17.08.2026.</caption>
+        <thead><tr><th>Ort</th><th>Was dort steht</th><th>Das Problem</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Bewertungszahl</strong></td>
+            <td class="mono">Hero: „4.8 (4300+ Bewertungen)"<br>Widget: „4.8 · 1.003 Bewertungen"</td>
+            <td>Zwei Zahlen auf derselben Seite, Faktor 4 auseinander. Die niedrigere ist die vom System gezählte.</td>
+          </tr>
+          <tr>
+            <td><strong>Rabatt-Mathematik</strong></td>
+            <td class="mono">2 MedNail, Badge „-40 %"<br>€139,80 → €54,90</td>
+            <td>Das sind 60,7 % Nachlass, nicht 40 %. Der Badge ist schlicht falsch gerechnet.</td>
+          </tr>
+          <tr>
+            <td><strong>Zeitangaben</strong></td>
+            <td class="mono">Hero: „in 6 Wochen"<br>Slider: „in 6 Monaten"<br>Bilder: 16–30 Wochen<br>Review: „4,5 Monate"</td>
+            <td>Vier verschiedene Zeitrahmen. Der versprochene ist der kürzeste, die belegten sind drei- bis fünfmal so lang.</td>
+          </tr>
+          <tr>
+            <td><strong>Produktname</strong></td>
+            <td class="mono">URL: „…nagelpilz-laser"<br>Navigation: „Nailmed"<br>Titel: „MedNail"<br>Verpackung: „Photonlicht-Methode"</td>
+            <td>Vier Bezeichnungen für ein Produkt. „Nailmed" und „MedNail" sind zusätzlich verwechselbar — das wirkt wie ein nicht abgeschlossener Rename.</td>
+          </tr>
+          <tr>
+            <td><strong>Laser vs. Photonlicht</strong></td>
+            <td class="mono">URL sagt „Laser",<br>Seite sagt „Photonlicht"</td>
+            <td>Strategisch relevant: „Laser bei Nagelpilz" ist genau der Begriff, unter dem der IGeL-Monitor die Bewertung „unklar" führt. Ihr rankt auf einen Begriff, der die skeptische Quelle mitliefert.</td>
+          </tr>
+          <tr>
+            <td><strong>„Am effektivsten"</strong></td>
+            <td class="mono">Badge auf dem 2er-Pack</td>
+            <td>Zwei Geräte machen die Behandlung eines Nagels nicht wirksamer. Der Badge behauptet einen Wirkungsunterschied, den die Menge nicht erzeugt.</td>
+          </tr>
+          <tr>
+            <td><strong>Garantie als Gratis-Position</strong></td>
+            <td class="mono">„100 Tage Geld-zurück Garantie — Gratis €9,90"</td>
+            <td>Eine gesetzlich freiwillige Zusage mit einem durchgestrichenen Preis zu versehen, legt nahe, dass sie sonst kostenpflichtig wäre. Das liest sich wie ein Versicherungs-Upsell, nicht wie Entgegenkommen.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">05</span> &nbsp;Sprache</span>
+    <h2>Claim für Claim</h2>
+  </div>
+
+  <div class="stack">
+    <p class="prose">Neun Formulierungen, die auf einer der Verbotslisten aus euren eigenen Dokumenten stehen. Spalte 3 ist die Regel, die ihr selbst aufgeschrieben habt. Spalte 4 ist eine Ersatzrichtung, kein finaler Text.</p>
+
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>Auf der Seite</th><th>Ort</th><th>Eure eigene Regel</th><th>Ersatzrichtung</th></tr></thead>
+        <tbody>
+          <tr><td>„Entfernt lästigen Nagelpilz tief im Nagelbett!"</td><td>Hero-Banner</td><td>„Tötet Pilz an der Wurzel" → stattdessen „Wirkt dort, wo das Problem sitzt"</td><td>„Setzt dort an, wo Lacke nicht hinkommen — unter dem Nagel."</td></tr>
+          <tr><td>„Bekämpft Nagelpilz an der Wurzel"</td><td>Verpackung, Hero-Bullet</td><td>„at the root" steht unter den übernutzten Claims der Kategorie und unter „zu viel root-cause-Englisch im Deutschen"</td><td>Ganz streichen. Der Begriff differenziert nicht mehr, weil ihn alle verwenden.</td></tr>
+          <tr><td>„nachhaltig ein für alle Male bekämpft"</td><td>„Deswegen ist dein Pilz noch da"</td><td>„für immer pilzfrei", „endlich Schluss für immer" — ausdrücklich gesperrt</td><td>Satz ersatzlos streichen. Der Absatz endet stärker nach „ohne eine chemische Barriere überwinden zu müssen."</td></tr>
+          <tr><td>„Klinisch erprobte Methode von Fachärzten"</td><td>Hero-Bullet 3</td><td>„klinisch bewiesen, garantiert" → stattdessen „physikalisch anders als Lacke und Cremes"</td><td>Ohne vorliegende Studie streichen. Siehe auch die zwei HWG-Punkte oben.</td></tr>
+          <tr><td>„ohne Nebenwirkungen" / „NEBENWIRKUNGSFREI"</td><td>Praxis-Abschnitt, Produktbild</td><td>„ohne jede Nebenwirkung in einem absoluten Sinn" — auf der Vermeiden-Liste</td><td>„Ohne Tabletten und ohne Belastung für den restlichen Körper" — plus ein echter Sicherheits- und Kontraindikationenhinweis.</td></tr>
+          <tr><td>„Erste Ergebnisse nach nur 7 Minuten täglicher Anwendung in 6 Wochen"</td><td>Hero-Bullet 2</td><td>„perfekte Nägel in wenigen Wochen", „zu schnelle Zeitversprechen"</td><td>Die 7 Minuten behalten (starkes, wahres Alltagsargument), die 6 Wochen streichen. Stattdessen die Nachwachs-Logik: rund 1,5 mm pro Monat.</td></tr>
+          <tr><td>„15.100+ Betroffene konnten ihren Nagel wieder gesund nachwachsen lassen"</td><td>Hero-Bullet 1</td><td>Zahl ohne Quelle; kollidiert mit „1.003 Bewertungen" und „800+ im letzten Monat"</td><td>Entweder belegen und die Herkunft danebenschreiben, oder durch eine Zahl ersetzen, die ihr wirklich habt.</td></tr>
+          <tr><td>„Bewährtes Prinzip aus der Medizin"</td><td>Praxis-Abschnitt</td><td>Im Teardown als Orthovital-Muster markiert: „same blue light used in medicine"</td><td>„Lichtbasierte Verfahren werden in der Medizin seit Jahrzehnten eingesetzt" — als Kontext, nicht als Gleichsetzung mit diesem Gerät.</td></tr>
+          <tr><td>„Deine Nagelpilzfrei-Reise in 6 Monaten"</td><td>Slider-Überschrift</td><td>„für immer pilzfrei" / feste Ergebnisfristen</td><td>„Was in sechs Monaten sichtbar werden kann" — plus die Bandbreite, die eure eigenen Bilder zeigen.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4>Ein Satz, der bleiben sollte, obwohl er nach Rückzug klingt</h4>
+      <p>Der Teardown in eurer Research hebt eine Wettbewerber-Formulierung positiv hervor: „Es wird kein Heilungserfolg garantiert." Der Schluss dort lautet, das reduziere Hype und könne Conversion <em>retten</em>, weil es die Scam-Antenne entschärft. Auf dieser Seite steht das Gegenteil: eine Outcome-Garantie in Großbuchstaben. Das ist die teuerste einzelne Abweichung von der eigenen Strategie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="s6">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">06</span> &nbsp;Rechenproblem</span>
+    <h2>Die Garantiefalle</h2>
+  </div>
+
+  <div class="stack">
+    <div class="find k">
+      <div class="top"><span class="pill p-k">Kritisch</span><span class="loc">Garantiebanner, Trust-Row, Kaufblock</span></div>
+      <h3>Eure Garantiefrist ist kürzer als der Erfolg, den ihr versprecht</h3>
+      <p>Die Zusage lautet „Nagelpilz weg oder du zahlst keinen Cent", gekoppelt an 100 Tage. Das sind rund 14 Wochen.</p>
+      <p>Eure eigenen Vorher-Nachher-Bilder auf derselben Seite datieren die Ergebnisse auf 16, 23, 24 und 30 Wochen. Die beste Bewertung auf der Seite spricht von 4,5 Monaten, also etwa 19 Wochen. Ein Zehennagel wächst mit etwa 1,5 mm pro Monat nach; ein vollständiger Großzehennagel braucht rund 9 bis 18 Monate.</p>
+      <p><strong>Das heißt: Wer die Anwendung exakt so durchführt, wie ihr es beschreibt, und am Tag 100 auf den Nagel schaut, hat den versprochenen Zustand fast sicher noch nicht erreicht — und hat nach dem Wortlaut eurer Garantie Anspruch auf sein Geld.</strong></p>
+      <p>Das ist gleichzeitig ein Margenrisiko und ein Vertrauensrisiko: Der Kunde, der ehrlich mitmacht, wird durch die Frist zum Abbruch eingeladen, genau in dem Moment, in dem er laut euren eigenen Bildern kurz vor dem sichtbaren Fortschritt steht.</p>
+      <div class="fix"><span class="lbl">Lösung A</span><p>Zusage vom Ergebnis lösen: „100 Tage in Ruhe testen. Wenn es nicht zu dir passt, schickst du es zurück." Das ist die Formulierung, die euer Offer-Doc ohnehin empfiehlt — „in Ruhe testen" statt „risikofreies Wunder".</p></div>
+      <div class="fix"><span class="lbl">Lösung B</span><p>Frist an die Biologie anpassen: Garantiezeitraum auf einen vollen Nagelzyklus verlängern und das zum Argument machen. Teurer, aber es beweist, dass ihr die Zeitlogik selbst ernst nehmt — und es differenziert stärker als jeder Claim.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">07</span> &nbsp;Lücken</span>
+    <h2>Was fehlt</h2>
+  </div>
+
+  <div class="stack">
+    <div class="find h">
+      <div class="top"><span class="pill p-h">Hoch</span></div>
+      <h3>Sicherheitshinweise und Kontraindikationen</h3>
+      <p>Auf der ganzen Seite steht kein Hinweis, für wen das Gerät nicht geeignet ist. Bei einem lichtemittierenden Gerät und einer Zielgruppe von 42 bis 61 Jahren fehlen mindestens: Diabetes, Durchblutungsstörungen, Photosensibilität, photosensibilisierende Medikamente, Schwangerschaft, offene Wunden am Nagelwall. § 3 HWG nennt das Verharmlosen oder Verschweigen von Anwendungsrisiken ausdrücklich als Irreführung. Ein „nebenwirkungsfrei" ohne jeden Warnhinweis ist die Kombination, die dabei am schlechtesten aussieht.</p>
+    </div>
+
+    <div class="find h">
+      <div class="top"><span class="pill p-h">Hoch</span></div>
+      <h3>Produktklasse, CE, technische Daten</h3>
+      <p>Keine Wellenlänge, keine Leistungsdichte, keine Angabe zur Produktklassifizierung oder CE-Konformität. Für den nüchternen, technisch denkenden Käufertyp — laut eurer Research einer der beiden Haupttypen — ist das die Stelle, an der die Seite unter Prüfung zerfällt. Die FAQ-Frage „steckt da wirklich etwas dahinter?" lässt sich ohne diese Angaben nicht ehrlich beantworten.</p>
+    </div>
+
+    <div class="find h">
+      <div class="top"><span class="pill p-h">Hoch</span><span class="loc">Erfolgsformel, Schritt 3</span></div>
+      <h3>Das Nagelpatch-Pflaster taucht aus dem Nichts auf</h3>
+      <p>Schritt 3 lautet: „Den behandelten Nagel mit einem Nagelpatch-Pflaster abdecken und über Nacht einwirken lassen." Dieses Pflaster kommt in der Produktbeschreibung, im Hero, im Mechanismus-Abschnitt und in der Preisdarstellung nicht vor.</p>
+      <p><strong>Zwei Fragen, die das aufwirft:</strong> Enthält das Pflaster einen Wirkstoff? Falls ja, ist die Wirkung nicht „Photonlicht allein", und die gesamte Mechanismus-Erzählung stimmt nicht — außerdem ändert sich die regulatorische Einordnung. Und: Ist es ein Verbrauchsmaterial? Falls ja, gehört es in den Lieferumfang und in die Nachkauf-Logik, wo es derzeit fehlt.</p>
+    </div>
+
+    <div class="find m">
+      <div class="top"><span class="pill p-m">Mittel</span></div>
+      <h3>Kein Wort zur Diagnose</h3>
+      <p>Es fehlt der Belief, den auch eure Foundational Docs auslassen: „Habe ich überhaupt Nagelpilz?" Viele Betroffene haben nie eine Diagnose bekommen. Wer auf Verdacht kauft und nach zwölf Wochen nichts sieht, schreibt nicht „ich hatte etwas anderes", sondern eine schlechte Bewertung. Ein kurzer Abschnitt zur Unterscheidung plus eine klare Empfehlung, wann ärztlich abzuklären ist, kostet ein paar Käufe und schützt genau die Bewertungsbasis, von der diese Seite lebt.</p>
+    </div>
+
+    <div class="find m">
+      <div class="top"><span class="pill p-m">Mittel</span></div>
+      <h3>Kein Ansteckungs-Thema</h3>
+      <p>„Ich will andere nicht anstecken" ist in eurer VOC-Bibliothek belegt und kommt auf der Seite nicht vor. Es ist der einzige Kaufgrund im ganzen Set, der nicht nach Eitelkeit klingt — und damit der, mit dem sich ein Käufer die Ausgabe am leichtesten selbst rechtfertigt. Als Angle unbesetzt, bei euch wie bei den Wettbewerbern.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="s8">
+  <div class="shead">
+    <span class="eyebrow"><span class="num">08</span> &nbsp;Umsetzung</span>
+    <h2>Reihenfolge</h2>
+  </div>
+
+  <div class="stack">
+    <div class="find k">
+      <div class="top"><span class="pill p-k">Stufe 1</span><span class="loc">diese Woche, ohne Strategieentscheidung</span></div>
+      <h3>Was unabhängig von allem gemacht werden sollte</h3>
+      <ol class="plain">
+        <li>Die zwei wortgleichen Bewertungen entfernen, danach den Gesamtbestand auf Dubletten prüfen.</li>
+        <li>Bewertungszahl vereinheitlichen — die 1.003 ist die belegbare.</li>
+        <li>Hinweis nach § 5b Abs. 3 UWG zur Echtheitsprüfung ergänzen.</li>
+        <li>„-40 %" korrigieren; klären, ob 69,90 und 139,80 tatsächlich verlangte Preise waren.</li>
+        <li>Klären, ob der Countdown echt ist. Wenn nicht: entfernen.</li>
+        <li>Sicherheitshinweise und Kontraindikationen ergänzen.</li>
+        <li>Produktnamen vereinheitlichen — vier Bezeichnungen auf eine reduzieren.</li>
+        <li>Die Garantiefrist gegen die eigene Zeitlogik prüfen (Abschnitt 6).</li>
+        <li>Diese Seite plus die Claim-Tabelle aus Abschnitt 5 in die Rechtsprüfung geben.</li>
+      </ol>
+      <p>Nichts davon kostet Conversion. Punkt 1 und 8 gewinnen vermutlich welche.</p>
+    </div>
+
+    <div class="find h">
+      <div class="top"><span class="pill p-h">Stufe 2</span><span class="loc">nach der Positionierungsentscheidung</span></div>
+      <h3>Die eine Frage, die vorher beantwortet sein muss</h3>
+      <p><strong>Laute Version oder ruhige Version?</strong> Beides gleichzeitig geht nicht. Wenn ihr die laute Linie behaltet, dann bewusst und mit rechtlich abgesicherten Claims — und dann sollte die Research entsprechend angepasst werden, statt eine Positionierung zu beschreiben, die die Seite nicht fährt.</p>
+      <p>Wenn ihr die ruhige Linie wollt, ist der saubere Weg ein Split-Test, keine Komplettumstellung: gleiche Seite, ausgetauschter Kaufblock und Mechanismus-Abschnitt, Zeitversprechen ersetzt durch Nachwachs-Logik, Outcome-Garantie ersetzt durch „100 Tage in Ruhe testen". Dann wisst ihr es nach zwei Wochen aus Daten statt aus Meinungen — und genau die Daten fehlen dieser Analyse.</p>
+    </div>
+
+    <div class="find g">
+      <div class="top"><span class="pill p-g">Stufe 3</span><span class="loc">parallel, unabhängig</span></div>
+      <h3>Proof aufbauen, den ihr behalten könnt</h3>
+      <ul class="plain">
+        <li>Millimeter-Referenz in die Fotodokumentation, damit aus Vorher-Nachher ein nachprüfbares Maß wird.</li>
+        <li>Ungeschnittenes Anwendungsvideo in Echtzeit.</li>
+        <li>Spec-Blatt vom Lieferanten: Wellenlänge, Leistungsdichte, Dosis pro Sitzung, Produktklasse.</li>
+        <li>Bewertungserhebung mit drei Pflichtfeldern: Ausgangslage, Anwendungswochen, was sich verändert hat und was nicht.</li>
+        <li>Klären, was im Nagelpatch-Pflaster ist.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="fine">Teardown der Produktseite levoraskin.de/products/levora-anti-nagelpilz-laser, Stand des übermittelten Screenshots 17.08.2026. Grundlage: die Seite selbst, die fünf Foundational Docs und die Evidenzrecherche aus dem Strategie-Dossier.</p>
+  <p class="fine">Keine Rechtsberatung. Die genannten Normen — § 3 und § 11 HWG, § 5 und § 5b Abs. 3 UWG, PAngV — sind als Prüfauftrag an eine zugelassene Rechtsberatung zu verstehen, nicht als abschließende Bewertung.</p>
+</footer>
+
+</div>
