@@ -1,0 +1,17 @@
+provider,geography,metric,value,unit,period,retrieved,url,data_class,confidence,method_note
+guestfavorites,Unterbilk,adr,139,EUR,Seitenstand Juli 2026,2026-10-04,https://www.guestfavorites.com/airbnb-occupancy-rates-in-unterbilk-dusseldorf-germany,external_provider,low,Nur Such-Snippet gelesen (Seite im Container gesperrt); Methodik unbekannt; alle Listing-Typen
+guestfavorites,Unterbilk,occupancy,0.58,ratio,Seitenstand Juli 2026,2026-10-04,https://www.guestfavorites.com/airbnb-occupancy-rates-in-unterbilk-dusseldorf-germany,external_provider,low,s.o.
+guestfavorites,Friedrichstadt,adr,147,EUR,Seitenstand Juli 2026,2026-10-04,https://www.guestfavorites.com/airbnb-occupancy-rates-in-friedrichstadt-dusseldorf-germany,external_provider,low,s.o.
+guestfavorites,Friedrichstadt,occupancy,0.53,ratio,Seitenstand Juli 2026,2026-10-04,https://www.guestfavorites.com/airbnb-occupancy-rates-in-friedrichstadt-dusseldorf-germany,external_provider,low,s.o.
+guestfavorites,Bilk,adr,109,EUR,Seitenstand Februar 2026,2026-10-04,https://www.guestfavorites.com/airbnb-occupancy-rates-in-bilk-dusseldorf-germany,external_provider,low,s.o.
+guestfavorites,Bilk,occupancy,0.57,ratio,Seitenstand Februar 2026,2026-10-04,https://www.guestfavorites.com/airbnb-occupancy-rates-in-bilk-dusseldorf-germany,external_provider,low,s.o.
+guestfavorites,Altstadt,adr,173,EUR,Seitenstand Juli 2026,2026-10-04,https://www.guestfavorites.com/airbnb-occupancy-rates-in-altstadt-dusseldorf-germany,external_provider,low,s.o.
+guestfavorites,Altstadt,occupancy,0.49,ratio,Seitenstand Juli 2026,2026-10-04,https://www.guestfavorites.com/airbnb-occupancy-rates-in-altstadt-dusseldorf-germany,external_provider,low,s.o.
+guestfavorites,Derendorf,adr,137,EUR,Seitenstand Juni 2026,2026-10-04,https://www.guestfavorites.com/airbnb-occupancy-rates-in-derendorf-dusseldorf-germany,external_provider,low,s.o.
+guestfavorites,Pempelfort,adr,122,EUR,Seitenstand Februar 2026,2026-10-04,https://www.guestfavorites.com/airbnb-occupancy-rates-in-pempelfort-dusseldorf-germany,external_provider,low,s.o.
+guestfavorites,Golzheim,adr,159,EUR,Seitenstand Januar 2026,2026-10-04,https://www.guestfavorites.com/airbnb-occupancy-rates-in-golzheim-dusseldorf-germany,external_provider,low,s.o.
+airbtics,Düsseldorf (Stadt),adr,109,EUR,2025,2026-10-04,https://airbtics.com/annual-airbnb-revenue-in-dusseldorf-nordrhein-westfalen-germany-de,external_provider,low,Nur Such-Snippet; Median-Auslastung 58%; 212 gebuchte Nächte/Jahr; 1626 aktive Listings
+airbtics,Düsseldorf (Stadt),occupancy,0.58,ratio,2025,2026-10-04,https://airbtics.com/annual-airbnb-revenue-in-dusseldorf-nordrhein-westfalen-germany-de,external_provider,low,Median
+airroi,Düsseldorf (Stadt),adr,168,USD,TTM Stand 2026,2026-10-04,https://www.airroi.com/airbnb-data/germany/north-rhine-westphalia/dusseldorf,external_provider,low,Nur Such-Snippet; USD; Auslastung 35.9%; 1409 aktive Listings; Buchungsvorlauf ~71 Tage; Peak Oktober / Tief Juli
+airroi,Düsseldorf (Stadt),occupancy,0.359,ratio,TTM Stand 2026,2026-10-04,https://www.airroi.com/airbnb-data/germany/north-rhine-westphalia/dusseldorf,external_provider,low,Abweichende Definition ggü. airbtics (Mittelwert vs. Median; aktive Listings)
+airroi,Düsseldorf (Stadt),booking_lead_time,71,days,TTM Stand 2026,2026-10-04,https://www.airroi.com/airbnb-data/germany/north-rhine-westphalia/dusseldorf,external_provider,low,Durchschnittlicher Buchungsvorlauf

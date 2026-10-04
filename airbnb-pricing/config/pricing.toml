@@ -1,0 +1,153 @@
+# Konfiguration des Dynamic-Pricing-Systems Concordiastraße 15.
+# Jeder Parameter ist entweder aus Daten abgeleitet (Quelle angegeben) oder eine
+# ausdrücklich markierte ANNAHME, die kalibriert werden muss, sobald Daten vorliegen.
+
+[property]
+name = "Concordiastraße 15"
+address = "Concordiastraße 15, 40219 Düsseldorf"
+# ANNAHME: manuell geokodiert (Unterbilk), Genauigkeit ca. ±150 m
+lat = 51.2125
+lon = 6.7665
+size_m2 = 60
+rooms = 2
+bedrooms = 1
+# ANNAHME: Schlafzimmer + Schlafsofa im Wohnbereich. Bitte bestätigen.
+max_guests = 4
+balcony = true
+renovated = true
+kitchen = true
+
+[output]
+currency = "EUR"
+horizon_days = 365
+# "9er-Endung" (z. B. 119 statt 120) – reine Darstellung, kein Modellteil
+round_to_nine = true
+
+[regulation]
+# Düsseldorf / NRW: genehmigungsfreie Kurzzeitvermietung max. 90 Tage pro Kalenderjahr,
+# Wohnraum-ID verpflichtend (Quelle: land.nrw Pressemitteilung Wohnraum-ID).
+# 0 setzen, falls eine Zweckentfremdungsgenehmigung vorliegt.
+annual_night_cap = 90
+# ANNAHME: Anteil freigegebener Nächte, die tatsächlich gebucht werden
+assumed_sell_through = 0.6
+# Bereits genutzte genehmigungsfreie Nächte je Kalenderjahr (eigene Buchungsdaten eintragen)
+nights_already_used = { "2026" = 0, "2027" = 0 }
+
+[market_anchor]
+# Gewichtete ADR der Nachbarviertel aus data/raw/market/market_aggregates.csv.
+# Gewichte = ANNAHME (Nähe zur Wohnung; Unterbilk ist das eigene Viertel).
+weights = { Unterbilk = 0.5, Friedrichstadt = 0.2, Bilk = 0.3 }
+# ANNAHME: 1-Zimmer-Wohnung ggü. Durchschnitt aller Listing-Typen (inkl. größerer Einheiten)
+unit_size_adjustment = 0.95
+# ANNAHME: frisch renoviert, Balkon, Kücheninsel ggü. Durchschnittslisting
+quality_premium = 1.05
+# Basis wird so kalibriert, dass die nachfragegewichtete Modell-ADR der Anker-ADR entspricht
+calibrate_base_to_anchor = true
+
+[bounds]
+# Multiplikatoren relativ zum Basispreis (Normal-Dienstag ohne Event)
+minimum = 0.78
+target = 1.05
+high_demand = 1.35
+event = 1.70
+maximum = 3.00
+# Absolute Untergrenze in EUR (ANNAHME: Kosten- und Positionierungsgrenze)
+absolute_minimum_eur = 79
+
+[weekday]
+# ANNAHME (Prior): Düsseldorf ist Business-Standort, Wohnungen werden am Wochenende
+# stärker von Freizeitgästen nachgefragt. Kalibrierung über historical_data.
+mon = 0.95
+tue = 0.97
+wed = 0.97
+thu = 1.00
+fri = 1.12
+sat = 1.15
+sun = 0.88
+
+[season]
+# ANNAHME (Prior), qualitativ gestützt durch AirROI: Peak Oktober, Tief Juli.
+# Messen werden separat modelliert, daher hier ohne Messeeffekt.
+jan = 0.88
+feb = 0.92
+mar = 1.00
+apr = 1.02
+may = 1.05
+jun = 1.03
+jul = 0.92
+aug = 0.92
+sep = 1.05
+oct = 1.08
+nov = 1.00
+dec = 0.95
+
+[holiday]
+# Feiertag (Nacht vor dem Feiertag = Freizeitnachfrage)
+eve_of_holiday = 0.06
+# Brückentag-Wochenende (Do-Feiertag -> Fr/Sa/So)
+long_weekend = 0.08
+# Heiligabend / 1. Weihnachtstag: sehr schwache Nachfrage
+christmas_low = -0.20
+# NRW-Schulferien: Geschäftsreisen sinken, Freizeit steigt kaum (ANNAHME)
+school_holiday_nrw = -0.03
+
+[events]
+# Prior-Uplift auf den Nachfrageindex je Event-Tier (ANNAHME, zu kalibrieren
+# mit historical_data.estimate_event_uplift sobald Tagesdaten vorliegen).
+# S = Leitmesse mit stadtweiter Hotelverknappung, A = große internationale Messe /
+# Stadionkonzert, B = große Publikumsmesse/Fest, C = mittel, D = gering.
+tier_uplift = { S = 1.20, A = 0.55, B = 0.25, C = 0.12, D = 0.05 }
+# Nacht vor Messebeginn (Anreise) und letzter Messetag (Abreise) – Default-Gewichte
+pre_night_weight = 0.8
+last_night_weight = 0.3
+# Überlagerung mehrerer Events: stärkstes voll, weitere abgeschwächt
+overlap_decay = 0.5
+# Wochenend-Messen: Business-Rabatt des Wochentags wird für S/A-Events aufgehoben
+neutralize_weekday_for_tiers = ["S", "A"]
+
+[demand_levels]
+# Schwellwerte des Nachfrageindex
+low = 0.93
+normal = 1.08
+elevated = 1.30
+high = 1.70
+
+[lead_time]
+# Anpassung relativ zum Check-in-Datum (Tage bis Anreise). Werte = Multiplikator.
+# Keine automatischen Last-Minute-Rabatte bei hoher Nachfrage (siehe pricing_engine).
+buckets = [
+  { max_days = 0,   low = 0.82, normal = 0.88, high = 1.08 },
+  { max_days = 3,   low = 0.86, normal = 0.92, high = 1.06 },
+  { max_days = 7,   low = 0.90, normal = 0.95, high = 1.04 },
+  { max_days = 14,  low = 0.94, normal = 0.98, high = 1.02 },
+  { max_days = 30,  low = 0.97, normal = 1.00, high = 1.00 },
+  { max_days = 60,  low = 1.00, normal = 1.00, high = 1.00 },
+  { max_days = 90,  low = 1.00, normal = 1.02, high = 1.05 },
+  { max_days = 9999, low = 1.00, normal = 1.04, high = 1.10 },
+]
+# Ab diesem Nachfrageindex gilt die Spalte "high", darunter "low"-Grenze aus demand_levels
+# Marktverknappung: verfügbare Comps-Quote, unter der kein Rabatt mehr gewährt wird
+scarcity_availability_threshold = 0.25
+
+[occupancy]
+# Pace-Anpassung: eigene Buchungsquote ggü. Erwartung (wenn Daten vorliegen)
+ahead_of_pace = 1.06
+behind_pace = 0.95
+max_pace_adjustment = 0.10
+
+[competition]
+# Gewicht des beobachteten Comp-Medians (angebotene Preise) beim Mischen mit dem Modellpreis
+comp_blend_weight = 0.4
+# Positionierung ggü. Comp-Median (ANNAHME: renoviert + Balkon -> leicht über Median)
+position_vs_median = 1.03
+min_comps_for_blend = 5
+radius_bands_km = [0.5, 1.0, 2.0, 3.0, 5.0]
+
+[length_of_stay]
+default_min_nights = 2
+weekend_min_nights = 2
+event_min_nights = { S = 3, A = 2, B = 2, C = 2, D = 2 }
+low_demand_min_nights = 1
+# Rabatt-Empfehlungen (ANNAHME / Heuristik, keine Marktbeobachtung)
+weekly_discount = 0.10
+monthly_discount = 0.30

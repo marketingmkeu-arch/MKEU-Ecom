@@ -1,0 +1,44 @@
+name: Airbnb Dynamic Pricing – Wöchentliche Neuberechnung
+
+on:
+  schedule:
+    - cron: "17 4 * * 1"  # montags 05:17/06:17 Uhr Berlin (04:17 UTC)
+  workflow_dispatch:
+  push:
+    paths:
+      - "airbnb-pricing/**"
+
+permissions:
+  contents: write
+
+jobs:
+  pricing:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: airbnb-pricing
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install test dependencies
+        run: pip install -r requirements.txt
+
+      - name: Tests
+        run: python -m pytest -q tests
+
+      - name: Pricing-Kalender und Report erzeugen
+        run: PYTHONPATH=src python -m dynpricing.cli run --no-db
+
+      - name: Ergebnisse committen
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add output reports
+          git diff --cached --quiet || git commit -m "Update Airbnb pricing calendar [skip ci]"
+          git push

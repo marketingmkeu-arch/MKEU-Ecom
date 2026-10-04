@@ -1,0 +1,3 @@
+# Laufzeit: nur Python-Standardbibliothek (>= 3.11, wegen tomllib)
+# Entwicklung / Tests:
+pytest>=7

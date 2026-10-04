@@ -1,0 +1,446 @@
+{
+  "as_of": "2026-10-04",
+  "basispreis": 118,
+  "preisgrenzen": {
+    "Minimum Price": 92,
+    "Normal/Base Price": 118,
+    "Target Price": 124,
+    "High-Demand Price": 159,
+    "Event Price": 201,
+    "Maximum Price": 354
+  },
+  "normaler_wochentagspreis_mo_do": 119,
+  "normaler_wochenendpreis_fr_sa": 139,
+  "saisonale_preisbereiche": {
+    "Januar": {
+      "normal_min": 99,
+      "normal_max": 119,
+      "inkl_events_max": 149,
+      "saisonfaktor": 0.88
+    },
+    "Februar": {
+      "normal_min": 99,
+      "normal_max": 129,
+      "inkl_events_max": 189,
+      "saisonfaktor": 0.92
+    },
+    "März": {
+      "normal_min": 99,
+      "normal_max": 139,
+      "inkl_events_max": 199,
+      "saisonfaktor": 1.0
+    },
+    "April": {
+      "normal_min": 109,
+      "normal_max": 139,
+      "inkl_events_max": 179,
+      "saisonfaktor": 1.02
+    },
+    "Mai": {
+      "normal_min": 109,
+      "normal_max": 139,
+      "inkl_events_max": 179,
+      "saisonfaktor": 1.05
+    },
+    "Juni": {
+      "normal_min": 109,
+      "normal_max": 139,
+      "inkl_events_max": 189,
+      "saisonfaktor": 1.03
+    },
+    "Juli": {
+      "normal_min": 99,
+      "normal_max": 119,
+      "inkl_events_max": 189,
+      "saisonfaktor": 0.92
+    },
+    "August": {
+      "normal_min": 99,
+      "normal_max": 119,
+      "inkl_events_max": 159,
+      "saisonfaktor": 0.92
+    },
+    "September": {
+      "normal_min": 109,
+      "normal_max": 139,
+      "inkl_events_max": 179,
+      "saisonfaktor": 1.05
+    },
+    "Oktober": {
+      "normal_min": 109,
+      "normal_max": 149,
+      "inkl_events_max": 189,
+      "saisonfaktor": 1.08
+    },
+    "November": {
+      "normal_min": 99,
+      "normal_max": 139,
+      "inkl_events_max": 259,
+      "saisonfaktor": 1.0
+    },
+    "Dezember": {
+      "normal_min": 99,
+      "normal_max": 109,
+      "inkl_events_max": 179,
+      "saisonfaktor": 0.95
+    }
+  },
+  "messe_und_eventpreise": [
+    {
+      "event": "MEDICA + COMPAMED 2026",
+      "start": "2026-11-16",
+      "end": "2026-11-19",
+      "tier": "S",
+      "visitors": 80000,
+      "distance_km": 5.8,
+      "price_min": 259,
+      "price_avg": 259,
+      "price_max": 259,
+      "confidence": "high"
+    },
+    {
+      "event": "glasstec 2026",
+      "start": "2026-10-20",
+      "end": "2026-10-23",
+      "tier": "A",
+      "visitors": 32023,
+      "distance_km": 5.8,
+      "price_min": 189,
+      "price_avg": 189,
+      "price_max": 189,
+      "confidence": "medium"
+    },
+    {
+      "event": "ProWein 2027",
+      "start": "2027-03-07",
+      "end": "2027-03-09",
+      "tier": "A",
+      "visitors": 31000,
+      "distance_km": 5.8,
+      "price_min": 179,
+      "price_avg": 189,
+      "price_max": 189,
+      "confidence": "high"
+    },
+    {
+      "event": "GIFA / METEC / THERMPROCESS / NEWCAST 2027",
+      "start": "2027-06-21",
+      "end": "2027-06-25",
+      "tier": "A",
+      "visitors": null,
+      "distance_km": 5.8,
+      "price_min": 189,
+      "price_avg": 189,
+      "price_max": 189,
+      "confidence": "medium"
+    },
+    {
+      "event": "Die Toten Hosen (Stadion)",
+      "start": "2027-07-10",
+      "end": "2027-07-10",
+      "tier": "A",
+      "visitors": null,
+      "distance_km": 5.9,
+      "price_min": 189,
+      "price_avg": 189,
+      "price_max": 189,
+      "confidence": "medium"
+    },
+    {
+      "event": "Silvester",
+      "start": "2026-12-31",
+      "end": "2026-12-31",
+      "tier": "A",
+      "visitors": null,
+      "distance_km": 1.5,
+      "price_min": 179,
+      "price_avg": 179,
+      "price_max": 179,
+      "confidence": "high"
+    },
+    {
+      "event": "Straßenkarneval (Weiberfastnacht bis Rosenmontag)",
+      "start": "2027-02-04",
+      "end": "2027-02-08",
+      "tier": "A",
+      "visitors": null,
+      "distance_km": 1.5,
+      "price_min": 169,
+      "price_avg": 179,
+      "price_max": 189,
+      "confidence": "high"
+    },
+    {
+      "event": "BEAUTY DÜSSELDORF + TOP HAIR 2027",
+      "start": "2027-04-09",
+      "end": "2027-04-11",
+      "tier": "B",
+      "visitors": null,
+      "distance_km": 5.8,
+      "price_min": 169,
+      "price_avg": 179,
+      "price_max": 179,
+      "confidence": "medium"
+    },
+    {
+      "event": "Japan-Tag Düsseldorf/NRW 2027",
+      "start": "2027-05-22",
+      "end": "2027-05-22",
+      "tier": "B",
+      "visitors": null,
+      "distance_km": 1.5,
+      "price_min": 179,
+      "price_avg": 179,
+      "price_max": 179,
+      "confidence": "low"
+    },
+    {
+      "event": "Die Toten Hosen (Stadion)",
+      "start": "2027-07-03",
+      "end": "2027-07-04",
+      "tier": "A",
+      "visitors": null,
+      "distance_km": 5.9,
+      "price_min": 169,
+      "price_avg": 179,
+      "price_max": 189,
+      "confidence": "medium"
+    },
+    {
+      "event": "Uniper Düsseldorf Marathon",
+      "start": "2027-04-18",
+      "end": "2027-04-18",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 1.5,
+      "price_min": 159,
+      "price_avg": 159,
+      "price_max": 159,
+      "confidence": "medium"
+    },
+    {
+      "event": "Die Ärzte (Konzert)",
+      "start": "2027-04-24",
+      "end": "2027-04-24",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 6.2,
+      "price_min": 159,
+      "price_avg": 159,
+      "price_max": 159,
+      "confidence": "low"
+    },
+    {
+      "event": "Rheinkirmes 2027",
+      "start": "2027-07-16",
+      "end": "2027-07-25",
+      "tier": "B",
+      "visitors": null,
+      "distance_km": 2.1,
+      "price_min": 149,
+      "price_avg": 159,
+      "price_max": 169,
+      "confidence": "medium"
+    },
+    {
+      "event": "Sabaton (Konzert)",
+      "start": "2027-04-23",
+      "end": "2027-04-23",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 6.2,
+      "price_min": 149,
+      "price_avg": 149,
+      "price_max": 149,
+      "confidence": "medium"
+    },
+    {
+      "event": "CARAVAN SALON 2027",
+      "start": "2027-08-27",
+      "end": "2027-09-05",
+      "tier": "B",
+      "visitors": 269000,
+      "distance_km": 5.8,
+      "price_min": 119,
+      "price_avg": 149,
+      "price_max": 179,
+      "confidence": "high"
+    },
+    {
+      "event": "Düsseldorfer Weihnachtsmarkt 2026",
+      "start": "2026-11-19",
+      "end": "2026-12-30",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 1.7,
+      "price_min": 109,
+      "price_avg": 139,
+      "price_max": 149,
+      "confidence": "medium"
+    },
+    {
+      "event": "Disney on Ice",
+      "start": "2027-03-05",
+      "end": "2027-03-07",
+      "tier": "D",
+      "visitors": null,
+      "distance_km": 6.2,
+      "price_min": 139,
+      "price_avg": 139,
+      "price_max": 139,
+      "confidence": "low"
+    },
+    {
+      "event": "IDS 2027 (Köln)",
+      "start": "2027-03-16",
+      "end": "2027-03-20",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 33.2,
+      "price_min": 129,
+      "price_avg": 139,
+      "price_max": 149,
+      "confidence": "medium"
+    },
+    {
+      "event": "Karnevalsauftakt 11.11.",
+      "start": "2026-11-11",
+      "end": "2026-11-11",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 1.5,
+      "price_min": 129,
+      "price_avg": 129,
+      "price_max": 129,
+      "confidence": "high"
+    },
+    {
+      "event": "boot Düsseldorf 2027",
+      "start": "2027-01-23",
+      "end": "2027-01-31",
+      "tier": "B",
+      "visitors": null,
+      "distance_km": 5.8,
+      "price_min": 119,
+      "price_avg": 129,
+      "price_max": 149,
+      "confidence": "high"
+    },
+    {
+      "event": "VALVE WORLD EXPO 2026",
+      "start": "2026-12-01",
+      "end": "2026-12-03",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 5.8,
+      "price_min": 119,
+      "price_avg": 119,
+      "price_max": 119,
+      "confidence": "medium"
+    },
+    {
+      "event": "EuroCIS 2027",
+      "start": "2027-02-16",
+      "end": "2027-02-18",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 5.8,
+      "price_min": 119,
+      "price_avg": 119,
+      "price_max": 119,
+      "confidence": "medium"
+    },
+    {
+      "event": "gamescom 2027 (Köln)",
+      "start": "2027-08-25",
+      "end": "2027-08-29",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 33.2,
+      "price_min": 119,
+      "price_avg": 119,
+      "price_max": 119,
+      "confidence": "medium"
+    }
+  ],
+  "mindestaufenthalt": {
+    "standard": 2,
+    "wochenende": 2,
+    "events": {
+      "S": 3,
+      "A": 2,
+      "B": 2,
+      "C": 2,
+      "D": 2
+    },
+    "niedrige_nachfrage": 1
+  },
+  "wochenrabatt": 0.1,
+  "monatsrabatt": 0.3,
+  "lead_time_tabelle": [
+    {
+      "max_days": 0,
+      "low": 0.82,
+      "normal": 0.88,
+      "high": 1.08
+    },
+    {
+      "max_days": 3,
+      "low": 0.86,
+      "normal": 0.92,
+      "high": 1.06
+    },
+    {
+      "max_days": 7,
+      "low": 0.9,
+      "normal": 0.95,
+      "high": 1.04
+    },
+    {
+      "max_days": 14,
+      "low": 0.94,
+      "normal": 0.98,
+      "high": 1.02
+    },
+    {
+      "max_days": 30,
+      "low": 0.97,
+      "normal": 1.0,
+      "high": 1.0
+    },
+    {
+      "max_days": 60,
+      "low": 1.0,
+      "normal": 1.0,
+      "high": 1.0
+    },
+    {
+      "max_days": 90,
+      "low": 1.0,
+      "normal": 1.02,
+      "high": 1.05
+    },
+    {
+      "max_days": 9999,
+      "low": 1.0,
+      "normal": 1.04,
+      "high": 1.1
+    }
+  ],
+  "nacht_limit": 90,
+  "schattenpreis_je_jahr": {
+    "2026": 99,
+    "2027": 119
+  },
+  "basisherleitung": {
+    "anker_adr": 131.6,
+    "anker_schritte": [
+      "Unterbilk: 139 EUR × 0.50",
+      "Friedrichstadt: 147 EUR × 0.20",
+      "Bilk: 109 EUR × 0.30"
+    ],
+    "angepasste_anker_adr": 131.27,
+    "nachfragegewichteter_index": 1.1126,
+    "basis": 117.98
+  }
+}
