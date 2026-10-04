@@ -93,7 +93,8 @@ def test_night_cap_marks_priorities(result_whole_year):
 
 
 def test_rental_windows_close_nights_outside(result):
-    assert _price(result, date(2027, 3, 8)).quota_recommendation == "geschlossen"
+    assert _price(result, date(2027, 3, 2)).quota_recommendation == "geschlossen"
+    assert _price(result, date(2027, 3, 8)).quota_recommendation == "freigeben"  # ProWein-Fenster
     assert _price(result, date(2027, 7, 3)).quota_recommendation == "freigeben"
     assert _price(result, date(2026, 11, 17)).quota_recommendation == "freigeben"
 
@@ -142,3 +143,8 @@ def test_launch_discount_only_on_normal_days():
                      as_of=day - timedelta(days=40))
     assert any("Startrabatt" in r for r in normal.reasons)
     assert not any("Startrabatt" in r for r in peak.reasons)
+
+
+def test_booked_nights_marked_and_counted(result):
+    p = _price(result, date(2026, 10, 7))
+    assert p.quota_recommendation == "gebucht"

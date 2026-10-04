@@ -1,4 +1,30 @@
 Datum,Wochentag,Gastpreis/Nacht (inkl. allem),Airbnb-Nachtpreis eintragen,Mindestnächte,Event,Nachfrage,Status,Begründung
+2027-01-22,Freitag,119,99,2,boot Düsseldorf 2027,erhöht,freigeben,Saison 0.88; Wochentag 1.12; Event: boot Düsseldorf 2027 (+20%); Nachfrageindex 1.18
+2027-01-23,Samstag,129,109,2,boot Düsseldorf 2027,erhöht,freigeben,Saison 0.88; Wochentag 1.15; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.26
+2027-01-24,Sonntag,99,79,2,boot Düsseldorf 2027,normal,freigeben,Saison 0.88; Wochentag 0.88; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 0.97
+2027-01-25,Montag,109,89,2,boot Düsseldorf 2027,normal,freigeben,Saison 0.88; Wochentag 0.95; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.04
+2027-01-26,Dienstag,109,89,2,boot Düsseldorf 2027,normal,freigeben,Saison 0.88; Wochentag 0.97; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.07
+2027-01-27,Mittwoch,109,89,2,boot Düsseldorf 2027,normal,freigeben,Saison 0.88; Wochentag 0.97; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.07
+2027-01-28,Donnerstag,109,89,2,boot Düsseldorf 2027,erhöht,freigeben,Saison 0.88; Wochentag 1.00; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.10
+2027-01-29,Freitag,129,109,2,boot Düsseldorf 2027,erhöht,freigeben,Saison 0.88; Wochentag 1.12; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.23
+2027-01-30,Samstag,129,109,2,boot Düsseldorf 2027,erhöht,freigeben,Saison 0.88; Wochentag 1.15; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.26
+2027-01-31,Sonntag,79,59,2,boot Düsseldorf 2027,niedrig,freigeben,Saison 0.88; Wochentag 0.88; Event: boot Düsseldorf 2027 (+8%); Nachfrageindex 0.83
+2027-02-03,Mittwoch,109,89,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),normal,freigeben,Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+16%); Nachfrageindex 1.07
+2027-02-04,Donnerstag,159,139,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),hoch,freigeben,Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.43
+2027-02-05,Freitag,179,159,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),hoch,freigeben,Saison 0.92; Wochentag 1.12; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.60
+2027-02-06,Samstag,179,159,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),hoch,freigeben,Saison 0.92; Wochentag 1.15; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.64
+2027-02-07,Sonntag,159,139,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),hoch,freigeben,Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.43
+2027-02-08,Montag,119,99,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),erhöht,freigeben,Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+28%); Nachfrageindex 1.17
+2027-03-06,Samstag,189,169,2,ProWein 2027 + Disney on Ice,hoch,freigeben,Saison 1.00; Wochentag 1.15; Event: ProWein 2027 + Disney on Ice (+47%); Nachfrageindex 1.68
+2027-03-07,Sonntag,169,149,2,ProWein 2027 + Disney on Ice,hoch,freigeben,Saison 1.00; Wochentag 1.00; Event: ProWein 2027 + Disney on Ice (+58%); Nachfrageindex 1.57
+2027-03-08,Montag,169,149,2,ProWein 2027,hoch,freigeben,Saison 1.00; Wochentag 1.00; Event: ProWein 2027 (+55%); Nachfrageindex 1.55
+2027-03-09,Dienstag,119,99,2,ProWein 2027,erhöht,freigeben,Saison 1.00; Wochentag 1.00; Event: ProWein 2027 (+16%); Nachfrageindex 1.17
+2027-04-08,Donnerstag,129,109,2,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),erhöht,freigeben,Saison 1.02; Wochentag 1.00; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+22%); Nachfrageindex 1.25
+2027-04-09,Freitag,159,139,2,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),hoch,freigeben,Saison 1.02; Wochentag 1.12; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+28%); Nachfrageindex 1.46
+2027-04-10,Samstag,159,139,2,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),hoch,freigeben,Saison 1.02; Wochentag 1.15; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+28%); Nachfrageindex 1.50
+2027-04-11,Sonntag,99,79,2,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),normal,freigeben,Saison 1.02; Wochentag 0.88; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+8%); Nachfrageindex 0.97
+2027-05-21,Freitag,119,99,2,,erhöht,freigeben,Saison 1.05; Wochentag 1.12; Nachfrageindex 1.18
+2027-05-22,Samstag,169,149,2,Japan-Tag Düsseldorf/NRW 2027,hoch,freigeben,Saison 1.05; Wochentag 1.15; Event: Japan-Tag Düsseldorf/NRW 2027 (+25%); Nachfrageindex 1.51
 2027-06-01,Dienstag,99,79,2,,normal,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
 2027-06-02,Mittwoch,99,79,2,,normal,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
 2027-06-03,Donnerstag,109,89,2,,normal,freigeben,Saison 1.03; Wochentag 1.00; Nachfrageindex 1.03

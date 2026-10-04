@@ -13,10 +13,10 @@ from openpyxl.utils import get_column_letter
 
 OUT = Path(__file__).resolve().parents[1] / "output"
 SHEETS = [
-    ("Airbnb-Eingabe 2026", "airbnb_eingabe_2026*.csv"),
-    ("Airbnb-Eingabe Sommer 2027", "airbnb_eingabe_2027*.csv"),
-    ("Tagesplan 2026", "preisplan_2026*.csv"),
-    ("Tagesplan Sommer 2027", "preisplan_2027*.csv"),
+    ("Airbnb-Eingabe 2026", "airbnb_eingabe_2026.csv"),
+    ("Airbnb-Eingabe 2027", "airbnb_eingabe_2027.csv"),
+    ("Tagesplan 2026", "preisplan_2026.csv"),
+    ("Tagesplan 2027", "preisplan_2027.csv"),
 ]
 HEAD = PatternFill("solid", fgColor="DDE7F0")
 EVENT = PatternFill("solid", fgColor="FFF2CC")
@@ -49,6 +49,9 @@ def main() -> None:
             add_csv_sheet(wb, title, matches[-1])
     rev = json.loads((OUT / "umsatzprognose.json").read_text(encoding="utf-8"))
     ws = wb.create_sheet("Umsatzprognose")
+    b = rev.get("bereits_gebucht", {})
+    ws.append(["Bereits gebucht (real)", "", b.get("naechte"), "", b.get("auszahlung")])
+    ws.append([])
     ws.append(["Szenario", "Monat", "Nächte", "Gastumsatz EUR", "Auszahlung EUR"])
     for name, sc in rev["szenarien"].items():
         for month, m in sc["monate"].items():
@@ -58,8 +61,10 @@ def main() -> None:
     ws.append(["Vergleich 2027 (realistisch)", "", "Nächte", "Ø Gastpreis", "Auszahlung EUR"])
     for name, v in rev["vergleich_2027"].items():
         ws.append([name, "", v["naechte"], v["adr"], v["auszahlung"]])
-    for c in ws[1]:
-        c.font, c.fill = Font(bold=True), HEAD
+    for row in ws.iter_rows():
+        if row[0].value in ("Szenario", "Vergleich 2027 (realistisch)", "Bereits gebucht (real)"):
+            for c in row:
+                c.font, c.fill = Font(bold=True), HEAD
     for col in "ABCDE":
         ws.column_dimensions[col].width = 26
     wb.save(OUT / "preisplan.xlsx")

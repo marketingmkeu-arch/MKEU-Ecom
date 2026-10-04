@@ -243,9 +243,14 @@ def apply_night_cap(prices: list[DayPrice], cfg: dict) -> dict[int, int] | None:
         return None
     to_nine = cfg["output"].get("round_to_nine", False)
     used = {int(k): v for k, v in reg.get("nights_already_used", {}).items()}
+    for p in prices:
+        if p.quota_recommendation == "gebucht":
+            used[p.demand.day.year] = used.get(p.demand.day.year, 0) + 1
     windows = [(date.fromisoformat(a), date.fromisoformat(b)) for a, b in reg.get("rental_windows", [])]
     rentable = []
     for p in prices:
+        if p.quota_recommendation == "gebucht":
+            continue
         if windows and not any(a <= p.demand.day <= b for a, b in windows):
             p.quota_priority = None
             p.quota_recommendation = "geschlossen"

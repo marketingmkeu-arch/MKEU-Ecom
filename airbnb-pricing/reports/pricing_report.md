@@ -188,20 +188,20 @@ Last-Minute-Rabatte gibt es **nur** bei normaler oder niedriger Nachfrage. Bei h
 
 Erlaubt sind 90 Nächte pro Kalenderjahr (Wohnraum-ID im Inserat, Buchungskalender führen). Ziel ist deshalb nicht maximale Auslastung, sondern **maximaler Erlös pro verbrauchter Nacht**.
 
-- Bei einer angenommenen Verkaufsquote von 60% werden je Jahr die wertvollsten Nächte freigegeben: {2026: 89, 2027: 122} (Spalte `Quota Recommendation`).
+- Bei einer angenommenen Verkaufsquote von 60% werden je Jahr die wertvollsten Nächte freigegeben: {2026: 86, 2027: 148} (Spalte `Quota Recommendation`).
 - Im aktuellen Zeitraum reicht das Kontingent für alle freigegebenen Nächte; kein Schattenpreis nötig.
 - Genutzte Nächte laufend in `regulation.nights_already_used` eintragen; der nächste Lauf verteilt das Restkontingent neu.
 - Hartes Limit beachten: Bei 90 gebuchten Nächten im Kalenderjahr den Kalender für den Rest des Jahres schließen.
 
 ### Umsatz- und Auszahlungsprognose
 
-Erwartungswert-Rechnung: Buchungswahrscheinlichkeit je Nacht nach Nachfragestufe ({'niedrig': 0.3, 'normal': 0.45, 'erhöht': 0.55, 'hoch': 0.7, 'Spitze': 0.85}, ANNAHME) × Gastpreis, begrenzt auf das 90-Nächte-Kontingent je Kalenderjahr und die Vermietungsfenster [['2026-10-04', '2026-12-31'], ['2027-06-01', '2027-09-30']]. Auszahlung = Gastpreis × 0.889 (aus den ersten echten Buchungen abgeleitet).
+Erwartungswert-Rechnung: Buchungswahrscheinlichkeit je Nacht nach Nachfragestufe ({'niedrig': 0.3, 'normal': 0.45, 'erhöht': 0.55, 'hoch': 0.7, 'Spitze': 0.85}, ANNAHME) × Gastpreis, begrenzt auf das 90-Nächte-Kontingent je Kalenderjahr und die Vermietungsfenster [['2026-10-04', '2026-12-31'], ['2027-01-22', '2027-01-31'], ['2027-02-03', '2027-02-08'], ['2027-03-06', '2027-03-09'], ['2027-04-08', '2027-04-11'], ['2027-05-21', '2027-05-22'], ['2027-06-01', '2027-09-30']]. Auszahlung = Gastpreis × 0.889 (aus den ersten echten Buchungen abgeleitet).
 
 | Szenario | Nächte je Jahr | Gastumsatz EUR | Auszahlung EUR |
 |---|---|---|---|
-| konservativ | {'2026': 30.9, '2027': 38.1} | 7978 | 7093 |
-| realistisch | {'2026': 44.1, '2027': 54.4} | 11398 | 10133 |
-| optimistisch | {'2026': 54.7, '2027': 68.1} | 14151 | 12581 |
+| konservativ | {'2026': 29.7, '2027': 48.6} | 9193 | 8172 |
+| realistisch | {'2026': 42.4, '2027': 69.4} | 13132 | 11675 |
+| optimistisch | {'2026': 52.6, '2027': 86.8} | 16320 | 14508 |
 
 Vergleich der Vermietungsfenster 2027 (realistisches Szenario):
 
@@ -249,7 +249,7 @@ Vollständiger Tageskalender: `output/pricing_calendar_12m.csv`. Auszug: die nä
 | 2026-11-15 | Sonntag | 99 | 199 | MEDICA + COMPAMED 2026 | +96% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+96%); Nachfrageindex 1.96 |
 | 2027-03-06 | Samstag | 99 | 189 | ProWein 2027 + Disney on Ice | +47% (Tier A) | hoch | Saison 1.00; Wochentag 1.15; Event: ProWein 2027 + Disney on Ice (+47%); Nachfrageindex 1.68; Vorlauf 153 T (+10%, Modus high) |
 | 2026-10-06 | Dienstag | 99 | 179 | Backstreet Boys – Homecoming Residency (Stadion) | +55% (Tier A) | hoch | Saison 1.08; Wochentag 1.00; Event: Backstreet Boys – Homecoming Residency (Stadion) (+55%); Nachfrageindex 1.67; Vorlauf 2 T (+6%, Modus high) |
-| 2026-10-07 | Mittwoch | 99 | 179 | Backstreet Boys – Homecoming Residency (Stadion) | +55% (Tier A) | hoch | Saison 1.08; Wochentag 1.00; Event: Backstreet Boys – Homecoming Residency (Stadion) (+55%); Nachfrageindex 1.67; Vorlauf 3 T (+6%, Modus high) |
+| 2026-10-07 | Mittwoch | 99 | 179 | Backstreet Boys – Homecoming Residency (Stadion) | +55% (Tier A) | hoch | Saison 1.08; Wochentag 1.00; Event: Backstreet Boys – Homecoming Residency (Stadion) (+55%); Nachfrageindex 1.67; Vorlauf 3 T (+6%, Modus high); bereits gebucht (Auszahlung 66 EUR) |
 | 2027-02-05 | Freitag | 99 | 179 | Straßenkarneval (Weiberfastnacht bis Rosenmontag) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.12; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.60; Vorlauf 124 T (+10%, Modus high) |
 | 2027-02-06 | Samstag | 99 | 179 | Straßenkarneval (Weiberfastnacht bis Rosenmontag) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.15; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.64; Vorlauf 125 T (+10%, Modus high) |
 | 2027-06-21 | Montag | 99 | 179 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | +55% (Tier A) | hoch | Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 260 T (+10%, Modus high) |

@@ -11,8 +11,8 @@ lon = 6.7665
 size_m2 = 60
 rooms = 2
 bedrooms = 1
-# ANNAHME: Schlafzimmer + Schlafsofa im Wohnbereich. Bitte bestätigen.
-max_guests = 4
+# Eigentümerangabe 04.10.2026
+max_guests = 2
 balcony = true
 renovated = true
 kitchen = true
@@ -30,13 +30,23 @@ round_to_nine = true
 annual_night_cap = 90
 # ANNAHME: Anteil freigegebener Nächte, die tatsächlich gebucht werden
 assumed_sell_through = 0.6
-# Bereits genutzte genehmigungsfreie Nächte je Kalenderjahr (eigene Buchungsdaten eintragen)
-nights_already_used = { "2026" = 3, "2027" = 0 }
+# Zusätzlich genutzte Nächte je Kalenderjahr, die NICHT in data/raw/bookings/own_bookings.csv stehen
+# (Nächte aus own_bookings.csv werden automatisch gezählt)
+nights_already_used = { "2026" = 0, "2027" = 0 }
 # Nicht freigegebene Nächte nur zum Schattenpreis oder darüber anbieten (statt blockieren)
 floor_held_nights_at_shadow_price = true
 # Vermietungsfenster (Eigentümer-Entscheidung 04.10.2026): Rest 2026 und Sommer 2027.
 # Nächte außerhalb werden als "geschlossen" markiert; das 90-Nächte-Kontingent gilt je Kalenderjahr.
-rental_windows = [["2026-10-04", "2026-12-31"], ["2027-06-01", "2027-09-30"]]
+# 2027: starke Frühjahrstermine (boot, Karneval, ProWein, Beauty, Japan-Tag) + Sommer ab 1.6.
+rental_windows = [
+  ["2026-10-04", "2026-12-31"],
+  ["2027-01-22", "2027-01-31"],
+  ["2027-02-03", "2027-02-08"],
+  ["2027-03-06", "2027-03-09"],
+  ["2027-04-08", "2027-04-11"],
+  ["2027-05-21", "2027-05-22"],
+  ["2027-06-01", "2027-09-30"],
+]
 
 [fees]
 # Reinigungspauschale (Empfehlung, s. Report). Die Kalenderpreise sind Gastpreise pro Nacht inkl.

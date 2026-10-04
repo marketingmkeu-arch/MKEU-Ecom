@@ -33,6 +33,7 @@ class RunResult:
     bands: PriceBands
     prices: list[DayPrice]
     shadow_prices: dict[int, int] | None
+    bookings: dict[date, float] = None
 
 
 def run(as_of: date, cfg: dict, paths: Paths = Paths(), pace: dict[date, float] | None = None) -> RunResult:
@@ -64,9 +65,23 @@ def run(as_of: date, cfg: dict, paths: Paths = Paths(), pace: dict[date, float] 
     bands = price_bands(derivation.base, cfg)
     pace = pace or {}
     prices = [price_day(d, bands, cfg, as_of, comp_by_day.get(d.day), pace.get(d.day)) for d in demand]
+    bookings = load_bookings(raw / "bookings" / "own_bookings.csv")
+    for p in prices:
+        if p.demand.day in bookings:
+            p.quota_recommendation = "gebucht"
+            p.reasons.append(f"bereits gebucht (Auszahlung {bookings[p.demand.day]:.0f} EUR)")
     shadow = apply_night_cap(prices, cfg)
     return RunResult(as_of, cfg, events, metrics, comps, comp_by_day, history, factors, impacts,
-                     demand, comp_base, derivation, bands, prices, shadow)
+                     demand, comp_base, derivation, bands, prices, shadow, bookings)
+
+
+def load_bookings(path) -> dict[date, float]:
+    """Eigene Buchungen (Datenklasse 1, realisiert): Aufenthaltsdatum -> Auszahlung."""
+    import csv
+    if not path.exists():
+        return {}
+    with open(path, newline="", encoding="utf-8") as fh:
+        return {date.fromisoformat(r["stay_date"]): float(r["payout_eur"] or 0) for r in csv.DictReader(fh) if r.get("stay_date")}
 
 
 def median_price(prices: list[DayPrice], pred) -> float | None:

@@ -433,7 +433,7 @@ PLAN_COLUMNS = ["Datum", "Wochentag", "Gastpreis/Nacht (inkl. allem)", "Airbnb-N
                 "Mindestnächte", "Event", "Nachfrage", "Status", "Begründung"]
 
 
-def _plan_rows(result: RunResult, start: date, end: date) -> list[dict]:
+def plan_rows(result: RunResult, start: date, end: date) -> list[dict]:
     rows = []
     for p in result.prices:
         d = p.demand
@@ -453,8 +453,7 @@ def _plan_rows(result: RunResult, start: date, end: date) -> list[dict]:
     return rows
 
 
-def write_plan_csv(result: RunResult, path: Path, start: date, end: date) -> list[dict]:
-    rows = _plan_rows(result, start, end)
+def write_plan_csv(rows: list[dict], path: Path) -> list[dict]:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=PLAN_COLUMNS)
@@ -467,6 +466,8 @@ def price_ranges(rows: list[dict]) -> list[dict]:
     """Aufeinanderfolgende Tage mit gleichem Airbnb-Preis und Mindestaufenthalt zusammenfassen."""
     ranges: list[dict] = []
     for r in rows:
+        if r["Status"] in ("gebucht", "geschlossen"):
+            continue
         key = (r["Airbnb-Nachtpreis eintragen"], r["Mindestnächte"], r["Event"])
         if ranges and ranges[-1]["_key"] == key and date.fromisoformat(ranges[-1]["bis"]).toordinal() + 1 == date.fromisoformat(r["Datum"]).toordinal():
             ranges[-1]["bis"] = r["Datum"]
@@ -492,7 +493,9 @@ def write_ranges_csv(rows: list[dict], path: Path) -> list[dict]:
 
 def revenue_summary(result: RunResult) -> dict:
     cfg = result.cfg
-    out = {"payout_ratio": cfg["fees"]["payout_ratio"], "szenarien": {}}
+    booked = result.bookings or {}
+    out = {"payout_ratio": cfg["fees"]["payout_ratio"], "szenarien": {},
+           "bereits_gebucht": {"naechte": len(booked), "auszahlung": round(sum(booked.values()))}}
     for f in all_forecasts(result.prices, cfg):
         out["szenarien"][f.scenario] = {
             "naechte": round(f.nights, 1),

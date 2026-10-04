@@ -1,9 +1,9 @@
 Datum,Wochentag,Gastpreis/Nacht (inkl. allem),Airbnb-Nachtpreis eintragen,Mindestnächte,Event,Nachfrage,Status,Begründung
 2026-10-04,Sonntag,79,59,2,,normal,freigeben,Saison 1.08; Wochentag 0.88; Nachfrageindex 0.95
-2026-10-05,Montag,89,69,2,,normal,freigeben,Saison 1.08; Wochentag 0.95; Nachfrageindex 1.03
+2026-10-05,Montag,89,69,2,,normal,gebucht,Saison 1.08; Wochentag 0.95; Nachfrageindex 1.03; bereits gebucht (Auszahlung 83 EUR)
 2026-10-06,Dienstag,179,159,2,Backstreet Boys – Homecoming Residency (Stadion),hoch,freigeben,Saison 1.08; Wochentag 1.00; Event: Backstreet Boys – Homecoming Residency (Stadion) (+55%); Nachfrageindex 1.67
-2026-10-07,Mittwoch,179,159,2,Backstreet Boys – Homecoming Residency (Stadion),hoch,freigeben,Saison 1.08; Wochentag 1.00; Event: Backstreet Boys – Homecoming Residency (Stadion) (+55%); Nachfrageindex 1.67
-2026-10-08,Donnerstag,119,99,2,Apache 207 (Konzert),erhöht,freigeben,Saison 1.08; Wochentag 1.00; Event: Apache 207 (Konzert) (+12%); Nachfrageindex 1.21
+2026-10-07,Mittwoch,179,159,2,Backstreet Boys – Homecoming Residency (Stadion),hoch,gebucht,Saison 1.08; Wochentag 1.00; Event: Backstreet Boys – Homecoming Residency (Stadion) (+55%); Nachfrageindex 1.67; bereits gebucht (Auszahlung 66 EUR)
+2026-10-08,Donnerstag,119,99,2,Apache 207 (Konzert),erhöht,gebucht,Saison 1.08; Wochentag 1.00; Event: Apache 207 (Konzert) (+12%); Nachfrageindex 1.21; bereits gebucht (Auszahlung 66 EUR)
 2026-10-09,Freitag,119,99,2,,erhöht,freigeben,Saison 1.08; Wochentag 1.12; Nachfrageindex 1.21
 2026-10-10,Samstag,119,99,2,,erhöht,freigeben,Saison 1.08; Wochentag 1.15; Nachfrageindex 1.24
 2026-10-11,Sonntag,89,69,2,,normal,freigeben,Saison 1.08; Wochentag 0.88; Nachfrageindex 0.95

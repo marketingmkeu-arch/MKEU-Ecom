@@ -49,9 +49,14 @@ def forecast(prices: list[DayPrice], cfg: dict, scenario: str, multiplier: float
     reg = cfg["regulation"]
     cap = reg.get("annual_night_cap", 0)
     used = {int(k): v for k, v in reg.get("nights_already_used", {}).items()}
+    for p in prices:
+        if p.quota_recommendation == "gebucht":
+            used[p.demand.day.year] = used.get(p.demand.day.year, 0) + 1
     result = Forecast(scenario, multiplier)
     by_year: dict[int, list[tuple[DayPrice, float]]] = defaultdict(list)
     for p in prices:
+        if p.quota_recommendation == "gebucht":
+            continue
         if (include is not None and not include(p)) or (include is None and p.quota_recommendation == "geschlossen"):
             continue
         by_year[p.demand.day.year].append((p, min(0.95, probs[p.demand.level] * multiplier)))

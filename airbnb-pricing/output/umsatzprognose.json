@@ -2,22 +2,22 @@
   "payout_ratio": 0.889,
   "szenarien": {
     "konservativ": {
-      "naechte": 69.0,
+      "naechte": 78.3,
       "naechte_je_jahr": {
-        "2026": 30.9,
-        "2027": 38.1
+        "2026": 29.7,
+        "2027": 48.6
       },
       "limit_bindend": {
         "2026": false,
         "2027": false
       },
-      "brutto_gast": 7978,
-      "auszahlung": 7093,
+      "brutto_gast": 9193,
+      "auszahlung": 8172,
       "monate": {
         "2026-10": {
-          "naechte": 10.7,
-          "brutto": 1367,
-          "auszahlung": 1216
+          "naechte": 9.6,
+          "brutto": 1207,
+          "auszahlung": 1073
         },
         "2026-11": {
           "naechte": 11.0,
@@ -28,6 +28,31 @@
           "naechte": 9.2,
           "brutto": 979,
           "auszahlung": 870
+        },
+        "2027-01": {
+          "naechte": 3.4,
+          "brutto": 379,
+          "auszahlung": 337
+        },
+        "2027-02": {
+          "naechte": 2.7,
+          "brutto": 375,
+          "auszahlung": 334
+        },
+        "2027-03": {
+          "naechte": 1.9,
+          "brutto": 279,
+          "auszahlung": 248
+        },
+        "2027-04": {
+          "naechte": 1.7,
+          "brutto": 222,
+          "auszahlung": 198
+        },
+        "2027-05": {
+          "naechte": 0.9,
+          "brutto": 119,
+          "auszahlung": 105
         },
         "2027-06": {
           "naechte": 10.7,
@@ -52,22 +77,22 @@
       }
     },
     "realistisch": {
-      "naechte": 98.6,
+      "naechte": 111.8,
       "naechte_je_jahr": {
-        "2026": 44.1,
-        "2027": 54.4
+        "2026": 42.4,
+        "2027": 69.4
       },
       "limit_bindend": {
         "2026": false,
         "2027": false
       },
-      "brutto_gast": 11398,
-      "auszahlung": 10133,
+      "brutto_gast": 13132,
+      "auszahlung": 11675,
       "monate": {
         "2026-10": {
-          "naechte": 15.3,
-          "brutto": 1953,
-          "auszahlung": 1737
+          "naechte": 13.6,
+          "brutto": 1725,
+          "auszahlung": 1533
         },
         "2026-11": {
           "naechte": 15.6,
@@ -78,6 +103,31 @@
           "naechte": 13.2,
           "brutto": 1399,
           "auszahlung": 1243
+        },
+        "2027-01": {
+          "naechte": 4.9,
+          "brutto": 541,
+          "auszahlung": 481
+        },
+        "2027-02": {
+          "naechte": 3.8,
+          "brutto": 536,
+          "auszahlung": 477
+        },
+        "2027-03": {
+          "naechte": 2.6,
+          "brutto": 399,
+          "auszahlung": 355
+        },
+        "2027-04": {
+          "naechte": 2.4,
+          "brutto": 318,
+          "auszahlung": 282
+        },
+        "2027-05": {
+          "naechte": 1.2,
+          "brutto": 169,
+          "auszahlung": 151
         },
         "2027-06": {
           "naechte": 15.2,
@@ -102,22 +152,22 @@
       }
     },
     "optimistisch": {
-      "naechte": 122.8,
+      "naechte": 139.4,
       "naechte_je_jahr": {
-        "2026": 54.7,
-        "2027": 68.1
+        "2026": 52.6,
+        "2027": 86.8
       },
       "limit_bindend": {
         "2026": false,
         "2027": false
       },
-      "brutto_gast": 14151,
-      "auszahlung": 12581,
+      "brutto_gast": 16320,
+      "auszahlung": 14508,
       "monate": {
         "2026-10": {
-          "naechte": 19.2,
-          "brutto": 2442,
-          "auszahlung": 2171
+          "naechte": 17.1,
+          "brutto": 2156,
+          "auszahlung": 1917
         },
         "2026-11": {
           "naechte": 19.1,
@@ -128,6 +178,31 @@
           "naechte": 16.4,
           "brutto": 1748,
           "auszahlung": 1554
+        },
+        "2027-01": {
+          "naechte": 6.1,
+          "brutto": 677,
+          "auszahlung": 602
+        },
+        "2027-02": {
+          "naechte": 4.8,
+          "brutto": 670,
+          "auszahlung": 596
+        },
+        "2027-03": {
+          "naechte": 3.3,
+          "brutto": 498,
+          "auszahlung": 443
+        },
+        "2027-04": {
+          "naechte": 3.0,
+          "brutto": 397,
+          "auszahlung": 353
+        },
+        "2027-05": {
+          "naechte": 1.6,
+          "brutto": 212,
+          "auszahlung": 188
         },
         "2027-06": {
           "naechte": 19.1,
@@ -151,6 +226,10 @@
         }
       }
     }
+  },
+  "bereits_gebucht": {
+    "naechte": 3,
+    "auszahlung": 215
   },
   "vergleich_2027": {
     "2027 Sommer (Jun-Sep)": {
