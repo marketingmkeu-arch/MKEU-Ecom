@@ -1,85 +1,85 @@
 {
   "as_of": "2026-10-04",
-  "basispreis": 102,
+  "basispreis": 100,
   "preisgrenzen": {
     "Minimum Price": 79,
-    "Normal/Base Price": 102,
-    "Target Price": 107,
-    "High-Demand Price": 137,
-    "Event Price": 173,
-    "Maximum Price": 305
+    "Normal/Base Price": 100,
+    "Target Price": 105,
+    "High-Demand Price": 135,
+    "Event Price": 170,
+    "Maximum Price": 299
   },
   "normaler_wochentagspreis_mo_do": 89,
-  "normaler_wochenendpreis_fr_sa": 109,
+  "normaler_wochenendpreis_fr_sa": 99,
   "saisonale_preisbereiche": {
     "Januar": {
-      "normal_min": 89,
+      "normal_min": 79,
       "normal_max": 89,
-      "inkl_events_max": 119,
+      "inkl_events_max": 109,
       "saisonfaktor": 0.88
     },
     "Februar": {
-      "normal_min": 89,
+      "normal_min": 79,
       "normal_max": 99,
-      "inkl_events_max": 169,
+      "inkl_events_max": 159,
       "saisonfaktor": 0.92
     },
     "März": {
-      "normal_min": 89,
-      "normal_max": 109,
+      "normal_min": 79,
+      "normal_max": 99,
       "inkl_events_max": 169,
       "saisonfaktor": 1.0
     },
     "April": {
-      "normal_min": 89,
-      "normal_max": 109,
+      "normal_min": 79,
+      "normal_max": 99,
       "inkl_events_max": 149,
       "saisonfaktor": 1.02
     },
     "Mai": {
-      "normal_min": 89,
+      "normal_min": 79,
       "normal_max": 109,
       "inkl_events_max": 149,
       "saisonfaktor": 1.05
     },
     "Juni": {
-      "normal_min": 89,
+      "normal_min": 79,
       "normal_max": 109,
       "inkl_events_max": 159,
       "saisonfaktor": 1.03
     },
     "Juli": {
-      "normal_min": 89,
-      "normal_max": 99,
-      "inkl_events_max": 169,
+      "normal_min": 79,
+      "normal_max": 89,
+      "inkl_events_max": 159,
       "saisonfaktor": 0.92
     },
     "August": {
-      "normal_min": 89,
+      "normal_min": 79,
       "normal_max": 89,
       "inkl_events_max": 139,
       "saisonfaktor": 0.92
     },
     "September": {
-      "normal_min": 89,
+      "normal_min": 79,
       "normal_max": 109,
       "inkl_events_max": 149,
       "saisonfaktor": 1.05
     },
     "Oktober": {
-      "normal_min": 89,
+      "normal_min": 79,
       "normal_max": 109,
-      "inkl_events_max": 169,
+      "inkl_events_max": 159,
       "saisonfaktor": 1.08
     },
     "November": {
-      "normal_min": 89,
-      "normal_max": 109,
+      "normal_min": 79,
+      "normal_max": 99,
       "inkl_events_max": 219,
       "saisonfaktor": 1.0
     },
     "Dezember": {
-      "normal_min": 89,
+      "normal_min": 79,
       "normal_max": 89,
       "inkl_events_max": 159,
       "saisonfaktor": 0.95
@@ -105,21 +105,9 @@
       "tier": "A",
       "visitors": 32023,
       "distance_km": 5.8,
-      "price_min": 169,
-      "price_avg": 169,
-      "price_max": 169,
-      "confidence": "medium"
-    },
-    {
-      "event": "Die Toten Hosen (Stadion)",
-      "start": "2027-07-10",
-      "end": "2027-07-10",
-      "tier": "A",
-      "visitors": null,
-      "distance_km": 5.9,
-      "price_min": 169,
-      "price_avg": 169,
-      "price_max": 169,
+      "price_min": 159,
+      "price_avg": 159,
+      "price_max": 159,
       "confidence": "medium"
     },
     {
@@ -132,18 +120,6 @@
       "price_min": 159,
       "price_avg": 159,
       "price_max": 159,
-      "confidence": "high"
-    },
-    {
-      "event": "Straßenkarneval (Weiberfastnacht bis Rosenmontag)",
-      "start": "2027-02-04",
-      "end": "2027-02-08",
-      "tier": "A",
-      "visitors": null,
-      "distance_km": 1.5,
-      "price_min": 149,
-      "price_avg": 159,
-      "price_max": 169,
       "confidence": "high"
     },
     {
@@ -172,15 +148,27 @@
     },
     {
       "event": "Die Toten Hosen (Stadion)",
-      "start": "2027-07-03",
-      "end": "2027-07-04",
+      "start": "2027-07-10",
+      "end": "2027-07-10",
       "tier": "A",
       "visitors": null,
       "distance_km": 5.9,
-      "price_min": 149,
+      "price_min": 159,
       "price_avg": 159,
-      "price_max": 169,
+      "price_max": 159,
       "confidence": "medium"
+    },
+    {
+      "event": "Straßenkarneval (Weiberfastnacht bis Rosenmontag)",
+      "start": "2027-02-04",
+      "end": "2027-02-08",
+      "tier": "A",
+      "visitors": null,
+      "distance_km": 1.5,
+      "price_min": 139,
+      "price_avg": 149,
+      "price_max": 159,
+      "confidence": "high"
     },
     {
       "event": "BEAUTY DÜSSELDORF + TOP HAIR 2027",
@@ -207,6 +195,18 @@
       "confidence": "low"
     },
     {
+      "event": "Die Toten Hosen (Stadion)",
+      "start": "2027-07-03",
+      "end": "2027-07-04",
+      "tier": "A",
+      "visitors": null,
+      "distance_km": 5.9,
+      "price_min": 139,
+      "price_avg": 149,
+      "price_max": 159,
+      "confidence": "medium"
+    },
+    {
       "event": "Uniper Düsseldorf Marathon",
       "start": "2027-04-18",
       "end": "2027-04-18",
@@ -231,18 +231,6 @@
       "confidence": "low"
     },
     {
-      "event": "Rheinkirmes 2027",
-      "start": "2027-07-16",
-      "end": "2027-07-25",
-      "tier": "B",
-      "visitors": null,
-      "distance_km": 2.1,
-      "price_min": 119,
-      "price_avg": 129,
-      "price_max": 149,
-      "confidence": "medium"
-    },
-    {
       "event": "Sabaton (Konzert)",
       "start": "2027-04-23",
       "end": "2027-04-23",
@@ -252,6 +240,18 @@
       "price_min": 119,
       "price_avg": 119,
       "price_max": 119,
+      "confidence": "medium"
+    },
+    {
+      "event": "Rheinkirmes 2027",
+      "start": "2027-07-16",
+      "end": "2027-07-25",
+      "tier": "B",
+      "visitors": null,
+      "distance_km": 2.1,
+      "price_min": 109,
+      "price_avg": 119,
+      "price_max": 149,
       "confidence": "medium"
     },
     {
@@ -273,7 +273,7 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 1.7,
-      "price_min": 89,
+      "price_min": 79,
       "price_avg": 109,
       "price_max": 119,
       "confidence": "medium"
@@ -303,18 +303,6 @@
       "confidence": "high"
     },
     {
-      "event": "VALVE WORLD EXPO 2026",
-      "start": "2026-12-01",
-      "end": "2026-12-03",
-      "tier": "C",
-      "visitors": null,
-      "distance_km": 5.8,
-      "price_min": 99,
-      "price_avg": 99,
-      "price_max": 99,
-      "confidence": "medium"
-    },
-    {
       "event": "boot Düsseldorf 2027",
       "start": "2027-01-23",
       "end": "2027-01-31",
@@ -323,7 +311,7 @@
       "distance_km": 5.8,
       "price_min": 89,
       "price_avg": 99,
-      "price_max": 119,
+      "price_max": 109,
       "confidence": "high"
     },
     {
@@ -335,7 +323,19 @@
       "distance_km": 33.2,
       "price_min": 99,
       "price_avg": 99,
-      "price_max": 119,
+      "price_max": 109,
+      "confidence": "medium"
+    },
+    {
+      "event": "VALVE WORLD EXPO 2026",
+      "start": "2026-12-01",
+      "end": "2026-12-03",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 5.8,
+      "price_min": 89,
+      "price_avg": 89,
+      "price_max": 89,
       "confidence": "medium"
     },
     {
@@ -445,11 +445,11 @@
     ],
     "angepasste_anker_adr": 131.27,
     "nachfragegewichteter_index": 1.1126,
-    "basis": 101.63,
+    "basis": 99.73,
     "marktbasis": 117.98,
-    "comp_basis": 86.41,
-    "comp_listings": 6,
-    "comp_gewicht": 0.6000000000000001,
+    "comp_basis": 90.63,
+    "comp_listings": 16,
+    "comp_gewicht": 0.8,
     "startrabatt_faktor": 0.9
   }
 }

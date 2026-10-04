@@ -181,6 +181,9 @@ def write_report(result: RunResult, s: dict, path: Path) -> None:
 
     add("## 1. Executive Summary")
     add("")
+    add("> Alle Preise sind **Gastpreise pro Nacht inkl. aller Gebühren** (so zeigt Airbnb die Konkurrenz an). "
+        "Den eigenen Preis in Airbnb so einstellen, dass die Gastansicht diesen Wert zeigt.")
+    add("")
     add(f"- **Realistischer Normalpreis (Basis, Di ohne Event):** ca. **{s['basispreis']} EUR**")
     add(f"- **Normaler Wochentag (Mo–Do, Median):** {s['normaler_wochentagspreis_mo_do']} EUR · "
         f"**Normales Wochenende (Fr/Sa, Median):** {s['normaler_wochenendpreis_fr_sa']} EUR")
