@@ -9,78 +9,78 @@
     "Event Price": 170,
     "Maximum Price": 299
   },
-  "normaler_wochentagspreis_mo_do": 89,
-  "normaler_wochenendpreis_fr_sa": 99,
+  "normaler_wochentagspreis_mo_do": 99,
+  "normaler_wochenendpreis_fr_sa": 109,
   "saisonale_preisbereiche": {
     "Januar": {
       "normal_min": 79,
-      "normal_max": 89,
-      "inkl_events_max": 109,
+      "normal_max": 99,
+      "inkl_events_max": 129,
       "saisonfaktor": 0.88
     },
     "Februar": {
       "normal_min": 79,
-      "normal_max": 99,
+      "normal_max": 109,
       "inkl_events_max": 159,
       "saisonfaktor": 0.92
     },
     "März": {
-      "normal_min": 79,
-      "normal_max": 99,
+      "normal_min": 89,
+      "normal_max": 119,
       "inkl_events_max": 169,
       "saisonfaktor": 1.0
     },
     "April": {
-      "normal_min": 79,
-      "normal_max": 99,
+      "normal_min": 89,
+      "normal_max": 109,
       "inkl_events_max": 149,
       "saisonfaktor": 1.02
     },
     "Mai": {
-      "normal_min": 79,
-      "normal_max": 109,
+      "normal_min": 89,
+      "normal_max": 119,
       "inkl_events_max": 149,
       "saisonfaktor": 1.05
     },
     "Juni": {
-      "normal_min": 79,
-      "normal_max": 109,
+      "normal_min": 89,
+      "normal_max": 119,
       "inkl_events_max": 159,
       "saisonfaktor": 1.03
     },
     "Juli": {
       "normal_min": 79,
-      "normal_max": 89,
+      "normal_max": 99,
       "inkl_events_max": 159,
       "saisonfaktor": 0.92
     },
     "August": {
       "normal_min": 79,
-      "normal_max": 89,
+      "normal_max": 99,
       "inkl_events_max": 139,
       "saisonfaktor": 0.92
     },
     "September": {
-      "normal_min": 79,
-      "normal_max": 109,
+      "normal_min": 89,
+      "normal_max": 119,
       "inkl_events_max": 149,
       "saisonfaktor": 1.05
     },
     "Oktober": {
-      "normal_min": 79,
-      "normal_max": 109,
+      "normal_min": 89,
+      "normal_max": 119,
       "inkl_events_max": 159,
       "saisonfaktor": 1.08
     },
     "November": {
-      "normal_min": 79,
-      "normal_max": 99,
+      "normal_min": 89,
+      "normal_max": 119,
       "inkl_events_max": 219,
       "saisonfaktor": 1.0
     },
     "Dezember": {
       "normal_min": 79,
-      "normal_max": 89,
+      "normal_max": 99,
       "inkl_events_max": 159,
       "saisonfaktor": 0.95
     }
@@ -219,6 +219,18 @@
       "confidence": "medium"
     },
     {
+      "event": "Sabaton (Konzert)",
+      "start": "2027-04-23",
+      "end": "2027-04-23",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 6.2,
+      "price_min": 129,
+      "price_avg": 129,
+      "price_max": 129,
+      "confidence": "medium"
+    },
+    {
       "event": "Die Ärzte (Konzert)",
       "start": "2027-04-24",
       "end": "2027-04-24",
@@ -231,26 +243,14 @@
       "confidence": "low"
     },
     {
-      "event": "Sabaton (Konzert)",
-      "start": "2027-04-23",
-      "end": "2027-04-23",
-      "tier": "C",
-      "visitors": null,
-      "distance_km": 6.2,
-      "price_min": 119,
-      "price_avg": 119,
-      "price_max": 119,
-      "confidence": "medium"
-    },
-    {
       "event": "Rheinkirmes 2027",
       "start": "2027-07-16",
       "end": "2027-07-25",
       "tier": "B",
       "visitors": null,
       "distance_km": 2.1,
-      "price_min": 109,
-      "price_avg": 119,
+      "price_min": 129,
+      "price_avg": 129,
       "price_max": 149,
       "confidence": "medium"
     },
@@ -261,8 +261,8 @@
       "tier": "B",
       "visitors": 269000,
       "distance_km": 5.8,
-      "price_min": 89,
-      "price_avg": 119,
+      "price_min": 99,
+      "price_avg": 129,
       "price_max": 149,
       "confidence": "high"
     },
@@ -273,9 +273,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 1.7,
-      "price_min": 79,
-      "price_avg": 109,
-      "price_max": 119,
+      "price_min": 89,
+      "price_avg": 119,
+      "price_max": 129,
       "confidence": "medium"
     },
     {
@@ -285,9 +285,9 @@
       "tier": "D",
       "visitors": null,
       "distance_km": 6.2,
-      "price_min": 109,
-      "price_avg": 109,
-      "price_max": 109,
+      "price_min": 119,
+      "price_avg": 119,
+      "price_max": 119,
       "confidence": "low"
     },
     {
@@ -297,9 +297,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 1.5,
-      "price_min": 99,
-      "price_avg": 99,
-      "price_max": 99,
+      "price_min": 109,
+      "price_avg": 109,
+      "price_max": 109,
       "confidence": "high"
     },
     {
@@ -309,9 +309,9 @@
       "tier": "B",
       "visitors": null,
       "distance_km": 5.8,
-      "price_min": 89,
-      "price_avg": 99,
-      "price_max": 109,
+      "price_min": 99,
+      "price_avg": 109,
+      "price_max": 129,
       "confidence": "high"
     },
     {
@@ -321,9 +321,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 33.2,
-      "price_min": 99,
-      "price_avg": 99,
-      "price_max": 109,
+      "price_min": 109,
+      "price_avg": 109,
+      "price_max": 129,
       "confidence": "medium"
     },
     {
@@ -333,9 +333,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 5.8,
-      "price_min": 89,
-      "price_avg": 89,
-      "price_max": 89,
+      "price_min": 99,
+      "price_avg": 99,
+      "price_max": 99,
       "confidence": "medium"
     },
     {
@@ -345,9 +345,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 5.8,
-      "price_min": 89,
-      "price_avg": 89,
-      "price_max": 89,
+      "price_min": 99,
+      "price_avg": 99,
+      "price_max": 99,
       "confidence": "medium"
     },
     {
@@ -357,9 +357,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 33.2,
-      "price_min": 89,
-      "price_avg": 89,
-      "price_max": 89,
+      "price_min": 99,
+      "price_avg": 99,
+      "price_max": 99,
       "confidence": "medium"
     }
   ],
@@ -434,7 +434,7 @@
   ],
   "nacht_limit": 90,
   "schattenpreis_je_jahr": {
-    "2027": 89
+    "2027": 99
   },
   "basisherleitung": {
     "anker_adr": 131.6,
@@ -450,6 +450,6 @@
     "comp_basis": 90.63,
     "comp_listings": 16,
     "comp_gewicht": 0.8,
-    "startrabatt_faktor": 0.9
+    "startrabatt_faktor": 1.0
   }
 }

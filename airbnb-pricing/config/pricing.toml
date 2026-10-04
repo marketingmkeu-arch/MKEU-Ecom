@@ -152,7 +152,9 @@ radius_bands_km = [0.5, 1.0, 2.0, 3.0, 5.0]
 [launch]
 # Neues Listing ohne Bewertungen: Startrabatt, bis ca. 5 Bewertungen vorliegen (dann active = false).
 # ANNAHME/Heuristik: Erste Bewertungen sind für Ranking und Conversion wichtiger als der Preis.
-active = true
+# Deaktiviert: Airbnb gewährt bereits automatisch ein "Gastgeber:innen-Angebot" für neue Inserate
+# (beobachtet 04.10.2026: -43,85 € auf 239,24 € = ca. -18 %). Sonst doppelter Rabatt.
+active = false
 discount = 0.10
 until_reviews = 5
 

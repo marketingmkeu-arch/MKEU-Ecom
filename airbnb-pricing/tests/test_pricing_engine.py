@@ -1,5 +1,5 @@
 import math
-from datetime import date
+from datetime import date, timedelta
 
 import pytest
 
@@ -118,8 +118,13 @@ def test_comp_base_blended_and_launch_discount(result):
     assert abs(d.base - expected) < 0.01
 
 
-def test_launch_discount_only_on_normal_days(result):
-    medica = _price(result, date(2026, 11, 17))
-    normal = _price(result, date(2026, 11, 24))
-    assert not any("Startrabatt" in r for r in medica.reasons)
+def test_launch_discount_only_on_normal_days():
+    cfg = load_config()
+    cfg["launch"]["active"] = True
+    bands = price_bands(120, cfg)
+    day = date(2027, 3, 2)
+    normal = price_day(_demand(day, 1.0, "normal"), bands, cfg, as_of=day - timedelta(days=40))
+    peak = price_day(_demand(day, 2.2, "Spitze", "S", cfg["events"]["tier_uplift"]["S"]), bands, cfg,
+                     as_of=day - timedelta(days=40))
     assert any("Startrabatt" in r for r in normal.reasons)
+    assert not any("Startrabatt" in r for r in peak.reasons)

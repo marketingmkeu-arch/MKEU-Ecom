@@ -9,10 +9,10 @@ _Automatisch erzeugt am 2026-10-04 durch `dynpricing`. Kalenderzeitraum: 2026-10
 > Alle Preise sind **Gastpreise pro Nacht inkl. aller Gebühren** (so zeigt Airbnb die Konkurrenz an). Den eigenen Preis in Airbnb so einstellen, dass die Gastansicht diesen Wert zeigt.
 
 - **Realistischer Normalpreis (Basis, Di ohne Event):** ca. **100 EUR**
-- **Normaler Wochentag (Mo–Do, Median):** 89 EUR · **Normales Wochenende (Fr/Sa, Median):** 99 EUR
+- **Normaler Wochentag (Mo–Do, Median):** 99 EUR · **Normales Wochenende (Fr/Sa, Median):** 109 EUR
 - **Minimum Price:** 79 EUR · **Maximum Price:** 299 EUR
 - **Stärkste Nachfragetreiber im Zeitraum:** MEDICA + COMPAMED 2026 (Ø 219 EUR, bis 219 EUR); glasstec 2026 (Ø 159 EUR, bis 159 EUR); Silvester (Ø 159 EUR, bis 159 EUR)
-- **Regulierung:** Ohne Zweckentfremdungsgenehmigung sind in Düsseldorf höchstens **90 Nächte pro Kalenderjahr** Kurzzeitvermietung erlaubt (Wohnraum-ID nötig). Die Strategie sollte deshalb die wertvollsten Nächte priorisieren (Messen, Wochenenden, Oktober) und keine Nacht unter dem Schattenpreis ({2027: 89} EUR) verkaufen – siehe Abschnitt 7.
+- **Regulierung:** Ohne Zweckentfremdungsgenehmigung sind in Düsseldorf höchstens **90 Nächte pro Kalenderjahr** Kurzzeitvermietung erlaubt (Wohnraum-ID nötig). Die Strategie sollte deshalb die wertvollsten Nächte priorisieren (Messen, Wochenenden, Oktober) und keine Nacht unter dem Schattenpreis ({2027: 99} EUR) verkaufen – siehe Abschnitt 7.
 
 ## 2. Marktanalyse
 
@@ -85,18 +85,18 @@ Saisonfaktoren sind **Modellannahmen** (Prior). Qualitativ gestützt durch AirRO
 
 | Monat | Saisonfaktor | Normaltage von | bis | Max. inkl. Events |
 |---|---|---|---|---|
-| Januar | 0.88 | 79 | 89 | 109 |
-| Februar | 0.92 | 79 | 99 | 159 |
-| März | 1.0 | 79 | 99 | 169 |
-| April | 1.02 | 79 | 99 | 149 |
-| Mai | 1.05 | 79 | 109 | 149 |
-| Juni | 1.03 | 79 | 109 | 159 |
-| Juli | 0.92 | 79 | 89 | 159 |
-| August | 0.92 | 79 | 89 | 139 |
-| September | 1.05 | 79 | 109 | 149 |
-| Oktober | 1.08 | 79 | 109 | 159 |
-| November | 1.0 | 79 | 99 | 219 |
-| Dezember | 0.95 | 79 | 89 | 159 |
+| Januar | 0.88 | 79 | 99 | 129 |
+| Februar | 0.92 | 79 | 109 | 159 |
+| März | 1.0 | 89 | 119 | 169 |
+| April | 1.02 | 89 | 109 | 149 |
+| Mai | 1.05 | 89 | 119 | 149 |
+| Juni | 1.03 | 89 | 119 | 159 |
+| Juli | 0.92 | 79 | 99 | 159 |
+| August | 0.92 | 79 | 99 | 139 |
+| September | 1.05 | 89 | 119 | 149 |
+| Oktober | 1.08 | 89 | 119 | 159 |
+| November | 1.0 | 89 | 119 | 219 |
+| Dezember | 0.95 | 79 | 99 | 159 |
 
 ## 6. Messe- und Eventanalyse
 
@@ -117,18 +117,18 @@ Die historische Preiswirkung je Event: **keine belastbaren Daten verfügbar** �
 | Japan-Tag Düsseldorf/NRW 2027 | 2027-05-22 | 2027-05-22 | B |  | 1.5 | 149 | 149 | 149 | low |
 | Die Toten Hosen (Stadion) | 2027-07-03 | 2027-07-04 | A |  | 5.9 | 139 | 149 | 159 | medium |
 | Uniper Düsseldorf Marathon | 2027-04-18 | 2027-04-18 | C |  | 1.5 | 129 | 129 | 129 | medium |
+| Sabaton (Konzert) | 2027-04-23 | 2027-04-23 | C |  | 6.2 | 129 | 129 | 129 | medium |
 | Die Ärzte (Konzert) | 2027-04-24 | 2027-04-24 | C |  | 6.2 | 129 | 129 | 129 | low |
-| Sabaton (Konzert) | 2027-04-23 | 2027-04-23 | C |  | 6.2 | 119 | 119 | 119 | medium |
-| Rheinkirmes 2027 | 2027-07-16 | 2027-07-25 | B |  | 2.1 | 109 | 119 | 149 | medium |
-| CARAVAN SALON 2027 | 2027-08-27 | 2027-09-05 | B | 269000 | 5.8 | 89 | 119 | 149 | high |
-| Düsseldorfer Weihnachtsmarkt 2026 | 2026-11-19 | 2026-12-30 | C |  | 1.7 | 79 | 109 | 119 | medium |
-| Disney on Ice | 2027-03-05 | 2027-03-07 | D |  | 6.2 | 109 | 109 | 109 | low |
-| Karnevalsauftakt 11.11. | 2026-11-11 | 2026-11-11 | C |  | 1.5 | 99 | 99 | 99 | high |
-| boot Düsseldorf 2027 | 2027-01-23 | 2027-01-31 | B |  | 5.8 | 89 | 99 | 109 | high |
-| IDS 2027 (Köln) | 2027-03-16 | 2027-03-20 | C |  | 33.2 | 99 | 99 | 109 | medium |
-| VALVE WORLD EXPO 2026 | 2026-12-01 | 2026-12-03 | C |  | 5.8 | 89 | 89 | 89 | medium |
-| EuroCIS 2027 | 2027-02-16 | 2027-02-18 | C |  | 5.8 | 89 | 89 | 89 | medium |
-| gamescom 2027 (Köln) | 2027-08-25 | 2027-08-29 | C |  | 33.2 | 89 | 89 | 89 | medium |
+| Rheinkirmes 2027 | 2027-07-16 | 2027-07-25 | B |  | 2.1 | 129 | 129 | 149 | medium |
+| CARAVAN SALON 2027 | 2027-08-27 | 2027-09-05 | B | 269000 | 5.8 | 99 | 129 | 149 | high |
+| Düsseldorfer Weihnachtsmarkt 2026 | 2026-11-19 | 2026-12-30 | C |  | 1.7 | 89 | 119 | 129 | medium |
+| Disney on Ice | 2027-03-05 | 2027-03-07 | D |  | 6.2 | 119 | 119 | 119 | low |
+| Karnevalsauftakt 11.11. | 2026-11-11 | 2026-11-11 | C |  | 1.5 | 109 | 109 | 109 | high |
+| boot Düsseldorf 2027 | 2027-01-23 | 2027-01-31 | B |  | 5.8 | 99 | 109 | 129 | high |
+| IDS 2027 (Köln) | 2027-03-16 | 2027-03-20 | C |  | 33.2 | 109 | 109 | 129 | medium |
+| VALVE WORLD EXPO 2026 | 2026-12-01 | 2026-12-03 | C |  | 5.8 | 99 | 99 | 99 | medium |
+| EuroCIS 2027 | 2027-02-16 | 2027-02-18 | C |  | 5.8 | 99 | 99 | 99 | medium |
+| gamescom 2027 (Köln) | 2027-08-25 | 2027-08-29 | C |  | 33.2 | 99 | 99 | 99 | medium |
 
 ## 7. Pricing Strategy
 
@@ -150,8 +150,6 @@ Die historische Preiswirkung je Event: **keine belastbaren Daten verfügbar** �
 3. ÷ nachfragegewichteter Ø-Index 1.1126 (die Markt-ADR enthält Wochenend- und Messenächte überproportional) = Marktbasis 117.98 EUR
 4. Mischung mit beobachteter Comp-Basis 90.63 EUR × Positionierung 1.05 (Gewicht 80% bei 16 Listings)
 = **Basis 99.73 EUR**
-
-Startrabatt: Solange das Listing neu ist (bis ca. 5 Bewertungen), werden Tage mit niedriger bis erhöhter Nachfrage um 10% günstiger angeboten. Messe- und Spitzentage sind ausgenommen. Danach `launch.active = false` setzen.
 
 ### Lead-Time-Strategie
 
@@ -181,7 +179,7 @@ Last-Minute-Rabatte gibt es **nur** bei normaler oder niedriger Nachfrage. Bei h
 Erlaubt sind 90 Nächte pro Kalenderjahr (Wohnraum-ID im Inserat, Buchungskalender führen). Ziel ist deshalb nicht maximale Auslastung, sondern **maximaler Erlös pro verbrauchter Nacht**.
 
 - Bei einer angenommenen Verkaufsquote von 60% werden je Jahr die wertvollsten Nächte freigegeben: {2026: 89, 2027: 150} (Spalte `Quota Recommendation`).
-- **Schattenpreis** je Jahr: {2027: 89} EUR. Alle anderen Nächte bleiben buchbar, aber nie unter diesem Preis – eine billig verkaufte Nacht fehlt später bei einer Messe.
+- **Schattenpreis** je Jahr: {2027: 99} EUR. Alle anderen Nächte bleiben buchbar, aber nie unter diesem Preis – eine billig verkaufte Nacht fehlt später bei einer Messe.
 - Genutzte Nächte laufend in `regulation.nights_already_used` eintragen; der nächste Lauf verteilt das Restkontingent neu.
 - Hartes Limit beachten: Bei 90 gebuchten Nächten im Kalenderjahr den Kalender für den Rest des Jahres schließen.
 
@@ -192,26 +190,26 @@ Vollständiger Tageskalender: `output/pricing_calendar_12m.csv`. Auszug: die nä
 | Datum | Wochentag | Base Price | Recommended Price | Event | Event Impact | Demand Level |
 |---|---|---|---|---|---|---|
 | 2026-10-04 | Sonntag | 99 | 79 |  |  | normal |
-| 2026-10-05 | Montag | 99 | 89 |  |  | normal |
-| 2026-10-06 | Dienstag | 99 | 89 |  |  | normal |
-| 2026-10-07 | Mittwoch | 99 | 89 |  |  | normal |
-| 2026-10-08 | Donnerstag | 99 | 89 |  |  | erhöht |
-| 2026-10-09 | Freitag | 99 | 99 |  |  | erhöht |
-| 2026-10-10 | Samstag | 99 | 109 |  |  | erhöht |
-| 2026-10-11 | Sonntag | 99 | 79 |  |  | normal |
-| 2026-10-12 | Montag | 99 | 89 |  |  | normal |
-| 2026-10-13 | Dienstag | 99 | 89 |  |  | normal |
-| 2026-10-14 | Mittwoch | 99 | 89 |  |  | normal |
-| 2026-10-15 | Donnerstag | 99 | 99 |  |  | erhöht |
-| 2026-10-16 | Freitag | 99 | 109 |  |  | erhöht |
-| 2026-10-17 | Samstag | 99 | 109 |  |  | erhöht |
-| 2026-10-18 | Sonntag | 99 | 79 |  |  | niedrig |
+| 2026-10-05 | Montag | 99 | 99 |  |  | normal |
+| 2026-10-06 | Dienstag | 99 | 99 |  |  | normal |
+| 2026-10-07 | Mittwoch | 99 | 99 |  |  | normal |
+| 2026-10-08 | Donnerstag | 99 | 99 |  |  | erhöht |
+| 2026-10-09 | Freitag | 99 | 119 |  |  | erhöht |
+| 2026-10-10 | Samstag | 99 | 119 |  |  | erhöht |
+| 2026-10-11 | Sonntag | 99 | 89 |  |  | normal |
+| 2026-10-12 | Montag | 99 | 99 |  |  | normal |
+| 2026-10-13 | Dienstag | 99 | 99 |  |  | normal |
+| 2026-10-14 | Mittwoch | 99 | 99 |  |  | normal |
+| 2026-10-15 | Donnerstag | 99 | 109 |  |  | erhöht |
+| 2026-10-16 | Freitag | 99 | 119 |  |  | erhöht |
+| 2026-10-17 | Samstag | 99 | 119 |  |  | erhöht |
+| 2026-10-18 | Sonntag | 99 | 89 |  |  | niedrig |
 | 2026-10-19 | Montag | 99 | 149 | glasstec 2026 | +44% (Tier A) | hoch |
 | 2026-10-20 | Dienstag | 99 | 159 | glasstec 2026 | +55% (Tier A) | hoch |
 | 2026-10-21 | Mittwoch | 99 | 159 | glasstec 2026 | +55% (Tier A) | hoch |
 | 2026-10-22 | Donnerstag | 99 | 159 | glasstec 2026 | +55% (Tier A) | hoch |
 | 2026-10-23 | Freitag | 99 | 139 | glasstec 2026 | +16% (Tier A) | hoch |
-| 2026-10-24 | Samstag | 99 | 109 |  |  | erhöht |
+| 2026-10-24 | Samstag | 99 | 119 |  |  | erhöht |
 
 **Top 15 Preistage:**
 
