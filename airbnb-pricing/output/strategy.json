@@ -375,8 +375,13 @@
     },
     "niedrige_nachfrage": 1
   },
-  "wochenrabatt": 0.1,
-  "monatsrabatt": 0.3,
+  "wochenrabatt": 0.05,
+  "monatsrabatt": 0.0,
+  "max_aufenthalt": 7,
+  "freigegebene_naechte_je_jahr": {
+    "2026": 89,
+    "2027": 150
+  },
   "lead_time_tabelle": [
     {
       "max_days": 0,
@@ -429,7 +434,6 @@
   ],
   "nacht_limit": 90,
   "schattenpreis_je_jahr": {
-    "2026": 99,
     "2027": 119
   },
   "basisherleitung": {

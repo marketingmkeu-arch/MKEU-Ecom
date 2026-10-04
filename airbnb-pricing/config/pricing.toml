@@ -32,6 +32,8 @@ annual_night_cap = 90
 assumed_sell_through = 0.6
 # Bereits genutzte genehmigungsfreie Nächte je Kalenderjahr (eigene Buchungsdaten eintragen)
 nights_already_used = { "2026" = 0, "2027" = 0 }
+# Nicht freigegebene Nächte nur zum Schattenpreis oder darüber anbieten (statt blockieren)
+floor_held_nights_at_shadow_price = true
 
 [market_anchor]
 # Gewichtete ADR der Nachbarviertel aus data/raw/market/market_aggregates.csv.
@@ -151,3 +153,10 @@ low_demand_min_nights = 1
 # Rabatt-Empfehlungen (ANNAHME / Heuristik, keine Marktbeobachtung)
 weekly_discount = 0.10
 monthly_discount = 0.30
+
+[length_of_stay.night_cap]
+# Gilt, solange regulation.annual_night_cap > 0: lange Aufenthalte verbrauchen das
+# Kontingent zu reduzierten Preisen -> kleinere Rabatte, kein Monatsrabatt, max. Aufenthalt.
+weekly_discount = 0.05
+monthly_discount = 0.0
+max_nights = 7

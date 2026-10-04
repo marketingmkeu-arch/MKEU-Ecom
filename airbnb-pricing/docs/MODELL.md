@@ -68,7 +68,10 @@ Ohne Genehmigung sind nur 90 Nächte pro Kalenderjahr erlaubt. Das ändert das Z
 zählt der Erlös je verbrauchter Nacht. Das Modell sortiert die Nächte jedes Kalenderjahres nach
 statischem Preis und gibt die besten `ceil((90 − genutzt) ÷ Verkaufsquote)` frei. Der niedrigste
 freigegebene Preis ist der **Schattenpreis**: Unterhalb davon lohnt sich der Verkauf einer Nacht nicht,
-weil sie später teurer verkauft werden könnte.
+weil sie später teurer verkauft werden könnte. Nicht freigegebene Nächte bleiben buchbar, werden aber
+mindestens zum Schattenpreis angeboten (`floor_held_nights_at_shadow_price`). Solange das Limit gilt,
+greifen die Aufenthaltsregeln aus `[length_of_stay.night_cap]`: Wochenrabatt 5 %, kein Monatsrabatt,
+max. 7 Nächte.
 
 ## 7. Mindestaufenthalt
 

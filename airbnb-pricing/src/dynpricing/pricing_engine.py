@@ -201,13 +201,16 @@ def apply_night_cap(prices: list[DayPrice], cfg: dict) -> dict[int, int] | None:
     """Bei 90-Nächte-Limit (pro Kalenderjahr): Nächte nach Wert priorisieren.
 
     Je Kalenderjahr werden die wertvollsten Nächte freigegeben, bis
-    (Limit - bereits genutzte Nächte) / Sell-Through erreicht ist.
-    Liefert je Jahr den Schattenpreis (niedrigster freigegebener Preis) oder None ohne Limit.
+    (Limit - bereits genutzte Nächte) / Sell-Through erreicht ist. Der niedrigste
+    freigegebene statische Preis ist der Schattenpreis: Zurückgehaltene Nächte werden
+    (optional) nicht darunter angeboten, weil jede verkaufte Nacht das Kontingent verbraucht.
+    Liefert je Jahr den Schattenpreis oder None ohne Limit.
     """
     reg = cfg["regulation"]
     cap = reg.get("annual_night_cap", 0)
     if not cap:
         return None
+    to_nine = cfg["output"].get("round_to_nine", False)
     used = {int(k): v for k, v in reg.get("nights_already_used", {}).items()}
     shadow: dict[int, int] = {}
     for year in sorted({p.demand.day.year for p in prices}):
@@ -216,9 +219,16 @@ def apply_night_cap(prices: list[DayPrice], cfg: dict) -> dict[int, int] | None:
         ranked = sorted(year_prices, key=lambda p: (p.static_price, p.demand.index), reverse=True)
         for rank, p in enumerate(ranked, start=1):
             p.quota_priority = rank
-            p.quota_recommendation = "freigeben" if rank <= open_n else "zurückhalten / Mittelfrist prüfen"
-        if open_n and ranked:
-            shadow[year] = ranked[min(open_n, len(ranked)) - 1].recommended
+            p.quota_recommendation = "freigeben" if rank <= open_n else "zurückhalten"
+        if open_n >= len(ranked) or not ranked:
+            continue
+        floor = round_price(ranked[open_n - 1].static_price, to_nine) if open_n else round_price(ranked[0].static_price, to_nine)
+        shadow[year] = floor
+        if reg.get("floor_held_nights_at_shadow_price", True):
+            for p in ranked[open_n:]:
+                if p.recommended < floor:
+                    p.recommended = floor
+                    p.reasons.append(f"90-Nächte-Limit: nicht unter Schattenpreis {floor} EUR verkaufen")
     return shadow
 
 

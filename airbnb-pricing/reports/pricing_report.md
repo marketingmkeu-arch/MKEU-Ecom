@@ -10,7 +10,7 @@ _Automatisch erzeugt am 2026-10-04 durch `dynpricing`. Kalenderzeitraum: 2026-10
 - **Normaler Wochentag (Mo–Do, Median):** 119 EUR · **Normales Wochenende (Fr/Sa, Median):** 139 EUR
 - **Minimum Price:** 92 EUR · **Maximum Price:** 354 EUR
 - **Stärkste Nachfragetreiber im Zeitraum:** MEDICA + COMPAMED 2026 (Ø 259 EUR, bis 259 EUR); glasstec 2026 (Ø 189 EUR, bis 189 EUR); ProWein 2027 (Ø 189 EUR, bis 189 EUR)
-- **Regulierung:** Ohne Zweckentfremdungsgenehmigung sind in Düsseldorf höchstens **90 Nächte pro Kalenderjahr** Kurzzeitvermietung erlaubt (Wohnraum-ID nötig). Die Strategie sollte deshalb die wertvollsten Nächte priorisieren (Messen, Wochenenden, Oktober) – siehe Abschnitt 7.
+- **Regulierung:** Ohne Zweckentfremdungsgenehmigung sind in Düsseldorf höchstens **90 Nächte pro Kalenderjahr** Kurzzeitvermietung erlaubt (Wohnraum-ID nötig). Die Strategie sollte deshalb die wertvollsten Nächte priorisieren (Messen, Wochenenden, Oktober) und keine Nacht unter dem Schattenpreis ({2027: 119} EUR) verkaufen – siehe Abschnitt 7.
 
 ## 2. Marktanalyse
 
@@ -136,11 +136,16 @@ Last-Minute-Rabatte gibt es **nur** bei normaler oder niedriger Nachfrage. Bei h
 
 - Standard 2 Nächte, Wochenende 2, Tier-S-Messen 3, Tage mit niedriger Nachfrage 1 (Lückenfüller).
 - Preise gelten für bis zu 2 Gäste. Zusatzgast-Gebühr und Reinigungsgebühr: **keine belastbaren Daten verfügbar** (keine Comp-Erhebung) – nach der ersten Comp-Erhebung am Median des Comp Sets ausrichten.
-- Wochenrabatt: 10% · Monatsrabatt: 30% (Heuristik, keine Marktbeobachtung; mit Comp-Daten überprüfen). Hinweis: Längere Aufenthalte verbrauchen das 90-Nächte-Kontingent schnell – rechtlich prüfen, ab welcher Dauer eine Vermietung nicht mehr als Kurzzeitvermietung zählt.
+- Wochenrabatt: 5% · **kein Monatsrabatt** · maximaler Aufenthalt 7 Nächte. Grund: Ein rabattierter Langaufenthalt verbraucht das 90-Nächte-Kontingent zu niedrigen Preisen (z. B. 30 Nächte mit 30 % Rabatt = ein Drittel des Jahreskontingents). Längere Anfragen nur annehmen, wenn der Nachtpreis über dem Schattenpreis liegt.
 
-### 90-Nächte-Limit
+### 90-Nächte-Limit (ohne Zweckentfremdungsgenehmigung)
 
-Bei 90 genehmigungsfreien Nächten pro Jahr und einer angenommenen Verkaufsquote von 60% gibt das Modell je Kalenderjahr die wertvollsten Nächte frei (Spalte `Quota Recommendation`). Schattenpreis = niedrigster Preis, zu dem noch freigegeben wird: {2026: 99, 2027: 119}. Gibt es eine Genehmigung, `annual_night_cap = 0` setzen.
+Erlaubt sind 90 Nächte pro Kalenderjahr (Wohnraum-ID im Inserat, Buchungskalender führen). Ziel ist deshalb nicht maximale Auslastung, sondern **maximaler Erlös pro verbrauchter Nacht**.
+
+- Bei einer angenommenen Verkaufsquote von 60% werden je Jahr die wertvollsten Nächte freigegeben: {2026: 89, 2027: 150} (Spalte `Quota Recommendation`).
+- **Schattenpreis** je Jahr: {2027: 119} EUR. Alle anderen Nächte bleiben buchbar, aber nie unter diesem Preis – eine billig verkaufte Nacht fehlt später bei einer Messe.
+- Genutzte Nächte laufend in `regulation.nights_already_used` eintragen; der nächste Lauf verteilt das Restkontingent neu.
+- Hartes Limit beachten: Bei 90 gebuchten Nächten im Kalenderjahr den Kalender für den Rest des Jahres schließen.
 
 ## 8. 12-Monats-Pricing-Kalender
 

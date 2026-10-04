@@ -14,8 +14,9 @@ Arbeitsreihenfolge wie vereinbart: 1. Ziel verstehen → 2. Datenquellen → 3. 
   Gruppen (Fr–So), Event-Besucher (Konzerte, Karneval).
 - **Wichtigste Nebenbedingung (neu erkannt):** Düsseldorfer Wohnraumschutzsatzung – ohne Genehmigung
   **max. 90 Nächte pro Kalenderjahr** und Pflicht zur Wohnraum-ID. Das verschiebt das Optimierungsziel von
-  „Auslastung“ zu „Erlös pro verbrauchter Nacht“. → **Offene Frage an den Eigentümer: Liegt eine
-  Zweckentfremdungsgenehmigung vor?**
+  „Auslastung“ zu „Erlös pro verbrauchter Nacht“. → **Geklärt: keine Genehmigung, das Limit von 90 Nächten gilt.**
+  Konsequenz im Modell: Freigabe der wertvollsten Nächte, nicht freigegebene Nächte nie unter dem
+  Schattenpreis, Wochenrabatt 5 %, kein Monatsrabatt, max. 7 Nächte pro Aufenthalt.
 
 ## 2. Verfügbare Datenquellen
 
@@ -94,7 +95,8 @@ Ergebnissen; jede Zahl im Report trägt Datenklasse und Quelle; jede Tagesempfeh
 1. **Sofort (MEDICA ist am 16.–19.11.2026, in 6 Wochen):** 15–25 Comps manuell erfassen
    (`comp_listings.csv`) und für ein Messedatum, einen Normal-Dienstag und ein Normal-Wochenende die
    angebotenen Preise erfassen (`price_snapshots.csv`). Danach wöchentlich wiederholen.
-2. Regulierungsstatus klären (Wohnraum-ID / Genehmigung) → `regulation.annual_night_cap`.
+2. Wohnraum-ID bei der Stadt Düsseldorf beantragen (kostenlos, Pflicht vor dem ersten Inserat) und
+   genutzte Nächte laufend in `regulation.nights_already_used` pflegen.
 3. Datenanbieter wählen (PriceLabs oder AirDNA) und Tagesdaten der letzten 24 Monate exportieren
    → `historical/market_daily.csv`. Damit: Faktoren kalibrieren, Event-Uplifts messen, Backtest
    (MEDICA 2025, boot 2026, ProWein 2026, CARAVAN SALON 2025).

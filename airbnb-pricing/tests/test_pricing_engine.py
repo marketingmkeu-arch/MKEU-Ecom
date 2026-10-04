@@ -96,3 +96,15 @@ def test_round_to_nine():
     assert round_price(131, True) == 129
     assert round_price(131.4, False) == 131
     assert round_price(92, True, floor=92) == 99
+
+
+def test_held_nights_not_sold_below_shadow_price(result):
+    shadow = result.shadow_prices[2027]
+    held = [p for p in result.prices if p.demand.day.year == 2027 and p.quota_recommendation == "zurückhalten"]
+    assert held
+    assert all(p.recommended >= shadow for p in held)
+
+
+def test_no_shadow_price_when_quota_covers_all_nights(result):
+    # Okt.–Dez. 2026: 89 Nächte im Fenster < 90 / 0,6 freigegebene Nächte
+    assert 2026 not in result.shadow_prices

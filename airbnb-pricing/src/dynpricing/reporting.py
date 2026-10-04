@@ -106,6 +106,12 @@ def strategy(result: RunResult) -> dict:
                 "saisonfaktor": cfg["season"][MONTH_KEYS[m - 1]],
             }
     los = cfg["length_of_stay"]
+    cap = cfg["regulation"].get("annual_night_cap", 0)
+    cap_los = los.get("night_cap", {}) if cap else {}
+    released = defaultdict(int)
+    for p in prices:
+        if p.quota_recommendation == "freigeben":
+            released[p.demand.day.year] += 1
     return {
         "as_of": result.as_of.isoformat(),
         # Preisgrenzen ungerundet auf 9er-Endung, damit die Stufen unterscheidbar bleiben
@@ -119,8 +125,10 @@ def strategy(result: RunResult) -> dict:
             "standard": los["default_min_nights"], "wochenende": los["weekend_min_nights"],
             "events": los["event_min_nights"], "niedrige_nachfrage": los["low_demand_min_nights"],
         },
-        "wochenrabatt": los["weekly_discount"],
-        "monatsrabatt": los["monthly_discount"],
+        "wochenrabatt": cap_los.get("weekly_discount", los["weekly_discount"]),
+        "monatsrabatt": cap_los.get("monthly_discount", los["monthly_discount"]),
+        "max_aufenthalt": cap_los.get("max_nights"),
+        "freigegebene_naechte_je_jahr": dict(released),
         "lead_time_tabelle": cfg["lead_time"]["buckets"],
         "nacht_limit": cfg["regulation"].get("annual_night_cap", 0),
         "schattenpreis_je_jahr": result.shadow_prices,
@@ -179,7 +187,8 @@ def write_report(result: RunResult, s: dict, path: Path) -> None:
     if cap:
         add(f"- **Regulierung:** Ohne Zweckentfremdungsgenehmigung sind in Düsseldorf höchstens **{cap} Nächte "
             "pro Kalenderjahr** Kurzzeitvermietung erlaubt (Wohnraum-ID nötig). Die Strategie sollte deshalb "
-            "die wertvollsten Nächte priorisieren (Messen, Wochenenden, Oktober) – siehe Abschnitt 7.")
+            "die wertvollsten Nächte priorisieren (Messen, Wochenenden, Oktober) und keine Nacht unter dem "
+            f"Schattenpreis ({s['schattenpreis_je_jahr']} EUR) verkaufen – siehe Abschnitt 7.")
     add("")
 
     add("## 2. Marktanalyse")
@@ -299,18 +308,32 @@ def write_report(result: RunResult, s: dict, path: Path) -> None:
         f"Tage mit niedriger Nachfrage {m['niedrige_nachfrage']} (Lückenfüller).")
     add("- Preise gelten für bis zu 2 Gäste. Zusatzgast-Gebühr und Reinigungsgebühr: **keine belastbaren "
         "Daten verfügbar** (keine Comp-Erhebung) – nach der ersten Comp-Erhebung am Median des Comp Sets ausrichten.")
-    add(f"- Wochenrabatt: {s['wochenrabatt']:.0%} · Monatsrabatt: {s['monatsrabatt']:.0%} "
-        "(Heuristik, keine Marktbeobachtung; mit Comp-Daten überprüfen). Hinweis: Längere Aufenthalte "
-        "verbrauchen das 90-Nächte-Kontingent schnell – rechtlich prüfen, ab welcher Dauer eine Vermietung "
-        "nicht mehr als Kurzzeitvermietung zählt.")
+    if cap:
+        add(f"- Wochenrabatt: {s['wochenrabatt']:.0%} · **kein Monatsrabatt** · maximaler Aufenthalt "
+            f"{s['max_aufenthalt']} Nächte. Grund: Ein rabattierter Langaufenthalt verbraucht das 90-Nächte-"
+            "Kontingent zu niedrigen Preisen (z. B. 30 Nächte mit 30 % Rabatt = ein Drittel des Jahreskontingents). "
+            "Längere Anfragen nur annehmen, wenn der Nachtpreis über dem Schattenpreis liegt.")
+    else:
+        add(f"- Wochenrabatt: {s['wochenrabatt']:.0%} · Monatsrabatt: {s['monatsrabatt']:.0%} "
+            "(Heuristik, keine Marktbeobachtung; mit Comp-Daten überprüfen).")
     add("")
     if cap:
-        add("### 90-Nächte-Limit")
+        reg = cfg["regulation"]
+        add("### 90-Nächte-Limit (ohne Zweckentfremdungsgenehmigung)")
         add("")
-        add(f"Bei {cap} genehmigungsfreien Nächten pro Jahr und einer angenommenen Verkaufsquote von "
-            f"{cfg['regulation']['assumed_sell_through']:.0%} gibt das Modell je Kalenderjahr die wertvollsten Nächte frei "
-            "(Spalte `Quota Recommendation`). Schattenpreis = niedrigster Preis, zu dem noch freigegeben "
-            f"wird: {s['schattenpreis_je_jahr']}. Gibt es eine Genehmigung, `annual_night_cap = 0` setzen.")
+        add(f"Erlaubt sind {cap} Nächte pro Kalenderjahr (Wohnraum-ID im Inserat, Buchungskalender führen). "
+            "Ziel ist deshalb nicht maximale Auslastung, sondern **maximaler Erlös pro verbrauchter Nacht**.")
+        add("")
+        add(f"- Bei einer angenommenen Verkaufsquote von {reg['assumed_sell_through']:.0%} werden je Jahr die "
+            f"wertvollsten Nächte freigegeben: {s['freigegebene_naechte_je_jahr']} (Spalte `Quota Recommendation`).")
+        if s["schattenpreis_je_jahr"]:
+            add(f"- **Schattenpreis** je Jahr: {s['schattenpreis_je_jahr']} EUR. Alle anderen Nächte bleiben buchbar, "
+                "aber nie unter diesem Preis – eine billig verkaufte Nacht fehlt später bei einer Messe.")
+        else:
+            add("- Im aktuellen Zeitraum reicht das Kontingent für alle freigegebenen Nächte; kein Schattenpreis nötig.")
+        add("- Genutzte Nächte laufend in `regulation.nights_already_used` eintragen; der nächste Lauf verteilt "
+            "das Restkontingent neu.")
+        add("- Hartes Limit beachten: Bei 90 gebuchten Nächten im Kalenderjahr den Kalender für den Rest des Jahres schließen.")
         add("")
 
     add("## 8. 12-Monats-Pricing-Kalender")
