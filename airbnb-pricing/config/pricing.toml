@@ -31,7 +31,7 @@ annual_night_cap = 90
 # ANNAHME: Anteil freigegebener Nächte, die tatsächlich gebucht werden
 assumed_sell_through = 0.6
 # Bereits genutzte genehmigungsfreie Nächte je Kalenderjahr (eigene Buchungsdaten eintragen)
-nights_already_used = { "2026" = 0, "2027" = 0 }
+nights_already_used = { "2026" = 2, "2027" = 0 }
 # Nicht freigegebene Nächte nur zum Schattenpreis oder darüber anbieten (statt blockieren)
 floor_held_nights_at_shadow_price = true
 
