@@ -87,7 +87,7 @@ def test_night_cap_marks_priorities(result):
 
 def test_base_calibrated_to_anchor(result):
     d = result.derivation
-    weighted_model_adr = sum(p.demand.index ** 2 for p in result.prices) / sum(p.demand.index for p in result.prices) * d.base
+    weighted_model_adr = sum(p.demand.index ** 2 for p in result.prices) / sum(p.demand.index for p in result.prices) * d.market_base
     assert abs(weighted_model_adr - d.adjusted_anchor) < 0.01
 
 
@@ -108,3 +108,18 @@ def test_held_nights_not_sold_below_shadow_price(result):
 def test_no_shadow_price_when_quota_covers_all_nights(result):
     # Okt.–Dez. 2026: 89 Nächte im Fenster < 90 / 0,6 freigegebene Nächte
     assert 2026 not in result.shadow_prices
+
+
+def test_comp_base_blended_and_launch_discount(result):
+    d = result.derivation
+    cfg = result.cfg
+    assert result.comp_base is not None and result.comp_base.n_listings >= 5
+    expected = (1 - d.comp_weight) * d.market_base + d.comp_weight * d.comp_base * cfg["competition"]["position_vs_median"]
+    assert abs(d.base - expected) < 0.01
+
+
+def test_launch_discount_only_on_normal_days(result):
+    medica = _price(result, date(2026, 11, 17))
+    normal = _price(result, date(2026, 11, 24))
+    assert not any("Startrabatt" in r for r in medica.reasons)
+    assert any("Startrabatt" in r for r in normal.reasons)

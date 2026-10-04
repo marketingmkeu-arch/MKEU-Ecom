@@ -1,1 +1,13 @@
-listing_id,snapshot_date,stay_date,nightly_price,total_price_2_guests,nights_queried,available,min_nights,price_type,observer
+listing_id,snapshot_date,stay_date,nightly_price,total_price,nights_queried,guests,available,min_nights,price_type,observer
+abnb_zentrale_gemuetliche_2zi,2026-10-04,2026-10-29,92.80,185.60,2,1,1,,angeboten; Nachtpreis laut Preisdetail (keine Gebühren angezeigt),Eigentümer (Screenshot)
+abnb_zentrale_gemuetliche_2zi,2026-10-04,2026-10-30,92.80,185.60,2,1,1,,angeboten; Nachtpreis laut Preisdetail (keine Gebühren angezeigt),Eigentümer (Screenshot)
+abnb_modern_renoviert_1zi,2026-10-04,2026-10-29,98.50,197.00,2,1,1,,angeboten; 95.50 Nacht + 6.00 Steuern auf 2 Nächte,Eigentümer (Screenshot)
+abnb_modern_renoviert_1zi,2026-10-04,2026-10-30,98.50,197.00,2,1,1,,angeboten; 95.50 Nacht + 6.00 Steuern auf 2 Nächte,Eigentümer (Screenshot)
+abnb_1sz_doppelbett_300,2026-10-04,2026-10-29,150.00,300.00,2,1,1,,angeboten; Gesamtpreis / 2 (Zusammensetzung unbekannt),Eigentümer (Screenshot)
+abnb_1sz_doppelbett_300,2026-10-04,2026-10-30,150.00,300.00,2,1,1,,angeboten; Gesamtpreis / 2 (Zusammensetzung unbekannt),Eigentümer (Screenshot)
+abnb_moderne_zentrale_495,2026-10-04,2026-10-29,92.50,185.00,2,1,1,,angeboten; Gesamtpreis / 2 nach Rabatt (vorher 211),Eigentümer (Screenshot)
+abnb_moderne_zentrale_495,2026-10-04,2026-10-30,92.50,185.00,2,1,1,,angeboten; Gesamtpreis / 2 nach Rabatt (vorher 211),Eigentümer (Screenshot)
+abnb_1sz_zentrum_superhost,2026-10-04,2026-10-29,92.50,185.00,2,1,1,,angeboten; Gesamtpreis / 2 nach Rabatt (vorher 211),Eigentümer (Screenshot)
+abnb_1sz_zentrum_superhost,2026-10-04,2026-10-30,92.50,185.00,2,1,1,,angeboten; Gesamtpreis / 2 nach Rabatt (vorher 211),Eigentümer (Screenshot)
+abnb_deluxe_balkon_altstadt,2026-10-04,2026-10-29,121.50,243.00,2,1,1,,angeboten; Gesamtpreis / 2 nach Rabatt (vorher 291),Eigentümer (Screenshot)
+abnb_deluxe_balkon_altstadt,2026-10-04,2026-10-30,121.50,243.00,2,1,1,,angeboten; Gesamtpreis / 2 nach Rabatt (vorher 291),Eigentümer (Screenshot)

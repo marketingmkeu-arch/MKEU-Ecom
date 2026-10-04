@@ -14,7 +14,7 @@ PROP = {"lat": 51.2125, "lon": 6.7665, "bedrooms": 1}
 
 
 def _comp(lid, lat, lon, size=60, entire=True):
-    return CompListing(lid, "Unterbilk", lat, lon, size, 1, 4, entire, True, True, True, 4.9, None, 2, None, None)
+    return CompListing(lid, "Unterbilk", lat, lon, size, 1, 4, entire, True, True, True, 4.9, 10, None, 2, None, None)
 
 
 def test_comp_classification():
@@ -83,3 +83,22 @@ def test_backtest_flags_underpriced_event_days():
 
 def test_spearman():
     assert spearman([1, 2, 3, 4], [10, 20, 30, 40]) == 1.0
+
+
+def test_base_from_snapshots_normalizes_by_demand_index():
+    from dynpricing.competitor_analysis import base_from_snapshots
+    rows = [
+        {"listing_id": "a", "stay_date": "2026-10-30", "nightly_price": "120", "available": "1"},
+        {"listing_id": "b", "stay_date": "2026-10-30", "nightly_price": "100", "available": "1"},
+        {"listing_id": "c", "stay_date": "2026-10-30", "nightly_price": "999", "available": "0"},
+    ]
+    cb = base_from_snapshots(rows, {"a", "b", "c"}, {date(2026, 10, 30): 1.25})
+    assert cb.n_listings == 2
+    assert cb.value == 88.0
+
+
+def test_comp_without_coordinates_is_at_most_limited():
+    c = CompListing("x", "?", None, None, None, 1, None, True, None, None, None, None, None, None, None, None, None)
+    (res,) = classify([c], PROP, [0.5, 1, 2, 3, 5])
+    assert res.distance_km is None
+    assert res.comp_class.startswith("eingeschränkt")

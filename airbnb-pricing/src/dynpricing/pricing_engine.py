@@ -39,6 +39,11 @@ class BaseDerivation:
     adjusted_anchor: float
     demand_weighted_index: float
     base: float
+    market_base: float = 0.0
+    comp_base: float | None = None
+    comp_n: int = 0
+    comp_weight: float = 0.0
+    launch_factor: float = 1.0
 
 
 def derive_base(anchor_adr: float, anchor_steps: list[str], demand: list[DayDemand], cfg: dict) -> BaseDerivation:
@@ -54,7 +59,27 @@ def derive_base(anchor_adr: float, anchor_steps: list[str], demand: list[DayDema
     idx = [d.index for d in demand]
     weighted = sum(i * i for i in idx) / sum(idx) if idx else 1.0
     base = adjusted / weighted if m.get("calibrate_base_to_anchor", True) else adjusted
-    return BaseDerivation(anchor_adr, anchor_steps, adjusted, weighted, base)
+    return BaseDerivation(anchor_adr, anchor_steps, adjusted, weighted, base, market_base=base)
+
+
+def blend_comp_base(d: BaseDerivation, comp_base: float | None, comp_n: int, cfg: dict) -> BaseDerivation:
+    """Marktbasis mit beobachteter Comp-Basis mischen; Startrabatt-Faktor festhalten.
+
+    Gewicht der Comps steigt mit der Zahl der Listings (beobachtete Daten schlagen
+    Anbieter-Aggregate), begrenzt auf base_blend_max_weight.
+    """
+    c = cfg["competition"]
+    weight = 0.0
+    base = d.market_base
+    if comp_base is not None and comp_n >= c.get("min_comps_for_base", 5):
+        weight = min(c["base_blend_max_weight"], comp_n * c["base_blend_per_listing"])
+        base = (1 - weight) * d.market_base + weight * comp_base * c["position_vs_median"]
+    launch = cfg.get("launch", {})
+    factor = 1 - launch.get("discount", 0.0) if launch.get("active") else 1.0
+    return BaseDerivation(
+        d.anchor_adr, d.anchor_steps, d.adjusted_anchor, d.demand_weighted_index, base,
+        market_base=d.market_base, comp_base=comp_base, comp_n=comp_n, comp_weight=weight, launch_factor=factor,
+    )
 
 
 def price_bands(base: float, cfg: dict) -> PriceBands:
@@ -169,6 +194,12 @@ def price_day(
         target = comp_median * cfg["competition"]["position_vs_median"]
         price = (1 - w) * price + w * target
         reasons.append(f"Comp-Median angeboten {comp_median:.0f} EUR (Gewicht {w:.0%}, Verfügbarkeit {comp.availability_ratio:.0%})")
+
+    launch = cfg.get("launch", {})
+    if launch.get("active") and d.level not in ("hoch", "Spitze"):
+        # Startrabatt nur an normalen Tagen; an Messe-/Spitzentagen bucht auch ein neues Listing
+        price *= 1 - launch["discount"]
+        reasons.append(f"Startrabatt neues Listing ({-launch['discount']:.0%})")
 
     static_price = min(max(price, bands.minimum), bands.maximum)
 

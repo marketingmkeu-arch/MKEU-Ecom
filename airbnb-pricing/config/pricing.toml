@@ -140,10 +140,21 @@ max_pace_adjustment = 0.10
 [competition]
 # Gewicht des beobachteten Comp-Medians (angebotene Preise) beim Mischen mit dem Modellpreis
 comp_blend_weight = 0.4
-# Positionierung ggü. Comp-Median (ANNAHME: renoviert + Balkon -> leicht über Median)
-position_vs_median = 1.03
+# Positionierung ggü. Comp-Median (ANNAHME: 60 m², 2 Zimmer, renoviert, Balkon -> über Median)
+position_vs_median = 1.05
 min_comps_for_blend = 5
+# Basispreis aus angebotenen Comp-Preisen: Gewicht je Listing, max. Gewicht, Mindestanzahl
+base_blend_per_listing = 0.1
+base_blend_max_weight = 0.8
+min_comps_for_base = 5
 radius_bands_km = [0.5, 1.0, 2.0, 3.0, 5.0]
+
+[launch]
+# Neues Listing ohne Bewertungen: Startrabatt, bis ca. 5 Bewertungen vorliegen (dann active = false).
+# ANNAHME/Heuristik: Erste Bewertungen sind für Ranking und Conversion wichtiger als der Preis.
+active = true
+discount = 0.10
+until_reviews = 5
 
 [length_of_stay]
 default_min_nights = 2

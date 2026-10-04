@@ -6,11 +6,11 @@ _Automatisch erzeugt am 2026-10-04 durch `dynpricing`. Kalenderzeitraum: 2026-10
 
 ## 1. Executive Summary
 
-- **Realistischer Normalpreis (Basis, Di ohne Event):** ca. **118 EUR**
-- **Normaler Wochentag (Mo–Do, Median):** 119 EUR · **Normales Wochenende (Fr/Sa, Median):** 139 EUR
-- **Minimum Price:** 92 EUR · **Maximum Price:** 354 EUR
-- **Stärkste Nachfragetreiber im Zeitraum:** MEDICA + COMPAMED 2026 (Ø 259 EUR, bis 259 EUR); glasstec 2026 (Ø 189 EUR, bis 189 EUR); ProWein 2027 (Ø 189 EUR, bis 189 EUR)
-- **Regulierung:** Ohne Zweckentfremdungsgenehmigung sind in Düsseldorf höchstens **90 Nächte pro Kalenderjahr** Kurzzeitvermietung erlaubt (Wohnraum-ID nötig). Die Strategie sollte deshalb die wertvollsten Nächte priorisieren (Messen, Wochenenden, Oktober) und keine Nacht unter dem Schattenpreis ({2027: 119} EUR) verkaufen – siehe Abschnitt 7.
+- **Realistischer Normalpreis (Basis, Di ohne Event):** ca. **102 EUR**
+- **Normaler Wochentag (Mo–Do, Median):** 89 EUR · **Normales Wochenende (Fr/Sa, Median):** 109 EUR
+- **Minimum Price:** 79 EUR · **Maximum Price:** 305 EUR
+- **Stärkste Nachfragetreiber im Zeitraum:** MEDICA + COMPAMED 2026 (Ø 219 EUR, bis 219 EUR); glasstec 2026 (Ø 169 EUR, bis 169 EUR); Die Toten Hosen (Stadion) (Ø 169 EUR, bis 169 EUR)
+- **Regulierung:** Ohne Zweckentfremdungsgenehmigung sind in Düsseldorf höchstens **90 Nächte pro Kalenderjahr** Kurzzeitvermietung erlaubt (Wohnraum-ID nötig). Die Strategie sollte deshalb die wertvollsten Nächte priorisieren (Messen, Wochenenden, Oktober) und keine Nacht unter dem Schattenpreis ({2027: 89} EUR) verkaufen – siehe Abschnitt 7.
 
 ## 2. Marktanalyse
 
@@ -39,7 +39,18 @@ Einordnung: Die Wohnung liegt in Unterbilk (Nähe Medienhafen, Bilk, Friedrichst
 
 ## 3. Comparable Listings
 
-**Keine belastbaren Daten verfügbar.** Es wurden keine Listing-Daten erhoben: Airbnb bietet keine öffentliche API für Marktdaten, und automatisiertes Auslesen der Website verstößt gegen die Nutzungsbedingungen. Das Comp Set wird daher über `data/raw/comps/comp_listings.csv` (manuell recherchierte Listings) oder über einen lizenzierten Anbieter (AirDNA, PriceLabs, Key Data) befüllt. Das Bewertungsschema (Lage 30, Größe 20, Schlafzimmer 15, gesamte Wohnung 15, Ausstattung 20 Punkte; ≥75 = vergleichbar, 55–74 = eingeschränkt) ist implementiert.
+| Listing | Viertel | Distanz km | Bewertung | Score | Klasse | Normaltag-Äquivalent EUR |
+|---|---|---|---|---|---|---|
+| abnb_deluxe_balkon_altstadt | Altstadt | unbekannt | 4.61 (84) | 71.0 | eingeschränkt vergleichbar (Lage unbekannt) | 110 |
+| abnb_zentrale_gemuetliche_2zi | unbekannt | unbekannt | – | 65.0 | eingeschränkt vergleichbar (Lage unbekannt) | 84 |
+| abnb_1sz_doppelbett_300 | unbekannt | unbekannt | – | 65.0 | eingeschränkt vergleichbar (Lage unbekannt) | 136 |
+| abnb_moderne_zentrale_495 | unbekannt | unbekannt | 4.95 (44) | 65.0 | eingeschränkt vergleichbar (Lage unbekannt) | 84 |
+| abnb_1sz_zentrum_superhost | unbekannt | unbekannt | 4.76 (38) | 65.0 | eingeschränkt vergleichbar (Lage unbekannt) | 84 |
+| abnb_modern_renoviert_1zi | unbekannt | unbekannt | – | 59.0 | eingeschränkt vergleichbar (Lage unbekannt) | 89 |
+
+Datenklasse 1 (direkt beobachtet): **angebotene** Preise aus Airbnb-Suchen, keine gezahlten Preise. „Normaltag-Äquivalent“ = angebotener Preis ÷ Nachfrageindex des Aufenthaltstags. Ohne Koordinaten gilt ein Listing höchstens als eingeschränkt vergleichbar.
+
+Median-Normaltag über 6 Listings (12 Beobachtungen): **86 EUR**. Einschränkungen: wenige Listings, nur ein Reisedatum, Lage und Größe teils unbekannt, „Gesamtpreis“ enthält je nach Listing Reinigung/Gebühren, mehrere Preise waren bereits rabattiert.
 
 ## 4. Historische Entwicklung
 
@@ -51,18 +62,18 @@ Saisonfaktoren sind **Modellannahmen** (Prior). Qualitativ gestützt durch AirRO
 
 | Monat | Saisonfaktor | Normaltage von | bis | Max. inkl. Events |
 |---|---|---|---|---|
-| Januar | 0.88 | 99 | 119 | 149 |
-| Februar | 0.92 | 99 | 129 | 189 |
-| März | 1.0 | 99 | 139 | 199 |
-| April | 1.02 | 109 | 139 | 179 |
-| Mai | 1.05 | 109 | 139 | 179 |
-| Juni | 1.03 | 109 | 139 | 189 |
-| Juli | 0.92 | 99 | 119 | 189 |
-| August | 0.92 | 99 | 119 | 159 |
-| September | 1.05 | 109 | 139 | 179 |
-| Oktober | 1.08 | 109 | 149 | 189 |
-| November | 1.0 | 99 | 139 | 259 |
-| Dezember | 0.95 | 99 | 109 | 179 |
+| Januar | 0.88 | 89 | 89 | 119 |
+| Februar | 0.92 | 89 | 99 | 169 |
+| März | 1.0 | 89 | 109 | 169 |
+| April | 1.02 | 89 | 109 | 149 |
+| Mai | 1.05 | 89 | 109 | 149 |
+| Juni | 1.03 | 89 | 109 | 159 |
+| Juli | 0.92 | 89 | 99 | 169 |
+| August | 0.92 | 89 | 89 | 139 |
+| September | 1.05 | 89 | 109 | 149 |
+| Oktober | 1.08 | 89 | 109 | 169 |
+| November | 1.0 | 89 | 109 | 219 |
+| Dezember | 0.95 | 89 | 89 | 159 |
 
 ## 6. Messe- und Eventanalyse
 
@@ -72,29 +83,29 @@ Die historische Preiswirkung je Event: **keine belastbaren Daten verfügbar** �
 
 | Event | Start | Ende | Tier | Besucher | Distanz km | Preis min | Ø | max | Datenqualität |
 |---|---|---|---|---|---|---|---|---|---|
-| MEDICA + COMPAMED 2026 | 2026-11-16 | 2026-11-19 | S | 80000 | 5.8 | 259 | 259 | 259 | high |
-| glasstec 2026 | 2026-10-20 | 2026-10-23 | A | 32023 | 5.8 | 189 | 189 | 189 | medium |
-| ProWein 2027 | 2027-03-07 | 2027-03-09 | A | 31000 | 5.8 | 179 | 189 | 189 | high |
-| GIFA / METEC / THERMPROCESS / NEWCAST 2027 | 2027-06-21 | 2027-06-25 | A |  | 5.8 | 189 | 189 | 189 | medium |
-| Die Toten Hosen (Stadion) | 2027-07-10 | 2027-07-10 | A |  | 5.9 | 189 | 189 | 189 | medium |
-| Silvester | 2026-12-31 | 2026-12-31 | A |  | 1.5 | 179 | 179 | 179 | high |
-| Straßenkarneval (Weiberfastnacht bis Rosenmontag) | 2027-02-04 | 2027-02-08 | A |  | 1.5 | 169 | 179 | 189 | high |
-| BEAUTY DÜSSELDORF + TOP HAIR 2027 | 2027-04-09 | 2027-04-11 | B |  | 5.8 | 169 | 179 | 179 | medium |
-| Japan-Tag Düsseldorf/NRW 2027 | 2027-05-22 | 2027-05-22 | B |  | 1.5 | 179 | 179 | 179 | low |
-| Die Toten Hosen (Stadion) | 2027-07-03 | 2027-07-04 | A |  | 5.9 | 169 | 179 | 189 | medium |
-| Uniper Düsseldorf Marathon | 2027-04-18 | 2027-04-18 | C |  | 1.5 | 159 | 159 | 159 | medium |
-| Die Ärzte (Konzert) | 2027-04-24 | 2027-04-24 | C |  | 6.2 | 159 | 159 | 159 | low |
-| Rheinkirmes 2027 | 2027-07-16 | 2027-07-25 | B |  | 2.1 | 149 | 159 | 169 | medium |
-| Sabaton (Konzert) | 2027-04-23 | 2027-04-23 | C |  | 6.2 | 149 | 149 | 149 | medium |
-| CARAVAN SALON 2027 | 2027-08-27 | 2027-09-05 | B | 269000 | 5.8 | 119 | 149 | 179 | high |
-| Düsseldorfer Weihnachtsmarkt 2026 | 2026-11-19 | 2026-12-30 | C |  | 1.7 | 109 | 139 | 149 | medium |
-| Disney on Ice | 2027-03-05 | 2027-03-07 | D |  | 6.2 | 139 | 139 | 139 | low |
-| IDS 2027 (Köln) | 2027-03-16 | 2027-03-20 | C |  | 33.2 | 129 | 139 | 149 | medium |
-| Karnevalsauftakt 11.11. | 2026-11-11 | 2026-11-11 | C |  | 1.5 | 129 | 129 | 129 | high |
-| boot Düsseldorf 2027 | 2027-01-23 | 2027-01-31 | B |  | 5.8 | 119 | 129 | 149 | high |
-| VALVE WORLD EXPO 2026 | 2026-12-01 | 2026-12-03 | C |  | 5.8 | 119 | 119 | 119 | medium |
-| EuroCIS 2027 | 2027-02-16 | 2027-02-18 | C |  | 5.8 | 119 | 119 | 119 | medium |
-| gamescom 2027 (Köln) | 2027-08-25 | 2027-08-29 | C |  | 33.2 | 119 | 119 | 119 | medium |
+| MEDICA + COMPAMED 2026 | 2026-11-16 | 2026-11-19 | S | 80000 | 5.8 | 219 | 219 | 219 | high |
+| glasstec 2026 | 2026-10-20 | 2026-10-23 | A | 32023 | 5.8 | 169 | 169 | 169 | medium |
+| Die Toten Hosen (Stadion) | 2027-07-10 | 2027-07-10 | A |  | 5.9 | 169 | 169 | 169 | medium |
+| Silvester | 2026-12-31 | 2026-12-31 | A |  | 1.5 | 159 | 159 | 159 | high |
+| Straßenkarneval (Weiberfastnacht bis Rosenmontag) | 2027-02-04 | 2027-02-08 | A |  | 1.5 | 149 | 159 | 169 | high |
+| ProWein 2027 | 2027-03-07 | 2027-03-09 | A | 31000 | 5.8 | 159 | 159 | 159 | high |
+| GIFA / METEC / THERMPROCESS / NEWCAST 2027 | 2027-06-21 | 2027-06-25 | A |  | 5.8 | 159 | 159 | 159 | medium |
+| Die Toten Hosen (Stadion) | 2027-07-03 | 2027-07-04 | A |  | 5.9 | 149 | 159 | 169 | medium |
+| BEAUTY DÜSSELDORF + TOP HAIR 2027 | 2027-04-09 | 2027-04-11 | B |  | 5.8 | 149 | 149 | 149 | medium |
+| Japan-Tag Düsseldorf/NRW 2027 | 2027-05-22 | 2027-05-22 | B |  | 1.5 | 149 | 149 | 149 | low |
+| Uniper Düsseldorf Marathon | 2027-04-18 | 2027-04-18 | C |  | 1.5 | 129 | 129 | 129 | medium |
+| Die Ärzte (Konzert) | 2027-04-24 | 2027-04-24 | C |  | 6.2 | 129 | 129 | 129 | low |
+| Rheinkirmes 2027 | 2027-07-16 | 2027-07-25 | B |  | 2.1 | 119 | 129 | 149 | medium |
+| Sabaton (Konzert) | 2027-04-23 | 2027-04-23 | C |  | 6.2 | 119 | 119 | 119 | medium |
+| CARAVAN SALON 2027 | 2027-08-27 | 2027-09-05 | B | 269000 | 5.8 | 89 | 119 | 149 | high |
+| Düsseldorfer Weihnachtsmarkt 2026 | 2026-11-19 | 2026-12-30 | C |  | 1.7 | 89 | 109 | 119 | medium |
+| Disney on Ice | 2027-03-05 | 2027-03-07 | D |  | 6.2 | 109 | 109 | 109 | low |
+| Karnevalsauftakt 11.11. | 2026-11-11 | 2026-11-11 | C |  | 1.5 | 99 | 99 | 99 | high |
+| VALVE WORLD EXPO 2026 | 2026-12-01 | 2026-12-03 | C |  | 5.8 | 99 | 99 | 99 | medium |
+| boot Düsseldorf 2027 | 2027-01-23 | 2027-01-31 | B |  | 5.8 | 89 | 99 | 119 | high |
+| IDS 2027 (Köln) | 2027-03-16 | 2027-03-20 | C |  | 33.2 | 99 | 99 | 119 | medium |
+| EuroCIS 2027 | 2027-02-16 | 2027-02-18 | C |  | 5.8 | 89 | 89 | 89 | medium |
+| gamescom 2027 (Köln) | 2027-08-25 | 2027-08-29 | C |  | 33.2 | 89 | 89 | 89 | medium |
 
 ## 7. Pricing Strategy
 
@@ -102,18 +113,22 @@ Die historische Preiswirkung je Event: **keine belastbaren Daten verfügbar** �
 
 | Stufe | EUR |
 |---|---|
-| Minimum Price | 92 |
-| Normal/Base Price | 118 |
-| Target Price | 124 |
-| High-Demand Price | 159 |
-| Event Price | 201 |
-| Maximum Price | 354 |
+| Minimum Price | 79 |
+| Normal/Base Price | 102 |
+| Target Price | 107 |
+| High-Demand Price | 137 |
+| Event Price | 173 |
+| Maximum Price | 305 |
 
 ### Herleitung Basispreis
 
 1. Anker-ADR Nachbarviertel: Unterbilk: 139 EUR × 0.50 + Friedrichstadt: 147 EUR × 0.20 + Bilk: 109 EUR × 0.30 = **131.6 EUR**
 2. × Größenanpassung 0.95 × Qualitätsaufschlag 1.05 = 131.27 EUR (Annahmen)
-3. ÷ nachfragegewichteter Ø-Index 1.1126 (die Markt-ADR enthält Wochenend- und Messenächte überproportional) = **Basis 117.98 EUR**
+3. ÷ nachfragegewichteter Ø-Index 1.1126 (die Markt-ADR enthält Wochenend- und Messenächte überproportional) = Marktbasis 117.98 EUR
+4. Mischung mit beobachteter Comp-Basis 86.41 EUR × Positionierung 1.05 (Gewicht 60% bei 6 Listings)
+= **Basis 101.63 EUR**
+
+Startrabatt: Solange das Listing neu ist (bis ca. 5 Bewertungen), werden Tage mit niedriger bis erhöhter Nachfrage um 10% günstiger angeboten. Messe- und Spitzentage sind ausgenommen. Danach `launch.active = false` setzen.
 
 ### Lead-Time-Strategie
 
@@ -143,7 +158,7 @@ Last-Minute-Rabatte gibt es **nur** bei normaler oder niedriger Nachfrage. Bei h
 Erlaubt sind 90 Nächte pro Kalenderjahr (Wohnraum-ID im Inserat, Buchungskalender führen). Ziel ist deshalb nicht maximale Auslastung, sondern **maximaler Erlös pro verbrauchter Nacht**.
 
 - Bei einer angenommenen Verkaufsquote von 60% werden je Jahr die wertvollsten Nächte freigegeben: {2026: 89, 2027: 150} (Spalte `Quota Recommendation`).
-- **Schattenpreis** je Jahr: {2027: 119} EUR. Alle anderen Nächte bleiben buchbar, aber nie unter diesem Preis – eine billig verkaufte Nacht fehlt später bei einer Messe.
+- **Schattenpreis** je Jahr: {2027: 89} EUR. Alle anderen Nächte bleiben buchbar, aber nie unter diesem Preis – eine billig verkaufte Nacht fehlt später bei einer Messe.
 - Genutzte Nächte laufend in `regulation.nights_already_used` eintragen; der nächste Lauf verteilt das Restkontingent neu.
 - Hartes Limit beachten: Bei 90 gebuchten Nächten im Kalenderjahr den Kalender für den Rest des Jahres schließen.
 
@@ -153,47 +168,47 @@ Vollständiger Tageskalender: `output/pricing_calendar_12m.csv`. Auszug: die nä
 
 | Datum | Wochentag | Base Price | Recommended Price | Event | Event Impact | Demand Level |
 |---|---|---|---|---|---|---|
-| 2026-10-04 | Sonntag | 119 | 99 |  |  | normal |
-| 2026-10-05 | Montag | 119 | 109 |  |  | normal |
-| 2026-10-06 | Dienstag | 119 | 109 |  |  | normal |
-| 2026-10-07 | Mittwoch | 119 | 109 |  |  | normal |
-| 2026-10-08 | Donnerstag | 119 | 119 |  |  | erhöht |
-| 2026-10-09 | Freitag | 119 | 139 |  |  | erhöht |
-| 2026-10-10 | Samstag | 119 | 139 |  |  | erhöht |
-| 2026-10-11 | Sonntag | 119 | 109 |  |  | normal |
-| 2026-10-12 | Montag | 119 | 119 |  |  | normal |
-| 2026-10-13 | Dienstag | 119 | 119 |  |  | normal |
-| 2026-10-14 | Mittwoch | 119 | 119 |  |  | normal |
-| 2026-10-15 | Donnerstag | 119 | 129 |  |  | erhöht |
-| 2026-10-16 | Freitag | 119 | 139 |  |  | erhöht |
-| 2026-10-17 | Samstag | 119 | 139 |  |  | erhöht |
-| 2026-10-18 | Sonntag | 119 | 99 |  |  | niedrig |
-| 2026-10-19 | Montag | 119 | 179 | glasstec 2026 | +44% (Tier A) | hoch |
-| 2026-10-20 | Dienstag | 119 | 189 | glasstec 2026 | +55% (Tier A) | hoch |
-| 2026-10-21 | Mittwoch | 119 | 189 | glasstec 2026 | +55% (Tier A) | hoch |
-| 2026-10-22 | Donnerstag | 119 | 189 | glasstec 2026 | +55% (Tier A) | hoch |
-| 2026-10-23 | Freitag | 119 | 159 | glasstec 2026 | +16% (Tier A) | hoch |
-| 2026-10-24 | Samstag | 119 | 139 |  |  | erhöht |
+| 2026-10-04 | Sonntag | 99 | 89 |  |  | normal |
+| 2026-10-05 | Montag | 99 | 89 |  |  | normal |
+| 2026-10-06 | Dienstag | 99 | 89 |  |  | normal |
+| 2026-10-07 | Mittwoch | 99 | 89 |  |  | normal |
+| 2026-10-08 | Donnerstag | 99 | 89 |  |  | erhöht |
+| 2026-10-09 | Freitag | 99 | 109 |  |  | erhöht |
+| 2026-10-10 | Samstag | 99 | 109 |  |  | erhöht |
+| 2026-10-11 | Sonntag | 99 | 89 |  |  | normal |
+| 2026-10-12 | Montag | 99 | 89 |  |  | normal |
+| 2026-10-13 | Dienstag | 99 | 89 |  |  | normal |
+| 2026-10-14 | Mittwoch | 99 | 89 |  |  | normal |
+| 2026-10-15 | Donnerstag | 99 | 99 |  |  | erhöht |
+| 2026-10-16 | Freitag | 99 | 109 |  |  | erhöht |
+| 2026-10-17 | Samstag | 99 | 109 |  |  | erhöht |
+| 2026-10-18 | Sonntag | 99 | 89 |  |  | niedrig |
+| 2026-10-19 | Montag | 99 | 149 | glasstec 2026 | +44% (Tier A) | hoch |
+| 2026-10-20 | Dienstag | 99 | 169 | glasstec 2026 | +55% (Tier A) | hoch |
+| 2026-10-21 | Mittwoch | 99 | 169 | glasstec 2026 | +55% (Tier A) | hoch |
+| 2026-10-22 | Donnerstag | 99 | 169 | glasstec 2026 | +55% (Tier A) | hoch |
+| 2026-10-23 | Freitag | 99 | 139 | glasstec 2026 | +16% (Tier A) | hoch |
+| 2026-10-24 | Samstag | 99 | 109 |  |  | erhöht |
 
 **Top 15 Preistage:**
 
 | Datum | Wochentag | Base Price | Recommended Price | Event | Event Impact | Demand Level | Begründung |
 |---|---|---|---|---|---|---|---|
-| 2026-11-16 | Montag | 119 | 259 | MEDICA + COMPAMED 2026 | +120% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20 |
-| 2026-11-17 | Dienstag | 119 | 259 | MEDICA + COMPAMED 2026 | +120% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20 |
-| 2026-11-18 | Mittwoch | 119 | 259 | MEDICA + COMPAMED 2026 | +120% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20 |
-| 2026-11-15 | Sonntag | 119 | 229 | MEDICA + COMPAMED 2026 | +96% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+96%); Nachfrageindex 1.96 |
-| 2027-03-06 | Samstag | 119 | 219 | ProWein 2027 + Disney on Ice | +47% (Tier A) | hoch | Saison 1.00; Wochentag 1.15; Event: ProWein 2027 + Disney on Ice (+47%); Nachfrageindex 1.68; Vorlauf 153 T (+10%, Modus high) |
-| 2027-02-05 | Freitag | 119 | 209 | Straßenkarneval (Weiberfastnacht bis Rosenmontag) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.12; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.60; Vorlauf 124 T (+10%, Modus high) |
-| 2027-02-06 | Samstag | 119 | 209 | Straßenkarneval (Weiberfastnacht bis Rosenmontag) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.15; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.64; Vorlauf 125 T (+10%, Modus high) |
-| 2027-03-07 | Sonntag | 119 | 209 | ProWein 2027 + Disney on Ice | +58% (Tier A) | hoch | Saison 1.00; Wochentag 1.00; Event: ProWein 2027 + Disney on Ice (+58%); Nachfrageindex 1.57; Vorlauf 154 T (+10%, Modus high) |
-| 2027-06-21 | Montag | 119 | 209 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | +55% (Tier A) | hoch | Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 260 T (+10%, Modus high) |
-| 2027-06-22 | Dienstag | 119 | 209 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | +55% (Tier A) | hoch | Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 261 T (+10%, Modus high) |
-| 2027-06-23 | Mittwoch | 119 | 209 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | +55% (Tier A) | hoch | Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 262 T (+10%, Modus high) |
-| 2027-06-24 | Donnerstag | 119 | 209 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | +55% (Tier A) | hoch | Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 263 T (+10%, Modus high) |
-| 2027-07-03 | Samstag | 119 | 209 | Die Toten Hosen (Stadion) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.15; Event: Die Toten Hosen (Stadion) (+55%); Nachfrageindex 1.64; Vorlauf 272 T (+10%, Modus high) |
-| 2027-07-10 | Samstag | 119 | 209 | Die Toten Hosen (Stadion) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.15; Event: Die Toten Hosen (Stadion) (+55%); Nachfrageindex 1.64; Vorlauf 279 T (+10%, Modus high) |
-| 2027-03-08 | Montag | 119 | 199 | ProWein 2027 | +55% (Tier A) | hoch | Saison 1.00; Wochentag 1.00; Event: ProWein 2027 (+55%); Nachfrageindex 1.55; Vorlauf 155 T (+10%, Modus high) |
+| 2026-11-16 | Montag | 99 | 219 | MEDICA + COMPAMED 2026 | +120% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20 |
+| 2026-11-17 | Dienstag | 99 | 219 | MEDICA + COMPAMED 2026 | +120% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20 |
+| 2026-11-18 | Mittwoch | 99 | 219 | MEDICA + COMPAMED 2026 | +120% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20 |
+| 2026-11-15 | Sonntag | 99 | 199 | MEDICA + COMPAMED 2026 | +96% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+96%); Nachfrageindex 1.96 |
+| 2027-03-06 | Samstag | 99 | 189 | ProWein 2027 + Disney on Ice | +47% (Tier A) | hoch | Saison 1.00; Wochentag 1.15; Event: ProWein 2027 + Disney on Ice (+47%); Nachfrageindex 1.68; Vorlauf 153 T (+10%, Modus high) |
+| 2027-02-05 | Freitag | 99 | 179 | Straßenkarneval (Weiberfastnacht bis Rosenmontag) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.12; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.60; Vorlauf 124 T (+10%, Modus high) |
+| 2027-02-06 | Samstag | 99 | 179 | Straßenkarneval (Weiberfastnacht bis Rosenmontag) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.15; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.64; Vorlauf 125 T (+10%, Modus high) |
+| 2027-03-07 | Sonntag | 99 | 179 | ProWein 2027 + Disney on Ice | +58% (Tier A) | hoch | Saison 1.00; Wochentag 1.00; Event: ProWein 2027 + Disney on Ice (+58%); Nachfrageindex 1.57; Vorlauf 154 T (+10%, Modus high) |
+| 2027-06-21 | Montag | 99 | 179 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | +55% (Tier A) | hoch | Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 260 T (+10%, Modus high) |
+| 2027-06-22 | Dienstag | 99 | 179 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | +55% (Tier A) | hoch | Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 261 T (+10%, Modus high) |
+| 2027-06-23 | Mittwoch | 99 | 179 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | +55% (Tier A) | hoch | Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 262 T (+10%, Modus high) |
+| 2027-06-24 | Donnerstag | 99 | 179 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | +55% (Tier A) | hoch | Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 263 T (+10%, Modus high) |
+| 2027-07-03 | Samstag | 99 | 179 | Die Toten Hosen (Stadion) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.15; Event: Die Toten Hosen (Stadion) (+55%); Nachfrageindex 1.64; Vorlauf 272 T (+10%, Modus high) |
+| 2027-07-10 | Samstag | 99 | 179 | Die Toten Hosen (Stadion) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.15; Event: Die Toten Hosen (Stadion) (+55%); Nachfrageindex 1.64; Vorlauf 279 T (+10%, Modus high) |
+| 2026-10-20 | Dienstag | 99 | 169 | glasstec 2026 | +55% (Tier A) | hoch | Saison 1.08; Wochentag 1.00; Schulferien NRW (-3%); Event: glasstec 2026 (+55%); Nachfrageindex 1.62 |
 
 ## 9. Datenqualität
 

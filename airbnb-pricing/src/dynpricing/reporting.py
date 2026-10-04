@@ -138,6 +138,11 @@ def strategy(result: RunResult) -> dict:
             "angepasste_anker_adr": round(result.derivation.adjusted_anchor, 2),
             "nachfragegewichteter_index": round(result.derivation.demand_weighted_index, 4),
             "basis": round(result.derivation.base, 2),
+            "marktbasis": round(result.derivation.market_base, 2),
+            "comp_basis": round(result.derivation.comp_base, 2) if result.derivation.comp_base else None,
+            "comp_listings": result.derivation.comp_n,
+            "comp_gewicht": result.derivation.comp_weight,
+            "startrabatt_faktor": result.derivation.launch_factor,
         },
     }
 
@@ -210,13 +215,24 @@ def write_report(result: RunResult, s: dict, path: Path) -> None:
     add("## 3. Comparable Listings")
     add("")
     if result.comps:
+        cb = result.comp_base
         add(_md_table(
-            ["Listing", "Viertel", "Distanz km", "Radius", "m²", "Score", "Klasse"],
-            [[c.listing_id, c.neighbourhood, round(c.distance_km, 2), c.radius_band_km, c.size_m2, c.score, c.comp_class]
+            ["Listing", "Viertel", "Distanz km", "Bewertung", "Score", "Klasse", "Normaltag-Äquivalent EUR"],
+            [[c.listing_id, c.neighbourhood, round(c.distance_km, 2) if c.distance_km is not None else "unbekannt",
+              f"{c.rating} ({c.reviews_count:.0f})" if c.rating else "–", c.score, c.comp_class,
+              round(cb.normalized[c.listing_id]) if cb and c.listing_id in cb.normalized else "–"]
              for c in result.comps],
         ))
         add("")
-        add(f"Davon wirklich vergleichbar: {len(comps_ok)}.")
+        add("Datenklasse 1 (direkt beobachtet): **angebotene** Preise aus Airbnb-Suchen, keine gezahlten Preise. "
+            "„Normaltag-Äquivalent“ = angebotener Preis ÷ Nachfrageindex des Aufenthaltstags. Ohne Koordinaten "
+            "gilt ein Listing höchstens als eingeschränkt vergleichbar.")
+        if cb:
+            add("")
+            add(f"Median-Normaltag über {cb.n_listings} Listings ({cb.n_observations} Beobachtungen): "
+                f"**{cb.value:.0f} EUR**. Einschränkungen: wenige Listings, nur ein Reisedatum, Lage und Größe "
+                "teils unbekannt, „Gesamtpreis“ enthält je nach Listing Reinigung/Gebühren, mehrere Preise "
+                "waren bereits rabattiert.")
     else:
         add("**Keine belastbaren Daten verfügbar.** Es wurden keine Listing-Daten erhoben: Airbnb bietet keine "
             "öffentliche API für Marktdaten, und automatisiertes Auslesen der Website verstößt gegen die "
@@ -282,7 +298,16 @@ def write_report(result: RunResult, s: dict, path: Path) -> None:
     add(f"2. × Größenanpassung {cfg['market_anchor']['unit_size_adjustment']} × Qualitätsaufschlag "
         f"{cfg['market_anchor']['quality_premium']} = {d['angepasste_anker_adr']} EUR (Annahmen)")
     add(f"3. ÷ nachfragegewichteter Ø-Index {d['nachfragegewichteter_index']} (die Markt-ADR enthält "
-        f"Wochenend- und Messenächte überproportional) = **Basis {d['basis']} EUR**")
+        f"Wochenend- und Messenächte überproportional) = Marktbasis {d['marktbasis']} EUR")
+    if d["comp_basis"]:
+        add(f"4. Mischung mit beobachteter Comp-Basis {d['comp_basis']} EUR × Positionierung "
+            f"{cfg['competition']['position_vs_median']} (Gewicht {d['comp_gewicht']:.0%} bei {d['comp_listings']} Listings)")
+    add(f"= **Basis {d['basis']} EUR**")
+    if d["startrabatt_faktor"] != 1.0:
+        add("")
+        add(f"Startrabatt: Solange das Listing neu ist (bis ca. {cfg['launch']['until_reviews']} Bewertungen), werden "
+            f"Tage mit niedriger bis erhöhter Nachfrage um {1 - d['startrabatt_faktor']:.0%} günstiger angeboten. "
+            "Messe- und Spitzentage sind ausgenommen. Danach `launch.active = false` setzen.")
     add("")
     add("### Lead-Time-Strategie")
     add("")

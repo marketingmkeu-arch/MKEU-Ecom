@@ -1,87 +1,87 @@
 {
   "as_of": "2026-10-04",
-  "basispreis": 118,
+  "basispreis": 102,
   "preisgrenzen": {
-    "Minimum Price": 92,
-    "Normal/Base Price": 118,
-    "Target Price": 124,
-    "High-Demand Price": 159,
-    "Event Price": 201,
-    "Maximum Price": 354
+    "Minimum Price": 79,
+    "Normal/Base Price": 102,
+    "Target Price": 107,
+    "High-Demand Price": 137,
+    "Event Price": 173,
+    "Maximum Price": 305
   },
-  "normaler_wochentagspreis_mo_do": 119,
-  "normaler_wochenendpreis_fr_sa": 139,
+  "normaler_wochentagspreis_mo_do": 89,
+  "normaler_wochenendpreis_fr_sa": 109,
   "saisonale_preisbereiche": {
     "Januar": {
-      "normal_min": 99,
-      "normal_max": 119,
-      "inkl_events_max": 149,
+      "normal_min": 89,
+      "normal_max": 89,
+      "inkl_events_max": 119,
       "saisonfaktor": 0.88
     },
     "Februar": {
-      "normal_min": 99,
-      "normal_max": 129,
-      "inkl_events_max": 189,
+      "normal_min": 89,
+      "normal_max": 99,
+      "inkl_events_max": 169,
       "saisonfaktor": 0.92
     },
     "März": {
-      "normal_min": 99,
-      "normal_max": 139,
-      "inkl_events_max": 199,
+      "normal_min": 89,
+      "normal_max": 109,
+      "inkl_events_max": 169,
       "saisonfaktor": 1.0
     },
     "April": {
-      "normal_min": 109,
-      "normal_max": 139,
-      "inkl_events_max": 179,
+      "normal_min": 89,
+      "normal_max": 109,
+      "inkl_events_max": 149,
       "saisonfaktor": 1.02
     },
     "Mai": {
-      "normal_min": 109,
-      "normal_max": 139,
-      "inkl_events_max": 179,
+      "normal_min": 89,
+      "normal_max": 109,
+      "inkl_events_max": 149,
       "saisonfaktor": 1.05
     },
     "Juni": {
-      "normal_min": 109,
-      "normal_max": 139,
-      "inkl_events_max": 189,
+      "normal_min": 89,
+      "normal_max": 109,
+      "inkl_events_max": 159,
       "saisonfaktor": 1.03
     },
     "Juli": {
-      "normal_min": 99,
-      "normal_max": 119,
-      "inkl_events_max": 189,
+      "normal_min": 89,
+      "normal_max": 99,
+      "inkl_events_max": 169,
       "saisonfaktor": 0.92
     },
     "August": {
-      "normal_min": 99,
-      "normal_max": 119,
-      "inkl_events_max": 159,
+      "normal_min": 89,
+      "normal_max": 89,
+      "inkl_events_max": 139,
       "saisonfaktor": 0.92
     },
     "September": {
-      "normal_min": 109,
-      "normal_max": 139,
-      "inkl_events_max": 179,
+      "normal_min": 89,
+      "normal_max": 109,
+      "inkl_events_max": 149,
       "saisonfaktor": 1.05
     },
     "Oktober": {
-      "normal_min": 109,
-      "normal_max": 149,
-      "inkl_events_max": 189,
+      "normal_min": 89,
+      "normal_max": 109,
+      "inkl_events_max": 169,
       "saisonfaktor": 1.08
     },
     "November": {
-      "normal_min": 99,
-      "normal_max": 139,
-      "inkl_events_max": 259,
+      "normal_min": 89,
+      "normal_max": 109,
+      "inkl_events_max": 219,
       "saisonfaktor": 1.0
     },
     "Dezember": {
-      "normal_min": 99,
-      "normal_max": 109,
-      "inkl_events_max": 179,
+      "normal_min": 89,
+      "normal_max": 89,
+      "inkl_events_max": 159,
       "saisonfaktor": 0.95
     }
   },
@@ -93,9 +93,9 @@
       "tier": "S",
       "visitors": 80000,
       "distance_km": 5.8,
-      "price_min": 259,
-      "price_avg": 259,
-      "price_max": 259,
+      "price_min": 219,
+      "price_avg": 219,
+      "price_max": 219,
       "confidence": "high"
     },
     {
@@ -105,33 +105,9 @@
       "tier": "A",
       "visitors": 32023,
       "distance_km": 5.8,
-      "price_min": 189,
-      "price_avg": 189,
-      "price_max": 189,
-      "confidence": "medium"
-    },
-    {
-      "event": "ProWein 2027",
-      "start": "2027-03-07",
-      "end": "2027-03-09",
-      "tier": "A",
-      "visitors": 31000,
-      "distance_km": 5.8,
-      "price_min": 179,
-      "price_avg": 189,
-      "price_max": 189,
-      "confidence": "high"
-    },
-    {
-      "event": "GIFA / METEC / THERMPROCESS / NEWCAST 2027",
-      "start": "2027-06-21",
-      "end": "2027-06-25",
-      "tier": "A",
-      "visitors": null,
-      "distance_km": 5.8,
-      "price_min": 189,
-      "price_avg": 189,
-      "price_max": 189,
+      "price_min": 169,
+      "price_avg": 169,
+      "price_max": 169,
       "confidence": "medium"
     },
     {
@@ -141,9 +117,9 @@
       "tier": "A",
       "visitors": null,
       "distance_km": 5.9,
-      "price_min": 189,
-      "price_avg": 189,
-      "price_max": 189,
+      "price_min": 169,
+      "price_avg": 169,
+      "price_max": 169,
       "confidence": "medium"
     },
     {
@@ -153,9 +129,9 @@
       "tier": "A",
       "visitors": null,
       "distance_km": 1.5,
-      "price_min": 179,
-      "price_avg": 179,
-      "price_max": 179,
+      "price_min": 159,
+      "price_avg": 159,
+      "price_max": 159,
       "confidence": "high"
     },
     {
@@ -165,10 +141,46 @@
       "tier": "A",
       "visitors": null,
       "distance_km": 1.5,
-      "price_min": 169,
-      "price_avg": 179,
-      "price_max": 189,
+      "price_min": 149,
+      "price_avg": 159,
+      "price_max": 169,
       "confidence": "high"
+    },
+    {
+      "event": "ProWein 2027",
+      "start": "2027-03-07",
+      "end": "2027-03-09",
+      "tier": "A",
+      "visitors": 31000,
+      "distance_km": 5.8,
+      "price_min": 159,
+      "price_avg": 159,
+      "price_max": 159,
+      "confidence": "high"
+    },
+    {
+      "event": "GIFA / METEC / THERMPROCESS / NEWCAST 2027",
+      "start": "2027-06-21",
+      "end": "2027-06-25",
+      "tier": "A",
+      "visitors": null,
+      "distance_km": 5.8,
+      "price_min": 159,
+      "price_avg": 159,
+      "price_max": 159,
+      "confidence": "medium"
+    },
+    {
+      "event": "Die Toten Hosen (Stadion)",
+      "start": "2027-07-03",
+      "end": "2027-07-04",
+      "tier": "A",
+      "visitors": null,
+      "distance_km": 5.9,
+      "price_min": 149,
+      "price_avg": 159,
+      "price_max": 169,
+      "confidence": "medium"
     },
     {
       "event": "BEAUTY DÜSSELDORF + TOP HAIR 2027",
@@ -177,9 +189,9 @@
       "tier": "B",
       "visitors": null,
       "distance_km": 5.8,
-      "price_min": 169,
-      "price_avg": 179,
-      "price_max": 179,
+      "price_min": 149,
+      "price_avg": 149,
+      "price_max": 149,
       "confidence": "medium"
     },
     {
@@ -189,22 +201,10 @@
       "tier": "B",
       "visitors": null,
       "distance_km": 1.5,
-      "price_min": 179,
-      "price_avg": 179,
-      "price_max": 179,
+      "price_min": 149,
+      "price_avg": 149,
+      "price_max": 149,
       "confidence": "low"
-    },
-    {
-      "event": "Die Toten Hosen (Stadion)",
-      "start": "2027-07-03",
-      "end": "2027-07-04",
-      "tier": "A",
-      "visitors": null,
-      "distance_km": 5.9,
-      "price_min": 169,
-      "price_avg": 179,
-      "price_max": 189,
-      "confidence": "medium"
     },
     {
       "event": "Uniper Düsseldorf Marathon",
@@ -213,9 +213,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 1.5,
-      "price_min": 159,
-      "price_avg": 159,
-      "price_max": 159,
+      "price_min": 129,
+      "price_avg": 129,
+      "price_max": 129,
       "confidence": "medium"
     },
     {
@@ -225,9 +225,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 6.2,
-      "price_min": 159,
-      "price_avg": 159,
-      "price_max": 159,
+      "price_min": 129,
+      "price_avg": 129,
+      "price_max": 129,
       "confidence": "low"
     },
     {
@@ -237,9 +237,9 @@
       "tier": "B",
       "visitors": null,
       "distance_km": 2.1,
-      "price_min": 149,
-      "price_avg": 159,
-      "price_max": 169,
+      "price_min": 119,
+      "price_avg": 129,
+      "price_max": 149,
       "confidence": "medium"
     },
     {
@@ -249,9 +249,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 6.2,
-      "price_min": 149,
-      "price_avg": 149,
-      "price_max": 149,
+      "price_min": 119,
+      "price_avg": 119,
+      "price_max": 119,
       "confidence": "medium"
     },
     {
@@ -261,9 +261,9 @@
       "tier": "B",
       "visitors": 269000,
       "distance_km": 5.8,
-      "price_min": 119,
-      "price_avg": 149,
-      "price_max": 179,
+      "price_min": 89,
+      "price_avg": 119,
+      "price_max": 149,
       "confidence": "high"
     },
     {
@@ -273,9 +273,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 1.7,
-      "price_min": 109,
-      "price_avg": 139,
-      "price_max": 149,
+      "price_min": 89,
+      "price_avg": 109,
+      "price_max": 119,
       "confidence": "medium"
     },
     {
@@ -285,22 +285,10 @@
       "tier": "D",
       "visitors": null,
       "distance_km": 6.2,
-      "price_min": 139,
-      "price_avg": 139,
-      "price_max": 139,
+      "price_min": 109,
+      "price_avg": 109,
+      "price_max": 109,
       "confidence": "low"
-    },
-    {
-      "event": "IDS 2027 (Köln)",
-      "start": "2027-03-16",
-      "end": "2027-03-20",
-      "tier": "C",
-      "visitors": null,
-      "distance_km": 33.2,
-      "price_min": 129,
-      "price_avg": 139,
-      "price_max": 149,
-      "confidence": "medium"
     },
     {
       "event": "Karnevalsauftakt 11.11.",
@@ -309,21 +297,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 1.5,
-      "price_min": 129,
-      "price_avg": 129,
-      "price_max": 129,
-      "confidence": "high"
-    },
-    {
-      "event": "boot Düsseldorf 2027",
-      "start": "2027-01-23",
-      "end": "2027-01-31",
-      "tier": "B",
-      "visitors": null,
-      "distance_km": 5.8,
-      "price_min": 119,
-      "price_avg": 129,
-      "price_max": 149,
+      "price_min": 99,
+      "price_avg": 99,
+      "price_max": 99,
       "confidence": "high"
     },
     {
@@ -333,8 +309,32 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 5.8,
-      "price_min": 119,
-      "price_avg": 119,
+      "price_min": 99,
+      "price_avg": 99,
+      "price_max": 99,
+      "confidence": "medium"
+    },
+    {
+      "event": "boot Düsseldorf 2027",
+      "start": "2027-01-23",
+      "end": "2027-01-31",
+      "tier": "B",
+      "visitors": null,
+      "distance_km": 5.8,
+      "price_min": 89,
+      "price_avg": 99,
+      "price_max": 119,
+      "confidence": "high"
+    },
+    {
+      "event": "IDS 2027 (Köln)",
+      "start": "2027-03-16",
+      "end": "2027-03-20",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 33.2,
+      "price_min": 99,
+      "price_avg": 99,
       "price_max": 119,
       "confidence": "medium"
     },
@@ -345,9 +345,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 5.8,
-      "price_min": 119,
-      "price_avg": 119,
-      "price_max": 119,
+      "price_min": 89,
+      "price_avg": 89,
+      "price_max": 89,
       "confidence": "medium"
     },
     {
@@ -357,9 +357,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 33.2,
-      "price_min": 119,
-      "price_avg": 119,
-      "price_max": 119,
+      "price_min": 89,
+      "price_avg": 89,
+      "price_max": 89,
       "confidence": "medium"
     }
   ],
@@ -434,7 +434,7 @@
   ],
   "nacht_limit": 90,
   "schattenpreis_je_jahr": {
-    "2027": 119
+    "2027": 89
   },
   "basisherleitung": {
     "anker_adr": 131.6,
@@ -445,6 +445,11 @@
     ],
     "angepasste_anker_adr": 131.27,
     "nachfragegewichteter_index": 1.1126,
-    "basis": 117.98
+    "basis": 101.63,
+    "marktbasis": 117.98,
+    "comp_basis": 86.41,
+    "comp_listings": 6,
+    "comp_gewicht": 0.6000000000000001,
+    "startrabatt_faktor": 0.9
   }
 }

@@ -1,1 +1,7 @@
 listing_id,platform,url,neighbourhood,lat,lon,size_m2,bedrooms,max_guests,entire_home,renovated,balcony,kitchen,rating,reviews_count,cleaning_fee,extra_guest_fee,min_nights,weekly_discount,monthly_discount,observed_on,observer,notes
+abnb_zentrale_gemuetliche_2zi,airbnb,,unbekannt,,,,1,,1,,,,,,,,,,,2026-10-04,Eigentümer (Screenshot),"""Zentrale gemütliche 2-Zimmer-Wohnung""; Eigentumswohnung; Altbau mit Parkett"
+abnb_modern_renoviert_1zi,airbnb,,unbekannt,,,,0,,1,1,,,,,,,,,,2026-10-04,Eigentümer (Screenshot),"""Moderne und frisch renovierte 1-Zimmer""; nur 1 Zimmer -> kleiner als Objekt"
+abnb_1sz_doppelbett_300,airbnb,,unbekannt,,,,1,,1,,,,,,,,,,,2026-10-04,Eigentümer (Screenshot),"1 Schlafzimmer, 1 Doppelbett, private:r Gastgeber:in; Titel nicht sichtbar"
+abnb_moderne_zentrale_495,airbnb,,unbekannt,,,,1,,1,,,,4.95,44,,,,,,2026-10-04,Eigentümer (Screenshot),"""Moderne zentrale Wohnung in Düsseldorf""; Gäste-Favorit; Preis rabattiert (211 -> 185)"
+abnb_1sz_zentrum_superhost,airbnb,,unbekannt,,,,1,,1,,,,4.76,38,,,,,,2026-10-04,Eigentümer (Screenshot),"""Wohnung mit 1 Schlafzimmer – Düsseldorf Ze...""; Superhost; Preis rabattiert (211 -> 185)"
+abnb_deluxe_balkon_altstadt,airbnb,,Altstadt,,,,1,,1,,1,1,4.61,84,,,,,,2026-10-04,Eigentümer (Screenshot),"""Deluxe-Wohnung | Balkon | Altstadt | Messe""; Preis rabattiert (291 -> 243)"
