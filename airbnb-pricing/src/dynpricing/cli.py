@@ -11,7 +11,7 @@ from .config import CONFIG_PATH, Paths, load_config
 from .db import connect, store_raw, store_run
 from .historical_data import event_nights
 from .pipeline import run
-from .reporting import write_calendar_csv, write_report, write_strategy_json
+from .reporting import revenue_summary, write_calendar_csv, write_plan_csv, write_ranges_csv, write_report, write_strategy_json
 from .validation import backtest
 
 
@@ -30,6 +30,16 @@ def main(argv: list[str] | None = None) -> int:
 
     write_calendar_csv(result, paths.output / "pricing_calendar_12m.csv")
     s = write_strategy_json(result, paths.output / "strategy.json")
+    for a, b in cfg["regulation"].get("rental_windows", []):
+        start, end = date.fromisoformat(a), date.fromisoformat(b)
+        start = max(start, args.as_of)
+        if start > end:
+            continue
+        tag = f"{start:%Y%m%d}_{end:%Y%m%d}"
+        rows = write_plan_csv(result, paths.output / f"preisplan_{tag}.csv", start, end)
+        write_ranges_csv(rows, paths.output / f"airbnb_eingabe_{tag}.csv")
+    rev = revenue_summary(result)
+    (paths.output / "umsatzprognose.json").write_text(json.dumps(rev, ensure_ascii=False, indent=2), encoding="utf-8")
     write_report(result, s, paths.reports / "pricing_report.md")
 
     if result.history:

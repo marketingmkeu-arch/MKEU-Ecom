@@ -77,12 +77,25 @@ def test_last_minute_never_below_minimum():
     assert p.recommended >= bands.minimum
 
 
-def test_night_cap_marks_priorities(result):
-    open_2027 = [p for p in result.prices if p.demand.day.year == 2027 and p.quota_recommendation == "freigeben"]
-    cfg = result.cfg["regulation"]
+@pytest.fixture(scope="module")
+def result_whole_year():
+    cfg = load_config()
+    cfg["regulation"]["rental_windows"] = []
+    return run(AS_OF, cfg)
+
+
+def test_night_cap_marks_priorities(result_whole_year):
+    res = result_whole_year
+    open_2027 = [p for p in res.prices if p.demand.day.year == 2027 and p.quota_recommendation == "freigeben"]
+    cfg = res.cfg["regulation"]
     assert len(open_2027) == math.ceil(cfg["annual_night_cap"] / cfg["assumed_sell_through"])
-    medica = _price(result, date(2026, 11, 17))
-    assert medica.quota_recommendation == "freigeben"
+    assert _price(res, date(2026, 11, 17)).quota_recommendation == "freigeben"
+
+
+def test_rental_windows_close_nights_outside(result):
+    assert _price(result, date(2027, 3, 8)).quota_recommendation == "geschlossen"
+    assert _price(result, date(2027, 7, 3)).quota_recommendation == "freigeben"
+    assert _price(result, date(2026, 11, 17)).quota_recommendation == "freigeben"
 
 
 def test_base_calibrated_to_anchor(result):
@@ -98,9 +111,10 @@ def test_round_to_nine():
     assert round_price(92, True, floor=92) == 99
 
 
-def test_held_nights_not_sold_below_shadow_price(result):
-    shadow = result.shadow_prices[2027]
-    held = [p for p in result.prices if p.demand.day.year == 2027 and p.quota_recommendation == "zurückhalten"]
+def test_held_nights_not_sold_below_shadow_price(result_whole_year):
+    res = result_whole_year
+    shadow = res.shadow_prices[2027]
+    held = [p for p in res.prices if p.demand.day.year == 2027 and p.quota_recommendation == "zurückhalten"]
     assert held
     assert all(p.recommended >= shadow for p in held)
 

@@ -10,7 +10,10 @@ from pathlib import Path
 
 from .historical_data import MONTH_KEYS
 from .pipeline import RunResult, median_price
+from datetime import date
+
 from .pricing_engine import DayPrice, german_weekday, round_price
+from .revenue import airbnb_nightly_price, all_forecasts, compare_windows, payout
 
 MONTHS_DE = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August",
              "September", "Oktober", "November", "Dezember"]
@@ -18,7 +21,7 @@ MONTHS_DE = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "Augu
 CALENDAR_COLUMNS = [
     "Datum", "Wochentag", "Base Price", "Recommended Price", "Event", "Event Impact",
     "Demand Level", "Begründung", "Demand Index", "Min Nights", "Price Band",
-    "Lead-Time Factor", "Quota Priority", "Quota Recommendation",
+    "Lead-Time Factor", "Quota Priority", "Quota Recommendation", "Airbnb Nightly Price",
 ]
 
 
@@ -45,6 +48,7 @@ def calendar_rows(result: RunResult) -> list[dict]:
             "Lead-Time Factor": f"{p.lead_time_factor:.2f}",
             "Quota Priority": p.quota_priority or "",
             "Quota Recommendation": p.quota_recommendation,
+            "Airbnb Nightly Price": airbnb_nightly_price(p, result.cfg),
         })
     return rows
 
@@ -364,6 +368,23 @@ def write_report(result: RunResult, s: dict, path: Path) -> None:
         add("- Hartes Limit beachten: Bei 90 gebuchten Nächten im Kalenderjahr den Kalender für den Rest des Jahres schließen.")
         add("")
 
+    rev = revenue_summary(result)
+    add("### Umsatz- und Auszahlungsprognose")
+    add("")
+    add("Erwartungswert-Rechnung: Buchungswahrscheinlichkeit je Nacht nach Nachfragestufe "
+        f"({cfg['revenue']['booking_probability']}, ANNAHME) × Gastpreis, begrenzt auf das 90-Nächte-Kontingent "
+        f"je Kalenderjahr und die Vermietungsfenster {cfg['regulation'].get('rental_windows')}. "
+        f"Auszahlung = Gastpreis × {rev['payout_ratio']} (aus den ersten echten Buchungen abgeleitet).")
+    add("")
+    add(_md_table(["Szenario", "Nächte je Jahr", "Gastumsatz EUR", "Auszahlung EUR"],
+                  [[k, v["naechte_je_jahr"], v["brutto_gast"], v["auszahlung"]] for k, v in rev["szenarien"].items()]))
+    add("")
+    add("Vergleich der Vermietungsfenster 2027 (realistisches Szenario):")
+    add("")
+    add(_md_table(["Fenster", "erwartete Nächte", "Ø Gastpreis", "Auszahlung EUR"],
+                  [[k, v["naechte"], v["adr"], v["auszahlung"]] for k, v in rev["vergleich_2027"].items()]))
+    add("")
+
     add("## 8. 12-Monats-Pricing-Kalender")
     add("")
     add("Vollständiger Tageskalender: `output/pricing_calendar_12m.csv`. Auszug: die nächsten 21 Tage und die "
@@ -406,3 +427,89 @@ def write_report(result: RunResult, s: dict, path: Path) -> None:
 
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines), encoding="utf-8")
+
+
+PLAN_COLUMNS = ["Datum", "Wochentag", "Gastpreis/Nacht (inkl. allem)", "Airbnb-Nachtpreis eintragen",
+                "Mindestnächte", "Event", "Nachfrage", "Status", "Begründung"]
+
+
+def _plan_rows(result: RunResult, start: date, end: date) -> list[dict]:
+    rows = []
+    for p in result.prices:
+        d = p.demand
+        if not start <= d.day <= end:
+            continue
+        rows.append({
+            "Datum": d.day.isoformat(),
+            "Wochentag": german_weekday(d.day),
+            "Gastpreis/Nacht (inkl. allem)": p.recommended,
+            "Airbnb-Nachtpreis eintragen": airbnb_nightly_price(p, result.cfg),
+            "Mindestnächte": p.min_nights,
+            "Event": d.event.names,
+            "Nachfrage": d.level,
+            "Status": p.quota_recommendation,
+            "Begründung": "; ".join(r for r in p.reasons if not r.startswith("Vorlauf")),
+        })
+    return rows
+
+
+def write_plan_csv(result: RunResult, path: Path, start: date, end: date) -> list[dict]:
+    rows = _plan_rows(result, start, end)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=PLAN_COLUMNS)
+        w.writeheader()
+        w.writerows(rows)
+    return rows
+
+
+def price_ranges(rows: list[dict]) -> list[dict]:
+    """Aufeinanderfolgende Tage mit gleichem Airbnb-Preis und Mindestaufenthalt zusammenfassen."""
+    ranges: list[dict] = []
+    for r in rows:
+        key = (r["Airbnb-Nachtpreis eintragen"], r["Mindestnächte"], r["Event"])
+        if ranges and ranges[-1]["_key"] == key and date.fromisoformat(ranges[-1]["bis"]).toordinal() + 1 == date.fromisoformat(r["Datum"]).toordinal():
+            ranges[-1]["bis"] = r["Datum"]
+            ranges[-1]["Nächte"] += 1
+        else:
+            ranges.append({"_key": key, "von": r["Datum"], "bis": r["Datum"], "Nächte": 1,
+                           "Airbnb-Nachtpreis": r["Airbnb-Nachtpreis eintragen"],
+                           "Gastpreis/Nacht": r["Gastpreis/Nacht (inkl. allem)"],
+                           "Mindestnächte": r["Mindestnächte"], "Event": r["Event"]})
+    for r in ranges:
+        r.pop("_key")
+    return ranges
+
+
+def write_ranges_csv(rows: list[dict], path: Path) -> list[dict]:
+    ranges = price_ranges(rows)
+    with open(path, "w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=["von", "bis", "Nächte", "Airbnb-Nachtpreis", "Gastpreis/Nacht", "Mindestnächte", "Event"])
+        w.writeheader()
+        w.writerows(ranges)
+    return ranges
+
+
+def revenue_summary(result: RunResult) -> dict:
+    cfg = result.cfg
+    out = {"payout_ratio": cfg["fees"]["payout_ratio"], "szenarien": {}}
+    for f in all_forecasts(result.prices, cfg):
+        out["szenarien"][f.scenario] = {
+            "naechte": round(f.nights, 1),
+            "naechte_je_jahr": {str(k): round(v, 1) for k, v in f.nights_by_year.items()},
+            "limit_bindend": {str(k): v for k, v in f.cap_binding.items()},
+            "brutto_gast": round(f.gross),
+            "auszahlung": round(payout(f.gross, cfg)),
+            "monate": {m: {"naechte": round(v.nights, 1), "brutto": round(v.gross), "auszahlung": round(payout(v.gross, cfg))}
+                       for m, v in f.by_month.items()},
+        }
+    alt = compare_windows(result.prices, cfg, {
+        "2027 Sommer (Jun-Sep)": (date(2027, 6, 1), date(2027, 9, 30)),
+        "2027 Frühjahr (Jan-Mai)": (date(2027, 1, 1), date(2027, 5, 31)),
+        "2027 beste Nächte ganzjährig (bis 03.10.)": (date(2027, 1, 1), date(2027, 12, 31)),
+    })
+    out["vergleich_2027"] = {k: {"naechte": round(f.nights, 1), "brutto_gast": round(f.gross),
+                                 "auszahlung": round(payout(f.gross, cfg)),
+                                 "adr": round(f.gross / f.nights) if f.nights else None}
+                             for k, f in alt.items()}
+    return out

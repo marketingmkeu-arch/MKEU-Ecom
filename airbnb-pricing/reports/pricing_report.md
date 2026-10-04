@@ -11,8 +11,8 @@ _Automatisch erzeugt am 2026-10-04 durch `dynpricing`. Kalenderzeitraum: 2026-10
 - **Realistischer Normalpreis (Basis, Di ohne Event):** ca. **100 EUR**
 - **Normaler Wochentag (Mo–Do, Median):** 99 EUR · **Normales Wochenende (Fr/Sa, Median):** 109 EUR
 - **Minimum Price:** 79 EUR · **Maximum Price:** 299 EUR
-- **Stärkste Nachfragetreiber im Zeitraum:** MEDICA + COMPAMED 2026 (Ø 219 EUR, bis 219 EUR); glasstec 2026 (Ø 159 EUR, bis 159 EUR); Silvester (Ø 159 EUR, bis 159 EUR)
-- **Regulierung:** Ohne Zweckentfremdungsgenehmigung sind in Düsseldorf höchstens **90 Nächte pro Kalenderjahr** Kurzzeitvermietung erlaubt (Wohnraum-ID nötig). Die Strategie sollte deshalb die wertvollsten Nächte priorisieren (Messen, Wochenenden, Oktober) und keine Nacht unter dem Schattenpreis ({2027: 99} EUR) verkaufen – siehe Abschnitt 7.
+- **Stärkste Nachfragetreiber im Zeitraum:** MEDICA + COMPAMED 2026 (Ø 219 EUR, bis 219 EUR); Backstreet Boys – Homecoming Residency (Stadion) (Ø 169 EUR, bis 169 EUR); glasstec 2026 (Ø 159 EUR, bis 159 EUR)
+- **Regulierung:** Ohne Zweckentfremdungsgenehmigung sind in Düsseldorf höchstens **90 Nächte pro Kalenderjahr** Kurzzeitvermietung erlaubt (Wohnraum-ID nötig). Die Strategie sollte deshalb die wertvollsten Nächte priorisieren (Messen, Wochenenden, Oktober) und keine Nacht unter dem Schattenpreis ({} EUR) verkaufen – siehe Abschnitt 7.
 
 ## 2. Marktanalyse
 
@@ -91,12 +91,12 @@ Saisonfaktoren sind **Modellannahmen** (Prior). Qualitativ gestützt durch AirRO
 | April | 1.02 | 89 | 109 | 149 |
 | Mai | 1.05 | 89 | 119 | 149 |
 | Juni | 1.03 | 89 | 119 | 159 |
-| Juli | 0.92 | 79 | 99 | 159 |
+| Juli | 0.92 | 79 | 99 | 169 |
 | August | 0.92 | 79 | 99 | 139 |
 | September | 1.05 | 89 | 119 | 149 |
-| Oktober | 1.08 | 89 | 119 | 159 |
+| Oktober | 1.08 | 89 | 119 | 169 |
 | November | 1.0 | 89 | 119 | 219 |
-| Dezember | 0.95 | 79 | 99 | 159 |
+| Dezember | 0.95 | 79 | 99 | 149 |
 
 ## 6. Messe- und Eventanalyse
 
@@ -107,28 +107,38 @@ Die historische Preiswirkung je Event: **keine belastbaren Daten verfügbar** �
 | Event | Start | Ende | Tier | Besucher | Distanz km | Preis min | Ø | max | Datenqualität |
 |---|---|---|---|---|---|---|---|---|---|
 | MEDICA + COMPAMED 2026 | 2026-11-16 | 2026-11-19 | S | 80000 | 5.8 | 219 | 219 | 219 | high |
+| Backstreet Boys – Homecoming Residency (Stadion) | 2026-10-06 | 2026-10-07 | A |  | 5.9 | 169 | 169 | 169 | high |
 | glasstec 2026 | 2026-10-20 | 2026-10-23 | A | 32023 | 5.8 | 159 | 159 | 159 | medium |
-| Silvester | 2026-12-31 | 2026-12-31 | A |  | 1.5 | 159 | 159 | 159 | high |
 | ProWein 2027 | 2027-03-07 | 2027-03-09 | A | 31000 | 5.8 | 159 | 159 | 159 | high |
 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | 2027-06-21 | 2027-06-25 | A |  | 5.8 | 159 | 159 | 159 | medium |
+| Die Toten Hosen (Stadion) | 2027-07-03 | 2027-07-04 | A |  | 5.9 | 139 | 159 | 169 | medium |
 | Die Toten Hosen (Stadion) | 2027-07-10 | 2027-07-10 | A |  | 5.9 | 159 | 159 | 159 | medium |
+| Silvester | 2026-12-31 | 2026-12-31 | A |  | 1.5 | 149 | 149 | 149 | high |
 | Straßenkarneval (Weiberfastnacht bis Rosenmontag) | 2027-02-04 | 2027-02-08 | A |  | 1.5 | 139 | 149 | 159 | high |
 | BEAUTY DÜSSELDORF + TOP HAIR 2027 | 2027-04-09 | 2027-04-11 | B |  | 5.8 | 149 | 149 | 149 | medium |
 | Japan-Tag Düsseldorf/NRW 2027 | 2027-05-22 | 2027-05-22 | B |  | 1.5 | 149 | 149 | 149 | low |
-| Die Toten Hosen (Stadion) | 2027-07-03 | 2027-07-04 | A |  | 5.9 | 139 | 149 | 159 | medium |
+| Young Thug (Konzert) | 2026-10-17 | 2026-10-17 | C |  | 6.2 | 139 | 139 | 139 | medium |
+| Dimash Qudaibergen (Konzert) | 2026-10-24 | 2026-10-24 | C |  | 6.2 | 139 | 139 | 139 | medium |
 | Uniper Düsseldorf Marathon | 2027-04-18 | 2027-04-18 | C |  | 1.5 | 129 | 129 | 129 | medium |
 | Sabaton (Konzert) | 2027-04-23 | 2027-04-23 | C |  | 6.2 | 129 | 129 | 129 | medium |
 | Die Ärzte (Konzert) | 2027-04-24 | 2027-04-24 | C |  | 6.2 | 129 | 129 | 129 | low |
 | Rheinkirmes 2027 | 2027-07-16 | 2027-07-25 | B |  | 2.1 | 129 | 129 | 149 | medium |
 | CARAVAN SALON 2027 | 2027-08-27 | 2027-09-05 | B | 269000 | 5.8 | 99 | 129 | 149 | high |
-| Düsseldorfer Weihnachtsmarkt 2026 | 2026-11-19 | 2026-12-30 | C |  | 1.7 | 89 | 119 | 129 | medium |
+| Düsseldorfer Weihnachtsmarkt 2026 | 2026-11-19 | 2026-12-30 | C |  | 1.7 | 109 | 119 | 129 | medium |
 | Disney on Ice | 2027-03-05 | 2027-03-07 | D |  | 6.2 | 119 | 119 | 119 | low |
+| Apache 207 (Konzert) | 2026-10-08 | 2026-10-08 | C |  | 6.2 | 119 | 119 | 119 | medium |
+| The Strokes (Konzert) | 2026-10-13 | 2026-10-13 | C |  | 6.2 | 119 | 119 | 119 | medium |
+| The World of Hans Zimmer | 2026-10-15 | 2026-10-15 | C |  | 6.2 | 119 | 119 | 119 | medium |
 | Karnevalsauftakt 11.11. | 2026-11-11 | 2026-11-11 | C |  | 1.5 | 109 | 109 | 109 | high |
 | boot Düsseldorf 2027 | 2027-01-23 | 2027-01-31 | B |  | 5.8 | 99 | 109 | 129 | high |
 | IDS 2027 (Köln) | 2027-03-16 | 2027-03-20 | C |  | 33.2 | 109 | 109 | 129 | medium |
+| Deutschland Cup (Eishockey) | 2026-11-05 | 2026-11-08 | D |  | 6.2 | 89 | 109 | 119 | low |
+| Cologne Pride / CSD (Köln) | 2027-07-02 | 2027-07-04 | D |  | 33.4 | 109 | 109 | 109 | medium |
+| DMEXCO 2027 (Köln) | 2027-09-22 | 2027-09-23 | D |  | 33.2 | 109 | 109 | 109 | medium |
 | VALVE WORLD EXPO 2026 | 2026-12-01 | 2026-12-03 | C |  | 5.8 | 99 | 99 | 99 | medium |
 | EuroCIS 2027 | 2027-02-16 | 2027-02-18 | C |  | 5.8 | 99 | 99 | 99 | medium |
 | gamescom 2027 (Köln) | 2027-08-25 | 2027-08-29 | C |  | 33.2 | 99 | 99 | 99 | medium |
+| Weihnachten – Familienbesuche | 2026-12-22 | 2026-12-28 | D |  | 1.5 | 89 | 89 | 99 | low |
 
 ## 7. Pricing Strategy
 
@@ -138,18 +148,18 @@ Die historische Preiswirkung je Event: **keine belastbaren Daten verfügbar** �
 |---|---|
 | Minimum Price | 79 |
 | Normal/Base Price | 100 |
-| Target Price | 105 |
-| High-Demand Price | 135 |
-| Event Price | 170 |
+| Target Price | 104 |
+| High-Demand Price | 134 |
+| Event Price | 169 |
 | Maximum Price | 299 |
 
 ### Herleitung Basispreis
 
 1. Anker-ADR Nachbarviertel: Unterbilk: 139 EUR × 0.50 + Friedrichstadt: 147 EUR × 0.20 + Bilk: 109 EUR × 0.30 = **131.6 EUR**
 2. × Größenanpassung 0.95 × Qualitätsaufschlag 1.05 = 131.27 EUR (Annahmen)
-3. ÷ nachfragegewichteter Ø-Index 1.1126 (die Markt-ADR enthält Wochenend- und Messenächte überproportional) = Marktbasis 117.98 EUR
+3. ÷ nachfragegewichteter Ø-Index 1.1231 (die Markt-ADR enthält Wochenend- und Messenächte überproportional) = Marktbasis 116.88 EUR
 4. Mischung mit beobachteter Comp-Basis 90.63 EUR × Positionierung 1.05 (Gewicht 80% bei 16 Listings)
-= **Basis 99.73 EUR**
+= **Basis 99.51 EUR**
 
 ### Lead-Time-Strategie
 
@@ -178,10 +188,28 @@ Last-Minute-Rabatte gibt es **nur** bei normaler oder niedriger Nachfrage. Bei h
 
 Erlaubt sind 90 Nächte pro Kalenderjahr (Wohnraum-ID im Inserat, Buchungskalender führen). Ziel ist deshalb nicht maximale Auslastung, sondern **maximaler Erlös pro verbrauchter Nacht**.
 
-- Bei einer angenommenen Verkaufsquote von 60% werden je Jahr die wertvollsten Nächte freigegeben: {2026: 89, 2027: 150} (Spalte `Quota Recommendation`).
-- **Schattenpreis** je Jahr: {2027: 99} EUR. Alle anderen Nächte bleiben buchbar, aber nie unter diesem Preis – eine billig verkaufte Nacht fehlt später bei einer Messe.
+- Bei einer angenommenen Verkaufsquote von 60% werden je Jahr die wertvollsten Nächte freigegeben: {2026: 89, 2027: 122} (Spalte `Quota Recommendation`).
+- Im aktuellen Zeitraum reicht das Kontingent für alle freigegebenen Nächte; kein Schattenpreis nötig.
 - Genutzte Nächte laufend in `regulation.nights_already_used` eintragen; der nächste Lauf verteilt das Restkontingent neu.
 - Hartes Limit beachten: Bei 90 gebuchten Nächten im Kalenderjahr den Kalender für den Rest des Jahres schließen.
+
+### Umsatz- und Auszahlungsprognose
+
+Erwartungswert-Rechnung: Buchungswahrscheinlichkeit je Nacht nach Nachfragestufe ({'niedrig': 0.3, 'normal': 0.45, 'erhöht': 0.55, 'hoch': 0.7, 'Spitze': 0.85}, ANNAHME) × Gastpreis, begrenzt auf das 90-Nächte-Kontingent je Kalenderjahr und die Vermietungsfenster [['2026-10-04', '2026-12-31'], ['2027-06-01', '2027-09-30']]. Auszahlung = Gastpreis × 0.889 (aus den ersten echten Buchungen abgeleitet).
+
+| Szenario | Nächte je Jahr | Gastumsatz EUR | Auszahlung EUR |
+|---|---|---|---|
+| konservativ | {'2026': 30.9, '2027': 38.1} | 7978 | 7093 |
+| realistisch | {'2026': 44.1, '2027': 54.4} | 11398 | 10133 |
+| optimistisch | {'2026': 54.7, '2027': 68.1} | 14151 | 12581 |
+
+Vergleich der Vermietungsfenster 2027 (realistisches Szenario):
+
+| Fenster | erwartete Nächte | Ø Gastpreis | Auszahlung EUR |
+|---|---|---|---|
+| 2027 Sommer (Jun-Sep) | 54.5 | 110 | 5331 |
+| 2027 Frühjahr (Jan-Mai) | 68.9 | 109 | 6672 |
+| 2027 beste Nächte ganzjährig (bis 03.10.) | 90.0 | 118 | 9401 |
 
 ## 8. 12-Monats-Pricing-Kalender
 
@@ -190,26 +218,26 @@ Vollständiger Tageskalender: `output/pricing_calendar_12m.csv`. Auszug: die nä
 | Datum | Wochentag | Base Price | Recommended Price | Event | Event Impact | Demand Level |
 |---|---|---|---|---|---|---|
 | 2026-10-04 | Sonntag | 99 | 79 |  |  | normal |
-| 2026-10-05 | Montag | 99 | 99 |  |  | normal |
-| 2026-10-06 | Dienstag | 99 | 99 |  |  | normal |
-| 2026-10-07 | Mittwoch | 99 | 99 |  |  | normal |
-| 2026-10-08 | Donnerstag | 99 | 99 |  |  | erhöht |
+| 2026-10-05 | Montag | 99 | 89 |  |  | normal |
+| 2026-10-06 | Dienstag | 99 | 179 | Backstreet Boys – Homecoming Residency (Stadion) | +55% (Tier A) | hoch |
+| 2026-10-07 | Mittwoch | 99 | 179 | Backstreet Boys – Homecoming Residency (Stadion) | +55% (Tier A) | hoch |
+| 2026-10-08 | Donnerstag | 99 | 119 | Apache 207 (Konzert) | +12% (Tier C) | erhöht |
 | 2026-10-09 | Freitag | 99 | 119 |  |  | erhöht |
 | 2026-10-10 | Samstag | 99 | 119 |  |  | erhöht |
 | 2026-10-11 | Sonntag | 99 | 89 |  |  | normal |
 | 2026-10-12 | Montag | 99 | 99 |  |  | normal |
-| 2026-10-13 | Dienstag | 99 | 99 |  |  | normal |
+| 2026-10-13 | Dienstag | 99 | 119 | The Strokes (Konzert) | +12% (Tier C) | erhöht |
 | 2026-10-14 | Mittwoch | 99 | 99 |  |  | normal |
-| 2026-10-15 | Donnerstag | 99 | 109 |  |  | erhöht |
+| 2026-10-15 | Donnerstag | 99 | 119 | The World of Hans Zimmer | +12% (Tier C) | erhöht |
 | 2026-10-16 | Freitag | 99 | 119 |  |  | erhöht |
-| 2026-10-17 | Samstag | 99 | 119 |  |  | erhöht |
+| 2026-10-17 | Samstag | 99 | 139 | Young Thug (Konzert) | +12% (Tier C) | hoch |
 | 2026-10-18 | Sonntag | 99 | 89 |  |  | niedrig |
 | 2026-10-19 | Montag | 99 | 149 | glasstec 2026 | +44% (Tier A) | hoch |
 | 2026-10-20 | Dienstag | 99 | 159 | glasstec 2026 | +55% (Tier A) | hoch |
 | 2026-10-21 | Mittwoch | 99 | 159 | glasstec 2026 | +55% (Tier A) | hoch |
 | 2026-10-22 | Donnerstag | 99 | 159 | glasstec 2026 | +55% (Tier A) | hoch |
 | 2026-10-23 | Freitag | 99 | 139 | glasstec 2026 | +16% (Tier A) | hoch |
-| 2026-10-24 | Samstag | 99 | 119 |  |  | erhöht |
+| 2026-10-24 | Samstag | 99 | 139 | Dimash Qudaibergen (Konzert) | +12% (Tier C) | hoch |
 
 **Top 15 Preistage:**
 
@@ -220,16 +248,16 @@ Vollständiger Tageskalender: `output/pricing_calendar_12m.csv`. Auszug: die nä
 | 2026-11-18 | Mittwoch | 99 | 219 | MEDICA + COMPAMED 2026 | +120% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20 |
 | 2026-11-15 | Sonntag | 99 | 199 | MEDICA + COMPAMED 2026 | +96% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+96%); Nachfrageindex 1.96 |
 | 2027-03-06 | Samstag | 99 | 189 | ProWein 2027 + Disney on Ice | +47% (Tier A) | hoch | Saison 1.00; Wochentag 1.15; Event: ProWein 2027 + Disney on Ice (+47%); Nachfrageindex 1.68; Vorlauf 153 T (+10%, Modus high) |
+| 2026-10-06 | Dienstag | 99 | 179 | Backstreet Boys – Homecoming Residency (Stadion) | +55% (Tier A) | hoch | Saison 1.08; Wochentag 1.00; Event: Backstreet Boys – Homecoming Residency (Stadion) (+55%); Nachfrageindex 1.67; Vorlauf 2 T (+6%, Modus high) |
+| 2026-10-07 | Mittwoch | 99 | 179 | Backstreet Boys – Homecoming Residency (Stadion) | +55% (Tier A) | hoch | Saison 1.08; Wochentag 1.00; Event: Backstreet Boys – Homecoming Residency (Stadion) (+55%); Nachfrageindex 1.67; Vorlauf 3 T (+6%, Modus high) |
 | 2027-02-05 | Freitag | 99 | 179 | Straßenkarneval (Weiberfastnacht bis Rosenmontag) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.12; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.60; Vorlauf 124 T (+10%, Modus high) |
 | 2027-02-06 | Samstag | 99 | 179 | Straßenkarneval (Weiberfastnacht bis Rosenmontag) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.15; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.64; Vorlauf 125 T (+10%, Modus high) |
 | 2027-06-21 | Montag | 99 | 179 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | +55% (Tier A) | hoch | Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 260 T (+10%, Modus high) |
 | 2027-06-22 | Dienstag | 99 | 179 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | +55% (Tier A) | hoch | Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 261 T (+10%, Modus high) |
 | 2027-06-23 | Mittwoch | 99 | 179 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | +55% (Tier A) | hoch | Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 262 T (+10%, Modus high) |
 | 2027-06-24 | Donnerstag | 99 | 179 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | +55% (Tier A) | hoch | Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 263 T (+10%, Modus high) |
-| 2027-07-03 | Samstag | 99 | 179 | Die Toten Hosen (Stadion) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.15; Event: Die Toten Hosen (Stadion) (+55%); Nachfrageindex 1.64; Vorlauf 272 T (+10%, Modus high) |
+| 2027-07-03 | Samstag | 99 | 179 | Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln) | +58% (Tier A) | hoch | Saison 0.92; Wochentag 1.15; Event: Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln) (+58%); Nachfrageindex 1.67; Vorlauf 272 T (+10%, Modus high) |
 | 2027-07-10 | Samstag | 99 | 179 | Die Toten Hosen (Stadion) | +55% (Tier A) | hoch | Saison 0.92; Wochentag 1.15; Event: Die Toten Hosen (Stadion) (+55%); Nachfrageindex 1.64; Vorlauf 279 T (+10%, Modus high) |
-| 2027-03-07 | Sonntag | 99 | 169 | ProWein 2027 + Disney on Ice | +58% (Tier A) | hoch | Saison 1.00; Wochentag 1.00; Event: ProWein 2027 + Disney on Ice (+58%); Nachfrageindex 1.57; Vorlauf 154 T (+10%, Modus high) |
-| 2027-03-08 | Montag | 99 | 169 | ProWein 2027 | +55% (Tier A) | hoch | Saison 1.00; Wochentag 1.00; Event: ProWein 2027 (+55%); Nachfrageindex 1.55; Vorlauf 155 T (+10%, Modus high) |
 
 ## 9. Datenqualität
 

@@ -243,9 +243,17 @@ def apply_night_cap(prices: list[DayPrice], cfg: dict) -> dict[int, int] | None:
         return None
     to_nine = cfg["output"].get("round_to_nine", False)
     used = {int(k): v for k, v in reg.get("nights_already_used", {}).items()}
+    windows = [(date.fromisoformat(a), date.fromisoformat(b)) for a, b in reg.get("rental_windows", [])]
+    rentable = []
+    for p in prices:
+        if windows and not any(a <= p.demand.day <= b for a, b in windows):
+            p.quota_priority = None
+            p.quota_recommendation = "geschlossen"
+        else:
+            rentable.append(p)
     shadow: dict[int, int] = {}
-    for year in sorted({p.demand.day.year for p in prices}):
-        year_prices = [p for p in prices if p.demand.day.year == year]
+    for year in sorted({p.demand.day.year for p in rentable}):
+        year_prices = [p for p in rentable if p.demand.day.year == year]
         open_n = max(0, math.ceil((cap - used.get(year, 0)) / reg["assumed_sell_through"]))
         ranked = sorted(year_prices, key=lambda p: (p.static_price, p.demand.index), reverse=True)
         for rank, p in enumerate(ranked, start=1):

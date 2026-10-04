@@ -102,3 +102,18 @@ def test_comp_without_coordinates_is_at_most_limited():
     (res,) = classify([c], PROP, [0.5, 1, 2, 3, 5])
     assert res.distance_km is None
     assert res.comp_class.startswith("eingeschränkt")
+
+
+def test_revenue_forecast_respects_cap():
+    from dynpricing.config import load_config
+    from dynpricing.pipeline import run
+    from dynpricing.revenue import forecast
+    cfg = load_config()
+    cfg["regulation"]["rental_windows"] = []
+    res = run(date(2026, 10, 4), cfg)
+    f = forecast(res.prices, cfg, "test", 5.0)  # absichtlich hohe Wahrscheinlichkeit
+    cap = cfg["regulation"]["annual_night_cap"]
+    used = cfg["regulation"]["nights_already_used"]
+    assert f.nights_by_year[2027] <= cap - used["2027"] + 1e-9
+    assert f.nights_by_year[2026] <= cap - used["2026"] + 1e-9
+    assert f.cap_binding[2027]

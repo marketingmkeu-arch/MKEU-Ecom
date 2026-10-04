@@ -31,9 +31,27 @@ annual_night_cap = 90
 # ANNAHME: Anteil freigegebener Nächte, die tatsächlich gebucht werden
 assumed_sell_through = 0.6
 # Bereits genutzte genehmigungsfreie Nächte je Kalenderjahr (eigene Buchungsdaten eintragen)
-nights_already_used = { "2026" = 2, "2027" = 0 }
+nights_already_used = { "2026" = 3, "2027" = 0 }
 # Nicht freigegebene Nächte nur zum Schattenpreis oder darüber anbieten (statt blockieren)
 floor_held_nights_at_shadow_price = true
+# Vermietungsfenster (Eigentümer-Entscheidung 04.10.2026): Rest 2026 und Sommer 2027.
+# Nächte außerhalb werden als "geschlossen" markiert; das 90-Nächte-Kontingent gilt je Kalenderjahr.
+rental_windows = [["2026-10-04", "2026-12-31"], ["2027-06-01", "2027-09-30"]]
+
+[fees]
+# Reinigungspauschale (Empfehlung, s. Report). Die Kalenderpreise sind Gastpreise pro Nacht inkl.
+# allem; der in Airbnb einzutragende Nachtpreis = Gastpreis - Reinigung / erwartete Nächte pro Aufenthalt.
+cleaning_fee = 40
+assumed_avg_stay_nights = 2.5
+# Beobachtet (Eigentümer, 04.10.2026): 3 Buchungen, 243 brutto -> ca. 216 € Auszahlung = 0,889.
+# Währungsangabe (USD/EUR) noch zu bestätigen.
+payout_ratio = 0.889
+
+[revenue]
+# ANNAHME: Buchungswahrscheinlichkeit je Nacht und Nachfragestufe für ein neues Listing.
+# Gegencheck: Marktauslastung Düsseldorf laut Anbietern 36-58 %.
+booking_probability = { niedrig = 0.30, normal = 0.45, "erhöht" = 0.55, hoch = 0.70, Spitze = 0.85 }
+scenarios = { konservativ = 0.7, realistisch = 1.0, optimistisch = 1.25 }
 
 [market_anchor]
 # Gewichtete ADR der Nachbarviertel aus data/raw/market/market_aggregates.csv.
@@ -89,7 +107,7 @@ eve_of_holiday = 0.06
 # Brückentag-Wochenende (Do-Feiertag -> Fr/Sa/So)
 long_weekend = 0.08
 # Heiligabend / 1. Weihnachtstag: sehr schwache Nachfrage
-christmas_low = -0.20
+christmas_low = -0.10
 # NRW-Schulferien: Geschäftsreisen sinken, Freizeit steigt kaum (ANNAHME)
 school_holiday_nrw = -0.03
 

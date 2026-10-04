@@ -1,0 +1,123 @@
+Datum,Wochentag,Gastpreis/Nacht (inkl. allem),Airbnb-Nachtpreis eintragen,Mindestnächte,Event,Nachfrage,Status,Begründung
+2027-06-01,Dienstag,99,79,2,,normal,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-02,Mittwoch,99,79,2,,normal,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-03,Donnerstag,109,89,2,,normal,freigeben,Saison 1.03; Wochentag 1.00; Nachfrageindex 1.03
+2027-06-04,Freitag,119,99,2,,erhöht,freigeben,Saison 1.03; Wochentag 1.12; Nachfrageindex 1.15
+2027-06-05,Samstag,119,99,2,,erhöht,freigeben,Saison 1.03; Wochentag 1.15; Nachfrageindex 1.18
+2027-06-06,Sonntag,89,69,1,,niedrig,freigeben,Saison 1.03; Wochentag 0.88; Nachfrageindex 0.91
+2027-06-07,Montag,99,79,2,,normal,freigeben,Saison 1.03; Wochentag 0.95; Nachfrageindex 0.98
+2027-06-08,Dienstag,99,79,2,,normal,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-09,Mittwoch,99,79,2,,normal,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-10,Donnerstag,109,89,2,,normal,freigeben,Saison 1.03; Wochentag 1.00; Nachfrageindex 1.03
+2027-06-11,Freitag,119,99,2,,erhöht,freigeben,Saison 1.03; Wochentag 1.12; Nachfrageindex 1.15
+2027-06-12,Samstag,119,99,2,,erhöht,freigeben,Saison 1.03; Wochentag 1.15; Nachfrageindex 1.18
+2027-06-13,Sonntag,89,69,1,,niedrig,freigeben,Saison 1.03; Wochentag 0.88; Nachfrageindex 0.91
+2027-06-14,Montag,99,79,2,,normal,freigeben,Saison 1.03; Wochentag 0.95; Nachfrageindex 0.98
+2027-06-15,Dienstag,99,79,2,,normal,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-16,Mittwoch,99,79,2,,normal,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-17,Donnerstag,109,89,2,,normal,freigeben,Saison 1.03; Wochentag 1.00; Nachfrageindex 1.03
+2027-06-18,Freitag,119,99,2,,erhöht,freigeben,Saison 1.03; Wochentag 1.12; Nachfrageindex 1.15
+2027-06-19,Samstag,119,99,2,,erhöht,freigeben,Saison 1.03; Wochentag 1.15; Nachfrageindex 1.18
+2027-06-20,Sonntag,159,139,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+44%); Nachfrageindex 1.48
+2027-06-21,Montag,179,159,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60
+2027-06-22,Dienstag,179,159,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60
+2027-06-23,Mittwoch,179,159,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60
+2027-06-24,Donnerstag,179,159,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60
+2027-06-25,Freitag,149,129,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,freigeben,Saison 1.03; Wochentag 1.12; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+16%); Nachfrageindex 1.34
+2027-06-26,Samstag,119,99,2,,erhöht,freigeben,Saison 1.03; Wochentag 1.15; Nachfrageindex 1.18
+2027-06-27,Sonntag,89,69,1,,niedrig,freigeben,Saison 1.03; Wochentag 0.88; Nachfrageindex 0.91
+2027-06-28,Montag,99,79,2,,normal,freigeben,Saison 1.03; Wochentag 0.95; Nachfrageindex 0.98
+2027-06-29,Dienstag,99,79,2,,normal,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-30,Mittwoch,99,79,2,,normal,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-07-01,Donnerstag,99,79,2,Cologne Pride / CSD (Köln),normal,freigeben,Saison 0.92; Wochentag 1.00; Event: Cologne Pride / CSD (Köln) (+4%); Nachfrageindex 0.96
+2027-07-02,Freitag,109,89,2,Cologne Pride / CSD (Köln),erhöht,freigeben,Saison 0.92; Wochentag 1.12; Event: Cologne Pride / CSD (Köln) (+5%); Nachfrageindex 1.08
+2027-07-03,Samstag,179,159,2,Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln),hoch,freigeben,Saison 0.92; Wochentag 1.15; Event: Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln) (+58%); Nachfrageindex 1.67
+2027-07-04,Sonntag,159,139,2,Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln),hoch,freigeben,Saison 0.92; Wochentag 1.00; Event: Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln) (+56%); Nachfrageindex 1.43
+2027-07-05,Montag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.95; Nachfrageindex 0.87
+2027-07-06,Dienstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89
+2027-07-07,Mittwoch,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89
+2027-07-08,Donnerstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 1.00; Nachfrageindex 0.92
+2027-07-09,Freitag,109,89,2,,normal,freigeben,Saison 0.92; Wochentag 1.12; Nachfrageindex 1.03
+2027-07-10,Samstag,179,159,2,Die Toten Hosen (Stadion),hoch,freigeben,Saison 0.92; Wochentag 1.15; Event: Die Toten Hosen (Stadion) (+55%); Nachfrageindex 1.64
+2027-07-11,Sonntag,79,59,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81
+2027-07-12,Montag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.95; Nachfrageindex 0.87
+2027-07-13,Dienstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89
+2027-07-14,Mittwoch,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89
+2027-07-15,Donnerstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 1.00; Nachfrageindex 0.92
+2027-07-16,Freitag,129,109,2,Rheinkirmes 2027,erhöht,freigeben,Saison 0.92; Wochentag 1.12; Event: Rheinkirmes 2027 (+25%); Nachfrageindex 1.29
+2027-07-17,Samstag,159,139,2,Rheinkirmes 2027 + Karol G (Stadion),hoch,freigeben,Saison 0.92; Wochentag 1.15; Event: Rheinkirmes 2027 + Karol G (Stadion) (+38%); Nachfrageindex 1.45
+2027-07-18,Sonntag,79,59,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81
+2027-07-19,Montag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
+2027-07-20,Dienstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-07-21,Mittwoch,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-07-22,Donnerstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
+2027-07-23,Freitag,129,109,2,Rheinkirmes 2027,erhöht,freigeben,Saison 0.92; Wochentag 1.12; Schulferien NRW (-3%); Event: Rheinkirmes 2027 (+25%); Nachfrageindex 1.25
+2027-07-24,Samstag,129,109,2,Rheinkirmes 2027,erhöht,freigeben,Saison 0.92; Wochentag 1.15; Schulferien NRW (-3%); Event: Rheinkirmes 2027 (+25%); Nachfrageindex 1.28
+2027-07-25,Sonntag,79,59,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
+2027-07-26,Montag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
+2027-07-27,Dienstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-07-28,Mittwoch,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-07-29,Donnerstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
+2027-07-30,Freitag,99,79,2,,normal,freigeben,Saison 0.92; Wochentag 1.12; Schulferien NRW (-3%); Nachfrageindex 1.00
+2027-07-31,Samstag,109,89,2,,normal,freigeben,Saison 0.92; Wochentag 1.15; Schulferien NRW (-3%); Nachfrageindex 1.03
+2027-08-01,Sonntag,79,59,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
+2027-08-02,Montag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
+2027-08-03,Dienstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-08-04,Mittwoch,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-08-05,Donnerstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
+2027-08-06,Freitag,99,79,2,,normal,freigeben,Saison 0.92; Wochentag 1.12; Schulferien NRW (-3%); Nachfrageindex 1.00
+2027-08-07,Samstag,109,89,2,,normal,freigeben,Saison 0.92; Wochentag 1.15; Schulferien NRW (-3%); Nachfrageindex 1.03
+2027-08-08,Sonntag,79,59,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
+2027-08-09,Montag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
+2027-08-10,Dienstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-08-11,Mittwoch,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-08-12,Donnerstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
+2027-08-13,Freitag,99,79,2,,normal,freigeben,Saison 0.92; Wochentag 1.12; Schulferien NRW (-3%); Nachfrageindex 1.00
+2027-08-14,Samstag,109,89,2,,normal,freigeben,Saison 0.92; Wochentag 1.15; Schulferien NRW (-3%); Nachfrageindex 1.03
+2027-08-15,Sonntag,79,59,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
+2027-08-16,Montag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
+2027-08-17,Dienstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-08-18,Mittwoch,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-08-19,Donnerstag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
+2027-08-20,Freitag,99,79,2,,normal,freigeben,Saison 0.92; Wochentag 1.12; Schulferien NRW (-3%); Nachfrageindex 1.00
+2027-08-21,Samstag,109,89,2,,normal,freigeben,Saison 0.92; Wochentag 1.15; Schulferien NRW (-3%); Nachfrageindex 1.03
+2027-08-22,Sonntag,79,59,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
+2027-08-23,Montag,89,69,1,,niedrig,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
+2027-08-24,Dienstag,99,79,2,gamescom 2027 (Köln),normal,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Event: gamescom 2027 (Köln) (+10%); Nachfrageindex 0.95
+2027-08-25,Mittwoch,99,79,2,gamescom 2027 (Köln),normal,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Event: gamescom 2027 (Köln) (+12%); Nachfrageindex 0.97
+2027-08-26,Donnerstag,119,99,2,CARAVAN SALON 2027 + gamescom 2027 (Köln),erhöht,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + gamescom 2027 (Köln) (+26%); Nachfrageindex 1.12
+2027-08-27,Freitag,149,129,2,CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027,hoch,freigeben,Saison 0.92; Wochentag 1.12; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027 (+32%); Nachfrageindex 1.32
+2027-08-28,Samstag,149,129,2,CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027,hoch,freigeben,Saison 0.92; Wochentag 1.15; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027 (+32%); Nachfrageindex 1.36
+2027-08-29,Sonntag,109,89,2,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 + gamescom 2027 (Köln),normal,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 + gamescom 2027 (Köln) (+28%); Nachfrageindex 1.01
+2027-08-30,Montag,109,89,2,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027,erhöht,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 (+28%); Nachfrageindex 1.08
+2027-08-31,Dienstag,109,89,2,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027,erhöht,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 (+26%); Nachfrageindex 1.09
+2027-09-01,Mittwoch,129,109,2,CARAVAN SALON 2027,erhöht,freigeben,Saison 1.05; Wochentag 0.97; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.27
+2027-09-02,Donnerstag,139,119,2,CARAVAN SALON 2027,hoch,freigeben,Saison 1.05; Wochentag 1.00; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.31
+2027-09-03,Freitag,159,139,2,CARAVAN SALON 2027,hoch,freigeben,Saison 1.05; Wochentag 1.12; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.47
+2027-09-04,Samstag,169,149,2,CARAVAN SALON 2027,hoch,freigeben,Saison 1.05; Wochentag 1.15; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.51
+2027-09-05,Sonntag,99,79,2,CARAVAN SALON 2027,normal,freigeben,Saison 1.05; Wochentag 0.88; Event: CARAVAN SALON 2027 (+8%); Nachfrageindex 0.99
+2027-09-06,Montag,99,79,2,,normal,freigeben,Saison 1.05; Wochentag 0.95; Nachfrageindex 1.00
+2027-09-07,Dienstag,109,89,2,,normal,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
+2027-09-08,Mittwoch,109,89,2,,normal,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
+2027-09-09,Donnerstag,109,89,2,,normal,freigeben,Saison 1.05; Wochentag 1.00; Nachfrageindex 1.05
+2027-09-10,Freitag,119,99,2,,erhöht,freigeben,Saison 1.05; Wochentag 1.12; Nachfrageindex 1.18
+2027-09-11,Samstag,129,109,2,,erhöht,freigeben,Saison 1.05; Wochentag 1.15; Nachfrageindex 1.21
+2027-09-12,Sonntag,89,69,1,,niedrig,freigeben,Saison 1.05; Wochentag 0.88; Nachfrageindex 0.92
+2027-09-13,Montag,99,79,2,,normal,freigeben,Saison 1.05; Wochentag 0.95; Nachfrageindex 1.00
+2027-09-14,Dienstag,109,89,2,,normal,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
+2027-09-15,Mittwoch,109,89,2,,normal,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
+2027-09-16,Donnerstag,109,89,2,,normal,freigeben,Saison 1.05; Wochentag 1.00; Nachfrageindex 1.05
+2027-09-17,Freitag,119,99,2,,erhöht,freigeben,Saison 1.05; Wochentag 1.12; Nachfrageindex 1.18
+2027-09-18,Samstag,129,109,2,,erhöht,freigeben,Saison 1.05; Wochentag 1.15; Nachfrageindex 1.21
+2027-09-19,Sonntag,89,69,1,,niedrig,freigeben,Saison 1.05; Wochentag 0.88; Nachfrageindex 0.92
+2027-09-20,Montag,99,79,2,,normal,freigeben,Saison 1.05; Wochentag 0.95; Nachfrageindex 1.00
+2027-09-21,Dienstag,109,89,2,DMEXCO 2027 (Köln),normal,freigeben,Saison 1.05; Wochentag 0.97; Event: DMEXCO 2027 (Köln) (+4%); Nachfrageindex 1.06
+2027-09-22,Mittwoch,109,89,2,DMEXCO 2027 (Köln),normal,freigeben,Saison 1.05; Wochentag 0.97; Event: DMEXCO 2027 (Köln) (+5%); Nachfrageindex 1.07
+2027-09-23,Donnerstag,109,89,2,DMEXCO 2027 (Köln),normal,freigeben,Saison 1.05; Wochentag 1.00; Event: DMEXCO 2027 (Köln) (+2%); Nachfrageindex 1.07
+2027-09-24,Freitag,119,99,2,,erhöht,freigeben,Saison 1.05; Wochentag 1.12; Nachfrageindex 1.18
+2027-09-25,Samstag,129,109,2,,erhöht,freigeben,Saison 1.05; Wochentag 1.15; Nachfrageindex 1.21
+2027-09-26,Sonntag,89,69,1,,niedrig,freigeben,Saison 1.05; Wochentag 0.88; Nachfrageindex 0.92
+2027-09-27,Montag,99,79,2,,normal,freigeben,Saison 1.05; Wochentag 0.95; Nachfrageindex 1.00
+2027-09-28,Dienstag,109,89,2,,normal,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
+2027-09-29,Mittwoch,109,89,2,,normal,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
+2027-09-30,Donnerstag,109,89,2,,normal,freigeben,Saison 1.05; Wochentag 1.00; Nachfrageindex 1.05

@@ -4,9 +4,9 @@
   "preisgrenzen": {
     "Minimum Price": 79,
     "Normal/Base Price": 100,
-    "Target Price": 105,
-    "High-Demand Price": 135,
-    "Event Price": 170,
+    "Target Price": 104,
+    "High-Demand Price": 134,
+    "Event Price": 169,
     "Maximum Price": 299
   },
   "normaler_wochentagspreis_mo_do": 99,
@@ -51,7 +51,7 @@
     "Juli": {
       "normal_min": 79,
       "normal_max": 99,
-      "inkl_events_max": 159,
+      "inkl_events_max": 169,
       "saisonfaktor": 0.92
     },
     "August": {
@@ -69,7 +69,7 @@
     "Oktober": {
       "normal_min": 89,
       "normal_max": 119,
-      "inkl_events_max": 159,
+      "inkl_events_max": 169,
       "saisonfaktor": 1.08
     },
     "November": {
@@ -81,7 +81,7 @@
     "Dezember": {
       "normal_min": 79,
       "normal_max": 99,
-      "inkl_events_max": 159,
+      "inkl_events_max": 149,
       "saisonfaktor": 0.95
     }
   },
@@ -99,6 +99,18 @@
       "confidence": "high"
     },
     {
+      "event": "Backstreet Boys – Homecoming Residency (Stadion)",
+      "start": "2026-10-06",
+      "end": "2026-10-07",
+      "tier": "A",
+      "visitors": null,
+      "distance_km": 5.9,
+      "price_min": 169,
+      "price_avg": 169,
+      "price_max": 169,
+      "confidence": "high"
+    },
+    {
       "event": "glasstec 2026",
       "start": "2026-10-20",
       "end": "2026-10-23",
@@ -109,18 +121,6 @@
       "price_avg": 159,
       "price_max": 159,
       "confidence": "medium"
-    },
-    {
-      "event": "Silvester",
-      "start": "2026-12-31",
-      "end": "2026-12-31",
-      "tier": "A",
-      "visitors": null,
-      "distance_km": 1.5,
-      "price_min": 159,
-      "price_avg": 159,
-      "price_max": 159,
-      "confidence": "high"
     },
     {
       "event": "ProWein 2027",
@@ -148,6 +148,18 @@
     },
     {
       "event": "Die Toten Hosen (Stadion)",
+      "start": "2027-07-03",
+      "end": "2027-07-04",
+      "tier": "A",
+      "visitors": null,
+      "distance_km": 5.9,
+      "price_min": 139,
+      "price_avg": 159,
+      "price_max": 169,
+      "confidence": "medium"
+    },
+    {
+      "event": "Die Toten Hosen (Stadion)",
       "start": "2027-07-10",
       "end": "2027-07-10",
       "tier": "A",
@@ -157,6 +169,18 @@
       "price_avg": 159,
       "price_max": 159,
       "confidence": "medium"
+    },
+    {
+      "event": "Silvester",
+      "start": "2026-12-31",
+      "end": "2026-12-31",
+      "tier": "A",
+      "visitors": null,
+      "distance_km": 1.5,
+      "price_min": 149,
+      "price_avg": 149,
+      "price_max": 149,
+      "confidence": "high"
     },
     {
       "event": "Straßenkarneval (Weiberfastnacht bis Rosenmontag)",
@@ -195,15 +219,27 @@
       "confidence": "low"
     },
     {
-      "event": "Die Toten Hosen (Stadion)",
-      "start": "2027-07-03",
-      "end": "2027-07-04",
-      "tier": "A",
+      "event": "Young Thug (Konzert)",
+      "start": "2026-10-17",
+      "end": "2026-10-17",
+      "tier": "C",
       "visitors": null,
-      "distance_km": 5.9,
+      "distance_km": 6.2,
       "price_min": 139,
-      "price_avg": 149,
-      "price_max": 159,
+      "price_avg": 139,
+      "price_max": 139,
+      "confidence": "medium"
+    },
+    {
+      "event": "Dimash Qudaibergen (Konzert)",
+      "start": "2026-10-24",
+      "end": "2026-10-24",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 6.2,
+      "price_min": 139,
+      "price_avg": 139,
+      "price_max": 139,
       "confidence": "medium"
     },
     {
@@ -273,7 +309,7 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 1.7,
-      "price_min": 89,
+      "price_min": 109,
       "price_avg": 119,
       "price_max": 129,
       "confidence": "medium"
@@ -289,6 +325,42 @@
       "price_avg": 119,
       "price_max": 119,
       "confidence": "low"
+    },
+    {
+      "event": "Apache 207 (Konzert)",
+      "start": "2026-10-08",
+      "end": "2026-10-08",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 6.2,
+      "price_min": 119,
+      "price_avg": 119,
+      "price_max": 119,
+      "confidence": "medium"
+    },
+    {
+      "event": "The Strokes (Konzert)",
+      "start": "2026-10-13",
+      "end": "2026-10-13",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 6.2,
+      "price_min": 119,
+      "price_avg": 119,
+      "price_max": 119,
+      "confidence": "medium"
+    },
+    {
+      "event": "The World of Hans Zimmer",
+      "start": "2026-10-15",
+      "end": "2026-10-15",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 6.2,
+      "price_min": 119,
+      "price_avg": 119,
+      "price_max": 119,
+      "confidence": "medium"
     },
     {
       "event": "Karnevalsauftakt 11.11.",
@@ -327,6 +399,42 @@
       "confidence": "medium"
     },
     {
+      "event": "Deutschland Cup (Eishockey)",
+      "start": "2026-11-05",
+      "end": "2026-11-08",
+      "tier": "D",
+      "visitors": null,
+      "distance_km": 6.2,
+      "price_min": 89,
+      "price_avg": 109,
+      "price_max": 119,
+      "confidence": "low"
+    },
+    {
+      "event": "Cologne Pride / CSD (Köln)",
+      "start": "2027-07-02",
+      "end": "2027-07-04",
+      "tier": "D",
+      "visitors": null,
+      "distance_km": 33.4,
+      "price_min": 109,
+      "price_avg": 109,
+      "price_max": 109,
+      "confidence": "medium"
+    },
+    {
+      "event": "DMEXCO 2027 (Köln)",
+      "start": "2027-09-22",
+      "end": "2027-09-23",
+      "tier": "D",
+      "visitors": null,
+      "distance_km": 33.2,
+      "price_min": 109,
+      "price_avg": 109,
+      "price_max": 109,
+      "confidence": "medium"
+    },
+    {
       "event": "VALVE WORLD EXPO 2026",
       "start": "2026-12-01",
       "end": "2026-12-03",
@@ -361,6 +469,18 @@
       "price_avg": 99,
       "price_max": 99,
       "confidence": "medium"
+    },
+    {
+      "event": "Weihnachten – Familienbesuche",
+      "start": "2026-12-22",
+      "end": "2026-12-28",
+      "tier": "D",
+      "visitors": null,
+      "distance_km": 1.5,
+      "price_min": 89,
+      "price_avg": 89,
+      "price_max": 99,
+      "confidence": "low"
     }
   ],
   "mindestaufenthalt": {
@@ -380,7 +500,7 @@
   "max_aufenthalt": 7,
   "freigegebene_naechte_je_jahr": {
     "2026": 89,
-    "2027": 150
+    "2027": 122
   },
   "lead_time_tabelle": [
     {
@@ -433,9 +553,7 @@
     }
   ],
   "nacht_limit": 90,
-  "schattenpreis_je_jahr": {
-    "2027": 99
-  },
+  "schattenpreis_je_jahr": {},
   "basisherleitung": {
     "anker_adr": 131.6,
     "anker_schritte": [
@@ -444,9 +562,9 @@
       "Bilk: 109 EUR × 0.30"
     ],
     "angepasste_anker_adr": 131.27,
-    "nachfragegewichteter_index": 1.1126,
-    "basis": 99.73,
-    "marktbasis": 117.98,
+    "nachfragegewichteter_index": 1.1231,
+    "basis": 99.51,
+    "marktbasis": 116.88,
     "comp_basis": 90.63,
     "comp_listings": 16,
     "comp_gewicht": 0.8,
