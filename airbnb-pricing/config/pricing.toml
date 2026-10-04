@@ -59,9 +59,9 @@ block_offer_discount = 0.10
 # allem; der in Airbnb einzutragende Nachtpreis = Gastpreis - Reinigung / erwartete Nächte pro Aufenthalt.
 cleaning_fee = 40
 assumed_avg_stay_nights = 2.5
-# Beobachtet (Eigentümer, 04.10.2026): 3 Buchungen, 243 brutto -> ca. 216 € Auszahlung = 0,889.
-# Währungsangabe (USD/EUR) noch zu bestätigen.
-payout_ratio = 0.889
+# Belegt (Buchung 05.10.2026): 102,00 € Gastpreis - 18,81 € Servicegebühr = 83,19 € Auszahlung.
+# 18,44 % = Airbnb-Gastgebergebühr 15,5 % zzgl. 19 % MwSt.; gilt auf Nachtpreise UND Reinigung.
+payout_ratio = 0.8156
 
 [revenue]
 # ANNAHME: Buchungswahrscheinlichkeit je Nacht und Nachfragestufe für ein neues Listing.

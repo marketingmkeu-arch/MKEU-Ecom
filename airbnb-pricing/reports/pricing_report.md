@@ -204,21 +204,21 @@ Erlaubt sind 90 Nächte pro Kalenderjahr (Wohnraum-ID im Inserat, Buchungskalend
 
 ### Umsatz- und Auszahlungsprognose
 
-Erwartungswert-Rechnung: Buchungswahrscheinlichkeit je Nacht nach Nachfragestufe ({'niedrig': 0.3, 'normal': 0.45, 'erhöht': 0.55, 'hoch': 0.7, 'Spitze': 0.85}, ANNAHME) × Gastpreis, begrenzt auf das 90-Nächte-Kontingent je Kalenderjahr und die Vermietungsfenster [['2026-10-04', '2026-12-31'], ['2027-01-22', '2027-01-31'], ['2027-02-03', '2027-02-08'], ['2027-03-06', '2027-03-09'], ['2027-04-08', '2027-04-11'], ['2027-05-21', '2027-05-22'], ['2027-06-01', '2027-09-30']]. Auszahlung = Gastpreis × 0.889 (aus den ersten echten Buchungen abgeleitet).
+Erwartungswert-Rechnung: Buchungswahrscheinlichkeit je Nacht nach Nachfragestufe ({'niedrig': 0.3, 'normal': 0.45, 'erhöht': 0.55, 'hoch': 0.7, 'Spitze': 0.85}, ANNAHME) × Gastpreis, begrenzt auf das 90-Nächte-Kontingent je Kalenderjahr und die Vermietungsfenster [['2026-10-04', '2026-12-31'], ['2027-01-22', '2027-01-31'], ['2027-02-03', '2027-02-08'], ['2027-03-06', '2027-03-09'], ['2027-04-08', '2027-04-11'], ['2027-05-21', '2027-05-22'], ['2027-06-01', '2027-09-30']]. Auszahlung = Gastpreis × 0.8156 (aus den ersten echten Buchungen abgeleitet).
 
 | Szenario | Nächte je Jahr | Gastumsatz EUR | Auszahlung EUR |
 |---|---|---|---|
-| konservativ | {'2026': 23.2, '2027': 48.2} | 8301 | 7380 |
-| realistisch | {'2026': 33.1, '2027': 68.9} | 11859 | 10543 |
-| optimistisch | {'2026': 40.9, '2027': 86.1} | 14726 | 13091 |
+| konservativ | {'2026': 23.2, '2027': 48.2} | 8301 | 6771 |
+| realistisch | {'2026': 33.1, '2027': 68.9} | 11859 | 9672 |
+| optimistisch | {'2026': 40.9, '2027': 86.1} | 14726 | 12011 |
 
 Vergleich der Vermietungsfenster 2027 (realistisches Szenario):
 
 | Fenster | erwartete Nächte | Ø Gastpreis | Auszahlung EUR |
 |---|---|---|---|
-| 2027 Sommer (Jun-Sep) | 53.9 | 110 | 5262 |
-| 2027 Frühjahr (Jan-Mai) | 67.9 | 108 | 6537 |
-| 2027 beste Nächte ganzjährig (bis 03.10.) | 90.0 | 116 | 9282 |
+| 2027 Sommer (Jun-Sep) | 53.9 | 110 | 4828 |
+| 2027 Frühjahr (Jan-Mai) | 67.9 | 108 | 5997 |
+| 2027 beste Nächte ganzjährig (bis 03.10.) | 90.0 | 116 | 8515 |
 
 ## 8. 12-Monats-Pricing-Kalender
 
