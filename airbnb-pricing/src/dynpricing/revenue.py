@@ -55,7 +55,7 @@ def forecast(prices: list[DayPrice], cfg: dict, scenario: str, multiplier: float
     result = Forecast(scenario, multiplier)
     by_year: dict[int, list[tuple[DayPrice, float]]] = defaultdict(list)
     for p in prices:
-        if p.quota_recommendation == "gebucht":
+        if p.quota_recommendation in ("gebucht", "blockiert"):
             continue
         if (include is not None and not include(p)) or (include is None and p.quota_recommendation == "geschlossen"):
             continue

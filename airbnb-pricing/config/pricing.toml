@@ -48,6 +48,12 @@ rental_windows = [
   ["2027-06-01", "2027-09-30"],
 ]
 
+[availability]
+# Eigentümer im Urlaub (Angabe 04.10.2026): keine Anreisen/Reinigung möglich.
+# Nächte vom 30.10. bis 16.11. (Rückkehr 17.11.) gesperrt – Ausnahme nur bei Buchung des gesamten Zeitraums.
+blocked_nights = [["2026-10-30", "2026-11-16"]]
+block_offer_discount = 0.10
+
 [fees]
 # Reinigungspauschale (Empfehlung, s. Report). Die Kalenderpreise sind Gastpreise pro Nacht inkl.
 # allem; der in Airbnb einzutragende Nachtpreis = Gastpreis - Reinigung / erwartete Nächte pro Aufenthalt.

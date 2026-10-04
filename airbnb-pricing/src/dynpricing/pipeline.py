@@ -70,6 +70,12 @@ def run(as_of: date, cfg: dict, paths: Paths = Paths(), pace: dict[date, float] 
         if p.demand.day in bookings:
             p.quota_recommendation = "gebucht"
             p.reasons.append(f"bereits gebucht (Auszahlung {bookings[p.demand.day]:.0f} EUR)")
+    for a, b in cfg.get("availability", {}).get("blocked_nights", []):
+        start, end = date.fromisoformat(a), date.fromisoformat(b)
+        for p in prices:
+            if start <= p.demand.day <= end and p.quota_recommendation != "gebucht":
+                p.quota_recommendation = "blockiert"
+                p.reasons.append("blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar")
     shadow = apply_night_cap(prices, cfg)
     return RunResult(as_of, cfg, events, metrics, comps, comp_by_day, history, factors, impacts,
                      demand, comp_base, derivation, bands, prices, shadow, bookings)

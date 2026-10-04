@@ -466,7 +466,7 @@ def price_ranges(rows: list[dict]) -> list[dict]:
     """Aufeinanderfolgende Tage mit gleichem Airbnb-Preis und Mindestaufenthalt zusammenfassen."""
     ranges: list[dict] = []
     for r in rows:
-        if r["Status"] in ("gebucht", "geschlossen"):
+        if r["Status"] in ("gebucht", "geschlossen", "blockiert"):
             continue
         key = (r["Airbnb-Nachtpreis eintragen"], r["Mindestnächte"], r["Event"])
         if ranges and ranges[-1]["_key"] == key and date.fromisoformat(ranges[-1]["bis"]).toordinal() + 1 == date.fromisoformat(r["Datum"]).toordinal():
@@ -496,6 +496,15 @@ def revenue_summary(result: RunResult) -> dict:
     booked = result.bookings or {}
     out = {"payout_ratio": cfg["fees"]["payout_ratio"], "szenarien": {},
            "bereits_gebucht": {"naechte": len(booked), "auszahlung": round(sum(booked.values()))}}
+    blocks = []
+    for a, b in cfg.get("availability", {}).get("blocked_nights", []):
+        sel = [p for p in result.prices if date.fromisoformat(a) <= p.demand.day <= date.fromisoformat(b)]
+        if sel:
+            total = sum(p.static_price for p in sel)
+            disc = cfg["availability"].get("block_offer_discount", 0.0)
+            blocks.append({"von": a, "bis_einschl_nacht": b, "naechte": len(sel), "summe_tagespreise": round(total),
+                           "angebot_gesamt": round(total * (1 - disc)), "angebot_pro_nacht": round(total * (1 - disc) / len(sel))})
+    out["blockzeitraeume"] = blocks
     for f in all_forecasts(result.prices, cfg):
         out["szenarien"][f.scenario] = {
             "naechte": round(f.nights, 1),
