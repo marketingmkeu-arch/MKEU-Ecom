@@ -10,13 +10,12 @@ von,bis,Nächte,Airbnb-Nachtpreis,Gastpreis/Nacht,Mindestnächte,Event,Datenbasi
 2027-02-04,2027-02-04,1,139,159,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-02-05,2027-02-06,2,149,169,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-02-07,2027-02-07,1,139,159,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),Annahme: Event-Aufschlag ohne Vergleichspreise
-2027-02-08,2027-02-08,1,99,119,1,Straßenkarneval (Weiberfastnacht bis Rosenmontag),Annahme: Event-Aufschlag ohne Vergleichspreise
+2027-02-08,2027-02-08,1,109,129,1,Straßenkarneval (Weiberfastnacht bis Rosenmontag),Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-03-06,2027-03-07,2,159,179,2,ProWein 2027 + Disney on Ice,Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-03-08,2027-03-08,1,149,169,2,ProWein 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-03-09,2027-03-09,1,99,119,1,ProWein 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-04-08,2027-04-08,1,109,129,2,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),Annahme: Event-Aufschlag ohne Vergleichspreise
-2027-04-09,2027-04-09,1,129,149,2,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),Annahme: Event-Aufschlag ohne Vergleichspreise
-2027-04-10,2027-04-10,1,139,159,2,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),Annahme: Event-Aufschlag ohne Vergleichspreise
+2027-04-09,2027-04-10,2,139,159,2,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-04-11,2027-04-11,1,79,99,1,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-05-21,2027-05-21,1,99,119,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-05-22,2027-05-22,1,139,159,1,Japan-Tag Düsseldorf/NRW 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
@@ -32,7 +31,7 @@ von,bis,Nächte,Airbnb-Nachtpreis,Gastpreis/Nacht,Mindestnächte,Event,Datenbasi
 2027-06-18,2027-06-19,2,99,119,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-06-20,2027-06-20,1,149,169,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-06-21,2027-06-24,4,159,179,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
-2027-06-25,2027-06-25,1,109,129,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
+2027-06-25,2027-06-25,1,119,139,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-06-26,2027-06-26,1,99,119,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-06-27,2027-06-27,1,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-06-28,2027-06-28,1,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
@@ -44,34 +43,26 @@ von,bis,Nächte,Airbnb-Nachtpreis,Gastpreis/Nacht,Mindestnächte,Event,Datenbasi
 2027-07-05,2027-07-08,4,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-07-09,2027-07-09,1,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-07-10,2027-07-10,1,149,169,2,Die Toten Hosen (Stadion),Annahme: Event-Aufschlag ohne Vergleichspreise
-2027-07-11,2027-07-11,1,59,79,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
-2027-07-12,2027-07-15,4,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2027-07-11,2027-07-15,5,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-07-16,2027-07-16,1,109,129,2,Rheinkirmes 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-07-17,2027-07-17,1,129,149,2,Rheinkirmes 2027 + Karol G (Stadion),Annahme: Event-Aufschlag ohne Vergleichspreise
-2027-07-18,2027-07-18,1,59,79,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
-2027-07-19,2027-07-22,4,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2027-07-18,2027-07-22,5,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-07-23,2027-07-24,2,109,129,2,Rheinkirmes 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
-2027-07-25,2027-07-25,1,59,79,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
-2027-07-26,2027-07-29,4,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2027-07-25,2027-07-29,5,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-07-30,2027-07-31,2,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
-2027-08-01,2027-08-01,1,59,79,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
-2027-08-02,2027-08-05,4,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2027-08-01,2027-08-05,5,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-08-06,2027-08-07,2,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
-2027-08-08,2027-08-08,1,59,79,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
-2027-08-09,2027-08-12,4,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2027-08-08,2027-08-12,5,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-08-13,2027-08-14,2,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
-2027-08-15,2027-08-15,1,59,79,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
-2027-08-16,2027-08-19,4,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2027-08-15,2027-08-19,5,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-08-20,2027-08-21,2,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
-2027-08-22,2027-08-22,1,59,79,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
-2027-08-23,2027-08-23,1,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2027-08-22,2027-08-23,2,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-08-24,2027-08-25,2,79,99,2,gamescom 2027 (Köln),abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2027-08-26,2027-08-26,1,99,119,2,CARAVAN SALON 2027 + gamescom 2027 (Köln),Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-08-27,2027-08-27,1,109,129,2,CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-08-28,2027-08-28,1,119,139,2,CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-08-29,2027-08-29,1,89,109,2,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 + gamescom 2027 (Köln),Annahme: Event-Aufschlag ohne Vergleichspreise
-2027-08-30,2027-08-30,1,89,109,2,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
-2027-08-31,2027-08-31,1,99,119,2,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
+2027-08-30,2027-08-31,2,99,119,2,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-09-01,2027-09-01,1,119,139,2,CARAVAN SALON 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-09-02,2027-09-02,1,129,149,2,CARAVAN SALON 2027,Annahme: Event-Aufschlag ohne Vergleichspreise
 2027-09-03,2027-09-04,2,139,159,2,CARAVAN SALON 2027,Annahme: Event-Aufschlag ohne Vergleichspreise

@@ -5,13 +5,14 @@ von,bis,Nächte,Airbnb-Nachtpreis,Gastpreis/Nacht,Mindestnächte,Event,Datenbasi
 2026-10-11,2026-10-11,1,69,89,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2026-10-12,2026-10-12,1,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2026-10-13,2026-10-13,1,89,109,2,The Strokes (Konzert),abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
-2026-10-14,2026-10-14,1,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-14,2026-10-14,1,89,109,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2026-10-15,2026-10-15,1,89,109,2,The World of Hans Zimmer,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
-2026-10-16,2026-10-16,1,89,109,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-16,2026-10-16,1,99,119,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2026-10-17,2026-10-17,1,99,119,2,Young Thug (Konzert),abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2026-10-18,2026-10-18,1,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2026-10-19,2026-10-19,1,99,119,2,glasstec 2026,Annahme: Event-Aufschlag ohne Vergleichspreise
-2026-10-20,2026-10-22,3,109,129,2,glasstec 2026,Annahme: Event-Aufschlag ohne Vergleichspreise
+2026-10-20,2026-10-21,2,109,129,2,glasstec 2026,belegt: Vergleichs-Median 132 € (inkl. allem)
+2026-10-22,2026-10-22,1,109,129,2,glasstec 2026,Annahme: Event-Aufschlag ohne Vergleichspreise
 2026-10-23,2026-10-23,1,99,119,2,glasstec 2026,Annahme: Event-Aufschlag ohne Vergleichspreise
 2026-10-24,2026-10-24,1,99,119,2,Dimash Qudaibergen (Konzert),abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
 2026-10-25,2026-10-25,1,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen

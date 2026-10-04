@@ -8,9 +8,9 @@ _Automatisch erzeugt am 2026-10-04 durch `dynpricing`. Kalenderzeitraum: 2026-10
 
 > Alle Preise sind **Gastpreise pro Nacht inkl. aller Gebühren** (so zeigt Airbnb die Konkurrenz an). Den eigenen Preis in Airbnb so einstellen, dass die Gastansicht diesen Wert zeigt.
 
-- **Realistischer Normalpreis (Basis, Di ohne Event):** ca. **101 EUR**
+- **Realistischer Normalpreis (Basis, Di ohne Event):** ca. **102 EUR**
 - **Normaler Wochentag (Mo–Do, Median):** 99 EUR · **Normales Wochenende (Fr/Sa, Median):** 109 EUR
-- **Minimum Price:** 79 EUR · **Maximum Price:** 304 EUR
+- **Minimum Price:** 79 EUR · **Maximum Price:** 305 EUR
 - **Stärkste Nachfragetreiber im Zeitraum:** MEDICA + COMPAMED 2026 (Ø 219 EUR, bis 219 EUR); Backstreet Boys – Homecoming Residency (Stadion) (Ø 169 EUR, bis 169 EUR); Silvester (Ø 159 EUR, bis 159 EUR)
 - **Regulierung:** Ohne Zweckentfremdungsgenehmigung sind in Düsseldorf höchstens **90 Nächte pro Kalenderjahr** Kurzzeitvermietung erlaubt (Wohnraum-ID nötig). Die Strategie sollte deshalb die wertvollsten Nächte priorisieren (Messen, Wochenenden, Oktober) und keine Nacht unter dem Schattenpreis ({} EUR) verkaufen – siehe Abschnitt 7.
 
@@ -56,9 +56,14 @@ Einordnung: Die Wohnung liegt in Unterbilk (Nähe Medienhafen, Bilk, Friedrichst
 | medica_airport_messe | Airport/Messe | unbekannt | 5.0 (8) | 65.0 | eingeschränkt vergleichbar (Lage unbekannt) | 84 |
 | medica_zentral_3betten | Zentrum | unbekannt | 4.89 (261) | 65.0 | eingeschränkt vergleichbar (Lage unbekannt) | 193 |
 | medica_loft_whirlpool | unbekannt | unbekannt | 4.79 (87) | 65.0 | eingeschränkt vergleichbar (Lage unbekannt) | 175 |
+| glas_historisch_1sz | unbekannt | unbekannt | 4.82 (185) | 65.0 | eingeschränkt vergleichbar (Lage unbekannt) | 61 |
+| glas_japanviertel | Stadtmitte (Japanviertel) | unbekannt | 4.92 (12) | 65.0 | eingeschränkt vergleichbar (Lage unbekannt) | 104 |
+| glas_the_red_luxus | unbekannt | unbekannt | 4.97 (67) | 65.0 | eingeschränkt vergleichbar (Lage unbekannt) | 135 |
+| glas_wohnung_nr1 | unbekannt | unbekannt | 4.93 (455) | 65.0 | eingeschränkt vergleichbar (Lage unbekannt) | 118 |
 | abnb_modern_renoviert_1zi | unbekannt | unbekannt | – | 59.0 | eingeschränkt vergleichbar (Lage unbekannt) | 91 |
 | medica_cosy_tiny_loft | unbekannt | unbekannt | 4.91 (77) | 57.5 | eingeschränkt vergleichbar (Lage unbekannt) | 92 |
 | medica_1raum_wald | Stadtrand Süd | unbekannt | 4.91 (115) | 55.0 | eingeschränkt vergleichbar (Lage unbekannt) | 70 |
+| glas_1zi_2einzel | unbekannt | unbekannt | 4.78 (194) | 55.0 | eingeschränkt vergleichbar (Lage unbekannt) | 58 |
 | medica_benrath_balkon | Benrath | 9.3 | 5.0 (22) | 50.0 | nicht vergleichbar | – |
 | medica_casa_maxima_benrath | Benrath | 9.21 | 4.86 (70) | 50.0 | nicht vergleichbar | – |
 | medica_neuss_gemuetlich | Neuss | 5.43 | 4.87 (62) | 50.0 | nicht vergleichbar | – |
@@ -70,10 +75,14 @@ Einordnung: Die Wohnung liegt in Unterbilk (Nähe Medienhafen, Bilk, Friedrichst
 | medica_neuss_modern_zentrum | Neuss | 5.43 | 5.0 (8) | 50.0 | nicht vergleichbar | – |
 | medica_meerbusch_hofblick | Meerbusch | 6.96 | 4.99 (70) | 50.0 | nicht vergleichbar | – |
 | medica_ratingen_flughafen | Ratingen | 11.01 | – | 50.0 | nicht vergleichbar | – |
+| glas_neuss_casa_mia | Neuss | 5.43 | – | 50.0 | nicht vergleichbar | – |
+| glas_neuss_angebunden | Neuss | 5.43 | 4.98 (176) | 50.0 | nicht vergleichbar | – |
+| glas_ratingen_zentrum | Ratingen | 11.01 | 4.56 (88) | 50.0 | nicht vergleichbar | – |
+| glas_meerbusch_buederich | Meerbusch | 6.96 | 4.93 (58) | 42.5 | nicht vergleichbar | – |
 
 Datenklasse 1 (direkt beobachtet): **angebotene** Preise aus Airbnb-Suchen, keine gezahlten Preise. „Normaltag-Äquivalent“ = angebotener Preis ÷ Nachfrageindex des Aufenthaltstags. Ohne Koordinaten gilt ein Listing höchstens als eingeschränkt vergleichbar.
 
-Median-Normaltag über 16 Listings (32 Beobachtungen): **92 EUR**. Einschränkungen: wenige Listings, nur ein Reisedatum, Lage und Größe teils unbekannt, „Gesamtpreis“ enthält je nach Listing Reinigung/Gebühren, mehrere Preise waren bereits rabattiert.
+Median-Normaltag über 21 Listings (43 Beobachtungen): **92 EUR**. Einschränkungen: wenige Listings, nur ein Reisedatum, Lage und Größe teils unbekannt, „Gesamtpreis“ enthält je nach Listing Reinigung/Gebühren, mehrere Preise waren bereits rabattiert.
 
 ## 4. Historische Entwicklung
 
@@ -85,15 +94,15 @@ Saisonfaktoren sind **Modellannahmen** (Prior). Qualitativ gestützt durch AirRO
 
 | Monat | Saisonfaktor | Normaltage von | bis | Max. inkl. Events |
 |---|---|---|---|---|
-| Januar | 0.88 | 79 | 99 | 119 |
-| Februar | 0.92 | 79 | 99 | 159 |
+| Januar | 0.88 | 89 | 99 | 119 |
+| Februar | 0.92 | 89 | 99 | 159 |
 | März | 1.0 | 89 | 109 | 159 |
 | April | 1.02 | 89 | 109 | 139 |
-| Mai | 1.05 | 89 | 109 | 139 |
+| Mai | 1.05 | 89 | 109 | 149 |
 | Juni | 1.03 | 89 | 109 | 159 |
-| Juli | 0.92 | 79 | 99 | 159 |
-| August | 0.92 | 79 | 99 | 129 |
-| September | 1.05 | 89 | 119 | 139 |
+| Juli | 0.92 | 89 | 99 | 159 |
+| August | 0.92 | 89 | 99 | 129 |
+| September | 1.05 | 89 | 119 | 149 |
 | Oktober | 1.08 | 89 | 119 | 169 |
 | November | 1.0 | 89 | 109 | 219 |
 | Dezember | 0.95 | 89 | 99 | 159 |
@@ -113,13 +122,13 @@ Die historische Preiswirkung je Event: **keine belastbaren Daten verfügbar** �
 | GIFA / METEC / THERMPROCESS / NEWCAST 2027 | 2027-06-21 | 2027-06-25 | A |  | 5.8 | 159 | 159 | 159 | medium |
 | Die Toten Hosen (Stadion) | 2027-07-10 | 2027-07-10 | A |  | 5.9 | 159 | 159 | 159 | medium |
 | Straßenkarneval (Weiberfastnacht bis Rosenmontag) | 2027-02-04 | 2027-02-08 | A |  | 1.5 | 149 | 149 | 159 | high |
+| Japan-Tag Düsseldorf/NRW 2027 | 2027-05-22 | 2027-05-22 | B |  | 1.5 | 149 | 149 | 149 | low |
 | Die Toten Hosen (Stadion) | 2027-07-03 | 2027-07-04 | A |  | 5.9 | 149 | 149 | 159 | medium |
 | BEAUTY DÜSSELDORF + TOP HAIR 2027 | 2027-04-09 | 2027-04-11 | B |  | 5.8 | 139 | 139 | 139 | medium |
-| Japan-Tag Düsseldorf/NRW 2027 | 2027-05-22 | 2027-05-22 | B |  | 1.5 | 139 | 139 | 139 | low |
 | glasstec 2026 | 2026-10-20 | 2026-10-23 | B | 32023 | 5.8 | 129 | 129 | 129 | medium |
 | Uniper Düsseldorf Marathon | 2027-04-18 | 2027-04-18 | C |  | 1.5 | 129 | 129 | 129 | medium |
 | Rheinkirmes 2027 | 2027-07-16 | 2027-07-25 | B |  | 2.1 | 119 | 129 | 139 | medium |
-| CARAVAN SALON 2027 | 2027-08-27 | 2027-09-05 | B | 269000 | 5.8 | 99 | 129 | 139 | high |
+| CARAVAN SALON 2027 | 2027-08-27 | 2027-09-05 | B | 269000 | 5.8 | 99 | 129 | 149 | high |
 | Sabaton (Konzert) | 2027-04-23 | 2027-04-23 | D |  | 6.2 | 119 | 119 | 119 | medium |
 | Die Ärzte (Konzert) | 2027-04-24 | 2027-04-24 | D |  | 6.2 | 119 | 119 | 119 | low |
 | Apache 207 (Konzert) | 2026-10-08 | 2026-10-08 | D |  | 6.2 | 119 | 119 | 119 | medium |
@@ -133,11 +142,11 @@ Die historische Preiswirkung je Event: **keine belastbaren Daten verfügbar** �
 | IDS 2027 (Köln) | 2027-03-16 | 2027-03-20 | C |  | 33.2 | 109 | 109 | 119 | medium |
 | The Strokes (Konzert) | 2026-10-13 | 2026-10-13 | D |  | 6.2 | 109 | 109 | 109 | medium |
 | Deutschland Cup (Eishockey) | 2026-11-05 | 2026-11-08 | D |  | 6.2 | 89 | 109 | 119 | low |
+| Cologne Pride / CSD (Köln) | 2027-07-02 | 2027-07-04 | D |  | 33.4 | 109 | 109 | 109 | medium |
 | DMEXCO 2027 (Köln) | 2027-09-22 | 2027-09-23 | D |  | 33.2 | 109 | 109 | 109 | medium |
 | VALVE WORLD EXPO 2026 | 2026-12-01 | 2026-12-03 | D |  | 5.8 | 99 | 99 | 99 | medium |
 | EuroCIS 2027 | 2027-02-16 | 2027-02-18 | C |  | 5.8 | 99 | 99 | 99 | medium |
 | gamescom 2027 (Köln) | 2027-08-25 | 2027-08-29 | C |  | 33.2 | 99 | 99 | 99 | medium |
-| Cologne Pride / CSD (Köln) | 2027-07-02 | 2027-07-04 | D |  | 33.4 | 99 | 99 | 99 | medium |
 | Weihnachten – Familienbesuche | 2026-12-22 | 2026-12-28 | D |  | 1.5 | 89 | 89 | 99 | low |
 
 ## 7. Pricing Strategy
@@ -147,19 +156,19 @@ Die historische Preiswirkung je Event: **keine belastbaren Daten verfügbar** �
 | Stufe | EUR |
 |---|---|
 | Minimum Price | 79 |
-| Normal/Base Price | 101 |
-| Target Price | 106 |
+| Normal/Base Price | 102 |
+| Target Price | 107 |
 | High-Demand Price | 137 |
-| Event Price | 172 |
-| Maximum Price | 304 |
+| Event Price | 173 |
+| Maximum Price | 305 |
 
 ### Herleitung Basispreis
 
 1. Anker-ADR Nachbarviertel: Unterbilk: 139 EUR × 0.50 + Friedrichstadt: 147 EUR × 0.20 + Bilk: 109 EUR × 0.30 = **131.6 EUR**
 2. × Größenanpassung 0.95 × Qualitätsaufschlag 1.05 = 131.27 EUR (Annahmen)
 3. ÷ nachfragegewichteter Ø-Index 1.0872 (die Markt-ADR enthält Wochenend- und Messenächte überproportional) = Marktbasis 120.75 EUR
-4. Mischung mit beobachteter Comp-Basis 91.82 EUR × Positionierung 1.05 (Gewicht 80% bei 16 Listings)
-= **Basis 101.28 EUR**
+4. Mischung mit beobachteter Comp-Basis 92.27 EUR × Positionierung 1.05 (Gewicht 80% bei 21 Listings)
+= **Basis 101.66 EUR**
 
 ### Lead-Time-Strategie
 
@@ -199,17 +208,17 @@ Erwartungswert-Rechnung: Buchungswahrscheinlichkeit je Nacht nach Nachfragestufe
 
 | Szenario | Nächte je Jahr | Gastumsatz EUR | Auszahlung EUR |
 |---|---|---|---|
-| konservativ | {'2026': 23.2, '2027': 48.2} | 8270 | 7352 |
-| realistisch | {'2026': 33.1, '2027': 68.9} | 11815 | 10503 |
-| optimistisch | {'2026': 40.9, '2027': 86.1} | 14671 | 13042 |
+| konservativ | {'2026': 23.2, '2027': 48.2} | 8301 | 7380 |
+| realistisch | {'2026': 33.1, '2027': 68.9} | 11859 | 10543 |
+| optimistisch | {'2026': 40.9, '2027': 86.1} | 14726 | 13091 |
 
 Vergleich der Vermietungsfenster 2027 (realistisches Szenario):
 
 | Fenster | erwartete Nächte | Ø Gastpreis | Auszahlung EUR |
 |---|---|---|---|
-| 2027 Sommer (Jun-Sep) | 53.9 | 109 | 5242 |
-| 2027 Frühjahr (Jan-Mai) | 67.9 | 108 | 6512 |
-| 2027 beste Nächte ganzjährig (bis 03.10.) | 90.0 | 116 | 9247 |
+| 2027 Sommer (Jun-Sep) | 53.9 | 110 | 5262 |
+| 2027 Frühjahr (Jan-Mai) | 67.9 | 108 | 6537 |
+| 2027 beste Nächte ganzjährig (bis 03.10.) | 90.0 | 116 | 9282 |
 
 ## 8. 12-Monats-Pricing-Kalender
 
@@ -227,9 +236,9 @@ Vollständiger Tageskalender: `output/pricing_calendar_12m.csv`. Auszug: die nä
 | 2026-10-11 | Sonntag | 99 | 89 |  |  | normal |
 | 2026-10-12 | Montag | 99 | 99 |  |  | normal |
 | 2026-10-13 | Dienstag | 99 | 109 | The Strokes (Konzert) | +5% (Tier D) | erhöht |
-| 2026-10-14 | Mittwoch | 99 | 99 |  |  | normal |
+| 2026-10-14 | Mittwoch | 99 | 109 |  |  | normal |
 | 2026-10-15 | Donnerstag | 99 | 109 | The World of Hans Zimmer | +5% (Tier D) | erhöht |
-| 2026-10-16 | Freitag | 99 | 109 |  |  | erhöht |
+| 2026-10-16 | Freitag | 99 | 119 |  |  | erhöht |
 | 2026-10-17 | Samstag | 99 | 119 | Young Thug (Konzert) | +5% (Tier D) | erhöht |
 | 2026-10-18 | Sonntag | 99 | 89 |  |  | niedrig |
 | 2026-10-19 | Montag | 99 | 119 | glasstec 2026 | +20% (Tier B) | erhöht |

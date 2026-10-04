@@ -1,25 +1,25 @@
 {
   "as_of": "2026-10-04",
-  "basispreis": 101,
+  "basispreis": 102,
   "preisgrenzen": {
     "Minimum Price": 79,
-    "Normal/Base Price": 101,
-    "Target Price": 106,
+    "Normal/Base Price": 102,
+    "Target Price": 107,
     "High-Demand Price": 137,
-    "Event Price": 172,
-    "Maximum Price": 304
+    "Event Price": 173,
+    "Maximum Price": 305
   },
   "normaler_wochentagspreis_mo_do": 99,
   "normaler_wochenendpreis_fr_sa": 109,
   "saisonale_preisbereiche": {
     "Januar": {
-      "normal_min": 79,
+      "normal_min": 89,
       "normal_max": 99,
       "inkl_events_max": 119,
       "saisonfaktor": 0.88
     },
     "Februar": {
-      "normal_min": 79,
+      "normal_min": 89,
       "normal_max": 99,
       "inkl_events_max": 159,
       "saisonfaktor": 0.92
@@ -39,7 +39,7 @@
     "Mai": {
       "normal_min": 89,
       "normal_max": 109,
-      "inkl_events_max": 139,
+      "inkl_events_max": 149,
       "saisonfaktor": 1.05
     },
     "Juni": {
@@ -49,13 +49,13 @@
       "saisonfaktor": 1.03
     },
     "Juli": {
-      "normal_min": 79,
+      "normal_min": 89,
       "normal_max": 99,
       "inkl_events_max": 159,
       "saisonfaktor": 0.92
     },
     "August": {
-      "normal_min": 79,
+      "normal_min": 89,
       "normal_max": 99,
       "inkl_events_max": 129,
       "saisonfaktor": 0.92
@@ -63,7 +63,7 @@
     "September": {
       "normal_min": 89,
       "normal_max": 119,
-      "inkl_events_max": 139,
+      "inkl_events_max": 149,
       "saisonfaktor": 1.05
     },
     "Oktober": {
@@ -171,6 +171,18 @@
       "confidence": "high"
     },
     {
+      "event": "Japan-Tag Düsseldorf/NRW 2027",
+      "start": "2027-05-22",
+      "end": "2027-05-22",
+      "tier": "B",
+      "visitors": null,
+      "distance_km": 1.5,
+      "price_min": 149,
+      "price_avg": 149,
+      "price_max": 149,
+      "confidence": "low"
+    },
+    {
       "event": "Die Toten Hosen (Stadion)",
       "start": "2027-07-03",
       "end": "2027-07-04",
@@ -193,18 +205,6 @@
       "price_avg": 139,
       "price_max": 139,
       "confidence": "medium"
-    },
-    {
-      "event": "Japan-Tag Düsseldorf/NRW 2027",
-      "start": "2027-05-22",
-      "end": "2027-05-22",
-      "tier": "B",
-      "visitors": null,
-      "distance_km": 1.5,
-      "price_min": 139,
-      "price_avg": 139,
-      "price_max": 139,
-      "confidence": "low"
     },
     {
       "event": "glasstec 2026",
@@ -251,7 +251,7 @@
       "distance_km": 5.8,
       "price_min": 99,
       "price_avg": 129,
-      "price_max": 139,
+      "price_max": 149,
       "confidence": "high"
     },
     {
@@ -411,6 +411,18 @@
       "confidence": "low"
     },
     {
+      "event": "Cologne Pride / CSD (Köln)",
+      "start": "2027-07-02",
+      "end": "2027-07-04",
+      "tier": "D",
+      "visitors": null,
+      "distance_km": 33.4,
+      "price_min": 109,
+      "price_avg": 109,
+      "price_max": 109,
+      "confidence": "medium"
+    },
+    {
       "event": "DMEXCO 2027 (Köln)",
       "start": "2027-09-22",
       "end": "2027-09-23",
@@ -453,18 +465,6 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 33.2,
-      "price_min": 99,
-      "price_avg": 99,
-      "price_max": 99,
-      "confidence": "medium"
-    },
-    {
-      "event": "Cologne Pride / CSD (Köln)",
-      "start": "2027-07-02",
-      "end": "2027-07-04",
-      "tier": "D",
-      "visitors": null,
-      "distance_km": 33.4,
       "price_min": 99,
       "price_avg": 99,
       "price_max": 99,
@@ -563,10 +563,10 @@
     ],
     "angepasste_anker_adr": 131.27,
     "nachfragegewichteter_index": 1.0872,
-    "basis": 101.28,
+    "basis": 101.66,
     "marktbasis": 120.75,
-    "comp_basis": 91.82,
-    "comp_listings": 16,
+    "comp_basis": 92.27,
+    "comp_listings": 21,
     "comp_gewicht": 0.8,
     "startrabatt_faktor": 1.0
   }

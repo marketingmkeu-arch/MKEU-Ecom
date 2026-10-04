@@ -9,9 +9,9 @@ Datum,Wochentag,Base Price,Recommended Price,Event,Event Impact,Demand Level,Beg
 2026-10-11,Sonntag,99,89,,,normal,"Saison 1.08; Wochentag 0.88; Nachfrageindex 0.95; Vorlauf 7 T (-5%, Modus normal)",0.950,2,Base,0.95,48,freigeben,69
 2026-10-12,Montag,99,99,,,normal,"Saison 1.08; Wochentag 0.95; Nachfrageindex 1.03; Vorlauf 8 T (-2%, Modus normal)",1.026,2,Base,0.98,34,freigeben,79
 2026-10-13,Dienstag,99,109,The Strokes (Konzert),+5% (Tier D),erhöht,"Saison 1.08; Wochentag 0.97; Event: The Strokes (Konzert) (+5%); Nachfrageindex 1.10; Vorlauf 9 T (-2%, Modus normal)",1.100,2,Target,0.98,25,freigeben,89
-2026-10-14,Mittwoch,99,99,,,normal,"Saison 1.08; Wochentag 0.97; Nachfrageindex 1.05; Vorlauf 10 T (-2%, Modus normal)",1.048,2,Base,0.98,32,freigeben,79
+2026-10-14,Mittwoch,99,109,,,normal,"Saison 1.08; Wochentag 0.97; Nachfrageindex 1.05; Vorlauf 10 T (-2%, Modus normal)",1.048,2,Base,0.98,32,freigeben,89
 2026-10-15,Donnerstag,99,109,The World of Hans Zimmer,+5% (Tier D),erhöht,"Saison 1.08; Wochentag 1.00; Event: The World of Hans Zimmer (+5%); Nachfrageindex 1.13; Vorlauf 11 T (-2%, Modus normal)",1.134,2,Target,0.98,20,freigeben,89
-2026-10-16,Freitag,99,109,,,erhöht,"Saison 1.08; Wochentag 1.06; Nachfrageindex 1.14; Vorlauf 12 T (-2%, Modus normal)",1.145,2,Target,0.98,19,freigeben,89
+2026-10-16,Freitag,99,119,,,erhöht,"Saison 1.08; Wochentag 1.06; Nachfrageindex 1.14; Vorlauf 12 T (-2%, Modus normal)",1.145,2,Target,0.98,19,freigeben,99
 2026-10-17,Samstag,99,119,Young Thug (Konzert),+5% (Tier D),erhöht,"Saison 1.08; Wochentag 1.08; Schulferien NRW (-3%); Event: Young Thug (Konzert) (+5%); Nachfrageindex 1.19; Vorlauf 13 T (-2%, Modus normal)",1.188,2,Target,0.98,13,freigeben,99
 2026-10-18,Sonntag,99,89,,,niedrig,"Saison 1.08; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.92; Vorlauf 14 T (-6%, Modus low)",0.922,1,Base,0.94,53,freigeben,69
 2026-10-19,Montag,99,119,glasstec 2026,+20% (Tier B),erhöht,Saison 1.08; Wochentag 0.95; Schulferien NRW (-3%); Event: glasstec 2026 (+20%); Nachfrageindex 1.19,1.194,2,Target,1.00,11,freigeben,99
@@ -90,21 +90,21 @@ Datum,Wochentag,Base Price,Recommended Price,Event,Event Impact,Demand Level,Beg
 2026-12-31,Donnerstag,99,169,Silvester,+55% (Tier A),hoch,"Saison 0.95; Wochentag 1.00; Langes Wochenende (Neujahr) (+5%); Schulferien NRW (-3%); Event: Silvester (+55%); Nachfrageindex 1.55; Vorlauf 88 T (+5%, Modus high); Mindestaufenthalt auf 1 verkürzt (freie Lücke)",1.546,1,High-Demand,1.05,6,freigeben,149
 2027-01-01,Freitag,99,99,,,normal,"Saison 0.88; Wochentag 1.06; Langes Wochenende (Neujahr) (+5%); Schulferien NRW (-3%); Nachfrageindex 0.98; Vorlauf 89 T (+2%, Modus normal)",0.979,2,Base,1.02,,geschlossen,79
 2027-01-02,Samstag,99,99,,,normal,"Saison 0.88; Wochentag 1.08; Langes Wochenende (Neujahr) (+5%); Schulferien NRW (-3%); Nachfrageindex 1.00; Vorlauf 90 T (+2%, Modus normal)",0.998,2,Base,1.02,,geschlossen,79
-2027-01-03,Sonntag,99,79,,,niedrig,Saison 0.88; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.75,0.751,1,Minimum,1.00,,geschlossen,59
-2027-01-04,Montag,99,79,,,niedrig,Saison 0.88; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.81,0.811,1,Base,1.00,,geschlossen,59
-2027-01-05,Dienstag,99,79,,,niedrig,Saison 0.88; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.83,0.828,1,Base,1.00,,geschlossen,59
-2027-01-06,Mittwoch,99,79,,,niedrig,Saison 0.88; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.83,0.828,1,Base,1.00,,geschlossen,59
+2027-01-03,Sonntag,99,89,,,niedrig,Saison 0.88; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.75,0.751,1,Minimum,1.00,,geschlossen,69
+2027-01-04,Montag,99,89,,,niedrig,Saison 0.88; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.81,0.811,1,Base,1.00,,geschlossen,69
+2027-01-05,Dienstag,99,89,,,niedrig,Saison 0.88; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.83,0.828,1,Base,1.00,,geschlossen,69
+2027-01-06,Mittwoch,99,89,,,niedrig,Saison 0.88; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.83,0.828,1,Base,1.00,,geschlossen,69
 2027-01-07,Donnerstag,99,89,,,niedrig,Saison 0.88; Wochentag 1.00; Nachfrageindex 0.88,0.880,1,Base,1.00,,geschlossen,69
 2027-01-08,Freitag,99,99,,,normal,"Saison 0.88; Wochentag 1.06; Nachfrageindex 0.93; Vorlauf 96 T (+4%, Modus normal)",0.933,2,Base,1.04,,geschlossen,79
 2027-01-09,Samstag,99,99,,,normal,"Saison 0.88; Wochentag 1.08; Nachfrageindex 0.95; Vorlauf 97 T (+4%, Modus normal)",0.950,2,Base,1.04,,geschlossen,79
-2027-01-10,Sonntag,99,79,,,niedrig,Saison 0.88; Wochentag 0.88; Nachfrageindex 0.77,0.774,1,Minimum,1.00,,geschlossen,59
+2027-01-10,Sonntag,99,89,,,niedrig,Saison 0.88; Wochentag 0.88; Nachfrageindex 0.77,0.774,1,Minimum,1.00,,geschlossen,69
 2027-01-11,Montag,99,89,,,niedrig,Saison 0.88; Wochentag 0.95; Nachfrageindex 0.84,0.836,1,Base,1.00,,geschlossen,69
 2027-01-12,Dienstag,99,89,,,niedrig,Saison 0.88; Wochentag 0.97; Nachfrageindex 0.85,0.854,1,Base,1.00,,geschlossen,69
 2027-01-13,Mittwoch,99,89,,,niedrig,Saison 0.88; Wochentag 0.97; Nachfrageindex 0.85,0.854,1,Base,1.00,,geschlossen,69
 2027-01-14,Donnerstag,99,89,,,niedrig,Saison 0.88; Wochentag 1.00; Nachfrageindex 0.88,0.880,1,Base,1.00,,geschlossen,69
 2027-01-15,Freitag,99,99,,,normal,"Saison 0.88; Wochentag 1.06; Nachfrageindex 0.93; Vorlauf 103 T (+4%, Modus normal)",0.933,2,Base,1.04,,geschlossen,79
 2027-01-16,Samstag,99,99,,,normal,"Saison 0.88; Wochentag 1.08; Nachfrageindex 0.95; Vorlauf 104 T (+4%, Modus normal)",0.950,2,Base,1.04,,geschlossen,79
-2027-01-17,Sonntag,99,79,,,niedrig,Saison 0.88; Wochentag 0.88; Nachfrageindex 0.77,0.774,1,Minimum,1.00,,geschlossen,59
+2027-01-17,Sonntag,99,89,,,niedrig,Saison 0.88; Wochentag 0.88; Nachfrageindex 0.77,0.774,1,Minimum,1.00,,geschlossen,69
 2027-01-18,Montag,99,89,,,niedrig,Saison 0.88; Wochentag 0.95; Nachfrageindex 0.84,0.836,1,Base,1.00,,geschlossen,69
 2027-01-19,Dienstag,99,89,,,niedrig,Saison 0.88; Wochentag 0.97; Nachfrageindex 0.85,0.854,1,Base,1.00,,geschlossen,69
 2027-01-20,Mittwoch,99,89,,,niedrig,Saison 0.88; Wochentag 0.97; Nachfrageindex 0.85,0.854,1,Base,1.00,,geschlossen,69
@@ -126,27 +126,27 @@ Datum,Wochentag,Base Price,Recommended Price,Event,Event Impact,Demand Level,Beg
 2027-02-05,Freitag,99,169,Straßenkarneval (Weiberfastnacht bis Rosenmontag),+55% (Tier A),hoch,"Saison 0.92; Wochentag 1.06; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.51; Vorlauf 124 T (+10%, Modus high)",1.512,2,High-Demand,1.10,11,freigeben,149
 2027-02-06,Samstag,99,169,Straßenkarneval (Weiberfastnacht bis Rosenmontag),+55% (Tier A),hoch,"Saison 0.92; Wochentag 1.08; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.54; Vorlauf 125 T (+10%, Modus high)",1.540,2,High-Demand,1.10,9,freigeben,149
 2027-02-07,Sonntag,99,159,Straßenkarneval (Weiberfastnacht bis Rosenmontag),+55% (Tier A),hoch,"Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.43; Vorlauf 126 T (+10%, Modus high)",1.426,2,High-Demand,1.10,15,freigeben,139
-2027-02-08,Montag,99,119,Straßenkarneval (Weiberfastnacht bis Rosenmontag),+28% (Tier A),erhöht,"Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+28%); Nachfrageindex 1.17; Vorlauf 127 T (+4%, Modus normal); Mindestaufenthalt auf 1 verkürzt (freie Lücke)",1.173,1,Target,1.04,33,freigeben,99
+2027-02-08,Montag,99,129,Straßenkarneval (Weiberfastnacht bis Rosenmontag),+28% (Tier A),erhöht,"Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+28%); Nachfrageindex 1.17; Vorlauf 127 T (+4%, Modus normal); Mindestaufenthalt auf 1 verkürzt (freie Lücke)",1.173,1,Target,1.04,33,freigeben,109
 2027-02-09,Dienstag,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89,0.892,1,Base,1.00,,geschlossen,69
 2027-02-10,Mittwoch,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89,0.892,1,Base,1.00,,geschlossen,69
 2027-02-11,Donnerstag,99,89,,,niedrig,Saison 0.92; Wochentag 1.00; Nachfrageindex 0.92,0.920,1,Base,1.00,,geschlossen,69
 2027-02-12,Freitag,99,99,,,normal,"Saison 0.92; Wochentag 1.06; Nachfrageindex 0.98; Vorlauf 131 T (+4%, Modus normal)",0.975,2,Base,1.04,,geschlossen,79
 2027-02-13,Samstag,99,109,,,normal,"Saison 0.92; Wochentag 1.08; Nachfrageindex 0.99; Vorlauf 132 T (+4%, Modus normal)",0.994,2,Base,1.04,,geschlossen,89
-2027-02-14,Sonntag,99,79,,,niedrig,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81,0.810,1,Base,1.00,,geschlossen,59
+2027-02-14,Sonntag,99,89,,,niedrig,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81,0.810,1,Base,1.00,,geschlossen,69
 2027-02-15,Montag,99,99,EuroCIS 2027,+10% (Tier C),normal,"Saison 0.92; Wochentag 0.95; Event: EuroCIS 2027 (+10%); Nachfrageindex 0.96; Vorlauf 134 T (+4%, Modus normal)",0.958,2,Base,1.04,,geschlossen,79
 2027-02-16,Dienstag,99,109,EuroCIS 2027,+12% (Tier C),normal,"Saison 0.92; Wochentag 0.97; Event: EuroCIS 2027 (+12%); Nachfrageindex 1.00; Vorlauf 135 T (+4%, Modus normal)",1.000,2,Base,1.04,,geschlossen,89
 2027-02-17,Mittwoch,99,109,EuroCIS 2027,+12% (Tier C),normal,"Saison 0.92; Wochentag 0.97; Event: EuroCIS 2027 (+12%); Nachfrageindex 1.00; Vorlauf 136 T (+4%, Modus normal)",1.000,2,Base,1.04,,geschlossen,89
 2027-02-18,Donnerstag,99,99,EuroCIS 2027,+4% (Tier C),normal,"Saison 0.92; Wochentag 1.00; Event: EuroCIS 2027 (+4%); Nachfrageindex 0.95; Vorlauf 137 T (+4%, Modus normal)",0.953,2,Base,1.04,,geschlossen,79
 2027-02-19,Freitag,99,99,,,normal,"Saison 0.92; Wochentag 1.06; Nachfrageindex 0.98; Vorlauf 138 T (+4%, Modus normal)",0.975,2,Base,1.04,,geschlossen,79
 2027-02-20,Samstag,99,109,,,normal,"Saison 0.92; Wochentag 1.08; Nachfrageindex 0.99; Vorlauf 139 T (+4%, Modus normal)",0.994,2,Base,1.04,,geschlossen,89
-2027-02-21,Sonntag,99,79,,,niedrig,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81,0.810,1,Base,1.00,,geschlossen,59
+2027-02-21,Sonntag,99,89,,,niedrig,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81,0.810,1,Base,1.00,,geschlossen,69
 2027-02-22,Montag,99,89,,,niedrig,Saison 0.92; Wochentag 0.95; Nachfrageindex 0.87,0.874,1,Base,1.00,,geschlossen,69
 2027-02-23,Dienstag,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89,0.892,1,Base,1.00,,geschlossen,69
 2027-02-24,Mittwoch,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89,0.892,1,Base,1.00,,geschlossen,69
 2027-02-25,Donnerstag,99,89,,,niedrig,Saison 0.92; Wochentag 1.00; Nachfrageindex 0.92,0.920,1,Base,1.00,,geschlossen,69
 2027-02-26,Freitag,99,99,,,normal,"Saison 0.92; Wochentag 1.06; Nachfrageindex 0.98; Vorlauf 145 T (+4%, Modus normal)",0.975,2,Base,1.04,,geschlossen,79
 2027-02-27,Samstag,99,109,,,normal,"Saison 0.92; Wochentag 1.08; Nachfrageindex 0.99; Vorlauf 146 T (+4%, Modus normal)",0.994,2,Base,1.04,,geschlossen,89
-2027-02-28,Sonntag,99,79,,,niedrig,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81,0.810,1,Base,1.00,,geschlossen,59
+2027-02-28,Sonntag,99,89,,,niedrig,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81,0.810,1,Base,1.00,,geschlossen,69
 2027-03-01,Montag,99,99,,,normal,"Saison 1.00; Wochentag 0.95; Nachfrageindex 0.95; Vorlauf 148 T (+4%, Modus normal)",0.950,2,Base,1.04,,geschlossen,79
 2027-03-02,Dienstag,99,99,,,normal,"Saison 1.00; Wochentag 0.97; Nachfrageindex 0.97; Vorlauf 149 T (+4%, Modus normal)",0.970,2,Base,1.04,,geschlossen,79
 2027-03-03,Mittwoch,99,99,,,normal,"Saison 1.00; Wochentag 0.97; Nachfrageindex 0.97; Vorlauf 150 T (+4%, Modus normal)",0.970,2,Base,1.04,,geschlossen,79
@@ -159,7 +159,7 @@ Datum,Wochentag,Base Price,Recommended Price,Event,Event Impact,Demand Level,Beg
 2027-03-10,Mittwoch,99,99,,,normal,"Saison 1.00; Wochentag 0.97; Nachfrageindex 0.97; Vorlauf 157 T (+4%, Modus normal)",0.970,2,Base,1.04,,geschlossen,79
 2027-03-11,Donnerstag,99,109,,,normal,"Saison 1.00; Wochentag 1.00; Nachfrageindex 1.00; Vorlauf 158 T (+4%, Modus normal)",1.000,2,Base,1.04,,geschlossen,89
 2027-03-12,Freitag,99,109,,,normal,"Saison 1.00; Wochentag 1.06; Nachfrageindex 1.06; Vorlauf 159 T (+4%, Modus normal)",1.060,2,Target,1.04,,geschlossen,89
-2027-03-13,Samstag,99,109,,,erhöht,"Saison 1.00; Wochentag 1.08; Nachfrageindex 1.08; Vorlauf 160 T (+4%, Modus normal)",1.080,2,Target,1.04,,geschlossen,89
+2027-03-13,Samstag,99,119,,,erhöht,"Saison 1.00; Wochentag 1.08; Nachfrageindex 1.08; Vorlauf 160 T (+4%, Modus normal)",1.080,2,Target,1.04,,geschlossen,99
 2027-03-14,Sonntag,99,89,,,niedrig,Saison 1.00; Wochentag 0.88; Nachfrageindex 0.88,0.880,1,Base,1.00,,geschlossen,69
 2027-03-15,Montag,99,109,IDS 2027 (Köln),+10% (Tier C),normal,"Saison 1.00; Wochentag 0.95; Event: IDS 2027 (Köln) (+10%); Nachfrageindex 1.04; Vorlauf 162 T (+4%, Modus normal)",1.041,2,Target,1.04,,geschlossen,89
 2027-03-16,Dienstag,99,119,IDS 2027 (Köln),+12% (Tier C),erhöht,"Saison 1.00; Wochentag 0.97; Event: IDS 2027 (Köln) (+12%); Nachfrageindex 1.09; Vorlauf 163 T (+4%, Modus normal)",1.086,2,Target,1.04,,geschlossen,99
@@ -186,14 +186,14 @@ Datum,Wochentag,Base Price,Recommended Price,Event,Event Impact,Demand Level,Beg
 2027-04-06,Dienstag,99,109,,,normal,"Saison 1.02; Wochentag 0.97; Nachfrageindex 0.99; Vorlauf 184 T (+4%, Modus normal)",0.989,2,Base,1.04,,geschlossen,89
 2027-04-07,Mittwoch,99,109,FIBO 2027 (Köln),+4% (Tier D),normal,"Saison 1.02; Wochentag 0.97; Event: FIBO 2027 (Köln) (+4%); Nachfrageindex 1.03; Vorlauf 185 T (+4%, Modus normal)",1.029,2,Target,1.04,,geschlossen,89
 2027-04-08,Donnerstag,99,129,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),+22% (Tier B),erhöht,"Saison 1.02; Wochentag 1.00; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+22%); Nachfrageindex 1.25; Vorlauf 186 T (+4%, Modus normal)",1.250,2,Target,1.04,26,freigeben,109
-2027-04-09,Freitag,99,149,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),+28% (Tier B),hoch,"Saison 1.02; Wochentag 1.06; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+28%); Nachfrageindex 1.38; Vorlauf 187 T (+10%, Modus high)",1.379,2,High-Demand,1.10,20,freigeben,129
+2027-04-09,Freitag,99,159,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),+28% (Tier B),hoch,"Saison 1.02; Wochentag 1.06; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+28%); Nachfrageindex 1.38; Vorlauf 187 T (+10%, Modus high)",1.379,2,High-Demand,1.10,20,freigeben,139
 2027-04-10,Samstag,99,159,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),+28% (Tier B),hoch,"Saison 1.02; Wochentag 1.08; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+28%); Nachfrageindex 1.40; Vorlauf 188 T (+10%, Modus high)",1.405,2,High-Demand,1.10,18,freigeben,139
 2027-04-11,Sonntag,99,99,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),+8% (Tier B),normal,"Saison 1.02; Wochentag 0.88; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+8%); Nachfrageindex 0.97; Vorlauf 189 T (+4%, Modus normal); Mindestaufenthalt auf 1 verkürzt (freie Lücke)",0.972,1,Base,1.04,93,freigeben,79
 2027-04-12,Montag,99,99,,,normal,"Saison 1.02; Wochentag 0.95; Nachfrageindex 0.97; Vorlauf 190 T (+4%, Modus normal)",0.969,2,Base,1.04,,geschlossen,79
 2027-04-13,Dienstag,99,109,,,normal,"Saison 1.02; Wochentag 0.97; Nachfrageindex 0.99; Vorlauf 191 T (+4%, Modus normal)",0.989,2,Base,1.04,,geschlossen,89
 2027-04-14,Mittwoch,99,109,,,normal,"Saison 1.02; Wochentag 0.97; Nachfrageindex 0.99; Vorlauf 192 T (+4%, Modus normal)",0.989,2,Base,1.04,,geschlossen,89
 2027-04-15,Donnerstag,99,109,,,normal,"Saison 1.02; Wochentag 1.00; Nachfrageindex 1.02; Vorlauf 193 T (+4%, Modus normal)",1.020,2,Target,1.04,,geschlossen,89
-2027-04-16,Freitag,99,109,,,erhöht,"Saison 1.02; Wochentag 1.06; Nachfrageindex 1.08; Vorlauf 194 T (+4%, Modus normal)",1.081,2,Target,1.04,,geschlossen,89
+2027-04-16,Freitag,99,119,,,erhöht,"Saison 1.02; Wochentag 1.06; Nachfrageindex 1.08; Vorlauf 194 T (+4%, Modus normal)",1.081,2,Target,1.04,,geschlossen,99
 2027-04-17,Samstag,99,129,Uniper Düsseldorf Marathon,+12% (Tier C),erhöht,"Saison 1.02; Wochentag 1.08; Event: Uniper Düsseldorf Marathon (+12%); Nachfrageindex 1.23; Vorlauf 195 T (+4%, Modus normal)",1.234,2,Target,1.04,,geschlossen,109
 2027-04-18,Sonntag,99,89,,,niedrig,Saison 1.02; Wochentag 0.88; Nachfrageindex 0.90,0.898,1,Base,1.00,,geschlossen,69
 2027-04-19,Montag,99,99,,,normal,"Saison 1.02; Wochentag 0.95; Nachfrageindex 0.97; Vorlauf 197 T (+4%, Modus normal)",0.969,2,Base,1.04,,geschlossen,79
@@ -263,7 +263,7 @@ Datum,Wochentag,Base Price,Recommended Price,Event,Event Impact,Demand Level,Beg
 2027-06-22,Dienstag,99,179,GIFA / METEC / THERMPROCESS / NEWCAST 2027,+55% (Tier A),hoch,"Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 261 T (+10%, Modus high)",1.597,2,Event,1.10,2,freigeben,159
 2027-06-23,Mittwoch,99,179,GIFA / METEC / THERMPROCESS / NEWCAST 2027,+55% (Tier A),hoch,"Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 262 T (+10%, Modus high)",1.597,2,Event,1.10,3,freigeben,159
 2027-06-24,Donnerstag,99,179,GIFA / METEC / THERMPROCESS / NEWCAST 2027,+55% (Tier A),hoch,"Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60; Vorlauf 263 T (+10%, Modus high)",1.597,2,Event,1.10,4,freigeben,159
-2027-06-25,Freitag,99,129,GIFA / METEC / THERMPROCESS / NEWCAST 2027,+16% (Tier A),erhöht,"Saison 1.03; Wochentag 1.06; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+16%); Nachfrageindex 1.27; Vorlauf 264 T (+4%, Modus normal)",1.272,2,Target,1.04,25,freigeben,109
+2027-06-25,Freitag,99,139,GIFA / METEC / THERMPROCESS / NEWCAST 2027,+16% (Tier A),erhöht,"Saison 1.03; Wochentag 1.06; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+16%); Nachfrageindex 1.27; Vorlauf 264 T (+4%, Modus normal)",1.272,2,Target,1.04,25,freigeben,119
 2027-06-26,Samstag,99,119,,,erhöht,"Saison 1.03; Wochentag 1.08; Nachfrageindex 1.11; Vorlauf 265 T (+4%, Modus normal)",1.112,2,Target,1.04,48,freigeben,99
 2027-06-27,Sonntag,99,89,,,niedrig,Saison 1.03; Wochentag 0.88; Nachfrageindex 0.91,0.906,1,Base,1.00,113,freigeben,69
 2027-06-28,Montag,99,99,,,normal,"Saison 1.03; Wochentag 0.95; Nachfrageindex 0.98; Vorlauf 267 T (+4%, Modus normal)",0.979,2,Base,1.04,91,freigeben,79
@@ -279,49 +279,49 @@ Datum,Wochentag,Base Price,Recommended Price,Event,Event Impact,Demand Level,Beg
 2027-07-08,Donnerstag,99,89,,,niedrig,Saison 0.92; Wochentag 1.00; Nachfrageindex 0.92,0.920,1,Base,1.00,109,freigeben,69
 2027-07-09,Freitag,99,99,,,normal,"Saison 0.92; Wochentag 1.06; Nachfrageindex 0.98; Vorlauf 278 T (+4%, Modus normal)",0.975,2,Base,1.04,92,freigeben,79
 2027-07-10,Samstag,99,169,Die Toten Hosen (Stadion),+55% (Tier A),hoch,"Saison 0.92; Wochentag 1.08; Event: Die Toten Hosen (Stadion) (+55%); Nachfrageindex 1.54; Vorlauf 279 T (+10%, Modus high)",1.540,2,High-Demand,1.10,10,freigeben,149
-2027-07-11,Sonntag,99,79,,,niedrig,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81,0.810,1,Base,1.00,142,freigeben,59
+2027-07-11,Sonntag,99,89,,,niedrig,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81,0.810,1,Base,1.00,142,freigeben,69
 2027-07-12,Montag,99,89,,,niedrig,Saison 0.92; Wochentag 0.95; Nachfrageindex 0.87,0.874,1,Base,1.00,124,freigeben,69
 2027-07-13,Dienstag,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89,0.892,1,Base,1.00,116,freigeben,69
 2027-07-14,Mittwoch,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89,0.892,1,Base,1.00,117,freigeben,69
 2027-07-15,Donnerstag,99,89,,,niedrig,Saison 0.92; Wochentag 1.00; Nachfrageindex 0.92,0.920,1,Base,1.00,110,freigeben,69
 2027-07-16,Freitag,99,129,Rheinkirmes 2027,+25% (Tier B),erhöht,"Saison 0.92; Wochentag 1.06; Event: Rheinkirmes 2027 (+25%); Nachfrageindex 1.22; Vorlauf 285 T (+4%, Modus normal)",1.219,2,Target,1.04,28,freigeben,109
 2027-07-17,Samstag,99,149,Rheinkirmes 2027 + Karol G (Stadion),+38% (Tier B),hoch,"Saison 0.92; Wochentag 1.08; Event: Rheinkirmes 2027 + Karol G (Stadion) (+38%); Nachfrageindex 1.37; Vorlauf 286 T (+10%, Modus high)",1.366,2,High-Demand,1.10,21,freigeben,129
-2027-07-18,Sonntag,99,79,,,niedrig,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81,0.810,1,Base,1.00,143,freigeben,59
+2027-07-18,Sonntag,99,89,,,niedrig,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81,0.810,1,Base,1.00,143,freigeben,69
 2027-07-19,Montag,99,89,,,niedrig,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85,0.848,1,Base,1.00,135,freigeben,69
 2027-07-20,Dienstag,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87,0.866,1,Base,1.00,125,freigeben,69
 2027-07-21,Mittwoch,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87,0.866,1,Base,1.00,126,freigeben,69
 2027-07-22,Donnerstag,99,89,,,niedrig,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89,0.892,1,Base,1.00,118,freigeben,69
 2027-07-23,Freitag,99,129,Rheinkirmes 2027,+25% (Tier B),erhöht,"Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Event: Rheinkirmes 2027 (+25%); Nachfrageindex 1.18; Vorlauf 292 T (+4%, Modus normal)",1.182,2,Target,1.04,32,freigeben,109
 2027-07-24,Samstag,99,129,Rheinkirmes 2027,+25% (Tier B),erhöht,"Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Event: Rheinkirmes 2027 (+25%); Nachfrageindex 1.20; Vorlauf 293 T (+4%, Modus normal)",1.205,2,Target,1.04,29,freigeben,109
-2027-07-25,Sonntag,99,79,,,niedrig,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79,0.785,1,Base,1.00,144,freigeben,59
+2027-07-25,Sonntag,99,89,,,niedrig,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79,0.785,1,Base,1.00,144,freigeben,69
 2027-07-26,Montag,99,89,,,niedrig,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85,0.848,1,Base,1.00,136,freigeben,69
 2027-07-27,Dienstag,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87,0.866,1,Base,1.00,127,freigeben,69
 2027-07-28,Mittwoch,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87,0.866,1,Base,1.00,128,freigeben,69
 2027-07-29,Donnerstag,99,89,,,niedrig,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89,0.892,1,Base,1.00,119,freigeben,69
 2027-07-30,Freitag,99,99,,,normal,"Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Nachfrageindex 0.95; Vorlauf 299 T (+4%, Modus normal)",0.946,2,Base,1.04,102,freigeben,79
 2027-07-31,Samstag,99,99,,,normal,"Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Nachfrageindex 0.96; Vorlauf 300 T (+4%, Modus normal)",0.964,2,Base,1.04,96,freigeben,79
-2027-08-01,Sonntag,99,79,,,niedrig,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79,0.785,1,Base,1.00,145,freigeben,59
+2027-08-01,Sonntag,99,89,,,niedrig,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79,0.785,1,Base,1.00,145,freigeben,69
 2027-08-02,Montag,99,89,,,niedrig,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85,0.848,1,Base,1.00,137,freigeben,69
 2027-08-03,Dienstag,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87,0.866,1,Base,1.00,129,freigeben,69
 2027-08-04,Mittwoch,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87,0.866,1,Base,1.00,130,freigeben,69
 2027-08-05,Donnerstag,99,89,,,niedrig,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89,0.892,1,Base,1.00,120,freigeben,69
 2027-08-06,Freitag,99,99,,,normal,"Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Nachfrageindex 0.95; Vorlauf 306 T (+4%, Modus normal)",0.946,2,Base,1.04,103,freigeben,79
 2027-08-07,Samstag,99,99,,,normal,"Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Nachfrageindex 0.96; Vorlauf 307 T (+4%, Modus normal)",0.964,2,Base,1.04,97,freigeben,79
-2027-08-08,Sonntag,99,79,,,niedrig,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79,0.785,1,Base,1.00,146,freigeben,59
+2027-08-08,Sonntag,99,89,,,niedrig,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79,0.785,1,Base,1.00,146,freigeben,69
 2027-08-09,Montag,99,89,,,niedrig,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85,0.848,1,Base,1.00,138,freigeben,69
 2027-08-10,Dienstag,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87,0.866,1,Base,1.00,131,freigeben,69
 2027-08-11,Mittwoch,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87,0.866,1,Base,1.00,132,freigeben,69
 2027-08-12,Donnerstag,99,89,,,niedrig,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89,0.892,1,Base,1.00,121,freigeben,69
 2027-08-13,Freitag,99,99,,,normal,"Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Nachfrageindex 0.95; Vorlauf 313 T (+4%, Modus normal)",0.946,2,Base,1.04,104,freigeben,79
 2027-08-14,Samstag,99,99,,,normal,"Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Nachfrageindex 0.96; Vorlauf 314 T (+4%, Modus normal)",0.964,2,Base,1.04,98,freigeben,79
-2027-08-15,Sonntag,99,79,,,niedrig,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79,0.785,1,Base,1.00,147,freigeben,59
+2027-08-15,Sonntag,99,89,,,niedrig,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79,0.785,1,Base,1.00,147,freigeben,69
 2027-08-16,Montag,99,89,,,niedrig,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85,0.848,1,Base,1.00,139,freigeben,69
 2027-08-17,Dienstag,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87,0.866,1,Base,1.00,133,freigeben,69
 2027-08-18,Mittwoch,99,89,,,niedrig,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87,0.866,1,Base,1.00,134,freigeben,69
 2027-08-19,Donnerstag,99,89,,,niedrig,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89,0.892,1,Base,1.00,122,freigeben,69
 2027-08-20,Freitag,99,99,,,normal,"Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Nachfrageindex 0.95; Vorlauf 320 T (+4%, Modus normal)",0.946,2,Base,1.04,105,freigeben,79
 2027-08-21,Samstag,99,99,,,normal,"Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Nachfrageindex 0.96; Vorlauf 321 T (+4%, Modus normal)",0.964,2,Base,1.04,99,freigeben,79
-2027-08-22,Sonntag,99,79,,,niedrig,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79,0.785,1,Base,1.00,148,freigeben,59
+2027-08-22,Sonntag,99,89,,,niedrig,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79,0.785,1,Base,1.00,148,freigeben,69
 2027-08-23,Montag,99,89,,,niedrig,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85,0.848,1,Base,1.00,140,freigeben,69
 2027-08-24,Dienstag,99,99,gamescom 2027 (Köln),+10% (Tier C),normal,"Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Event: gamescom 2027 (Köln) (+10%); Nachfrageindex 0.95; Vorlauf 324 T (+4%, Modus normal)",0.949,2,Base,1.04,101,freigeben,79
 2027-08-25,Mittwoch,99,99,gamescom 2027 (Köln),+12% (Tier C),normal,"Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Event: gamescom 2027 (Köln) (+12%); Nachfrageindex 0.97; Vorlauf 325 T (+4%, Modus normal)",0.970,2,Base,1.04,94,freigeben,79
@@ -329,7 +329,7 @@ Datum,Wochentag,Base Price,Recommended Price,Event,Event Impact,Demand Level,Beg
 2027-08-27,Freitag,99,129,CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027,+32% (Tier B),erhöht,"Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027 (+32%); Nachfrageindex 1.25; Vorlauf 327 T (+4%, Modus normal)",1.249,2,Target,1.04,27,freigeben,109
 2027-08-28,Samstag,99,139,CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027,+32% (Tier B),erhöht,"Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027 (+32%); Nachfrageindex 1.27; Vorlauf 328 T (+4%, Modus normal)",1.275,2,Target,1.04,23,freigeben,119
 2027-08-29,Sonntag,99,109,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 + gamescom 2027 (Köln),+28% (Tier B),normal,"Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 + gamescom 2027 (Köln) (+28%); Nachfrageindex 1.01; Vorlauf 329 T (+4%, Modus normal)",1.008,2,Base,1.04,75,freigeben,89
-2027-08-30,Montag,99,109,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027,+28% (Tier B),erhöht,"Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 (+28%); Nachfrageindex 1.08; Vorlauf 330 T (+4%, Modus normal)",1.081,2,Target,1.04,54,freigeben,89
+2027-08-30,Montag,99,119,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027,+28% (Tier B),erhöht,"Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 (+28%); Nachfrageindex 1.08; Vorlauf 330 T (+4%, Modus normal)",1.081,2,Target,1.04,54,freigeben,99
 2027-08-31,Dienstag,99,119,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027,+26% (Tier B),erhöht,"Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 (+26%); Nachfrageindex 1.09; Vorlauf 331 T (+4%, Modus normal)",1.089,2,Target,1.04,53,freigeben,99
 2027-09-01,Mittwoch,99,139,CARAVAN SALON 2027,+25% (Tier B),erhöht,"Saison 1.05; Wochentag 0.97; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.27; Vorlauf 332 T (+4%, Modus normal)",1.273,2,Target,1.04,24,freigeben,119
 2027-09-02,Donnerstag,99,149,CARAVAN SALON 2027,+25% (Tier B),hoch,"Saison 1.05; Wochentag 1.00; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.31; Vorlauf 333 T (+10%, Modus high)",1.312,2,High-Demand,1.10,22,freigeben,129
