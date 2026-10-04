@@ -2,17 +2,17 @@
   "payout_ratio": 0.889,
   "szenarien": {
     "konservativ": {
-      "naechte": 71.8,
+      "naechte": 73.0,
       "naechte_je_jahr": {
-        "2026": 23.2,
+        "2026": 24.4,
         "2027": 48.6
       },
       "limit_bindend": {
         "2026": false,
         "2027": false
       },
-      "brutto_gast": 8380,
-      "auszahlung": 7450,
+      "brutto_gast": 8626,
+      "auszahlung": 7669,
       "monate": {
         "2026-10": {
           "naechte": 8.8,
@@ -20,9 +20,9 @@
           "auszahlung": 990
         },
         "2026-11": {
-          "naechte": 5.2,
-          "brutto": 716,
-          "auszahlung": 636
+          "naechte": 6.4,
+          "brutto": 962,
+          "auszahlung": 855
         },
         "2026-12": {
           "naechte": 9.2,
@@ -77,17 +77,17 @@
       }
     },
     "realistisch": {
-      "naechte": 102.6,
+      "naechte": 104.2,
       "naechte_je_jahr": {
-        "2026": 33.1,
+        "2026": 34.8,
         "2027": 69.4
       },
       "limit_bindend": {
         "2026": false,
         "2027": false
       },
-      "brutto_gast": 11971,
-      "auszahlung": 10642,
+      "brutto_gast": 12323,
+      "auszahlung": 10955,
       "monate": {
         "2026-10": {
           "naechte": 12.5,
@@ -95,9 +95,9 @@
           "auszahlung": 1414
         },
         "2026-11": {
-          "naechte": 7.5,
-          "brutto": 1023,
-          "auszahlung": 909
+          "naechte": 9.2,
+          "brutto": 1375,
+          "auszahlung": 1222
         },
         "2026-12": {
           "naechte": 13.2,
@@ -152,17 +152,17 @@
       }
     },
     "optimistisch": {
-      "naechte": 128.0,
+      "naechte": 129.9,
       "naechte_je_jahr": {
-        "2026": 41.2,
+        "2026": 43.1,
         "2027": 86.8
       },
       "limit_bindend": {
         "2026": false,
         "2027": false
       },
-      "brutto_gast": 14915,
-      "auszahlung": 13259,
+      "brutto_gast": 15308,
+      "auszahlung": 13609,
       "monate": {
         "2026-10": {
           "naechte": 15.7,
@@ -170,9 +170,9 @@
           "auszahlung": 1767
         },
         "2026-11": {
-          "naechte": 9.1,
-          "brutto": 1229,
-          "auszahlung": 1093
+          "naechte": 11.0,
+          "brutto": 1622,
+          "auszahlung": 1442
         },
         "2026-12": {
           "naechte": 16.4,
@@ -234,11 +234,11 @@
   "blockzeitraeume": [
     {
       "von": "2026-10-30",
-      "bis_einschl_nacht": "2026-11-16",
-      "naechte": 18,
-      "summe_tagespreise": 2091,
-      "angebot_gesamt": 1882,
-      "angebot_pro_nacht": 105
+      "bis_einschl_nacht": "2026-11-14",
+      "naechte": 16,
+      "summe_tagespreise": 1677,
+      "angebot_gesamt": 1510,
+      "angebot_pro_nacht": 94
     }
   ],
   "vergleich_2027": {

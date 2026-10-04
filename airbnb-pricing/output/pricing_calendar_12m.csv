@@ -1,30 +1,30 @@
 Datum,Wochentag,Base Price,Recommended Price,Event,Event Impact,Demand Level,Begründung,Demand Index,Min Nights,Price Band,Lead-Time Factor,Quota Priority,Quota Recommendation,Airbnb Nightly Price
-2026-10-04,Sonntag,99,79,,,normal,"Saison 1.08; Wochentag 0.88; Nachfrageindex 0.95; Vorlauf 0 T (-12%, Modus normal)",0.950,2,Base,0.88,45,freigeben,59
+2026-10-04,Sonntag,99,79,,,normal,"Saison 1.08; Wochentag 0.88; Nachfrageindex 0.95; Vorlauf 0 T (-12%, Modus normal)",0.950,2,Base,0.88,47,freigeben,59
 2026-10-05,Montag,99,89,,,normal,"Saison 1.08; Wochentag 0.95; Nachfrageindex 1.03; Vorlauf 1 T (-8%, Modus normal); bereits gebucht (Auszahlung 83 EUR)",1.026,2,Base,0.92,,gebucht,69
-2026-10-06,Dienstag,99,179,Backstreet Boys – Homecoming Residency (Stadion),+55% (Tier A),hoch,"Saison 1.08; Wochentag 1.00; Event: Backstreet Boys – Homecoming Residency (Stadion) (+55%); Nachfrageindex 1.67; Vorlauf 2 T (+6%, Modus high)",1.674,2,Event,1.06,3,freigeben,159
+2026-10-06,Dienstag,99,179,Backstreet Boys – Homecoming Residency (Stadion),+55% (Tier A),hoch,"Saison 1.08; Wochentag 1.00; Event: Backstreet Boys – Homecoming Residency (Stadion) (+55%); Nachfrageindex 1.67; Vorlauf 2 T (+6%, Modus high)",1.674,2,Event,1.06,5,freigeben,159
 2026-10-07,Mittwoch,99,179,Backstreet Boys – Homecoming Residency (Stadion),+55% (Tier A),hoch,"Saison 1.08; Wochentag 1.00; Event: Backstreet Boys – Homecoming Residency (Stadion) (+55%); Nachfrageindex 1.67; Vorlauf 3 T (+6%, Modus high); bereits gebucht (Auszahlung 66 EUR)",1.674,2,Event,1.06,,gebucht,159
 2026-10-08,Donnerstag,99,119,Apache 207 (Konzert),+12% (Tier C),erhöht,"Saison 1.08; Wochentag 1.00; Event: Apache 207 (Konzert) (+12%); Nachfrageindex 1.21; Vorlauf 4 T (-5%, Modus normal); bereits gebucht (Auszahlung 66 EUR)",1.210,2,Target,0.95,,gebucht,99
-2026-10-09,Freitag,99,119,,,erhöht,"Saison 1.08; Wochentag 1.12; Nachfrageindex 1.21; Vorlauf 5 T (-5%, Modus normal)",1.210,2,Target,0.95,22,freigeben,99
-2026-10-10,Samstag,99,119,,,erhöht,"Saison 1.08; Wochentag 1.15; Nachfrageindex 1.24; Vorlauf 6 T (-5%, Modus normal)",1.242,2,Target,0.95,18,freigeben,99
-2026-10-11,Sonntag,99,89,,,normal,"Saison 1.08; Wochentag 0.88; Nachfrageindex 0.95; Vorlauf 7 T (-5%, Modus normal)",0.950,2,Base,0.95,46,freigeben,69
-2026-10-12,Montag,99,99,,,normal,"Saison 1.08; Wochentag 0.95; Nachfrageindex 1.03; Vorlauf 8 T (-2%, Modus normal)",1.026,2,Base,0.98,36,freigeben,79
-2026-10-13,Dienstag,99,119,The Strokes (Konzert),+12% (Tier C),erhöht,"Saison 1.08; Wochentag 0.97; Event: The Strokes (Konzert) (+12%); Nachfrageindex 1.17; Vorlauf 9 T (-2%, Modus normal)",1.173,2,Target,0.98,29,freigeben,99
-2026-10-14,Mittwoch,99,99,,,normal,"Saison 1.08; Wochentag 0.97; Nachfrageindex 1.05; Vorlauf 10 T (-2%, Modus normal)",1.048,2,Base,0.98,31,freigeben,79
-2026-10-15,Donnerstag,99,119,The World of Hans Zimmer,+12% (Tier C),erhöht,"Saison 1.08; Wochentag 1.00; Event: The World of Hans Zimmer (+12%); Nachfrageindex 1.21; Vorlauf 11 T (-2%, Modus normal)",1.210,2,Target,0.98,23,freigeben,99
-2026-10-16,Freitag,99,119,,,erhöht,"Saison 1.08; Wochentag 1.12; Nachfrageindex 1.21; Vorlauf 12 T (-2%, Modus normal)",1.210,2,Target,0.98,24,freigeben,99
-2026-10-17,Samstag,99,139,Young Thug (Konzert),+12% (Tier C),hoch,"Saison 1.08; Wochentag 1.15; Schulferien NRW (-3%); Event: Young Thug (Konzert) (+12%); Nachfrageindex 1.35; Vorlauf 13 T (+2%, Modus high)",1.349,2,High-Demand,1.02,11,freigeben,119
-2026-10-18,Sonntag,99,89,,,niedrig,"Saison 1.08; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.92; Vorlauf 14 T (-6%, Modus low)",0.922,1,Base,0.94,51,freigeben,69
-2026-10-19,Montag,99,149,glasstec 2026,+44% (Tier A),hoch,Saison 1.08; Wochentag 1.00; Schulferien NRW (-3%); Event: glasstec 2026 (+44%); Nachfrageindex 1.51,1.508,2,High-Demand,1.00,8,freigeben,129
-2026-10-20,Dienstag,99,159,glasstec 2026,+55% (Tier A),hoch,Saison 1.08; Wochentag 1.00; Schulferien NRW (-3%); Event: glasstec 2026 (+55%); Nachfrageindex 1.62,1.624,2,High-Demand,1.00,4,freigeben,139
-2026-10-21,Mittwoch,99,159,glasstec 2026,+55% (Tier A),hoch,Saison 1.08; Wochentag 1.00; Schulferien NRW (-3%); Event: glasstec 2026 (+55%); Nachfrageindex 1.62,1.624,2,High-Demand,1.00,5,freigeben,139
-2026-10-22,Donnerstag,99,159,glasstec 2026,+55% (Tier A),hoch,Saison 1.08; Wochentag 1.00; Schulferien NRW (-3%); Event: glasstec 2026 (+55%); Nachfrageindex 1.62,1.624,2,High-Demand,1.00,6,freigeben,139
-2026-10-23,Freitag,99,139,glasstec 2026,+16% (Tier A),hoch,Saison 1.08; Wochentag 1.12; Schulferien NRW (-3%); Event: glasstec 2026 (+16%); Nachfrageindex 1.37,1.367,2,High-Demand,1.00,10,freigeben,119
-2026-10-24,Samstag,99,139,Dimash Qudaibergen (Konzert),+12% (Tier C),hoch,Saison 1.08; Wochentag 1.15; Schulferien NRW (-3%); Event: Dimash Qudaibergen (Konzert) (+12%); Nachfrageindex 1.35,1.349,2,Target,1.00,12,freigeben,119
-2026-10-25,Sonntag,99,89,,,niedrig,"Saison 1.08; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.92; Vorlauf 21 T (-3%, Modus low)",0.922,1,Base,0.97,52,freigeben,69
-2026-10-26,Montag,99,99,,,normal,Saison 1.08; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 1.00,0.995,2,Base,1.00,40,freigeben,79
-2026-10-27,Dienstag,99,99,,,normal,Saison 1.08; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 1.02,1.016,2,Base,1.00,37,freigeben,79
-2026-10-28,Mittwoch,99,99,,,normal,Saison 1.08; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 1.02,1.016,2,Base,1.00,38,freigeben,79
-2026-10-29,Donnerstag,99,109,,,normal,Saison 1.08; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 1.05,1.048,2,Base,1.00,32,freigeben,89
+2026-10-09,Freitag,99,119,,,erhöht,"Saison 1.08; Wochentag 1.12; Nachfrageindex 1.21; Vorlauf 5 T (-5%, Modus normal)",1.210,2,Target,0.95,24,freigeben,99
+2026-10-10,Samstag,99,119,,,erhöht,"Saison 1.08; Wochentag 1.15; Nachfrageindex 1.24; Vorlauf 6 T (-5%, Modus normal)",1.242,2,Target,0.95,20,freigeben,99
+2026-10-11,Sonntag,99,89,,,normal,"Saison 1.08; Wochentag 0.88; Nachfrageindex 0.95; Vorlauf 7 T (-5%, Modus normal)",0.950,2,Base,0.95,48,freigeben,69
+2026-10-12,Montag,99,99,,,normal,"Saison 1.08; Wochentag 0.95; Nachfrageindex 1.03; Vorlauf 8 T (-2%, Modus normal)",1.026,2,Base,0.98,38,freigeben,79
+2026-10-13,Dienstag,99,119,The Strokes (Konzert),+12% (Tier C),erhöht,"Saison 1.08; Wochentag 0.97; Event: The Strokes (Konzert) (+12%); Nachfrageindex 1.17; Vorlauf 9 T (-2%, Modus normal)",1.173,2,Target,0.98,31,freigeben,99
+2026-10-14,Mittwoch,99,99,,,normal,"Saison 1.08; Wochentag 0.97; Nachfrageindex 1.05; Vorlauf 10 T (-2%, Modus normal)",1.048,2,Base,0.98,33,freigeben,79
+2026-10-15,Donnerstag,99,119,The World of Hans Zimmer,+12% (Tier C),erhöht,"Saison 1.08; Wochentag 1.00; Event: The World of Hans Zimmer (+12%); Nachfrageindex 1.21; Vorlauf 11 T (-2%, Modus normal)",1.210,2,Target,0.98,25,freigeben,99
+2026-10-16,Freitag,99,119,,,erhöht,"Saison 1.08; Wochentag 1.12; Nachfrageindex 1.21; Vorlauf 12 T (-2%, Modus normal)",1.210,2,Target,0.98,26,freigeben,99
+2026-10-17,Samstag,99,139,Young Thug (Konzert),+12% (Tier C),hoch,"Saison 1.08; Wochentag 1.15; Schulferien NRW (-3%); Event: Young Thug (Konzert) (+12%); Nachfrageindex 1.35; Vorlauf 13 T (+2%, Modus high)",1.349,2,High-Demand,1.02,13,freigeben,119
+2026-10-18,Sonntag,99,89,,,niedrig,"Saison 1.08; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.92; Vorlauf 14 T (-6%, Modus low)",0.922,1,Base,0.94,53,freigeben,69
+2026-10-19,Montag,99,149,glasstec 2026,+44% (Tier A),hoch,Saison 1.08; Wochentag 1.00; Schulferien NRW (-3%); Event: glasstec 2026 (+44%); Nachfrageindex 1.51,1.508,2,High-Demand,1.00,10,freigeben,129
+2026-10-20,Dienstag,99,159,glasstec 2026,+55% (Tier A),hoch,Saison 1.08; Wochentag 1.00; Schulferien NRW (-3%); Event: glasstec 2026 (+55%); Nachfrageindex 1.62,1.624,2,High-Demand,1.00,6,freigeben,139
+2026-10-21,Mittwoch,99,159,glasstec 2026,+55% (Tier A),hoch,Saison 1.08; Wochentag 1.00; Schulferien NRW (-3%); Event: glasstec 2026 (+55%); Nachfrageindex 1.62,1.624,2,High-Demand,1.00,7,freigeben,139
+2026-10-22,Donnerstag,99,159,glasstec 2026,+55% (Tier A),hoch,Saison 1.08; Wochentag 1.00; Schulferien NRW (-3%); Event: glasstec 2026 (+55%); Nachfrageindex 1.62,1.624,2,High-Demand,1.00,8,freigeben,139
+2026-10-23,Freitag,99,139,glasstec 2026,+16% (Tier A),hoch,Saison 1.08; Wochentag 1.12; Schulferien NRW (-3%); Event: glasstec 2026 (+16%); Nachfrageindex 1.37,1.367,2,High-Demand,1.00,12,freigeben,119
+2026-10-24,Samstag,99,139,Dimash Qudaibergen (Konzert),+12% (Tier C),hoch,Saison 1.08; Wochentag 1.15; Schulferien NRW (-3%); Event: Dimash Qudaibergen (Konzert) (+12%); Nachfrageindex 1.35,1.349,2,Target,1.00,14,freigeben,119
+2026-10-25,Sonntag,99,89,,,niedrig,"Saison 1.08; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.92; Vorlauf 21 T (-3%, Modus low)",0.922,1,Base,0.97,54,freigeben,69
+2026-10-26,Montag,99,99,,,normal,Saison 1.08; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 1.00,0.995,2,Base,1.00,42,freigeben,79
+2026-10-27,Dienstag,99,99,,,normal,Saison 1.08; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 1.02,1.016,2,Base,1.00,39,freigeben,79
+2026-10-28,Mittwoch,99,99,,,normal,Saison 1.08; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 1.02,1.016,2,Base,1.00,40,freigeben,79
+2026-10-29,Donnerstag,99,109,,,normal,Saison 1.08; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 1.05,1.048,2,Base,1.00,34,freigeben,89
 2026-10-30,Freitag,99,119,,,erhöht,Saison 1.08; Wochentag 1.12; Schulferien NRW (-3%); Nachfrageindex 1.17; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar,1.173,2,Target,1.00,,blockiert,99
 2026-10-31,Samstag,99,129,,,erhöht,Saison 1.08; Wochentag 1.15; Vorabend Allerheiligen (+3%); Schulferien NRW (-3%); Nachfrageindex 1.28; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar,1.279,2,Target,1.00,,blockiert,109
 2026-11-01,Sonntag,99,89,,,niedrig,"Saison 1.00; Wochentag 0.88; Allerheiligen (+0%); Nachfrageindex 0.88; Vorlauf 28 T (-3%, Modus low); blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar",0.880,1,Base,0.97,,blockiert,69
@@ -41,53 +41,53 @@ Datum,Wochentag,Base Price,Recommended Price,Event,Event Impact,Demand Level,Beg
 2026-11-12,Donnerstag,99,99,,,normal,Saison 1.00; Wochentag 1.00; Nachfrageindex 1.00; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar,1.000,2,Base,1.00,,blockiert,79
 2026-11-13,Freitag,99,109,,,erhöht,Saison 1.00; Wochentag 1.12; Nachfrageindex 1.12; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar,1.120,2,Target,1.00,,blockiert,89
 2026-11-14,Samstag,99,119,,,erhöht,Saison 1.00; Wochentag 1.15; Nachfrageindex 1.15; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar,1.150,2,Target,1.00,,blockiert,99
-2026-11-15,Sonntag,99,199,MEDICA + COMPAMED 2026,+96% (Tier S),Spitze,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+96%); Nachfrageindex 1.96; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar,1.960,3,Event,1.00,,blockiert,189
-2026-11-16,Montag,99,219,MEDICA + COMPAMED 2026,+120% (Tier S),Spitze,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar,2.200,3,Event,1.00,,blockiert,209
-2026-11-17,Dienstag,99,219,MEDICA + COMPAMED 2026,+120% (Tier S),Spitze,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20,2.200,3,Event,1.00,1,freigeben,209
-2026-11-18,Mittwoch,99,219,MEDICA + COMPAMED 2026,+120% (Tier S),Spitze,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20,2.200,3,Event,1.00,2,freigeben,209
-2026-11-19,Donnerstag,99,139,MEDICA + COMPAMED 2026 + Tokio Hotel (Konzert),+42% (Tier S),hoch,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 + Tokio Hotel (Konzert) (+42%); Nachfrageindex 1.42,1.420,3,High-Demand,1.00,9,freigeben,129
-2026-11-20,Freitag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,Saison 1.00; Wochentag 1.12; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.25,1.254,2,Target,1.00,16,freigeben,109
-2026-11-21,Samstag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,Saison 1.00; Wochentag 1.15; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.29,1.288,2,Target,1.00,14,freigeben,109
-2026-11-22,Sonntag,99,89,,,niedrig,Saison 1.00; Wochentag 0.88; Nachfrageindex 0.88,0.880,1,Base,1.00,62,freigeben,69
-2026-11-23,Montag,99,99,,,normal,Saison 1.00; Wochentag 0.95; Nachfrageindex 0.95,0.950,2,Base,1.00,47,freigeben,79
-2026-11-24,Dienstag,99,99,,,normal,Saison 1.00; Wochentag 0.97; Nachfrageindex 0.97,0.970,2,Base,1.00,42,freigeben,79
-2026-11-25,Mittwoch,99,99,,,normal,Saison 1.00; Wochentag 0.97; Nachfrageindex 0.97,0.970,2,Base,1.00,43,freigeben,79
-2026-11-26,Donnerstag,99,99,,,normal,Saison 1.00; Wochentag 1.00; Nachfrageindex 1.00,1.000,2,Base,1.00,39,freigeben,79
-2026-11-27,Freitag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,Saison 1.00; Wochentag 1.12; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.25,1.254,2,Target,1.00,17,freigeben,109
-2026-11-28,Samstag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,Saison 1.00; Wochentag 1.15; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.29,1.288,2,Target,1.00,15,freigeben,109
-2026-11-29,Sonntag,99,89,,,niedrig,Saison 1.00; Wochentag 0.88; Nachfrageindex 0.88,0.880,1,Base,1.00,63,freigeben,69
-2026-11-30,Montag,99,99,VALVE WORLD EXPO 2026,+10% (Tier C),normal,Saison 1.00; Wochentag 0.95; Event: VALVE WORLD EXPO 2026 (+10%); Nachfrageindex 1.04,1.041,2,Base,1.00,33,freigeben,79
-2026-12-01,Dienstag,99,99,VALVE WORLD EXPO 2026,+12% (Tier C),normal,Saison 0.95; Wochentag 0.97; Event: VALVE WORLD EXPO 2026 (+12%); Nachfrageindex 1.03,1.032,2,Base,1.00,34,freigeben,79
-2026-12-02,Mittwoch,99,99,VALVE WORLD EXPO 2026,+12% (Tier C),normal,Saison 0.95; Wochentag 0.97; Event: VALVE WORLD EXPO 2026 (+12%); Nachfrageindex 1.03,1.032,2,Base,1.00,35,freigeben,79
-2026-12-03,Donnerstag,99,99,VALVE WORLD EXPO 2026,+4% (Tier C),normal,Saison 0.95; Wochentag 1.00; Event: VALVE WORLD EXPO 2026 (+4%); Nachfrageindex 0.98,0.984,2,Base,1.00,41,freigeben,79
-2026-12-04,Freitag,99,119,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,"Saison 0.95; Wochentag 1.12; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.19; Vorlauf 61 T (+2%, Modus normal)",1.192,2,Target,1.02,25,freigeben,99
-2026-12-05,Samstag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,"Saison 0.95; Wochentag 1.15; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.22; Vorlauf 62 T (+2%, Modus normal)",1.224,2,Target,1.02,19,freigeben,109
-2026-12-06,Sonntag,99,79,,,niedrig,Saison 0.95; Wochentag 0.88; Nachfrageindex 0.84,0.836,1,Base,1.00,66,freigeben,59
-2026-12-07,Montag,99,89,,,niedrig,Saison 0.95; Wochentag 0.95; Nachfrageindex 0.90,0.902,1,Base,1.00,58,freigeben,69
-2026-12-08,Dienstag,99,89,,,niedrig,Saison 0.95; Wochentag 0.97; Nachfrageindex 0.92,0.921,1,Base,1.00,53,freigeben,69
-2026-12-09,Mittwoch,99,89,,,niedrig,Saison 0.95; Wochentag 0.97; Nachfrageindex 0.92,0.921,1,Base,1.00,54,freigeben,69
-2026-12-10,Donnerstag,99,99,,,normal,"Saison 0.95; Wochentag 1.00; Nachfrageindex 0.95; Vorlauf 67 T (+2%, Modus normal)",0.950,2,Base,1.02,48,freigeben,79
-2026-12-11,Freitag,99,119,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,"Saison 0.95; Wochentag 1.12; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.19; Vorlauf 68 T (+2%, Modus normal)",1.192,2,Target,1.02,26,freigeben,99
-2026-12-12,Samstag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,"Saison 0.95; Wochentag 1.15; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.22; Vorlauf 69 T (+2%, Modus normal)",1.224,2,Target,1.02,20,freigeben,109
-2026-12-13,Sonntag,99,79,,,niedrig,Saison 0.95; Wochentag 0.88; Nachfrageindex 0.84,0.836,1,Base,1.00,67,freigeben,59
-2026-12-14,Montag,99,89,,,niedrig,Saison 0.95; Wochentag 0.95; Nachfrageindex 0.90,0.902,1,Base,1.00,59,freigeben,69
-2026-12-15,Dienstag,99,89,,,niedrig,Saison 0.95; Wochentag 0.97; Nachfrageindex 0.92,0.921,1,Base,1.00,55,freigeben,69
-2026-12-16,Mittwoch,99,89,,,niedrig,Saison 0.95; Wochentag 0.97; Nachfrageindex 0.92,0.921,1,Base,1.00,56,freigeben,69
-2026-12-17,Donnerstag,99,99,,,normal,"Saison 0.95; Wochentag 1.00; Nachfrageindex 0.95; Vorlauf 74 T (+2%, Modus normal)",0.950,2,Base,1.02,49,freigeben,79
-2026-12-18,Freitag,99,119,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,"Saison 0.95; Wochentag 1.12; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.19; Vorlauf 75 T (+2%, Modus normal)",1.192,2,Target,1.02,27,freigeben,99
-2026-12-19,Samstag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,"Saison 0.95; Wochentag 1.15; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.22; Vorlauf 76 T (+2%, Modus normal)",1.224,2,Target,1.02,21,freigeben,109
-2026-12-20,Sonntag,99,79,,,niedrig,Saison 0.95; Wochentag 0.88; Nachfrageindex 0.84,0.836,1,Base,1.00,68,freigeben,59
-2026-12-21,Montag,99,89,,,niedrig,Saison 0.95; Wochentag 0.95; Nachfrageindex 0.90,0.902,1,Base,1.00,60,freigeben,69
-2026-12-22,Dienstag,99,99,Weihnachten – Familienbesuche,+5% (Tier D),normal,"Saison 0.95; Wochentag 0.97; Event: Weihnachten – Familienbesuche (+5%); Nachfrageindex 0.97; Vorlauf 79 T (+2%, Modus normal)",0.968,2,Base,1.02,44,freigeben,79
-2026-12-23,Mittwoch,99,99,Weihnachten – Familienbesuche,+5% (Tier D),normal,"Saison 0.95; Wochentag 0.97; Schulferien NRW (-3%); Event: Weihnachten – Familienbesuche (+5%); Nachfrageindex 0.94; Vorlauf 80 T (+2%, Modus normal)",0.939,2,Base,1.02,50,freigeben,79
-2026-12-24,Donnerstag,99,89,Weihnachten – Familienbesuche,+5% (Tier D),niedrig,Saison 0.95; Wochentag 1.00; Weihnachten (schwach) (-13%); Schulferien NRW (-3%); Event: Weihnachten – Familienbesuche (+5%); Nachfrageindex 0.87,0.868,2,Base,1.00,64,freigeben,69
-2026-12-25,Freitag,99,109,Düsseldorfer Weihnachtsmarkt 2026 + Broilers – Santa's Action Club + Weihnachten – Familienbesuche,+19% (Tier C),erhöht,"Saison 0.95; Wochentag 1.12; Weihnachten (schwach) (-13%); Schulferien NRW (-3%); Event: Düsseldorfer Weihnachtsmarkt 2026 + Broilers – Santa's Action Club + Weihnachten – Familienbesuche (+19%); Nachfrageindex 1.10; Vorlauf 82 T (+2%, Modus normal)",1.104,2,Target,1.02,30,freigeben,89
-2026-12-26,Samstag,99,139,Düsseldorfer Weihnachtsmarkt 2026 + Weihnachten – Familienbesuche,+14% (Tier C),hoch,"Saison 0.95; Wochentag 1.15; Langes Wochenende (1. Weihnachtstag) (+5%); Schulferien NRW (-3%); Event: Düsseldorfer Weihnachtsmarkt 2026 + Weihnachten – Familienbesuche (+14%); Nachfrageindex 1.31; Vorlauf 83 T (+5%, Modus high)",1.313,2,High-Demand,1.05,13,freigeben,119
-2026-12-27,Sonntag,99,89,Weihnachten – Familienbesuche,+5% (Tier D),niedrig,Saison 0.95; Wochentag 0.88; Schulferien NRW (-3%); Event: Weihnachten – Familienbesuche (+5%); Nachfrageindex 0.85,0.852,2,Base,1.00,65,freigeben,69
-2026-12-28,Montag,99,89,Weihnachten – Familienbesuche,+5% (Tier D),niedrig,Saison 0.95; Wochentag 0.95; Schulferien NRW (-3%); Event: Weihnachten – Familienbesuche (+5%); Nachfrageindex 0.92,0.919,2,Base,1.00,57,freigeben,69
-2026-12-29,Dienstag,99,89,,,niedrig,Saison 0.95; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.89,0.894,1,Base,1.00,61,freigeben,69
-2026-12-30,Mittwoch,99,119,Silvester,+28% (Tier A),erhöht,"Saison 0.95; Wochentag 1.00; Schulferien NRW (-3%); Event: Silvester (+28%); Nachfrageindex 1.17; Vorlauf 87 T (+2%, Modus normal)",1.175,2,Target,1.02,28,freigeben,99
-2026-12-31,Donnerstag,99,159,Silvester,+55% (Tier A),hoch,"Saison 0.95; Wochentag 1.00; Langes Wochenende (Neujahr) (+5%); Schulferien NRW (-3%); Event: Silvester (+55%); Nachfrageindex 1.55; Vorlauf 88 T (+5%, Modus high)",1.546,2,High-Demand,1.05,7,freigeben,139
+2026-11-15,Sonntag,99,199,MEDICA + COMPAMED 2026,+96% (Tier S),Spitze,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+96%); Nachfrageindex 1.96,1.960,3,Event,1.00,4,freigeben,189
+2026-11-16,Montag,99,219,MEDICA + COMPAMED 2026,+120% (Tier S),Spitze,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20,2.200,3,Event,1.00,1,freigeben,209
+2026-11-17,Dienstag,99,219,MEDICA + COMPAMED 2026,+120% (Tier S),Spitze,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20,2.200,3,Event,1.00,2,freigeben,209
+2026-11-18,Mittwoch,99,219,MEDICA + COMPAMED 2026,+120% (Tier S),Spitze,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20,2.200,3,Event,1.00,3,freigeben,209
+2026-11-19,Donnerstag,99,139,MEDICA + COMPAMED 2026 + Tokio Hotel (Konzert),+42% (Tier S),hoch,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 + Tokio Hotel (Konzert) (+42%); Nachfrageindex 1.42,1.420,3,High-Demand,1.00,11,freigeben,129
+2026-11-20,Freitag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,Saison 1.00; Wochentag 1.12; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.25,1.254,2,Target,1.00,18,freigeben,109
+2026-11-21,Samstag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,Saison 1.00; Wochentag 1.15; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.29,1.288,2,Target,1.00,16,freigeben,109
+2026-11-22,Sonntag,99,89,,,niedrig,Saison 1.00; Wochentag 0.88; Nachfrageindex 0.88,0.880,1,Base,1.00,64,freigeben,69
+2026-11-23,Montag,99,99,,,normal,Saison 1.00; Wochentag 0.95; Nachfrageindex 0.95,0.950,2,Base,1.00,49,freigeben,79
+2026-11-24,Dienstag,99,99,,,normal,Saison 1.00; Wochentag 0.97; Nachfrageindex 0.97,0.970,2,Base,1.00,44,freigeben,79
+2026-11-25,Mittwoch,99,99,,,normal,Saison 1.00; Wochentag 0.97; Nachfrageindex 0.97,0.970,2,Base,1.00,45,freigeben,79
+2026-11-26,Donnerstag,99,99,,,normal,Saison 1.00; Wochentag 1.00; Nachfrageindex 1.00,1.000,2,Base,1.00,41,freigeben,79
+2026-11-27,Freitag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,Saison 1.00; Wochentag 1.12; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.25,1.254,2,Target,1.00,19,freigeben,109
+2026-11-28,Samstag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,Saison 1.00; Wochentag 1.15; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.29,1.288,2,Target,1.00,17,freigeben,109
+2026-11-29,Sonntag,99,89,,,niedrig,Saison 1.00; Wochentag 0.88; Nachfrageindex 0.88,0.880,1,Base,1.00,65,freigeben,69
+2026-11-30,Montag,99,99,VALVE WORLD EXPO 2026,+10% (Tier C),normal,Saison 1.00; Wochentag 0.95; Event: VALVE WORLD EXPO 2026 (+10%); Nachfrageindex 1.04,1.041,2,Base,1.00,35,freigeben,79
+2026-12-01,Dienstag,99,99,VALVE WORLD EXPO 2026,+12% (Tier C),normal,Saison 0.95; Wochentag 0.97; Event: VALVE WORLD EXPO 2026 (+12%); Nachfrageindex 1.03,1.032,2,Base,1.00,36,freigeben,79
+2026-12-02,Mittwoch,99,99,VALVE WORLD EXPO 2026,+12% (Tier C),normal,Saison 0.95; Wochentag 0.97; Event: VALVE WORLD EXPO 2026 (+12%); Nachfrageindex 1.03,1.032,2,Base,1.00,37,freigeben,79
+2026-12-03,Donnerstag,99,99,VALVE WORLD EXPO 2026,+4% (Tier C),normal,Saison 0.95; Wochentag 1.00; Event: VALVE WORLD EXPO 2026 (+4%); Nachfrageindex 0.98,0.984,2,Base,1.00,43,freigeben,79
+2026-12-04,Freitag,99,119,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,"Saison 0.95; Wochentag 1.12; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.19; Vorlauf 61 T (+2%, Modus normal)",1.192,2,Target,1.02,27,freigeben,99
+2026-12-05,Samstag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,"Saison 0.95; Wochentag 1.15; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.22; Vorlauf 62 T (+2%, Modus normal)",1.224,2,Target,1.02,21,freigeben,109
+2026-12-06,Sonntag,99,79,,,niedrig,Saison 0.95; Wochentag 0.88; Nachfrageindex 0.84,0.836,1,Base,1.00,68,freigeben,59
+2026-12-07,Montag,99,89,,,niedrig,Saison 0.95; Wochentag 0.95; Nachfrageindex 0.90,0.902,1,Base,1.00,60,freigeben,69
+2026-12-08,Dienstag,99,89,,,niedrig,Saison 0.95; Wochentag 0.97; Nachfrageindex 0.92,0.921,1,Base,1.00,55,freigeben,69
+2026-12-09,Mittwoch,99,89,,,niedrig,Saison 0.95; Wochentag 0.97; Nachfrageindex 0.92,0.921,1,Base,1.00,56,freigeben,69
+2026-12-10,Donnerstag,99,99,,,normal,"Saison 0.95; Wochentag 1.00; Nachfrageindex 0.95; Vorlauf 67 T (+2%, Modus normal)",0.950,2,Base,1.02,50,freigeben,79
+2026-12-11,Freitag,99,119,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,"Saison 0.95; Wochentag 1.12; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.19; Vorlauf 68 T (+2%, Modus normal)",1.192,2,Target,1.02,28,freigeben,99
+2026-12-12,Samstag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,"Saison 0.95; Wochentag 1.15; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.22; Vorlauf 69 T (+2%, Modus normal)",1.224,2,Target,1.02,22,freigeben,109
+2026-12-13,Sonntag,99,79,,,niedrig,Saison 0.95; Wochentag 0.88; Nachfrageindex 0.84,0.836,1,Base,1.00,69,freigeben,59
+2026-12-14,Montag,99,89,,,niedrig,Saison 0.95; Wochentag 0.95; Nachfrageindex 0.90,0.902,1,Base,1.00,61,freigeben,69
+2026-12-15,Dienstag,99,89,,,niedrig,Saison 0.95; Wochentag 0.97; Nachfrageindex 0.92,0.921,1,Base,1.00,57,freigeben,69
+2026-12-16,Mittwoch,99,89,,,niedrig,Saison 0.95; Wochentag 0.97; Nachfrageindex 0.92,0.921,1,Base,1.00,58,freigeben,69
+2026-12-17,Donnerstag,99,99,,,normal,"Saison 0.95; Wochentag 1.00; Nachfrageindex 0.95; Vorlauf 74 T (+2%, Modus normal)",0.950,2,Base,1.02,51,freigeben,79
+2026-12-18,Freitag,99,119,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,"Saison 0.95; Wochentag 1.12; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.19; Vorlauf 75 T (+2%, Modus normal)",1.192,2,Target,1.02,29,freigeben,99
+2026-12-19,Samstag,99,129,Düsseldorfer Weihnachtsmarkt 2026,+12% (Tier C),erhöht,"Saison 0.95; Wochentag 1.15; Event: Düsseldorfer Weihnachtsmarkt 2026 (+12%); Nachfrageindex 1.22; Vorlauf 76 T (+2%, Modus normal)",1.224,2,Target,1.02,23,freigeben,109
+2026-12-20,Sonntag,99,79,,,niedrig,Saison 0.95; Wochentag 0.88; Nachfrageindex 0.84,0.836,1,Base,1.00,70,freigeben,59
+2026-12-21,Montag,99,89,,,niedrig,Saison 0.95; Wochentag 0.95; Nachfrageindex 0.90,0.902,1,Base,1.00,62,freigeben,69
+2026-12-22,Dienstag,99,99,Weihnachten – Familienbesuche,+5% (Tier D),normal,"Saison 0.95; Wochentag 0.97; Event: Weihnachten – Familienbesuche (+5%); Nachfrageindex 0.97; Vorlauf 79 T (+2%, Modus normal)",0.968,2,Base,1.02,46,freigeben,79
+2026-12-23,Mittwoch,99,99,Weihnachten – Familienbesuche,+5% (Tier D),normal,"Saison 0.95; Wochentag 0.97; Schulferien NRW (-3%); Event: Weihnachten – Familienbesuche (+5%); Nachfrageindex 0.94; Vorlauf 80 T (+2%, Modus normal)",0.939,2,Base,1.02,52,freigeben,79
+2026-12-24,Donnerstag,99,89,Weihnachten – Familienbesuche,+5% (Tier D),niedrig,Saison 0.95; Wochentag 1.00; Weihnachten (schwach) (-13%); Schulferien NRW (-3%); Event: Weihnachten – Familienbesuche (+5%); Nachfrageindex 0.87,0.868,2,Base,1.00,66,freigeben,69
+2026-12-25,Freitag,99,109,Düsseldorfer Weihnachtsmarkt 2026 + Broilers – Santa's Action Club + Weihnachten – Familienbesuche,+19% (Tier C),erhöht,"Saison 0.95; Wochentag 1.12; Weihnachten (schwach) (-13%); Schulferien NRW (-3%); Event: Düsseldorfer Weihnachtsmarkt 2026 + Broilers – Santa's Action Club + Weihnachten – Familienbesuche (+19%); Nachfrageindex 1.10; Vorlauf 82 T (+2%, Modus normal)",1.104,2,Target,1.02,32,freigeben,89
+2026-12-26,Samstag,99,139,Düsseldorfer Weihnachtsmarkt 2026 + Weihnachten – Familienbesuche,+14% (Tier C),hoch,"Saison 0.95; Wochentag 1.15; Langes Wochenende (1. Weihnachtstag) (+5%); Schulferien NRW (-3%); Event: Düsseldorfer Weihnachtsmarkt 2026 + Weihnachten – Familienbesuche (+14%); Nachfrageindex 1.31; Vorlauf 83 T (+5%, Modus high)",1.313,2,High-Demand,1.05,15,freigeben,119
+2026-12-27,Sonntag,99,89,Weihnachten – Familienbesuche,+5% (Tier D),niedrig,Saison 0.95; Wochentag 0.88; Schulferien NRW (-3%); Event: Weihnachten – Familienbesuche (+5%); Nachfrageindex 0.85,0.852,2,Base,1.00,67,freigeben,69
+2026-12-28,Montag,99,89,Weihnachten – Familienbesuche,+5% (Tier D),niedrig,Saison 0.95; Wochentag 0.95; Schulferien NRW (-3%); Event: Weihnachten – Familienbesuche (+5%); Nachfrageindex 0.92,0.919,2,Base,1.00,59,freigeben,69
+2026-12-29,Dienstag,99,89,,,niedrig,Saison 0.95; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.89,0.894,1,Base,1.00,63,freigeben,69
+2026-12-30,Mittwoch,99,119,Silvester,+28% (Tier A),erhöht,"Saison 0.95; Wochentag 1.00; Schulferien NRW (-3%); Event: Silvester (+28%); Nachfrageindex 1.17; Vorlauf 87 T (+2%, Modus normal)",1.175,2,Target,1.02,30,freigeben,99
+2026-12-31,Donnerstag,99,159,Silvester,+55% (Tier A),hoch,"Saison 0.95; Wochentag 1.00; Langes Wochenende (Neujahr) (+5%); Schulferien NRW (-3%); Event: Silvester (+55%); Nachfrageindex 1.55; Vorlauf 88 T (+5%, Modus high)",1.546,2,High-Demand,1.05,9,freigeben,139
 2027-01-01,Freitag,99,109,,,normal,"Saison 0.88; Wochentag 1.12; Langes Wochenende (Neujahr) (+5%); Schulferien NRW (-3%); Nachfrageindex 1.03; Vorlauf 89 T (+2%, Modus normal)",1.035,2,Target,1.02,,geschlossen,89
 2027-01-02,Samstag,99,109,,,normal,"Saison 0.88; Wochentag 1.15; Langes Wochenende (Neujahr) (+5%); Schulferien NRW (-3%); Nachfrageindex 1.06; Vorlauf 90 T (+2%, Modus normal)",1.063,2,Target,1.02,,geschlossen,89
 2027-01-03,Sonntag,99,79,,,niedrig,Saison 0.88; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.75,0.751,1,Minimum,1.00,,geschlossen,59

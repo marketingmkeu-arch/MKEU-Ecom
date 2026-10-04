@@ -41,8 +41,8 @@ Datum,Wochentag,Gastpreis/Nacht (inkl. allem),Airbnb-Nachtpreis eintragen,Mindes
 2026-11-12,Donnerstag,99,79,2,,normal,blockiert,Saison 1.00; Wochentag 1.00; Nachfrageindex 1.00; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar
 2026-11-13,Freitag,109,89,2,,erhöht,blockiert,Saison 1.00; Wochentag 1.12; Nachfrageindex 1.12; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar
 2026-11-14,Samstag,119,99,2,,erhöht,blockiert,Saison 1.00; Wochentag 1.15; Nachfrageindex 1.15; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar
-2026-11-15,Sonntag,199,189,3,MEDICA + COMPAMED 2026,Spitze,blockiert,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+96%); Nachfrageindex 1.96; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar
-2026-11-16,Montag,219,209,3,MEDICA + COMPAMED 2026,Spitze,blockiert,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar
+2026-11-15,Sonntag,199,189,3,MEDICA + COMPAMED 2026,Spitze,freigeben,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+96%); Nachfrageindex 1.96
+2026-11-16,Montag,219,209,3,MEDICA + COMPAMED 2026,Spitze,freigeben,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20
 2026-11-17,Dienstag,219,209,3,MEDICA + COMPAMED 2026,Spitze,freigeben,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20
 2026-11-18,Mittwoch,219,209,3,MEDICA + COMPAMED 2026,Spitze,freigeben,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20
 2026-11-19,Donnerstag,139,129,3,MEDICA + COMPAMED 2026 + Tokio Hotel (Konzert),hoch,freigeben,Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 + Tokio Hotel (Konzert) (+42%); Nachfrageindex 1.42

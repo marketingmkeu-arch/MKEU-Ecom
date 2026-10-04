@@ -188,7 +188,7 @@ Last-Minute-Rabatte gibt es **nur** bei normaler oder niedriger Nachfrage. Bei h
 
 Erlaubt sind 90 Nächte pro Kalenderjahr (Wohnraum-ID im Inserat, Buchungskalender führen). Ziel ist deshalb nicht maximale Auslastung, sondern **maximaler Erlös pro verbrauchter Nacht**.
 
-- Bei einer angenommenen Verkaufsquote von 60% werden je Jahr die wertvollsten Nächte freigegeben: {2026: 68, 2027: 148} (Spalte `Quota Recommendation`).
+- Bei einer angenommenen Verkaufsquote von 60% werden je Jahr die wertvollsten Nächte freigegeben: {2026: 70, 2027: 148} (Spalte `Quota Recommendation`).
 - Im aktuellen Zeitraum reicht das Kontingent für alle freigegebenen Nächte; kein Schattenpreis nötig.
 - Genutzte Nächte laufend in `regulation.nights_already_used` eintragen; der nächste Lauf verteilt das Restkontingent neu.
 - Hartes Limit beachten: Bei 90 gebuchten Nächten im Kalenderjahr den Kalender für den Rest des Jahres schließen.
@@ -199,9 +199,9 @@ Erwartungswert-Rechnung: Buchungswahrscheinlichkeit je Nacht nach Nachfragestufe
 
 | Szenario | Nächte je Jahr | Gastumsatz EUR | Auszahlung EUR |
 |---|---|---|---|
-| konservativ | {'2026': 23.2, '2027': 48.6} | 8380 | 7450 |
-| realistisch | {'2026': 33.1, '2027': 69.4} | 11971 | 10642 |
-| optimistisch | {'2026': 41.2, '2027': 86.8} | 14915 | 13259 |
+| konservativ | {'2026': 24.4, '2027': 48.6} | 8626 | 7669 |
+| realistisch | {'2026': 34.8, '2027': 69.4} | 12323 | 10955 |
+| optimistisch | {'2026': 43.1, '2027': 86.8} | 15308 | 13609 |
 
 Vergleich der Vermietungsfenster 2027 (realistisches Szenario):
 
@@ -243,10 +243,10 @@ Vollständiger Tageskalender: `output/pricing_calendar_12m.csv`. Auszug: die nä
 
 | Datum | Wochentag | Base Price | Recommended Price | Event | Event Impact | Demand Level | Begründung |
 |---|---|---|---|---|---|---|---|
-| 2026-11-16 | Montag | 99 | 219 | MEDICA + COMPAMED 2026 | +120% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar |
+| 2026-11-16 | Montag | 99 | 219 | MEDICA + COMPAMED 2026 | +120% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20 |
 | 2026-11-17 | Dienstag | 99 | 219 | MEDICA + COMPAMED 2026 | +120% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20 |
 | 2026-11-18 | Mittwoch | 99 | 219 | MEDICA + COMPAMED 2026 | +120% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+120%); Nachfrageindex 2.20 |
-| 2026-11-15 | Sonntag | 99 | 199 | MEDICA + COMPAMED 2026 | +96% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+96%); Nachfrageindex 1.96; blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar |
+| 2026-11-15 | Sonntag | 99 | 199 | MEDICA + COMPAMED 2026 | +96% (Tier S) | Spitze | Saison 1.00; Wochentag 1.00; Event: MEDICA + COMPAMED 2026 (+96%); Nachfrageindex 1.96 |
 | 2027-03-06 | Samstag | 99 | 189 | ProWein 2027 + Disney on Ice | +47% (Tier A) | hoch | Saison 1.00; Wochentag 1.15; Event: ProWein 2027 + Disney on Ice (+47%); Nachfrageindex 1.68; Vorlauf 153 T (+10%, Modus high) |
 | 2026-10-06 | Dienstag | 99 | 179 | Backstreet Boys – Homecoming Residency (Stadion) | +55% (Tier A) | hoch | Saison 1.08; Wochentag 1.00; Event: Backstreet Boys – Homecoming Residency (Stadion) (+55%); Nachfrageindex 1.67; Vorlauf 2 T (+6%, Modus high) |
 | 2026-10-07 | Mittwoch | 99 | 179 | Backstreet Boys – Homecoming Residency (Stadion) | +55% (Tier A) | hoch | Saison 1.08; Wochentag 1.00; Event: Backstreet Boys – Homecoming Residency (Stadion) (+55%); Nachfrageindex 1.67; Vorlauf 3 T (+6%, Modus high); bereits gebucht (Auszahlung 66 EUR) |

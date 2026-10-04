@@ -50,8 +50,8 @@ rental_windows = [
 
 [availability]
 # Eigentümer im Urlaub (Angabe 04.10.2026): keine Anreisen/Reinigung möglich.
-# Nächte vom 30.10. bis 16.11. (Rückkehr 17.11.) gesperrt – Ausnahme nur bei Buchung des gesamten Zeitraums.
-blocked_nights = [["2026-10-30", "2026-11-16"]]
+# Nächte vom 30.10. bis 14.11. (Rückkehr 15.11., Gäste ab 15.11. möglich) gesperrt – Ausnahme nur bei Buchung des gesamten Zeitraums.
+blocked_nights = [["2026-10-30", "2026-11-14"]]
 block_offer_discount = 0.10
 
 [fees]
