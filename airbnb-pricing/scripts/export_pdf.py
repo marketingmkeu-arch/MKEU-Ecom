@@ -40,13 +40,20 @@ def label(a: date, b: date) -> str:
 
 def basis_short(text: str) -> str:
     if text.startswith("belegt"):
-        return "belegt" + text[text.find(":"):].replace("belegt", "").replace("Vergleichs-Median", " Vergleich")
+        return "belegt (" + text.split("Median ")[1].split(" (")[0] + ")"
     return "Annahme" if text.startswith("Annahme") else "abgeleitet"
 
 
+def payout_ratio() -> float:
+    import tomllib
+    cfg = tomllib.loads((OUT.parent / "config" / "pricing.toml").read_text(encoding="utf-8"))
+    return cfg.get("fees", {}).get("payout_ratio", 1.0)
+
+
 def main(year: int) -> Path:
+    ratio = payout_ratio()
     rows = list(csv.DictReader(open(OUT / f"airbnb_eingabe_{year}.csv", encoding="utf-8")))
-    data = [["Nächte", "Nachtpreis", "Gast zahlt*", "Min.", "Event / Grund", "Datenbasis"]]
+    data = [["Nächte", "Nachtpreis\neintragen", "Gast zahlt\npro Nacht*", "Sie bekommen\npro Nacht**", "Min.", "Event / Grund", "Datenbasis"]]
     styles = []
     prev_end = None
     for r in rows:
@@ -54,10 +61,11 @@ def main(year: int) -> Path:
         if prev_end and (a - prev_end).days > 1:
             gap_a = date.fromordinal(prev_end.toordinal() + 1)
             gap_b = date.fromordinal(a.toordinal() - 1)
-            data.append([label(gap_a, gap_b), "gesperrt", "", "", "gebucht / Urlaub", ""])
+            data.append([label(gap_a, gap_b), "gesperrt", "", "", "", "gebucht / Urlaub", ""])
             styles.append(("BACKGROUND", (0, len(data) - 1), (-1, len(data) - 1), colors.HexColor("#E5E5E5")))
         prev_end = b
-        data.append([label(a, b), f"{r['Airbnb-Nachtpreis']} €", f"~{r['Gastpreis/Nacht']} €", r["Mindestnächte"],
+        data.append([label(a, b), f"{r['Airbnb-Nachtpreis']} €", f"~{r['Gastpreis/Nacht']} €",
+                     f"~{float(r['Gastpreis/Nacht']) * ratio:.0f} €", r["Mindestnächte"],
                      Paragraph(r["Event"] or "–", CELL), Paragraph(basis_short(r["Datenbasis"]), CELL)])
         if r["Event"]:
             styles.append(("BACKGROUND", (0, len(data) - 1), (-1, len(data) - 1), colors.HexColor("#FFF4D6")))
@@ -77,15 +85,17 @@ def main(year: int) -> Path:
                   "<b>ab 01.01.2027</b> (Langzeitmieter-Suche)", TXT),
         Paragraph("Preise", H2),
     ]
-    t = Table(data, colWidths=[38 * mm, 20 * mm, 20 * mm, 10 * mm, 58 * mm, 40 * mm], repeatRows=1)
+    t = Table(data, colWidths=[36 * mm, 19 * mm, 19 * mm, 22 * mm, 9 * mm, 52 * mm, 29 * mm], repeatRows=1)
     t.setStyle(TableStyle([
         ("FONTNAME", (0, 0), (-1, 0), BOLD), ("FONTNAME", (0, 1), (-1, -1), REG),
         ("FONTSIZE", (0, 0), (-1, -1), 7.8), ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#DDE7F0")),
         ("GRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#BBBBBB")), ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-        ("ALIGN", (1, 1), (3, -1), "CENTER"), ("TOPPADDING", (0, 0), (-1, -1), 2), ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
+        ("ALIGN", (1, 1), (4, -1), "CENTER"), ("TOPPADDING", (0, 0), (-1, -1), 2), ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
     ] + styles))
     story += [t, Spacer(1, 4),
-              Paragraph("* Gast zahlt ≈ Nachtpreis + anteilige Reinigung (bei 2–3 Nächten). Gelb = Event/Messe. "
+              Paragraph("* Gast zahlt ≈ Nachtpreis + anteilige Reinigung (40 € einmal pro Buchung, verteilt auf 2–3 Nächte). "
+                        f"** Nach Airbnb-Servicegebühr ({(1 - ratio) * 100:.2f} % auf Nachtpreise + Reinigung, belegt durch Buchung 05.10.). "
+                        "Gelb = Event/Messe. "
                         "„belegt“ = durch Vergleichspreise geprüft; „Annahme“ = Aufschlag ohne Vergleichsdaten. "
                         "Di 06.10.: falls bis 05.10. abends nicht gebucht → 119 €.", TXT)]
     doc.build(story)
