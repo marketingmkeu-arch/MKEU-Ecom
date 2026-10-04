@@ -34,6 +34,7 @@ class RunResult:
     prices: list[DayPrice]
     shadow_prices: dict[int, int] | None
     bookings: dict[date, float] = None
+    observed_dates: dict = None
 
 
 def run(as_of: date, cfg: dict, paths: Paths = Paths(), pace: dict[date, float] | None = None) -> RunResult:
@@ -77,8 +78,33 @@ def run(as_of: date, cfg: dict, paths: Paths = Paths(), pace: dict[date, float] 
                 p.quota_recommendation = "blockiert"
                 p.reasons.append("blockiert (Urlaub) – nur als Gesamtzeitraum vermietbar")
     shadow = apply_night_cap(prices, cfg)
+    # Mindestaufenthalt nie länger als die freie Lücke bis zur nächsten belegten/gesperrten Nacht
+    unavailable = {"gebucht", "blockiert", "geschlossen"}
+    for i, p in enumerate(prices):
+        if p.quota_recommendation in unavailable:
+            continue
+        gap = 0
+        for q in prices[i:]:
+            if q.quota_recommendation in unavailable:
+                break
+            gap += 1
+        if gap < p.min_nights and i + gap < len(prices):
+            p.min_nights = gap
+            p.reasons.append(f"Mindestaufenthalt auf {gap} verkürzt (freie Lücke)")
+    import statistics
+    per_day: dict[date, list[float]] = {}
+    for r in snapshots:
+        if r["listing_id"] in usable and r.get("nightly_price"):
+            per_day.setdefault(date.fromisoformat(r["stay_date"]), []).append(float(r["nightly_price"]))
+    observed = {d: statistics.median(v) for d, v in per_day.items() if len(v) >= 5}
+    # Manuelle Entscheidungen des Eigentümers / nach Evidenzprüfung (Gastpreis inkl. allem)
+    for day_str, ov in cfg.get("overrides", {}).items():
+        for p in prices:
+            if p.demand.day == date.fromisoformat(day_str) and p.quota_recommendation not in unavailable:
+                p.recommended = int(ov["price"])
+                p.reasons.append(f"Manuell gesetzt: {ov['reason']}")
     return RunResult(as_of, cfg, events, metrics, comps, comp_by_day, history, factors, impacts,
-                     demand, comp_base, derivation, bands, prices, shadow, bookings)
+                     demand, comp_base, derivation, bands, prices, shadow, bookings, observed)
 
 
 def load_bookings(path) -> dict[date, float]:

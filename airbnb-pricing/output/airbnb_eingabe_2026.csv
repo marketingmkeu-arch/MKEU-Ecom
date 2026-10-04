@@ -1,50 +1,47 @@
-von,bis,Nächte,Airbnb-Nachtpreis,Gastpreis/Nacht,Mindestnächte,Event
-2026-10-04,2026-10-04,1,59,79,2,
-2026-10-06,2026-10-06,1,159,179,2,Backstreet Boys – Homecoming Residency (Stadion)
-2026-10-09,2026-10-10,2,99,119,2,
-2026-10-11,2026-10-11,1,69,89,2,
-2026-10-12,2026-10-12,1,79,99,2,
-2026-10-13,2026-10-13,1,99,119,2,The Strokes (Konzert)
-2026-10-14,2026-10-14,1,79,99,2,
-2026-10-15,2026-10-15,1,99,119,2,The World of Hans Zimmer
-2026-10-16,2026-10-16,1,99,119,2,
-2026-10-17,2026-10-17,1,119,139,2,Young Thug (Konzert)
-2026-10-18,2026-10-18,1,69,89,1,
-2026-10-19,2026-10-19,1,129,149,2,glasstec 2026
-2026-10-20,2026-10-22,3,139,159,2,glasstec 2026
-2026-10-23,2026-10-23,1,119,139,2,glasstec 2026
-2026-10-24,2026-10-24,1,119,139,2,Dimash Qudaibergen (Konzert)
-2026-10-25,2026-10-25,1,69,89,1,
-2026-10-26,2026-10-28,3,79,99,2,
-2026-10-29,2026-10-29,1,89,109,2,
-2026-11-15,2026-11-15,1,189,199,3,MEDICA + COMPAMED 2026
-2026-11-16,2026-11-18,3,209,219,3,MEDICA + COMPAMED 2026
-2026-11-19,2026-11-19,1,129,139,3,MEDICA + COMPAMED 2026 + Tokio Hotel (Konzert)
-2026-11-20,2026-11-21,2,109,129,2,Düsseldorfer Weihnachtsmarkt 2026
-2026-11-22,2026-11-22,1,69,89,1,
-2026-11-23,2026-11-26,4,79,99,2,
-2026-11-27,2026-11-28,2,109,129,2,Düsseldorfer Weihnachtsmarkt 2026
-2026-11-29,2026-11-29,1,69,89,1,
-2026-11-30,2026-12-03,4,79,99,2,VALVE WORLD EXPO 2026
-2026-12-04,2026-12-04,1,99,119,2,Düsseldorfer Weihnachtsmarkt 2026
-2026-12-05,2026-12-05,1,109,129,2,Düsseldorfer Weihnachtsmarkt 2026
-2026-12-06,2026-12-06,1,59,79,1,
-2026-12-07,2026-12-09,3,69,89,1,
-2026-12-10,2026-12-10,1,79,99,2,
-2026-12-11,2026-12-11,1,99,119,2,Düsseldorfer Weihnachtsmarkt 2026
-2026-12-12,2026-12-12,1,109,129,2,Düsseldorfer Weihnachtsmarkt 2026
-2026-12-13,2026-12-13,1,59,79,1,
-2026-12-14,2026-12-16,3,69,89,1,
-2026-12-17,2026-12-17,1,79,99,2,
-2026-12-18,2026-12-18,1,99,119,2,Düsseldorfer Weihnachtsmarkt 2026
-2026-12-19,2026-12-19,1,109,129,2,Düsseldorfer Weihnachtsmarkt 2026
-2026-12-20,2026-12-20,1,59,79,1,
-2026-12-21,2026-12-21,1,69,89,1,
-2026-12-22,2026-12-23,2,79,99,2,Weihnachten – Familienbesuche
-2026-12-24,2026-12-24,1,69,89,2,Weihnachten – Familienbesuche
-2026-12-25,2026-12-25,1,89,109,2,Düsseldorfer Weihnachtsmarkt 2026 + Broilers – Santa's Action Club + Weihnachten – Familienbesuche
-2026-12-26,2026-12-26,1,119,139,2,Düsseldorfer Weihnachtsmarkt 2026 + Weihnachten – Familienbesuche
-2026-12-27,2026-12-28,2,69,89,2,Weihnachten – Familienbesuche
-2026-12-29,2026-12-29,1,69,89,1,
-2026-12-30,2026-12-30,1,99,119,2,Silvester
-2026-12-31,2026-12-31,1,139,159,2,Silvester
+von,bis,Nächte,Airbnb-Nachtpreis,Gastpreis/Nacht,Mindestnächte,Event,Datenbasis
+2026-10-04,2026-10-04,1,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-06,2026-10-06,1,159,179,1,Backstreet Boys – Homecoming Residency (Stadion),Annahme: Event-Aufschlag ohne Vergleichspreise
+2026-10-09,2026-10-10,2,89,109,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-11,2026-10-11,1,69,89,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-12,2026-10-12,1,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-13,2026-10-13,1,89,109,2,The Strokes (Konzert),abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-14,2026-10-14,1,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-15,2026-10-15,1,89,109,2,The World of Hans Zimmer,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-16,2026-10-16,1,89,109,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-17,2026-10-17,1,99,119,2,Young Thug (Konzert),abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-18,2026-10-18,1,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-19,2026-10-19,1,99,119,2,glasstec 2026,Annahme: Event-Aufschlag ohne Vergleichspreise
+2026-10-20,2026-10-22,3,109,129,2,glasstec 2026,Annahme: Event-Aufschlag ohne Vergleichspreise
+2026-10-23,2026-10-23,1,99,119,2,glasstec 2026,Annahme: Event-Aufschlag ohne Vergleichspreise
+2026-10-24,2026-10-24,1,99,119,2,Dimash Qudaibergen (Konzert),abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-25,2026-10-25,1,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-26,2026-10-28,3,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-10-29,2026-10-29,1,79,99,1,,belegt: Vergleichs-Median 96 € (inkl. allem)
+2026-11-15,2026-11-15,1,189,199,3,MEDICA + COMPAMED 2026,Annahme: Event-Aufschlag ohne Vergleichspreise
+2026-11-16,2026-11-16,1,209,219,3,MEDICA + COMPAMED 2026,Annahme: Event-Aufschlag ohne Vergleichspreise
+2026-11-17,2026-11-18,2,209,219,3,MEDICA + COMPAMED 2026,belegt: Vergleichs-Median 232 € (inkl. allem)
+2026-11-19,2026-11-19,1,129,139,3,MEDICA + COMPAMED 2026 + Tokio Hotel (Konzert),Annahme: Event-Aufschlag ohne Vergleichspreise
+2026-11-20,2026-11-20,1,89,109,2,Düsseldorfer Weihnachtsmarkt 2026,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-11-21,2026-11-21,1,99,119,2,Düsseldorfer Weihnachtsmarkt 2026,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-11-22,2026-11-22,1,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-11-23,2026-11-26,4,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-11-27,2026-11-27,1,89,109,2,Düsseldorfer Weihnachtsmarkt 2026,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-11-28,2026-11-28,1,99,119,2,Düsseldorfer Weihnachtsmarkt 2026,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-11-29,2026-11-29,1,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-11-30,2026-12-03,4,79,99,2,VALVE WORLD EXPO 2026,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-04,2026-12-05,2,89,109,2,Düsseldorfer Weihnachtsmarkt 2026,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-06,2026-12-09,4,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-10,2026-12-10,1,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-11,2026-12-12,2,89,109,2,Düsseldorfer Weihnachtsmarkt 2026,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-13,2026-12-16,4,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-17,2026-12-17,1,79,99,2,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-18,2026-12-19,2,89,109,2,Düsseldorfer Weihnachtsmarkt 2026,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-20,2026-12-21,2,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-22,2026-12-23,2,79,99,2,Weihnachten – Familienbesuche,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-24,2026-12-24,1,69,89,2,Weihnachten – Familienbesuche,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-25,2026-12-25,1,79,99,2,Düsseldorfer Weihnachtsmarkt 2026 + Weihnachten – Familienbesuche + Broilers – Santa's Action Club,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-26,2026-12-26,1,99,119,2,Düsseldorfer Weihnachtsmarkt 2026 + Weihnachten – Familienbesuche,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-27,2026-12-28,2,69,89,2,Weihnachten – Familienbesuche,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-29,2026-12-29,1,69,89,1,,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen
+2026-12-30,2026-12-30,1,99,119,2,Silvester,Annahme: Event-Aufschlag ohne Vergleichspreise
+2026-12-31,2026-12-31,1,149,169,1,Silvester,Annahme: Event-Aufschlag ohne Vergleichspreise

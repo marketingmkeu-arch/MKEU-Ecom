@@ -86,3 +86,18 @@ Standard 2 · Wochenende 2 · Tier-S-Messe 3 · niedrige Nachfrage 1 (Lückenfü
 | Basis / Positionierung | Comp-Snapshots | `competitor_analysis.comp_days` + Mischung |
 | Lead Time | eigene Buchungen (Buchungsdatum, Check-in, Preis) | Phase B (geplant) |
 | Gesamtmodell | Backtest | `validation.backtest` (MAPE, Bias Normal- vs. Eventtage, Rangkorrelation) |
+
+
+## 9. Evidenzprüfung vor jeder Preisempfehlung (Eigentümer-Vorgabe 04.10.2026)
+
+Bevor ein Preis empfohlen wird, wird er nach oben **und** unten hinterfragt:
+
+1. Gibt es für dieses Datum beobachtete Vergleichspreise? → dann daran ausrichten.
+2. Wenn nicht: Ist der Event-Aufschlag durch Größe/Internationalität des Events plausibel
+   (Besucherzahl, Übernachtungsquote, Fach- vs. Publikumsveranstaltung, Ferien)?
+3. Ohne Belege gilt der **vorsichtige** Wert; der Aufschlag wird als Annahme markiert
+   (Spalte `Datenbasis`) und nach Möglichkeit per Screenshot-Stichprobe geprüft.
+4. Neues Listing ohne Bewertungen: nicht deutlich über dem Median vergleichbarer Wohnungen.
+
+Ergebnis der ersten Prüfung (04.10.2026): Arena-Konzerte (PSD Bank Dome), glasstec, VALVE WORLD
+und Weihnachtsmarkt herabgestuft; Wochenend-Aufschlag gesenkt; MEDICA durch Vergleichspreise bestätigt.

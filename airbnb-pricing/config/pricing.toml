@@ -93,12 +93,14 @@ absolute_minimum_eur = 79
 [weekday]
 # ANNAHME (Prior): Düsseldorf ist Business-Standort, Wohnungen werden am Wochenende
 # stärker von Freizeitgästen nachgefragt. Kalibrierung über historical_data.
+# 04.10.2026 gesenkt (Fr 1.12->1.06, Sa 1.15->1.08): Vergleichspreise Do/Fr 29./30.10. lagen
+# bei ~93 € inkl. allem; neues Listing ohne Bewertungen sollte nicht deutlich darüber liegen.
 mon = 0.95
 tue = 0.97
 wed = 0.97
 thu = 1.00
-fri = 1.12
-sat = 1.15
+fri = 1.06
+sat = 1.08
 sun = 0.88
 
 [season]
@@ -207,3 +209,7 @@ monthly_discount = 0.30
 weekly_discount = 0.05
 monthly_discount = 0.0
 max_nights = 7
+
+[overrides]
+# Manuelle Gastpreise (inkl. allem) nach Evidenzprüfung; gelten vor der Rundung des Airbnb-Nachtpreises.
+"2026-10-29" = { price = 99, reason = "Vergleichs-Median an diesem Datum 93 €; nur 1-Nacht-Aufenthalt möglich (Urlaub ab 30.10.)" }

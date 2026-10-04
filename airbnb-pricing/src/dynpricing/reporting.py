@@ -430,7 +430,17 @@ def write_report(result: RunResult, s: dict, path: Path) -> None:
 
 
 PLAN_COLUMNS = ["Datum", "Wochentag", "Gastpreis/Nacht (inkl. allem)", "Airbnb-Nachtpreis eintragen",
-                "Mindestnächte", "Event", "Nachfrage", "Status", "Begründung"]
+                "Mindestnächte", "Event", "Nachfrage", "Datenbasis", "Status", "Begründung"]
+
+
+def data_basis(result: RunResult, p: DayPrice) -> str:
+    """Wie belastbar ist der Preis dieses Tages?"""
+    med = (result.observed_dates or {}).get(p.demand.day)
+    if med is not None:
+        return f"belegt: Vergleichs-Median {med:.0f} € (inkl. allem)"
+    if p.demand.event.max_tier in ("S", "A", "B"):
+        return "Annahme: Event-Aufschlag ohne Vergleichspreise"
+    return "abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen"
 
 
 def plan_rows(result: RunResult, start: date, end: date) -> list[dict]:
@@ -447,6 +457,7 @@ def plan_rows(result: RunResult, start: date, end: date) -> list[dict]:
             "Mindestnächte": p.min_nights,
             "Event": d.event.names,
             "Nachfrage": d.level,
+            "Datenbasis": data_basis(result, p),
             "Status": p.quota_recommendation,
             "Begründung": "; ".join(r for r in p.reasons if not r.startswith("Vorlauf")),
         })
@@ -468,7 +479,7 @@ def price_ranges(rows: list[dict]) -> list[dict]:
     for r in rows:
         if r["Status"] in ("gebucht", "geschlossen", "blockiert"):
             continue
-        key = (r["Airbnb-Nachtpreis eintragen"], r["Mindestnächte"], r["Event"])
+        key = (r["Airbnb-Nachtpreis eintragen"], r["Mindestnächte"], r["Event"], r["Datenbasis"])
         if ranges and ranges[-1]["_key"] == key and date.fromisoformat(ranges[-1]["bis"]).toordinal() + 1 == date.fromisoformat(r["Datum"]).toordinal():
             ranges[-1]["bis"] = r["Datum"]
             ranges[-1]["Nächte"] += 1
@@ -476,7 +487,7 @@ def price_ranges(rows: list[dict]) -> list[dict]:
             ranges.append({"_key": key, "von": r["Datum"], "bis": r["Datum"], "Nächte": 1,
                            "Airbnb-Nachtpreis": r["Airbnb-Nachtpreis eintragen"],
                            "Gastpreis/Nacht": r["Gastpreis/Nacht (inkl. allem)"],
-                           "Mindestnächte": r["Mindestnächte"], "Event": r["Event"]})
+                           "Mindestnächte": r["Mindestnächte"], "Event": r["Event"], "Datenbasis": r["Datenbasis"]})
     for r in ranges:
         r.pop("_key")
     return ranges
@@ -485,7 +496,7 @@ def price_ranges(rows: list[dict]) -> list[dict]:
 def write_ranges_csv(rows: list[dict], path: Path) -> list[dict]:
     ranges = price_ranges(rows)
     with open(path, "w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=["von", "bis", "Nächte", "Airbnb-Nachtpreis", "Gastpreis/Nacht", "Mindestnächte", "Event"])
+        w = csv.DictWriter(fh, fieldnames=["von", "bis", "Nächte", "Airbnb-Nachtpreis", "Gastpreis/Nacht", "Mindestnächte", "Event", "Datenbasis"])
         w.writeheader()
         w.writerows(ranges)
     return ranges
