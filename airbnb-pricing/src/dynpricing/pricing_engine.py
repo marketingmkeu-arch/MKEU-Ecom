@@ -137,14 +137,12 @@ class DayPrice:
 
 
 def min_nights_for(d: DayDemand, cfg: dict) -> int:
+    """Wochentagsregel des Eigentümers (Fr/Sa länger), Events können sie nur verlängern."""
     los = cfg["length_of_stay"]
+    base = los["weekend_min_nights"] if d.day.weekday() in (4, 5) else los["default_min_nights"]
     if d.event.max_tier:
-        return los["event_min_nights"][d.event.max_tier]
-    if d.level == "niedrig":
-        return los["low_demand_min_nights"]
-    if d.day.weekday() in (4, 5):
-        return los["weekend_min_nights"]
-    return los["default_min_nights"]
+        base = max(base, los["event_min_nights"][d.event.max_tier])
+    return base
 
 
 def _band_label(price: float, bands: PriceBands) -> str:

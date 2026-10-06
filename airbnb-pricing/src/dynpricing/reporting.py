@@ -506,7 +506,8 @@ def revenue_summary(result: RunResult) -> dict:
     cfg = result.cfg
     booked = result.bookings or {}
     out = {"payout_ratio": cfg["fees"]["payout_ratio"], "szenarien": {},
-           "bereits_gebucht": {"naechte": len(booked), "auszahlung": round(sum(booked.values()))}}
+           "bereits_gebucht": {"naechte": len(booked), "auszahlung": round(sum(v for v in booked.values() if v)),
+                               "naechte_ohne_betrag": sum(1 for v in booked.values() if v is None)}}
     blocks = []
     for a, b in cfg.get("availability", {}).get("blocked_nights", []):
         sel = [p for p in result.prices if date.fromisoformat(a) <= p.demand.day <= date.fromisoformat(b)]

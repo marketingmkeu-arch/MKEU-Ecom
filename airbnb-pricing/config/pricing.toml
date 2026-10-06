@@ -57,7 +57,7 @@ block_offer_discount = 0.10
 [fees]
 # Reinigungspauschale (Empfehlung, s. Report). Die Kalenderpreise sind Gastpreise pro Nacht inkl.
 # allem; der in Airbnb einzutragende Nachtpreis = Gastpreis - Reinigung / erwartete Nächte pro Aufenthalt.
-cleaning_fee = 40
+cleaning_fee = 35  # Eigentümer 06.10.2026
 assumed_avg_stay_nights = 2.5
 # Belegt (Buchung 05.10.2026): 102,00 € Gastpreis - 18,81 € Servicegebühr = 83,19 € Auszahlung.
 # 18,44 % = Airbnb-Gastgebergebühr 15,5 % zzgl. 19 % MwSt.; gilt auf Nachtpreise UND Reinigung.
@@ -155,8 +155,8 @@ high = 1.70
 # Keine automatischen Last-Minute-Rabatte bei hoher Nachfrage (siehe pricing_engine).
 buckets = [
   { max_days = 0,   low = 0.82, normal = 0.88, high = 1.08 },
-  { max_days = 3,   low = 0.86, normal = 0.92, high = 1.06 },
-  { max_days = 7,   low = 0.90, normal = 0.95, high = 1.04 },
+  { max_days = 3,   low = 0.85, normal = 0.88, high = 1.06 },
+  { max_days = 7,   low = 0.88, normal = 0.92, high = 1.04 },
   { max_days = 14,  low = 0.94, normal = 0.98, high = 1.02 },
   { max_days = 30,  low = 0.97, normal = 1.00, high = 1.00 },
   { max_days = 60,  low = 1.00, normal = 1.00, high = 1.00 },
@@ -177,7 +177,9 @@ max_pace_adjustment = 0.10
 # Gewicht des beobachteten Comp-Medians (angebotene Preise) beim Mischen mit dem Modellpreis
 comp_blend_weight = 0.4
 # Positionierung ggü. Comp-Median (ANNAHME: 60 m², 2 Zimmer, renoviert, Balkon -> über Median)
-position_vs_median = 1.05
+position_vs_median = 0.95
+# 06.10.2026: Ziel des Eigentümers >= 80 % Auslastung -> Positionierung im unteren Mittelfeld
+# der Vergleichswohnungen statt darüber (aber nicht am unteren Rand, s. absolute_minimum_eur).
 min_comps_for_blend = 5
 # Basispreis aus angebotenen Comp-Preisen: Gewicht je Listing, max. Gewicht, Mindestanzahl
 base_blend_per_listing = 0.1
@@ -195,9 +197,10 @@ discount = 0.10
 until_reviews = 5
 
 [length_of_stay]
-default_min_nights = 2
+# Eigentümer-Einstellung 06.10.2026: So-Do 1 Nacht, Fr/Sa 2 Nächte, Messe (Tier S) 3
+default_min_nights = 1
 weekend_min_nights = 2
-event_min_nights = { S = 3, A = 2, B = 2, C = 2, D = 2 }
+event_min_nights = { S = 3, A = 1, B = 1, C = 1, D = 1 }
 low_demand_min_nights = 1
 # Rabatt-Empfehlungen (ANNAHME / Heuristik, keine Marktbeobachtung)
 weekly_discount = 0.10
@@ -206,7 +209,7 @@ monthly_discount = 0.30
 [length_of_stay.night_cap]
 # Gilt, solange regulation.annual_night_cap > 0: lange Aufenthalte verbrauchen das
 # Kontingent zu reduzierten Preisen -> kleinere Rabatte, kein Monatsrabatt, max. Aufenthalt.
-weekly_discount = 0.05
+weekly_discount = 0.10  # 06.10.2026: Auslastungsziel, Kontingent 2026 nicht knapp
 monthly_discount = 0.0
 max_nights = 7
 

@@ -1,149 +1,149 @@
 Datum,Wochentag,Gastpreis/Nacht (inkl. allem),Airbnb-Nachtpreis eintragen,Mindestnächte,Event,Nachfrage,Datenbasis,Status,Begründung
-2027-01-22,Freitag,119,99,2,boot Düsseldorf 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 1.06; Event: boot Düsseldorf 2027 (+20%); Nachfrageindex 1.12
-2027-01-23,Samstag,129,109,2,boot Düsseldorf 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 1.08; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.19
-2027-01-24,Sonntag,99,79,2,boot Düsseldorf 2027,normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 0.88; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 0.97
-2027-01-25,Montag,109,89,2,boot Düsseldorf 2027,normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 0.95; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.04
-2027-01-26,Dienstag,109,89,2,boot Düsseldorf 2027,normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 0.97; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.07
-2027-01-27,Mittwoch,109,89,2,boot Düsseldorf 2027,normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 0.97; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.07
-2027-01-28,Donnerstag,119,99,2,boot Düsseldorf 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 1.00; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.10
-2027-01-29,Freitag,119,99,2,boot Düsseldorf 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 1.06; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.17
-2027-01-30,Samstag,129,109,2,boot Düsseldorf 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 1.08; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.19
-2027-01-31,Sonntag,89,69,1,boot Düsseldorf 2027,niedrig,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 0.88; Event: boot Düsseldorf 2027 (+8%); Nachfrageindex 0.83; Mindestaufenthalt auf 1 verkürzt (freie Lücke)
-2027-02-03,Mittwoch,109,89,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+16%); Nachfrageindex 1.07
-2027-02-04,Donnerstag,159,139,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.43
-2027-02-05,Freitag,169,149,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.06; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.51
-2027-02-06,Samstag,169,149,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.08; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.54
-2027-02-07,Sonntag,159,139,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.43
-2027-02-08,Montag,129,109,1,Straßenkarneval (Weiberfastnacht bis Rosenmontag),erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+28%); Nachfrageindex 1.17; Mindestaufenthalt auf 1 verkürzt (freie Lücke)
-2027-03-06,Samstag,179,159,2,ProWein 2027 + Disney on Ice,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.00; Wochentag 1.08; Event: ProWein 2027 + Disney on Ice (+47%); Nachfrageindex 1.58
-2027-03-07,Sonntag,179,159,2,ProWein 2027 + Disney on Ice,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.00; Wochentag 1.00; Event: ProWein 2027 + Disney on Ice (+58%); Nachfrageindex 1.57
-2027-03-08,Montag,169,149,2,ProWein 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.00; Wochentag 1.00; Event: ProWein 2027 (+55%); Nachfrageindex 1.55
-2027-03-09,Dienstag,119,99,1,ProWein 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.00; Wochentag 1.00; Event: ProWein 2027 (+16%); Nachfrageindex 1.17; Mindestaufenthalt auf 1 verkürzt (freie Lücke)
-2027-04-08,Donnerstag,129,109,2,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.02; Wochentag 1.00; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+22%); Nachfrageindex 1.25
-2027-04-09,Freitag,159,139,2,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.02; Wochentag 1.06; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+28%); Nachfrageindex 1.38
-2027-04-10,Samstag,159,139,2,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.02; Wochentag 1.08; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+28%); Nachfrageindex 1.40
-2027-04-11,Sonntag,99,79,1,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.02; Wochentag 0.88; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+8%); Nachfrageindex 0.97; Mindestaufenthalt auf 1 verkürzt (freie Lücke)
-2027-05-21,Freitag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.06; Nachfrageindex 1.11
-2027-05-22,Samstag,159,139,1,Japan-Tag Düsseldorf/NRW 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.05; Wochentag 1.08; Event: Japan-Tag Düsseldorf/NRW 2027 (+25%); Nachfrageindex 1.42; Mindestaufenthalt auf 1 verkürzt (freie Lücke)
-2027-06-01,Dienstag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
-2027-06-02,Mittwoch,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
-2027-06-03,Donnerstag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.00; Nachfrageindex 1.03
-2027-06-04,Freitag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.06; Nachfrageindex 1.09
-2027-06-05,Samstag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.08; Nachfrageindex 1.11
-2027-06-06,Sonntag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.88; Nachfrageindex 0.91
-2027-06-07,Montag,99,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.95; Nachfrageindex 0.98
-2027-06-08,Dienstag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
-2027-06-09,Mittwoch,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
-2027-06-10,Donnerstag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.00; Nachfrageindex 1.03
-2027-06-11,Freitag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.06; Nachfrageindex 1.09
-2027-06-12,Samstag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.08; Nachfrageindex 1.11
-2027-06-13,Sonntag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.88; Nachfrageindex 0.91
-2027-06-14,Montag,99,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.95; Nachfrageindex 0.98
-2027-06-15,Dienstag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
-2027-06-16,Mittwoch,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
-2027-06-17,Donnerstag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.00; Nachfrageindex 1.03
-2027-06-18,Freitag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.06; Nachfrageindex 1.09
-2027-06-19,Samstag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.08; Nachfrageindex 1.11
-2027-06-20,Sonntag,169,149,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+44%); Nachfrageindex 1.48
-2027-06-21,Montag,179,159,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60
-2027-06-22,Dienstag,179,159,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60
-2027-06-23,Mittwoch,179,159,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60
-2027-06-24,Donnerstag,179,159,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60
-2027-06-25,Freitag,139,119,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.03; Wochentag 1.06; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+16%); Nachfrageindex 1.27
-2027-06-26,Samstag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.08; Nachfrageindex 1.11
-2027-06-27,Sonntag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.88; Nachfrageindex 0.91
-2027-06-28,Montag,99,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.95; Nachfrageindex 0.98
-2027-06-29,Dienstag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
-2027-06-30,Mittwoch,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
-2027-07-01,Donnerstag,99,79,2,Cologne Pride / CSD (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Event: Cologne Pride / CSD (Köln) (+4%); Nachfrageindex 0.96
-2027-07-02,Freitag,109,89,2,Cologne Pride / CSD (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.06; Event: Cologne Pride / CSD (Köln) (+5%); Nachfrageindex 1.02
-2027-07-03,Samstag,179,159,2,Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.08; Event: Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln) (+58%); Nachfrageindex 1.56
-2027-07-04,Sonntag,159,139,2,Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.00; Event: Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln) (+56%); Nachfrageindex 1.43
-2027-07-05,Montag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Nachfrageindex 0.87
-2027-07-06,Dienstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89
-2027-07-07,Mittwoch,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89
-2027-07-08,Donnerstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Nachfrageindex 0.92
-2027-07-09,Freitag,99,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.06; Nachfrageindex 0.98
-2027-07-10,Samstag,169,149,2,Die Toten Hosen (Stadion),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.08; Event: Die Toten Hosen (Stadion) (+55%); Nachfrageindex 1.54
-2027-07-11,Sonntag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81
-2027-07-12,Montag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Nachfrageindex 0.87
-2027-07-13,Dienstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89
-2027-07-14,Mittwoch,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89
-2027-07-15,Donnerstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Nachfrageindex 0.92
-2027-07-16,Freitag,129,109,2,Rheinkirmes 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.06; Event: Rheinkirmes 2027 (+25%); Nachfrageindex 1.22
-2027-07-17,Samstag,149,129,2,Rheinkirmes 2027 + Karol G (Stadion),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.08; Event: Rheinkirmes 2027 + Karol G (Stadion) (+38%); Nachfrageindex 1.37
-2027-07-18,Sonntag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81
-2027-07-19,Montag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
-2027-07-20,Dienstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
-2027-07-21,Mittwoch,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
-2027-07-22,Donnerstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
-2027-07-23,Freitag,129,109,2,Rheinkirmes 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Event: Rheinkirmes 2027 (+25%); Nachfrageindex 1.18
-2027-07-24,Samstag,129,109,2,Rheinkirmes 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Event: Rheinkirmes 2027 (+25%); Nachfrageindex 1.20
-2027-07-25,Sonntag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
-2027-07-26,Montag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
-2027-07-27,Dienstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
-2027-07-28,Mittwoch,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
-2027-07-29,Donnerstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
-2027-07-30,Freitag,99,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Nachfrageindex 0.95
-2027-07-31,Samstag,99,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Nachfrageindex 0.96
-2027-08-01,Sonntag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
-2027-08-02,Montag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
-2027-08-03,Dienstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
-2027-08-04,Mittwoch,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
-2027-08-05,Donnerstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
-2027-08-06,Freitag,99,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Nachfrageindex 0.95
-2027-08-07,Samstag,99,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Nachfrageindex 0.96
-2027-08-08,Sonntag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
-2027-08-09,Montag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
-2027-08-10,Dienstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
-2027-08-11,Mittwoch,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
-2027-08-12,Donnerstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
-2027-08-13,Freitag,99,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Nachfrageindex 0.95
-2027-08-14,Samstag,99,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Nachfrageindex 0.96
-2027-08-15,Sonntag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
-2027-08-16,Montag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
-2027-08-17,Dienstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
-2027-08-18,Mittwoch,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
-2027-08-19,Donnerstag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
-2027-08-20,Freitag,99,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Nachfrageindex 0.95
-2027-08-21,Samstag,99,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Nachfrageindex 0.96
-2027-08-22,Sonntag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
-2027-08-23,Montag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
-2027-08-24,Dienstag,99,79,2,gamescom 2027 (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Event: gamescom 2027 (Köln) (+10%); Nachfrageindex 0.95
-2027-08-25,Mittwoch,99,79,2,gamescom 2027 (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Event: gamescom 2027 (Köln) (+12%); Nachfrageindex 0.97
-2027-08-26,Donnerstag,119,99,2,CARAVAN SALON 2027 + gamescom 2027 (Köln),erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + gamescom 2027 (Köln) (+26%); Nachfrageindex 1.12
-2027-08-27,Freitag,129,109,2,CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027 (+32%); Nachfrageindex 1.25
-2027-08-28,Samstag,139,119,2,CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027 (+32%); Nachfrageindex 1.27
-2027-08-29,Sonntag,109,89,2,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 + gamescom 2027 (Köln),normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 + gamescom 2027 (Köln) (+28%); Nachfrageindex 1.01
-2027-08-30,Montag,119,99,2,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 (+28%); Nachfrageindex 1.08
-2027-08-31,Dienstag,119,99,2,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 (+26%); Nachfrageindex 1.09
-2027-09-01,Mittwoch,139,119,2,CARAVAN SALON 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.05; Wochentag 0.97; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.27
-2027-09-02,Donnerstag,149,129,2,CARAVAN SALON 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.05; Wochentag 1.00; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.31
-2027-09-03,Freitag,159,139,2,CARAVAN SALON 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.05; Wochentag 1.06; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.39
-2027-09-04,Samstag,159,139,2,CARAVAN SALON 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.05; Wochentag 1.08; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.42
-2027-09-05,Sonntag,109,89,2,CARAVAN SALON 2027,normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.05; Wochentag 0.88; Event: CARAVAN SALON 2027 (+8%); Nachfrageindex 0.99
-2027-09-06,Montag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.95; Nachfrageindex 1.00
-2027-09-07,Dienstag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
-2027-09-08,Mittwoch,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
-2027-09-09,Donnerstag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.00; Nachfrageindex 1.05
-2027-09-10,Freitag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.06; Nachfrageindex 1.11
-2027-09-11,Samstag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.08; Nachfrageindex 1.13
-2027-09-12,Sonntag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.88; Nachfrageindex 0.92
-2027-09-13,Montag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.95; Nachfrageindex 1.00
-2027-09-14,Dienstag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
-2027-09-15,Mittwoch,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
-2027-09-16,Donnerstag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.00; Nachfrageindex 1.05
-2027-09-17,Freitag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.06; Nachfrageindex 1.11
-2027-09-18,Samstag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.08; Nachfrageindex 1.13
-2027-09-19,Sonntag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.88; Nachfrageindex 0.92
-2027-09-20,Montag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.95; Nachfrageindex 1.00
-2027-09-21,Dienstag,109,89,2,DMEXCO 2027 (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Event: DMEXCO 2027 (Köln) (+4%); Nachfrageindex 1.06
-2027-09-22,Mittwoch,109,89,2,DMEXCO 2027 (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Event: DMEXCO 2027 (Köln) (+5%); Nachfrageindex 1.07
-2027-09-23,Donnerstag,109,89,2,DMEXCO 2027 (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.00; Event: DMEXCO 2027 (Köln) (+2%); Nachfrageindex 1.07
-2027-09-24,Freitag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.06; Nachfrageindex 1.11
-2027-09-25,Samstag,119,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.08; Nachfrageindex 1.13
-2027-09-26,Sonntag,89,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.88; Nachfrageindex 0.92
-2027-09-27,Montag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.95; Nachfrageindex 1.00
-2027-09-28,Dienstag,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
-2027-09-29,Mittwoch,109,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
-2027-09-30,Donnerstag,109,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.00; Nachfrageindex 1.05; Mindestaufenthalt auf 1 verkürzt (freie Lücke)
+2027-01-22,Freitag,109,99,2,boot Düsseldorf 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 1.06; Event: boot Düsseldorf 2027 (+20%); Nachfrageindex 1.12
+2027-01-23,Samstag,119,109,2,boot Düsseldorf 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 1.08; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.19
+2027-01-24,Sonntag,99,89,1,boot Düsseldorf 2027,normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 0.88; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 0.97
+2027-01-25,Montag,99,89,1,boot Düsseldorf 2027,normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 0.95; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.04
+2027-01-26,Dienstag,109,99,1,boot Düsseldorf 2027,normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 0.97; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.07
+2027-01-27,Mittwoch,109,99,1,boot Düsseldorf 2027,normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 0.97; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.07
+2027-01-28,Donnerstag,109,99,1,boot Düsseldorf 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 1.00; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.10
+2027-01-29,Freitag,119,109,2,boot Düsseldorf 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 1.06; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.17
+2027-01-30,Samstag,119,109,2,boot Düsseldorf 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 1.08; Event: boot Düsseldorf 2027 (+25%); Nachfrageindex 1.19
+2027-01-31,Sonntag,79,69,1,boot Düsseldorf 2027,niedrig,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.88; Wochentag 0.88; Event: boot Düsseldorf 2027 (+8%); Nachfrageindex 0.83
+2027-02-03,Mittwoch,109,99,1,Straßenkarneval (Weiberfastnacht bis Rosenmontag),normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+16%); Nachfrageindex 1.07
+2027-02-04,Donnerstag,149,139,1,Straßenkarneval (Weiberfastnacht bis Rosenmontag),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.43
+2027-02-05,Freitag,159,149,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.06; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.51
+2027-02-06,Samstag,159,149,2,Straßenkarneval (Weiberfastnacht bis Rosenmontag),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.08; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.54
+2027-02-07,Sonntag,149,139,1,Straßenkarneval (Weiberfastnacht bis Rosenmontag),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+55%); Nachfrageindex 1.43
+2027-02-08,Montag,119,109,1,Straßenkarneval (Weiberfastnacht bis Rosenmontag),erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.00; Event: Straßenkarneval (Weiberfastnacht bis Rosenmontag) (+28%); Nachfrageindex 1.17
+2027-03-06,Samstag,169,159,2,ProWein 2027 + Disney on Ice,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.00; Wochentag 1.08; Event: ProWein 2027 + Disney on Ice (+47%); Nachfrageindex 1.58
+2027-03-07,Sonntag,159,149,1,ProWein 2027 + Disney on Ice,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.00; Wochentag 1.00; Event: ProWein 2027 + Disney on Ice (+58%); Nachfrageindex 1.57
+2027-03-08,Montag,159,149,1,ProWein 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.00; Wochentag 1.00; Event: ProWein 2027 (+55%); Nachfrageindex 1.55
+2027-03-09,Dienstag,119,109,1,ProWein 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.00; Wochentag 1.00; Event: ProWein 2027 (+16%); Nachfrageindex 1.17
+2027-04-08,Donnerstag,119,109,1,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.02; Wochentag 1.00; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+22%); Nachfrageindex 1.25
+2027-04-09,Freitag,139,129,2,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.02; Wochentag 1.06; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+28%); Nachfrageindex 1.38
+2027-04-10,Samstag,149,139,2,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.02; Wochentag 1.08; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+28%); Nachfrageindex 1.40
+2027-04-11,Sonntag,99,89,1,BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln),normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.02; Wochentag 0.88; Event: BEAUTY DÜSSELDORF + TOP HAIR 2027 + FIBO 2027 (Köln) (+8%); Nachfrageindex 0.97
+2027-05-21,Freitag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.06; Nachfrageindex 1.11
+2027-05-22,Samstag,149,139,1,Japan-Tag Düsseldorf/NRW 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.05; Wochentag 1.08; Event: Japan-Tag Düsseldorf/NRW 2027 (+25%); Nachfrageindex 1.42; Mindestaufenthalt auf 1 verkürzt (freie Lücke)
+2027-06-01,Dienstag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-02,Mittwoch,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-03,Donnerstag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.00; Nachfrageindex 1.03
+2027-06-04,Freitag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.06; Nachfrageindex 1.09
+2027-06-05,Samstag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.08; Nachfrageindex 1.11
+2027-06-06,Sonntag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.88; Nachfrageindex 0.91
+2027-06-07,Montag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.95; Nachfrageindex 0.98
+2027-06-08,Dienstag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-09,Mittwoch,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-10,Donnerstag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.00; Nachfrageindex 1.03
+2027-06-11,Freitag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.06; Nachfrageindex 1.09
+2027-06-12,Samstag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.08; Nachfrageindex 1.11
+2027-06-13,Sonntag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.88; Nachfrageindex 0.91
+2027-06-14,Montag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.95; Nachfrageindex 0.98
+2027-06-15,Dienstag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-16,Mittwoch,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-17,Donnerstag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.00; Nachfrageindex 1.03
+2027-06-18,Freitag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.06; Nachfrageindex 1.09
+2027-06-19,Samstag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.08; Nachfrageindex 1.11
+2027-06-20,Sonntag,149,139,1,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+44%); Nachfrageindex 1.48
+2027-06-21,Montag,169,159,1,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60
+2027-06-22,Dienstag,169,159,1,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60
+2027-06-23,Mittwoch,169,159,1,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60
+2027-06-24,Donnerstag,169,159,1,GIFA / METEC / THERMPROCESS / NEWCAST 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.03; Wochentag 1.00; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+55%); Nachfrageindex 1.60
+2027-06-25,Freitag,129,119,2,GIFA / METEC / THERMPROCESS / NEWCAST 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.03; Wochentag 1.06; Event: GIFA / METEC / THERMPROCESS / NEWCAST 2027 (+16%); Nachfrageindex 1.27
+2027-06-26,Samstag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 1.08; Nachfrageindex 1.11
+2027-06-27,Sonntag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.88; Nachfrageindex 0.91
+2027-06-28,Montag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.95; Nachfrageindex 0.98
+2027-06-29,Dienstag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-06-30,Mittwoch,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.03; Wochentag 0.97; Nachfrageindex 1.00
+2027-07-01,Donnerstag,89,79,1,Cologne Pride / CSD (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Event: Cologne Pride / CSD (Köln) (+4%); Nachfrageindex 0.96
+2027-07-02,Freitag,99,89,2,Cologne Pride / CSD (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.06; Event: Cologne Pride / CSD (Köln) (+5%); Nachfrageindex 1.02
+2027-07-03,Samstag,159,149,2,Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.08; Event: Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln) (+58%); Nachfrageindex 1.56
+2027-07-04,Sonntag,149,139,1,Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.00; Event: Die Toten Hosen (Stadion) + Cologne Pride / CSD (Köln) (+56%); Nachfrageindex 1.43
+2027-07-05,Montag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Nachfrageindex 0.87
+2027-07-06,Dienstag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89
+2027-07-07,Mittwoch,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89
+2027-07-08,Donnerstag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Nachfrageindex 0.92
+2027-07-09,Freitag,99,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.06; Nachfrageindex 0.98
+2027-07-10,Samstag,159,149,2,Die Toten Hosen (Stadion),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.08; Event: Die Toten Hosen (Stadion) (+55%); Nachfrageindex 1.54
+2027-07-11,Sonntag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81
+2027-07-12,Montag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Nachfrageindex 0.87
+2027-07-13,Dienstag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89
+2027-07-14,Mittwoch,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Nachfrageindex 0.89
+2027-07-15,Donnerstag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Nachfrageindex 0.92
+2027-07-16,Freitag,119,109,2,Rheinkirmes 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.06; Event: Rheinkirmes 2027 (+25%); Nachfrageindex 1.22
+2027-07-17,Samstag,139,129,2,Rheinkirmes 2027 + Karol G (Stadion),hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.08; Event: Rheinkirmes 2027 + Karol G (Stadion) (+38%); Nachfrageindex 1.37
+2027-07-18,Sonntag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Nachfrageindex 0.81
+2027-07-19,Montag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
+2027-07-20,Dienstag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-07-21,Mittwoch,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-07-22,Donnerstag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
+2027-07-23,Freitag,119,109,2,Rheinkirmes 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Event: Rheinkirmes 2027 (+25%); Nachfrageindex 1.18
+2027-07-24,Samstag,119,109,2,Rheinkirmes 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Event: Rheinkirmes 2027 (+25%); Nachfrageindex 1.20
+2027-07-25,Sonntag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
+2027-07-26,Montag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
+2027-07-27,Dienstag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-07-28,Mittwoch,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-07-29,Donnerstag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
+2027-07-30,Freitag,89,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Nachfrageindex 0.95
+2027-07-31,Samstag,99,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Nachfrageindex 0.96
+2027-08-01,Sonntag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
+2027-08-02,Montag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
+2027-08-03,Dienstag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-08-04,Mittwoch,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-08-05,Donnerstag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
+2027-08-06,Freitag,89,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Nachfrageindex 0.95
+2027-08-07,Samstag,99,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Nachfrageindex 0.96
+2027-08-08,Sonntag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
+2027-08-09,Montag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
+2027-08-10,Dienstag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-08-11,Mittwoch,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-08-12,Donnerstag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
+2027-08-13,Freitag,89,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Nachfrageindex 0.95
+2027-08-14,Samstag,99,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Nachfrageindex 0.96
+2027-08-15,Sonntag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
+2027-08-16,Montag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
+2027-08-17,Dienstag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-08-18,Mittwoch,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Nachfrageindex 0.87
+2027-08-19,Donnerstag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Nachfrageindex 0.89
+2027-08-20,Freitag,89,79,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Nachfrageindex 0.95
+2027-08-21,Samstag,99,89,2,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Nachfrageindex 0.96
+2027-08-22,Sonntag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Nachfrageindex 0.79
+2027-08-23,Montag,79,69,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Nachfrageindex 0.85
+2027-08-24,Dienstag,89,79,1,gamescom 2027 (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Event: gamescom 2027 (Köln) (+10%); Nachfrageindex 0.95
+2027-08-25,Mittwoch,99,89,1,gamescom 2027 (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Event: gamescom 2027 (Köln) (+12%); Nachfrageindex 0.97
+2027-08-26,Donnerstag,109,99,1,CARAVAN SALON 2027 + gamescom 2027 (Köln),erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.00; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + gamescom 2027 (Köln) (+26%); Nachfrageindex 1.12
+2027-08-27,Freitag,119,109,2,CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.06; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027 (+32%); Nachfrageindex 1.25
+2027-08-28,Samstag,129,119,2,CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 1.08; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + gamescom 2027 (Köln) + Neusser Bürger-Schützenfest 2027 (+32%); Nachfrageindex 1.27
+2027-08-29,Sonntag,99,89,1,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 + gamescom 2027 (Köln),normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 0.88; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 + gamescom 2027 (Köln) (+28%); Nachfrageindex 1.01
+2027-08-30,Montag,109,99,1,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 0.95; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 (+28%); Nachfrageindex 1.08
+2027-08-31,Dienstag,109,99,1,CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 0.92; Wochentag 0.97; Schulferien NRW (-3%); Event: CARAVAN SALON 2027 + Neusser Bürger-Schützenfest 2027 (+26%); Nachfrageindex 1.09
+2027-09-01,Mittwoch,129,119,1,CARAVAN SALON 2027,erhöht,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.05; Wochentag 0.97; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.27
+2027-09-02,Donnerstag,139,129,1,CARAVAN SALON 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.05; Wochentag 1.00; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.31
+2027-09-03,Freitag,149,139,2,CARAVAN SALON 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.05; Wochentag 1.06; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.39
+2027-09-04,Samstag,149,139,2,CARAVAN SALON 2027,hoch,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.05; Wochentag 1.08; Event: CARAVAN SALON 2027 (+25%); Nachfrageindex 1.42
+2027-09-05,Sonntag,99,89,1,CARAVAN SALON 2027,normal,Annahme: Event-Aufschlag ohne Vergleichspreise,freigeben,Saison 1.05; Wochentag 0.88; Event: CARAVAN SALON 2027 (+8%); Nachfrageindex 0.99
+2027-09-06,Montag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.95; Nachfrageindex 1.00
+2027-09-07,Dienstag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
+2027-09-08,Mittwoch,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
+2027-09-09,Donnerstag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.00; Nachfrageindex 1.05
+2027-09-10,Freitag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.06; Nachfrageindex 1.11
+2027-09-11,Samstag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.08; Nachfrageindex 1.13
+2027-09-12,Sonntag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.88; Nachfrageindex 0.92
+2027-09-13,Montag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.95; Nachfrageindex 1.00
+2027-09-14,Dienstag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
+2027-09-15,Mittwoch,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
+2027-09-16,Donnerstag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.00; Nachfrageindex 1.05
+2027-09-17,Freitag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.06; Nachfrageindex 1.11
+2027-09-18,Samstag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.08; Nachfrageindex 1.13
+2027-09-19,Sonntag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.88; Nachfrageindex 0.92
+2027-09-20,Montag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.95; Nachfrageindex 1.00
+2027-09-21,Dienstag,99,89,1,DMEXCO 2027 (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Event: DMEXCO 2027 (Köln) (+4%); Nachfrageindex 1.06
+2027-09-22,Mittwoch,109,99,1,DMEXCO 2027 (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Event: DMEXCO 2027 (Köln) (+5%); Nachfrageindex 1.07
+2027-09-23,Donnerstag,109,99,1,DMEXCO 2027 (Köln),normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.00; Event: DMEXCO 2027 (Köln) (+2%); Nachfrageindex 1.07
+2027-09-24,Freitag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.06; Nachfrageindex 1.11
+2027-09-25,Samstag,109,99,2,,erhöht,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.08; Nachfrageindex 1.13
+2027-09-26,Sonntag,89,79,1,,niedrig,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.88; Nachfrageindex 0.92
+2027-09-27,Montag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.95; Nachfrageindex 1.00
+2027-09-28,Dienstag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
+2027-09-29,Mittwoch,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 0.97; Nachfrageindex 1.02
+2027-09-30,Donnerstag,99,89,1,,normal,abgeleitet: Vergleichspreise normaler Tage + eigene Buchungen,freigeben,Saison 1.05; Wochentag 1.00; Nachfrageindex 1.05

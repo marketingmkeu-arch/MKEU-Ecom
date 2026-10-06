@@ -70,7 +70,8 @@ def run(as_of: date, cfg: dict, paths: Paths = Paths(), pace: dict[date, float] 
     for p in prices:
         if p.demand.day in bookings:
             p.quota_recommendation = "gebucht"
-            p.reasons.append(f"bereits gebucht (Auszahlung {bookings[p.demand.day]:.0f} EUR)")
+            paid = bookings[p.demand.day]
+            p.reasons.append(f"bereits gebucht (Auszahlung {paid:.0f} EUR)" if paid is not None else "bereits gebucht (Auszahlung unbekannt)")
     for a, b in cfg.get("availability", {}).get("blocked_nights", []):
         start, end = date.fromisoformat(a), date.fromisoformat(b)
         for p in prices:
@@ -113,7 +114,8 @@ def load_bookings(path) -> dict[date, float]:
     if not path.exists():
         return {}
     with open(path, newline="", encoding="utf-8") as fh:
-        return {date.fromisoformat(r["stay_date"]): float(r["payout_eur"] or 0) for r in csv.DictReader(fh) if r.get("stay_date")}
+        return {date.fromisoformat(r["stay_date"]): (float(r["payout_eur"]) if r.get("payout_eur") else None)
+                for r in csv.DictReader(fh) if r.get("stay_date")}
 
 
 def median_price(prices: list[DayPrice], pred) -> float | None:

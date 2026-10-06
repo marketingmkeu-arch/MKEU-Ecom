@@ -77,9 +77,9 @@ def main(year: int) -> Path:
         Paragraph(f"Airbnb-Preisliste Concordiastraße 15 – {year}", H1),
         Paragraph(f"Stand {date.today():%d.%m.%Y}. Nachtpreis = in Airbnb einzutragen (ohne Reinigung).", TXT),
         Paragraph("Einstellungen", H2),
-        Paragraph("• Reinigungsgebühr <b>40 €</b> (einmal pro Buchung) &nbsp; • Max. <b>2 Gäste</b> &nbsp; "
+        Paragraph("• Reinigungsgebühr <b>35 €</b> (einmal pro Buchung) &nbsp; • Max. <b>2 Gäste</b> &nbsp; • Mindestaufenthalt So–Do 1, Fr/Sa 2, MEDICA 15.–18.11.: 3 &nbsp; "
                   "• <b>Smart Pricing aus</b><br/>"
-                  "• Wochenrabatt <b>5 %</b> &nbsp; • Monats-, Last-Minute-, Frühbucherrabatt <b>aus</b> &nbsp; "
+                  "• Wochenrabatt <b>10 %</b> &nbsp; • Monats-, Last-Minute-, Frühbucherrabatt <b>aus</b> &nbsp; "
                   "• Aktion für neue Inserate abschalten, falls möglich<br/>"
                   "• Sperren: <b>30.10.–14.11.</b> (Urlaub; nur als Gesamtzeitraum per Sonderangebot ~1.510 €) und "
                   "<b>ab 01.01.2027</b> (Langzeitmieter-Suche)", TXT),
@@ -93,7 +93,7 @@ def main(year: int) -> Path:
         ("ALIGN", (1, 1), (4, -1), "CENTER"), ("TOPPADDING", (0, 0), (-1, -1), 2), ("BOTTOMPADDING", (0, 0), (-1, -1), 2),
     ] + styles))
     story += [t, Spacer(1, 4),
-              Paragraph("* Gast zahlt ≈ Nachtpreis + anteilige Reinigung (40 € einmal pro Buchung, verteilt auf 2–3 Nächte). "
+              Paragraph("* Gast zahlt ≈ Nachtpreis + anteilige Reinigung (35 € einmal pro Buchung, verteilt auf 2–3 Nächte). "
                         f"** Nach Airbnb-Servicegebühr ({(1 - ratio) * 100:.2f} % auf Nachtpreise + Reinigung, belegt durch Buchung 05.10.). "
                         "Gelb = Event/Messe. "
                         "„belegt“ = durch Vergleichspreise geprüft; „Annahme“ = Aufschlag ohne Vergleichsdaten. "

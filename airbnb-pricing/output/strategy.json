@@ -1,87 +1,87 @@
 {
-  "as_of": "2026-10-04",
-  "basispreis": 102,
+  "as_of": "2026-10-06",
+  "basispreis": 94,
   "preisgrenzen": {
     "Minimum Price": 79,
-    "Normal/Base Price": 102,
-    "Target Price": 107,
-    "High-Demand Price": 137,
-    "Event Price": 173,
-    "Maximum Price": 305
+    "Normal/Base Price": 94,
+    "Target Price": 99,
+    "High-Demand Price": 127,
+    "Event Price": 160,
+    "Maximum Price": 283
   },
-  "normaler_wochentagspreis_mo_do": 99,
-  "normaler_wochenendpreis_fr_sa": 109,
+  "normaler_wochentagspreis_mo_do": 89,
+  "normaler_wochenendpreis_fr_sa": 99,
   "saisonale_preisbereiche": {
     "Januar": {
-      "normal_min": 89,
-      "normal_max": 99,
-      "inkl_events_max": 119,
+      "normal_min": 79,
+      "normal_max": 89,
+      "inkl_events_max": 109,
       "saisonfaktor": 0.88
     },
     "Februar": {
-      "normal_min": 89,
-      "normal_max": 99,
-      "inkl_events_max": 159,
+      "normal_min": 79,
+      "normal_max": 89,
+      "inkl_events_max": 149,
       "saisonfaktor": 0.92
     },
     "März": {
-      "normal_min": 89,
-      "normal_max": 109,
-      "inkl_events_max": 159,
+      "normal_min": 79,
+      "normal_max": 99,
+      "inkl_events_max": 149,
       "saisonfaktor": 1.0
     },
     "April": {
       "normal_min": 89,
-      "normal_max": 109,
-      "inkl_events_max": 139,
+      "normal_max": 99,
+      "inkl_events_max": 129,
       "saisonfaktor": 1.02
     },
     "Mai": {
       "normal_min": 89,
       "normal_max": 109,
-      "inkl_events_max": 149,
+      "inkl_events_max": 129,
       "saisonfaktor": 1.05
     },
     "Juni": {
       "normal_min": 89,
       "normal_max": 109,
-      "inkl_events_max": 159,
+      "inkl_events_max": 149,
       "saisonfaktor": 1.03
     },
     "Juli": {
-      "normal_min": 89,
-      "normal_max": 99,
-      "inkl_events_max": 159,
+      "normal_min": 79,
+      "normal_max": 89,
+      "inkl_events_max": 149,
       "saisonfaktor": 0.92
     },
     "August": {
-      "normal_min": 89,
-      "normal_max": 99,
-      "inkl_events_max": 129,
+      "normal_min": 79,
+      "normal_max": 89,
+      "inkl_events_max": 119,
       "saisonfaktor": 0.92
     },
     "September": {
       "normal_min": 89,
-      "normal_max": 119,
-      "inkl_events_max": 149,
+      "normal_max": 109,
+      "inkl_events_max": 129,
       "saisonfaktor": 1.05
     },
     "Oktober": {
       "normal_min": 89,
-      "normal_max": 119,
-      "inkl_events_max": 169,
+      "normal_max": 109,
+      "inkl_events_max": 159,
       "saisonfaktor": 1.08
     },
     "November": {
-      "normal_min": 89,
-      "normal_max": 109,
-      "inkl_events_max": 219,
+      "normal_min": 79,
+      "normal_max": 99,
+      "inkl_events_max": 209,
       "saisonfaktor": 1.0
     },
     "Dezember": {
-      "normal_min": 89,
-      "normal_max": 99,
-      "inkl_events_max": 159,
+      "normal_min": 79,
+      "normal_max": 89,
+      "inkl_events_max": 149,
       "saisonfaktor": 0.95
     }
   },
@@ -93,9 +93,9 @@
       "tier": "S",
       "visitors": 80000,
       "distance_km": 5.8,
-      "price_min": 219,
-      "price_avg": 219,
-      "price_max": 219,
+      "price_min": 209,
+      "price_avg": 209,
+      "price_max": 209,
       "confidence": "high"
     },
     {
@@ -105,9 +105,9 @@
       "tier": "A",
       "visitors": null,
       "distance_km": 5.9,
-      "price_min": 169,
-      "price_avg": 169,
-      "price_max": 169,
+      "price_min": 159,
+      "price_avg": 159,
+      "price_max": 159,
       "confidence": "high"
     },
     {
@@ -117,9 +117,9 @@
       "tier": "A",
       "visitors": null,
       "distance_km": 1.5,
-      "price_min": 159,
-      "price_avg": 159,
-      "price_max": 159,
+      "price_min": 149,
+      "price_avg": 149,
+      "price_max": 149,
       "confidence": "high"
     },
     {
@@ -129,9 +129,9 @@
       "tier": "A",
       "visitors": 31000,
       "distance_km": 5.8,
-      "price_min": 159,
-      "price_avg": 159,
-      "price_max": 159,
+      "price_min": 149,
+      "price_avg": 149,
+      "price_max": 149,
       "confidence": "high"
     },
     {
@@ -141,9 +141,9 @@
       "tier": "A",
       "visitors": null,
       "distance_km": 5.8,
-      "price_min": 159,
-      "price_avg": 159,
-      "price_max": 159,
+      "price_min": 149,
+      "price_avg": 149,
+      "price_max": 149,
       "confidence": "medium"
     },
     {
@@ -153,9 +153,9 @@
       "tier": "A",
       "visitors": null,
       "distance_km": 5.9,
-      "price_min": 159,
-      "price_avg": 159,
-      "price_max": 159,
+      "price_min": 149,
+      "price_avg": 149,
+      "price_max": 149,
       "confidence": "medium"
     },
     {
@@ -165,22 +165,10 @@
       "tier": "A",
       "visitors": null,
       "distance_km": 1.5,
-      "price_min": 149,
-      "price_avg": 149,
-      "price_max": 159,
-      "confidence": "high"
-    },
-    {
-      "event": "Japan-Tag Düsseldorf/NRW 2027",
-      "start": "2027-05-22",
-      "end": "2027-05-22",
-      "tier": "B",
-      "visitors": null,
-      "distance_km": 1.5,
-      "price_min": 149,
-      "price_avg": 149,
+      "price_min": 139,
+      "price_avg": 139,
       "price_max": 149,
-      "confidence": "low"
+      "confidence": "high"
     },
     {
       "event": "Die Toten Hosen (Stadion)",
@@ -189,9 +177,9 @@
       "tier": "A",
       "visitors": null,
       "distance_km": 5.9,
-      "price_min": 149,
-      "price_avg": 149,
-      "price_max": 159,
+      "price_min": 139,
+      "price_avg": 139,
+      "price_max": 149,
       "confidence": "medium"
     },
     {
@@ -201,10 +189,22 @@
       "tier": "B",
       "visitors": null,
       "distance_km": 5.8,
-      "price_min": 139,
-      "price_avg": 139,
-      "price_max": 139,
+      "price_min": 129,
+      "price_avg": 129,
+      "price_max": 129,
       "confidence": "medium"
+    },
+    {
+      "event": "Japan-Tag Düsseldorf/NRW 2027",
+      "start": "2027-05-22",
+      "end": "2027-05-22",
+      "tier": "B",
+      "visitors": null,
+      "distance_km": 1.5,
+      "price_min": 129,
+      "price_avg": 129,
+      "price_max": 129,
+      "confidence": "low"
     },
     {
       "event": "glasstec 2026",
@@ -213,9 +213,9 @@
       "tier": "B",
       "visitors": 32023,
       "distance_km": 5.8,
-      "price_min": 129,
-      "price_avg": 129,
-      "price_max": 129,
+      "price_min": 119,
+      "price_avg": 119,
+      "price_max": 119,
       "confidence": "medium"
     },
     {
@@ -225,9 +225,9 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 1.5,
-      "price_min": 129,
-      "price_avg": 129,
-      "price_max": 129,
+      "price_min": 119,
+      "price_avg": 119,
+      "price_max": 119,
       "confidence": "medium"
     },
     {
@@ -237,9 +237,9 @@
       "tier": "B",
       "visitors": null,
       "distance_km": 2.1,
-      "price_min": 119,
-      "price_avg": 129,
-      "price_max": 139,
+      "price_min": 109,
+      "price_avg": 119,
+      "price_max": 129,
       "confidence": "medium"
     },
     {
@@ -250,116 +250,8 @@
       "visitors": 269000,
       "distance_km": 5.8,
       "price_min": 99,
-      "price_avg": 129,
-      "price_max": 149,
-      "confidence": "high"
-    },
-    {
-      "event": "Sabaton (Konzert)",
-      "start": "2027-04-23",
-      "end": "2027-04-23",
-      "tier": "D",
-      "visitors": null,
-      "distance_km": 6.2,
-      "price_min": 119,
       "price_avg": 119,
-      "price_max": 119,
-      "confidence": "medium"
-    },
-    {
-      "event": "Die Ärzte (Konzert)",
-      "start": "2027-04-24",
-      "end": "2027-04-24",
-      "tier": "D",
-      "visitors": null,
-      "distance_km": 6.2,
-      "price_min": 119,
-      "price_avg": 119,
-      "price_max": 119,
-      "confidence": "low"
-    },
-    {
-      "event": "Apache 207 (Konzert)",
-      "start": "2026-10-08",
-      "end": "2026-10-08",
-      "tier": "D",
-      "visitors": null,
-      "distance_km": 6.2,
-      "price_min": 119,
-      "price_avg": 119,
-      "price_max": 119,
-      "confidence": "medium"
-    },
-    {
-      "event": "The World of Hans Zimmer",
-      "start": "2026-10-15",
-      "end": "2026-10-15",
-      "tier": "D",
-      "visitors": null,
-      "distance_km": 6.2,
-      "price_min": 119,
-      "price_avg": 119,
-      "price_max": 119,
-      "confidence": "medium"
-    },
-    {
-      "event": "Young Thug (Konzert)",
-      "start": "2026-10-17",
-      "end": "2026-10-17",
-      "tier": "D",
-      "visitors": null,
-      "distance_km": 6.2,
-      "price_min": 119,
-      "price_avg": 119,
-      "price_max": 119,
-      "confidence": "medium"
-    },
-    {
-      "event": "Dimash Qudaibergen (Konzert)",
-      "start": "2026-10-24",
-      "end": "2026-10-24",
-      "tier": "D",
-      "visitors": null,
-      "distance_km": 6.2,
-      "price_min": 119,
-      "price_avg": 119,
-      "price_max": 119,
-      "confidence": "medium"
-    },
-    {
-      "event": "Karnevalsauftakt 11.11.",
-      "start": "2026-11-11",
-      "end": "2026-11-11",
-      "tier": "C",
-      "visitors": null,
-      "distance_km": 1.5,
-      "price_min": 109,
-      "price_avg": 109,
-      "price_max": 109,
-      "confidence": "high"
-    },
-    {
-      "event": "Düsseldorfer Weihnachtsmarkt 2026",
-      "start": "2026-11-19",
-      "end": "2026-12-30",
-      "tier": "D",
-      "visitors": null,
-      "distance_km": 1.7,
-      "price_min": 99,
-      "price_avg": 109,
-      "price_max": 119,
-      "confidence": "medium"
-    },
-    {
-      "event": "boot Düsseldorf 2027",
-      "start": "2027-01-23",
-      "end": "2027-01-31",
-      "tier": "B",
-      "visitors": null,
-      "distance_km": 5.8,
-      "price_min": 99,
-      "price_avg": 109,
-      "price_max": 119,
+      "price_max": 129,
       "confidence": "high"
     },
     {
@@ -381,15 +273,15 @@
       "tier": "C",
       "visitors": null,
       "distance_km": 33.2,
-      "price_min": 109,
+      "price_min": 99,
       "price_avg": 109,
-      "price_max": 119,
+      "price_max": 109,
       "confidence": "medium"
     },
     {
-      "event": "The Strokes (Konzert)",
-      "start": "2026-10-13",
-      "end": "2026-10-13",
+      "event": "Sabaton (Konzert)",
+      "start": "2027-04-23",
+      "end": "2027-04-23",
       "tier": "D",
       "visitors": null,
       "distance_km": 6.2,
@@ -399,52 +291,100 @@
       "confidence": "medium"
     },
     {
-      "event": "Deutschland Cup (Eishockey)",
-      "start": "2026-11-05",
-      "end": "2026-11-08",
+      "event": "Die Ärzte (Konzert)",
+      "start": "2027-04-24",
+      "end": "2027-04-24",
       "tier": "D",
       "visitors": null,
       "distance_km": 6.2,
-      "price_min": 89,
+      "price_min": 109,
       "price_avg": 109,
-      "price_max": 119,
+      "price_max": 109,
       "confidence": "low"
     },
     {
-      "event": "Cologne Pride / CSD (Köln)",
-      "start": "2027-07-02",
-      "end": "2027-07-04",
+      "event": "Apache 207 (Konzert)",
+      "start": "2026-10-08",
+      "end": "2026-10-08",
       "tier": "D",
       "visitors": null,
-      "distance_km": 33.4,
+      "distance_km": 6.2,
       "price_min": 109,
       "price_avg": 109,
       "price_max": 109,
       "confidence": "medium"
     },
     {
-      "event": "DMEXCO 2027 (Köln)",
-      "start": "2027-09-22",
-      "end": "2027-09-23",
+      "event": "The World of Hans Zimmer",
+      "start": "2026-10-15",
+      "end": "2026-10-15",
       "tier": "D",
       "visitors": null,
-      "distance_km": 33.2,
+      "distance_km": 6.2,
       "price_min": 109,
       "price_avg": 109,
       "price_max": 109,
       "confidence": "medium"
     },
     {
-      "event": "VALVE WORLD EXPO 2026",
-      "start": "2026-12-01",
-      "end": "2026-12-03",
+      "event": "Young Thug (Konzert)",
+      "start": "2026-10-17",
+      "end": "2026-10-17",
       "tier": "D",
       "visitors": null,
-      "distance_km": 5.8,
+      "distance_km": 6.2,
+      "price_min": 109,
+      "price_avg": 109,
+      "price_max": 109,
+      "confidence": "medium"
+    },
+    {
+      "event": "Dimash Qudaibergen (Konzert)",
+      "start": "2026-10-24",
+      "end": "2026-10-24",
+      "tier": "D",
+      "visitors": null,
+      "distance_km": 6.2,
+      "price_min": 109,
+      "price_avg": 109,
+      "price_max": 109,
+      "confidence": "medium"
+    },
+    {
+      "event": "Karnevalsauftakt 11.11.",
+      "start": "2026-11-11",
+      "end": "2026-11-11",
+      "tier": "C",
+      "visitors": null,
+      "distance_km": 1.5,
       "price_min": 99,
       "price_avg": 99,
       "price_max": 99,
+      "confidence": "high"
+    },
+    {
+      "event": "Düsseldorfer Weihnachtsmarkt 2026",
+      "start": "2026-11-19",
+      "end": "2026-12-30",
+      "tier": "D",
+      "visitors": null,
+      "distance_km": 1.7,
+      "price_min": 89,
+      "price_avg": 99,
+      "price_max": 109,
       "confidence": "medium"
+    },
+    {
+      "event": "boot Düsseldorf 2027",
+      "start": "2027-01-23",
+      "end": "2027-01-31",
+      "tier": "B",
+      "visitors": null,
+      "distance_km": 5.8,
+      "price_min": 89,
+      "price_avg": 99,
+      "price_max": 109,
+      "confidence": "high"
     },
     {
       "event": "EuroCIS 2027",
@@ -459,15 +399,75 @@
       "confidence": "medium"
     },
     {
+      "event": "The Strokes (Konzert)",
+      "start": "2026-10-13",
+      "end": "2026-10-13",
+      "tier": "D",
+      "visitors": null,
+      "distance_km": 6.2,
+      "price_min": 99,
+      "price_avg": 99,
+      "price_max": 99,
+      "confidence": "medium"
+    },
+    {
+      "event": "Deutschland Cup (Eishockey)",
+      "start": "2026-11-05",
+      "end": "2026-11-08",
+      "tier": "D",
+      "visitors": null,
+      "distance_km": 6.2,
+      "price_min": 89,
+      "price_avg": 99,
+      "price_max": 109,
+      "confidence": "low"
+    },
+    {
+      "event": "Cologne Pride / CSD (Köln)",
+      "start": "2027-07-02",
+      "end": "2027-07-04",
+      "tier": "D",
+      "visitors": null,
+      "distance_km": 33.4,
+      "price_min": 99,
+      "price_avg": 99,
+      "price_max": 99,
+      "confidence": "medium"
+    },
+    {
+      "event": "DMEXCO 2027 (Köln)",
+      "start": "2027-09-22",
+      "end": "2027-09-23",
+      "tier": "D",
+      "visitors": null,
+      "distance_km": 33.2,
+      "price_min": 99,
+      "price_avg": 99,
+      "price_max": 99,
+      "confidence": "medium"
+    },
+    {
+      "event": "VALVE WORLD EXPO 2026",
+      "start": "2026-12-01",
+      "end": "2026-12-03",
+      "tier": "D",
+      "visitors": null,
+      "distance_km": 5.8,
+      "price_min": 89,
+      "price_avg": 89,
+      "price_max": 89,
+      "confidence": "medium"
+    },
+    {
       "event": "gamescom 2027 (Köln)",
       "start": "2027-08-25",
       "end": "2027-08-29",
       "tier": "C",
       "visitors": null,
       "distance_km": 33.2,
-      "price_min": 99,
-      "price_avg": 99,
-      "price_max": 99,
+      "price_min": 89,
+      "price_avg": 89,
+      "price_max": 89,
       "confidence": "medium"
     },
     {
@@ -477,29 +477,29 @@
       "tier": "D",
       "visitors": null,
       "distance_km": 1.5,
-      "price_min": 89,
+      "price_min": 79,
       "price_avg": 89,
-      "price_max": 99,
+      "price_max": 89,
       "confidence": "low"
     }
   ],
   "mindestaufenthalt": {
-    "standard": 2,
+    "standard": 1,
     "wochenende": 2,
     "events": {
       "S": 3,
-      "A": 2,
-      "B": 2,
-      "C": 2,
-      "D": 2
+      "A": 1,
+      "B": 1,
+      "C": 1,
+      "D": 1
     },
     "niedrige_nachfrage": 1
   },
-  "wochenrabatt": 0.05,
+  "wochenrabatt": 0.1,
   "monatsrabatt": 0.0,
   "max_aufenthalt": 7,
   "freigegebene_naechte_je_jahr": {
-    "2026": 70,
+    "2026": 65,
     "2027": 148
   },
   "lead_time_tabelle": [
@@ -511,14 +511,14 @@
     },
     {
       "max_days": 3,
-      "low": 0.86,
-      "normal": 0.92,
+      "low": 0.85,
+      "normal": 0.88,
       "high": 1.06
     },
     {
       "max_days": 7,
-      "low": 0.9,
-      "normal": 0.95,
+      "low": 0.88,
+      "normal": 0.92,
       "high": 1.04
     },
     {
@@ -562,9 +562,9 @@
       "Bilk: 109 EUR × 0.30"
     ],
     "angepasste_anker_adr": 131.27,
-    "nachfragegewichteter_index": 1.0872,
-    "basis": 101.66,
-    "marktbasis": 120.75,
+    "nachfragegewichteter_index": 1.0874,
+    "basis": 94.27,
+    "marktbasis": 120.72,
     "comp_basis": 92.27,
     "comp_listings": 21,
     "comp_gewicht": 0.8,
