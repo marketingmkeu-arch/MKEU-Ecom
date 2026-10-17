@@ -1,0 +1,13 @@
+sku_id,market,platform,price_type,price,currency,condition,seller,shipping_note,source_url,observed_at,notes
+P01,US,ebay.com,asking (kein Verkauf),119.99,USD,sealed box,unbekannt,,https://www.ebay.com/itm/128067259540,2026-10-17,Staffel 113.99 ab 4 Stk.; via Suchsnippet
+P01,US,ebay.com,asking (Best Offer),99.73,USD,sealed box,unbekannt,,https://www.ebay.com/itm/377452994692,2026-10-17,via Suchsnippet
+P01,EU (NL),card-binder.com,shop asking,129.95,EUR,sealed box,card-binder,Versand aus NL,https://card-binder.com/products/pokemon-tcg-simplified-chinese-30th-celebration-booster-box,2026-10-17,via Suchsnippet
+P01,US,collectorstore.com,shop asking,109.99,USD,sealed box,collectorstore,ausverkauft,https://collectorstore.com/products/pokemon-chinese-30th-celebration-booster-box,2026-10-17,via Suchsnippet
+P01,US,dotscardshop.com,shop asking,89.50,USD,sealed box,Dot's Card Shop,,https://dotscardshop.com/products/pokemon-tcg-30th-celebration-booster-box-simplified-chinese,2026-10-17,via Suchsnippet
+P01,DE,cardcosmos.de,shop asking,7.90,EUR,single pack,cardcosmos,,https://cardcosmos.de/en/products/pokemon-30th-anniversary-celebration-booster-chinese,2026-10-17,Einzelpack; via Suchsnippet
+P08,US,krystalkollectz.com,shop asking (Vorbestellung),35.95–39.95,USD,sealed box,KrystalKollectz,,https://krystalkollectz.com/products/simplified-chinese-gem-pack-volume-6-pokemon-booster-box-cbb6c,2026-10-17,via Suchsnippet
+P08,US,dacardworld.com,shop asking,49.95,USD,sealed box,Dave & Adam's,,https://www.dacardworld.com/gaming/pokemon-gem-pack-volume-6-booster-box-chinese,2026-10-17,via Suchsnippet
+P08,CA,topshelfco.ca,shop asking,49.99,CAD,sealed box,Top Shelf,ausverkauft,https://topshelfco.ca/products/pokemon-s-chinese-booster-box-gem-pack-vol-6,2026-10-17,via Suchsnippet
+ALL,DE,ebay.de (Verkauft-Filter),sold,BLOCKED,,,,,https://www.ebay.de/sch/i.html?_nkw=pokemon+chinese+gem+pack&LH_Sold=1&LH_Complete=1,2026-10-17,Netzwerkrichtlinie der Umgebung – UNVERIFIED DEMAND
+ALL,EU,cardmarket.com,sold/trend,BLOCKED,,,,,https://www.cardmarket.com,2026-10-17,Netzwerkrichtlinie – UNVERIFIED DEMAND
+ALL,CN,taobao/tmall/jd/goofish,Straßenpreis,NICHT ERHOBEN,,,,,,2026-10-17,Option 2 schließt CN-Marktplätze aus; Preise vor Ort erheben

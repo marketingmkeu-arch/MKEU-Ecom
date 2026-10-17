@@ -1,6 +1,6 @@
 # 00 – Domain-Allowlist (Stage 0 · STOP-GATE)
 
-Stand: 2026-10-17 · Status: **WARTET AUF FREIGABE** · Noch keine Website wurde aufgerufen.
+Stand: 2026-10-17 · Status: **Option 2 (A + C + D) freigegeben am 2026-10-17.** Direktabrufe werden jedoch von der Netzwerkrichtlinie der Cloud-Umgebung blockiert (`BLOCKED`), daher läuft die Recherche nur über die Websuche.
 
 Diese Liste ist Berechtigungsplanung, keine Vertrauensaussage und kein Nachweis, dass eine Seite für automatisierten Zugriff erreichbar ist. Es werden keine Logins, Käufe, Zahlungen, Registrierungen oder Händlerkontakte durchgeführt. CAPTCHAs, Paywalls, Geoblocks und Anti-Bot-Maßnahmen werden nicht umgangen. Ein blockierter Zugriff wird als `BLOCKED` protokolliert.
 
