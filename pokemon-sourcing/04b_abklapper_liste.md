@@ -1,0 +1,20 @@
+# 04b – Abklapper-Liste Shanghai (Stand 2026-10-17)
+
+Bei **keinem** Laden sind Öffnungszeiten oder Bestand für November bestätigt. Vorab anrufen oder per WeChat schreiben (Anfrage-Vorlage im Skill). Die Kartenlinks öffnen eine Amap-Suche, keinen verifizierten Pin.
+
+| Prio | Laden | Adresse (kopieren) | Telefon | Hinweis | Karte |
+|---|---|---|---|---|---|
+| 1 · Pflicht | **Offizielles Pokémon-Gym Zhongshan Park**<br>宝可梦官方卡牌道馆（中山公园/龙之梦） | 上海市长宁区长宁路1018号龙之梦购物中心3楼 | 021-62108552 | offiziell, UVP-Referenz; im selben Haus: HIT Collection (Raum 3101, 19066763443 / 18721007977) und Bandai Card Center (4F) | [Amap](https://uri.amap.com/search?keyword=%E5%AE%9D%E5%8F%AF%E6%A2%A6%E5%AE%98%E6%96%B9%E5%8D%A1%E7%89%8C%E9%81%93%E9%A6%86%20%E9%BE%99%E4%B9%8B%E6%A2%A6&city=310000) |
+| 1 · Pflicht | **Baimi Hobby Mall – Händler-Hub**<br>百米 / Baimi Hobby Mall（含 JE） | 上海市黄浦区广西北路248号（入口也可能在浙江中路299号） | JE: 13524507921 | ~5 Läden mit Pokémon-Bestand laut Besucherbericht; am Wochenende voll; Laden JE Räume 208/212 bzw. 359/360 | [Amap](https://uri.amap.com/search?keyword=%E5%B9%BF%E8%A5%BF%E5%8C%97%E8%B7%AF248%E5%8F%B7&city=310000) |
+| 1 · Pflicht | **DTO Guangnianhui (Pudong)**<br>DTO 光年汇 | 上海市浦东新区张杨路588号光年汇1楼 | 13311750517 | offizieller Partnerladen, sehr nah am Hotel (Babaiban) | [Amap](https://uri.amap.com/search?keyword=%E5%BC%A0%E6%9D%A8%E8%B7%AF588%E5%8F%B7%20%E5%85%89%E5%B9%B4%E6%B1%87&city=310000) |
+| 1 · Pflicht | **Steel Youth (Pudong)**<br>Steel Youth | 上海市浦东新区东方路969号1楼E-3 | 17317808357 | offizieller Partnerladen | [Amap](https://uri.amap.com/search?keyword=%E4%B8%9C%E6%96%B9%E8%B7%AF969%E5%8F%B7&city=310000) |
+| 1 · Pflicht | **DTO Bailian Century (Pudong)**<br>DTO 百联世纪 | 上海市浦东新区世纪大道1217号百联世纪购物中心1楼 | 18621119035 | offizieller Partnerladen, Century Avenue | [Amap](https://uri.amap.com/search?keyword=%E7%99%BE%E8%81%94%E4%B8%96%E7%BA%AA%E8%B4%AD%E7%89%A9%E4%B8%AD%E5%BF%83&city=310000) |
+| 1 · Pflicht | **Xuxuting (Pudong)**<br>叙叙亭 | 上海市浦东新区世纪汇广场L3-026 | 13166050096 | offizieller Partnerladen, Century Avenue | [Amap](https://uri.amap.com/search?keyword=%E4%B8%96%E7%BA%AA%E6%B1%87%E5%B9%BF%E5%9C%BA&city=310000) |
+| 2 · Sollte | **PokeColor**<br>PokeColor | 上海市黄浦区复兴东路1280号B1 109/110 | 13661655835 | großer TCG-Händler (PSA/CGC), eher Singles/teurer; öffnet 12:00 | [Amap](https://uri.amap.com/search?keyword=%E5%A4%8D%E5%85%B4%E4%B8%9C%E8%B7%AF1280%E5%8F%B7&city=310000) |
+| 2 · Sollte | **Fuzhou Road Kartenladen-Gegend**<br>福州路 / 中福古玩城 一带 | 上海市黄浦区福州路（中福古玩城附近） | – | laut Ladenbesitzer-Interview (Jiemian) Konzentration von Brettspiel-/Kartenläden; nah an People's Square – mit Baimi kombinieren | [Amap](https://uri.amap.com/search?keyword=%E4%B8%AD%E7%A6%8F%E5%8F%A4%E7%8E%A9%E5%9F%8E&city=310000) |
+| 2 · Sollte | **Offizielles Pokémon-Gym Wujiaochang**<br>宝可梦官方卡牌道馆（五角场） | 上海市杨浦区淞沪路77号万达广场B1 | – | offiziell, Plan B v. a. am Release-Tag 06.11. | [Amap](https://uri.amap.com/search?keyword=%E5%AE%9D%E5%8F%AF%E6%A2%A6%E5%AE%98%E6%96%B9%E5%8D%A1%E7%89%8C%E9%81%93%E9%A6%86%20%E4%BA%94%E8%A7%92%E5%9C%BA&city=310000) |
+| 3 · Optional | **Card Hobby K11**<br>Card Hobby（K11） | 上海市黄浦区淮海中路300号K11 B2 | 19921589838 | Laden auf B2 NICHT bestätigt – vorher anrufen | [Amap](https://uri.amap.com/search?keyword=K11%E8%B4%AD%E7%89%A9%E8%89%BA%E6%9C%AF%E4%B8%AD%E5%BF%83&city=310000) |
+| 3 · Optional | **Taidou**<br>泰斗 TCG Taidou | 上海市黄浦区南苏州路1455弄303室 (eine andere Quelle nennt Changning) | 19946279887 | Adresse widersprüchlich – nur nach Anruf | [Amap](https://uri.amap.com/search?keyword=%E5%8D%97%E8%8B%8F%E5%B7%9E%E8%B7%AF1455%E5%BC%84&city=310000) |
+| 3 · Optional | **Check Card (Yangpu)**<br>CHECK CARD | unbekannt (杨浦区) | – | nur im Shop-Guide genannt; mit Gym Wujiaochang kombinierbar | [Amap](https://uri.amap.com/search?keyword=CHECK%20CARD%20%E6%9D%A8%E6%B5%A6&city=310000) |
+
+Quellen: pokemon.cn (Gyms, Partnerliste 05/2025), Ihr PDF vom 11.10.2026 (CGC-Verzeichnis, Telefonnummern), TikTok-Besucherbericht Baimi Hobby Mall, whatson.red Shop-Guide (Snippet), Jiemian-Interview zur Gegend Fuzhou Road.
