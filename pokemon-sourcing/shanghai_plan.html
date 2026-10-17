@@ -1,0 +1,260 @@
+<title>Shanghai Kartenroute</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,750&family=Source+Sans+3:wght@400;600&family=Noto+Sans+SC:wght@400;600&display=swap">
+<style>
+/* Layout: one reading column, phone-first; sticky chip nav; days as a timeline styled after a metro line (Line 2 runs through the whole trip). */
+:root{
+  --bg:#f4f6f3; --surface:#ffffff; --ink:#16212a; --muted:#566570; --rule:#d9dfdb;
+  --line:#3f8f2a; --line-soft:#e3f0dc; --warn:#b8382c; --warn-soft:#f8e4e1; --amber:#946200; --amber-soft:#f6ecd4;
+  --f-display:"Bricolage Grotesque","Noto Sans SC",system-ui,sans-serif;
+  --f-body:"Source Sans 3","Noto Sans SC",system-ui,sans-serif;
+  --f-cn:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111719; --surface:#182124; --ink:#e6ecec; --muted:#9aa9ad; --rule:#2b373a;
+  --line:#7cc95c; --line-soft:#1f3319; --warn:#ff8a7c; --warn-soft:#3a1d1a; --amber:#e8b850; --amber-soft:#33290f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111719; --surface:#182124; --ink:#e6ecec; --muted:#9aa9ad; --rule:#2b373a;
+  --line:#7cc95c; --line-soft:#1f3319; --warn:#ff8a7c; --warn-soft:#3a1d1a; --amber:#e8b850; --amber-soft:#33290f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--f-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 64px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,7vw,40px);line-height:1.1;font-weight:750;letter-spacing:-.01em}
+h2{font-size:24px;font-weight:750;margin-top:40px;scroll-margin-top:64px}
+h3{font-size:17px;font-weight:600}
+p{margin:0}
+.cn{font-family:var(--f-cn)}
+.meta{color:var(--muted);margin-top:8px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--line);font-weight:600}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:8px;overflow-x:auto;padding-block:10px;margin-top:16px;border-bottom:1px solid var(--rule)}
+nav a{flex:none;text-decoration:none;color:var(--ink);border:1px solid var(--rule);border-radius:999px;padding:6px 14px;font-weight:600;font-size:14px;background:var(--surface)}
+nav a:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--line);outline-offset:2px}
+.note{background:var(--amber-soft);color:var(--ink);border-radius:8px;padding:12px 14px;margin-top:14px;font-size:15px}
+.note b{color:var(--amber)}
+.lead{margin-top:12px;color:var(--muted)}
+/* tier list */
+.tier{display:grid;gap:10px;margin-top:16px}
+.set{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:start}
+.badge{font:600 13px/1 var(--f-body);border-radius:6px;padding:6px 8px;white-space:nowrap;align-self:start}
+.b-a{background:var(--line);color:var(--bg)}
+.b-b{background:var(--line-soft);color:var(--line)}
+.b-c{background:var(--amber-soft);color:var(--amber)}
+.b-x{background:var(--warn-soft);color:var(--warn)}
+.set h3{grid-column:2}
+.set .nums{grid-column:2;display:flex;flex-wrap:wrap;gap:4px 16px;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.set .nums b{color:var(--ink);font-weight:600}
+.set .why{grid-column:2;font-size:15px}
+/* timeline */
+.days{list-style:none;padding:0;margin:18px 0 0;position:relative}
+.days::before{content:"";position:absolute;left:21px;top:6px;bottom:6px;width:4px;border-radius:2px;background:var(--line)}
+.day{position:relative;padding-left:58px;padding-bottom:22px}
+.day .dot{position:absolute;left:8px;top:0;width:30px;height:30px;border-radius:50%;background:var(--surface);border:4px solid var(--line);display:grid;place-items:center;font:600 12px/1 var(--f-body);font-variant-numeric:tabular-nums}
+.day.key .dot{background:var(--line);color:var(--bg)}
+.day .date{font-size:13px;color:var(--muted);font-weight:600;letter-spacing:.02em}
+.day h3{margin-top:2px}
+.day ul{margin:6px 0 0;padding-left:18px}
+.day li{margin-top:3px}
+.tag{display:inline-block;font-size:12px;font-weight:600;border-radius:4px;padding:2px 6px;margin-left:6px;vertical-align:2px}
+.t-buy{background:var(--line-soft);color:var(--line)}
+.t-scout{background:var(--amber-soft);color:var(--amber)}
+.t-warn{background:var(--warn-soft);color:var(--warn)}
+.phase{margin:6px 0 14px 58px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+/* shops */
+.shops{display:grid;gap:10px;margin-top:16px}
+.shop{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:6px;min-width:0}
+.shop .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.shop .area{font-size:13px;color:var(--muted);font-weight:600}
+.addr{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.addr code{font:15px/1.4 var(--f-cn);background:var(--bg);border-radius:6px;padding:6px 8px;user-select:all;word-break:break-all;flex:1 1 220px;min-width:0}
+.row{display:flex;gap:8px 14px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.row a{color:var(--line);font-weight:600}
+button.copy{font:600 13px var(--f-body);border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:6px;padding:6px 10px;cursor:pointer}
+button.copy.ok{border-color:var(--line);color:var(--line)}
+.status{font-size:12px;font-weight:600;border-radius:4px;padding:2px 6px}
+.s-ok{background:var(--line-soft);color:var(--line)}
+.s-mid{background:var(--amber-soft);color:var(--amber)}
+.s-bad{background:var(--warn-soft);color:var(--warn)}
+/* wechat */
+ol.steps{padding-left:20px;margin:12px 0 0}
+ol.steps li{margin-top:10px}
+.msg{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;margin-top:14px;display:grid;gap:10px}
+.msg p.cn{font-size:16px;line-height:1.7}
+.foot{margin-top:40px;font-size:13px;color:var(--muted);border-top:1px solid var(--rule);padding-top:14px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Shanghai · 01.–16. November 2026</p>
+  <h1>Kartenroute Shanghai</h1>
+  <p class="meta">Start: <span class="cn">美豪酒店（上海陆家嘴八佰伴店）</span> bis 13.11., danach bei Freunden in Pudong · Budget 4.000 € Ware · 28 feste Freundesbestellungen</p>
+
+  <nav aria-label="Abschnitte">
+    <a href="#sets">Sets</a><a href="#tage">Tagesplan</a><a href="#laeden">Läden</a><a href="#wechat">WeChat</a><a href="#vorher">Vor Abflug</a>
+  </nav>
+
+  <h2 id="sets">Welche Sets zuerst</h2>
+  <p class="lead">Gewinn pro Display nach Zoll (2,70 %), Einfuhrumsatzsteuer (19 %), Gepäck und 5 % Reserve, Kurs 7,37 RMB/€. Grundlage für die Verkaufspreise sind Kleinanzeigen-Angebote (103 Inserate, 17.10.) und die Cardmarket-30-Tage-Durchschnitte aus Ihrer Recherche.</p>
+  <div class="note"><b>Wichtig:</b> Echte eBay- und Cardmarket-Verkäufe konnte ich nicht abrufen, beide Seiten blockieren automatische Zugriffe. Die Verkaufspreise sind also Angebotspreise, abzüglich ca. 10 % Verhandlung. Der <b>Max-EK</b> ist der höchste Einkaufspreis pro Display, bei dem noch ≈ 10 € Gewinn bleiben.</div>
+
+  <div class="tier">
+    <div class="set"><span class="badge b-a">Top</span><h3>30 Jahre Booster-Display <span class="cn">30周年庆典</span></h3>
+      <div class="nums"><span>UVP <b>360 RMB</b> (20 × 18)</span><span>Max-EK <b>480 RMB</b></span><span>Verkauf ≈ <b>105–115 €</b></span><span>Gewinn <b>+21 bis +37 €</b></span></div>
+      <p class="why">Beste Datenlage (11 deutsche Angebote, Median 115 €) und 12 Freundesbestellungen. Viele Anbieter verkaufen schon aus ganzen Cases, deshalb eigener Bestand höchstens 10–20 Stück.</p></div>
+    <div class="set"><span class="badge b-a">Top</span><h3>Gem Pack Vol.3 <span class="cn">宝石包第三弹</span></h3>
+      <div class="nums"><span>Max-EK <b>320 RMB</b></span><span>Verkauf ≈ <b>70 €</b></span><span>Gewinn bei 222 RMB <b>+27 €</b></span></div>
+      <p class="why">Älteres Set mit Gengar, in Deutschland für 70–80 € angeboten. Nur kaufen, wenn es in China noch unter ~320 RMB zu haben ist.</p></div>
+    <div class="set"><span class="badge b-b">Gut</span><h3>Glurak-Figurenbox <span class="cn">30周年 典藏手办礼盒 喷火龙</span></h3>
+      <div class="nums"><span>UVP <b>780 RMB</b></span><span>Max-EK <b>1.130 RMB</b></span><span>Verkauf ≈ <b>250 €</b></span><span>Gewinn ≈ <b>+100 €</b></span></div>
+      <p class="why">Nur ein deutsches Angebot (320 € VB). Hohe Marge, aber sperrig. 2–3 Stück als Test.</p></div>
+    <div class="set"><span class="badge b-b">Gut</span><h3>Gem Pack Vol.2 <span class="cn">宝石包第二弹</span></h3>
+      <div class="nums"><span>Max-EK <b>350 RMB</b></span><span>Verkauf ≈ <b>75 €</b></span><span>Gewinn <b>−7 bis +19 €</b></span></div>
+      <p class="why">Beliebt (Evoli-Motive, Cardmarket-Schnitt 86,50 €). In China teils bis 448 RMB. Darüber lohnt es nicht.</p></div>
+    <div class="set"><span class="badge b-b">Gut</span><h3>151 slim Display</h3>
+      <div class="nums"><span>Max-EK <b>210 RMB</b></span><span>Verkauf ≈ <b>50 €</b></span><span>Gewinn bei 200 RMB <b>+11 €</b></span></div>
+      <p class="why">Für die 6 Freundesbestellungen. Eigener Bestand nur bei ≤ 200 RMB. Packs pro Display vor dem Kauf zählen lassen.</p></div>
+    <div class="set"><span class="badge b-c">Okay</span><h3>Terastal Gathering <span class="cn">太晶盛聚</span></h3>
+      <div class="nums"><span>Max-EK <b>320 RMB</b></span><span>Verkauf ≈ <b>70 €</b></span><span>Gewinn bei 330 RMB <b>+8 €</b></span></div>
+      <p class="why">Für die 4 Freundesbestellungen. Als eigener Bestand zu knapp kalkuliert.</p></div>
+    <div class="set"><span class="badge b-c">Okay</span><h3>Gem Pack Vol.5 <span class="cn">宝石包第五弹</span></h3>
+      <div class="nums"><span>Max-EK <b>180 RMB</b></span><span>Verkauf ≈ <b>45 €</b></span><span>Gewinn ≈ <b>+10 €</b></span></div>
+      <p class="why">Nur zum UVP (18 × 10 RMB).</p></div>
+    <div class="set"><span class="badge b-c">Wette</span><h3>Gem Pack Vol.7 <span class="cn">宝石包第七弹</span> · Release 06.11.</h3>
+      <div class="nums"><span>UVP <b>180 RMB</b></span><span>Verkauf <b>noch kein Markt</b></span><span>Gewinn <b>−5 bis +12 €</b></span></div>
+      <p class="why">Vol.5 wurde früh für 49 € angeboten, Vol.6 nur für 30 €. 10–12 Displays zum UVP: die Hälfte schnell verkaufen, den Rest liegen lassen.</p></div>
+    <div class="set"><span class="badge b-x">Nein</span><h3>Gem Pack Vol.4 und Vol.6</h3>
+      <div class="nums"><span>Verkauf <b>30–39 €</b></span><span>Kosten bis DE <b>≈ 33 €</b></span></div>
+      <p class="why">Kein Gewinn. Nur für Freundesbestellungen, wenn ausdrücklich gewünscht.</p></div>
+  </div>
+
+  <h2 id="tage">Tagesplan</h2>
+  <p class="lead">Erst Angebote einholen (02.–05.11.), dann Release-Tag, dann einkaufen. Fahrzeiten sind Planwerte, keine Live-Navigation. Öffnungszeiten vorher per Telefon oder WeChat bestätigen.</p>
+
+  <ol class="days">
+    <li class="phase" style="list-style:none">Ankommen und Angebote einholen</li>
+    <li class="day"><span class="dot">1</span><p class="date">So 01.11.</p><h3>Ankunft, Setup</h3>
+      <ul><li>Alipay und WeChat Pay mit Ihrer Karte testen (kleiner Kauf), eSIM aktiv, Amap und DiDi (in Alipay) einrichten.</li>
+      <li>An der Rezeption fragen: <span class="cn">可以帮客人代收快递吗？</span> (Nehmen Sie Pakete für Gäste an?)</li>
+      <li>Abends optional zu Fuß an DTO <span class="cn">光年汇</span> (张杨路588号) vorbei, liegt am Hotel.</li></ul></li>
+    <li class="day"><span class="dot">2</span><p class="date">Mo 02.11.</p><h3>Pudong-Runde zu Fuß <span class="tag t-scout">Preise</span></h3>
+      <ul><li>ab 10:30: DTO 光年汇 → Steel Youth (东方路969号) → DTO 百联世纪 (世纪大道1217号) → 叙叙亭 (世纪汇广场 L3).</li>
+      <li>Alle vier liegen um Babaiban und Century Avenue (Metro 2/4/6/9).</li>
+      <li>In jedem Laden: Preise für 30 Jahre, 151 slim, Gem 2/3/5, Terastal. Packs pro Display, 发票 möglich?</li>
+      <li><b>Gem Pack 7 für den 06.11. reservieren lassen</b> und WeChat des Ladens hinzufügen.</li></ul></li>
+    <li class="day key"><span class="dot">3</span><p class="date">Di 03.11.</p><h3>Westen: offizielles Gym, dann Händler-Mall <span class="tag t-scout">Preise</span></h3>
+      <ul><li>10:00 Metro Linie 2 westwärts bis Zhongshan Park (Planwert 45–60 Min.).</li>
+      <li>11:00 Offizielles Gym <span class="cn">龙之梦</span> 3F: UVP-Referenz, nach Kauflimit am Release-Tag fragen. Danach HIT Collection (Raum 3101), kurz Bandai 4F.</li>
+      <li>13:00 Linie 2 ostwärts bis People's Square.</li>
+      <li>14:00–17:30 <b>Baimi Hobby Mall</b> (<span class="cn">广西北路248号</span>): alle Läden ablaufen, JE besuchen. Danach Fuzhou Road / <span class="cn">中福古玩城</span>.</li>
+      <li>Nur Angebote notieren und Fotos machen. Höchstens Einzelstücke zum Test kaufen.</li></ul></li>
+    <li class="day"><span class="dot">4</span><p class="date">Mi 04.11.</p><h3>Huangpu Süd, Angebote vergleichen <span class="tag t-scout">Preise</span></h3>
+      <ul><li>12:00 PokeColor (<span class="cn">复兴东路1280号</span> B1) per DiDi, öffnet 12:00.</li>
+      <li>Card Hobby K11 nur, wenn die Ladenfläche telefonisch bestätigt ist.</li>
+      <li>Abends: Angebote pro Set in eine Liste, Nachverhandlung per WeChat („买10盒什么价？“ = Preis bei 10 Displays?).</li></ul></li>
+    <li class="day"><span class="dot">5</span><p class="date">Do 05.11.</p><h3>Puffer, Reservierungen fix machen</h3>
+      <ul><li>Je Set den günstigsten Händler mit Rechnung festlegen und Reservierung bestätigen. <b>Keine Vorkasse</b> an unbekannte Kontakte.</li>
+      <li>Optional: Gym Wujiaochang (<span class="cn">淞沪路77号</span> 万达 B1) ansehen, als Plan B für morgen.</li></ul></li>
+
+    <li class="phase" style="list-style:none">Release und Einkauf</li>
+    <li class="day key"><span class="dot">6</span><p class="date">Fr 06.11.</p><h3>Release-Tag 10:00 <span class="tag t-buy">Kaufen</span></h3>
+      <ul><li>09:30 beim Pudong-Laden mit dem größten zugesagten Kontingent anstehen.</li>
+      <li>Gem Pack 7 (10–12 Displays), Schwarz/Weiß-Sets <span class="cn">黑雷奔流 / 白焰迸涌</span> (5–10 Stück Test), Anstecker-Set 2.</li>
+      <li>Kauflimit erreicht? Weiter zu den anderen Pudong-Läden, nachmittags Gym Wujiaochang oder Zhongshan Park.</li>
+      <li>Grenze: nicht über 13 RMB pro Pack (≈ 235 RMB pro Display).</li></ul></li>
+    <li class="day key"><span class="dot">7</span><p class="date">Sa 07.11.</p><h3>Großeinkauf Baimi <span class="tag t-buy">Kaufen</span></h3>
+      <ul><li>Am Wochenende sind dort die meisten Händler und die meiste Ware.</li>
+      <li>Freundesbestellungen: 12 × 30 Jahre, 6 × 151 slim, 6 × Gem, 4 × Terastal. Danach eigener Bestand nach der Setliste oben.</li>
+      <li>Jedes Display prüfen: Folie und Nähte, Siegel, Barcode, Packanzahl. Fotos von allen Seiten, Beleg mit RMB-Preis.</li>
+      <li>Rückfahrt mit DiDi (größeres Auto: <span class="cn">商务车</span>).</li></ul></li>
+    <li class="day"><span class="dot">8</span><p class="date">So 08.11.</p><h3>Lücken füllen</h3>
+      <ul><li>Was gestern fehlte: Pudong-Läden oder PokeColor. Abends Inventarliste im Hotel.</li></ul></li>
+    <li class="day"><span class="dot">9</span><p class="date">Mo 09.11.</p><h3>Restkäufe, eigenen Bestand festlegen <span class="tag t-buy">Kaufen</span></h3>
+      <ul><li>Budget-Check: Was ist ausgegeben, was bleibt für Double 11?</li></ul></li>
+    <li class="day"><span class="dot">10</span><p class="date">Di 10.11.</p><h3>Double 11 prüfen</h3>
+      <ul><li>Tmall <span class="cn">宝可梦官方旗舰店</span> und JD <span class="cn">京东自营</span> mit den Ladenpreisen vergleichen.</li>
+      <li>Nur bestellen, wenn günstiger, mit 发票 und Lieferung bis spätestens 12.11. ins Hotel.</li></ul></li>
+    <li class="day"><span class="dot">11</span><p class="date">Mi 11.11.</p><h3>Double 11, letzte Bestellungen</h3>
+      <ul><li>Nur noch mit Zustellung bis morgen. Nichts mehr, was erst nach dem 12.11. kommt.</li></ul></li>
+    <li class="day"><span class="dot">12</span><p class="date">Do 12.11.</p><h3>Lieferungen annehmen, abgleichen</h3>
+      <ul><li>Jede Lieferung mit der Bestellung abgleichen: Siegel und Menge prüfen, Fotos machen, Rechnung speichern.</li></ul></li>
+
+    <li class="phase" style="list-style:none">Packen und Heimflug</li>
+    <li class="day"><span class="dot">13</span><p class="date">Fr 13.11.</p><h3>Umzug zu den Freunden (Pudong)</h3>
+      <ul><li>Ware mit DiDi transportieren, nicht mit der Metro.</li></ul></li>
+    <li class="day"><span class="dot">14</span><p class="date">Sa 14.11.</p><h3>Packtag</h3>
+      <ul><li>4 Koffer nach Ihrem Schema: Displays in Innenkartons, Kleidung außen, nummerierte Inhaltsliste pro Koffer.</li>
+      <li>Zollmappe: alle Belege, Summenliste in RMB und €, EORI-Nummer.</li></ul></li>
+    <li class="day"><span class="dot">15</span><p class="date">So 15.11.</p><h3>Reserve, Koffer wiegen</h3></li>
+    <li class="day key"><span class="dot">16</span><p class="date">Mo 16.11.</p><h3>Abflug → Düsseldorf <span class="tag t-warn">Roter Ausgang</span></h3>
+      <ul><li>Alle Waren gemeinsam als gewerbliche Ware anmelden, schriftlich mit EORI. Keine Aufteilung auf die Freimengen der Mitreisenden.</li></ul></li>
+  </ol>
+
+  <h2 id="laeden">Läden</h2>
+  <p class="lead">Adresse antippen und kopieren, in Amap oder DiDi einfügen. Der Kartenlink öffnet eine Amap-Suche, keinen geprüften Standort.</p>
+  <div class="shops" id="shoplist"></div>
+
+  <h2 id="wechat">Läden auf WeChat finden</h2>
+  <ol class="steps">
+    <li><b>Per Telefonnummer:</b> WeChat → <span class="cn">通讯录</span> (Kontakte) → oben rechts <b>+</b> → <span class="cn">添加朋友</span> → Nummer eingeben, z. B. 13311750517 → <span class="cn">搜索</span>. Wird ein Konto gefunden: <span class="cn">添加到通讯录</span>, als Notiz <span class="cn">德国客户，想买宝可梦卡盒</span> (deutscher Kunde, möchte Pokémon-Displays kaufen). Klappt nur, wenn der Laden die Suche per Nummer erlaubt. Sonst anrufen oder vor Ort fragen.</li>
+    <li><b>Per WeChat-ID:</b> genauso, nur die ID eingeben. HIT Collection: <code>CDK-1818</code> oder <code>wwqq10300311</code>.</li>
+    <li><b>Offizielle Konten:</b> Lupe oben in WeChat → Name eingeben, z. B. <code>PokeColor</code> oder <code>Card Hobby</code> → Reiter <span class="cn">公众号</span> (Official Account) bzw. <span class="cn">小程序</span> (Mini-Programm).</li>
+    <li><b>Offizielles Pokémon-Mini-Programm:</b> Suche <span class="cn">宝可梦卡牌会员</span>. Dort stehen neue Releases und Events, vermutlich auch Läden und Gyms.</li>
+    <li><b>Vor Ort, am zuverlässigsten:</b> Fragen Sie <span class="cn">可以加个微信吗？</span> (Kann ich Sie auf WeChat hinzufügen?) und scannen Sie den QR-Code des Ladens. Fast jeder Laden hat einen.</li>
+    <li><b>Öffnungszeiten und Bewertungen:</b> App <span class="cn">大众点评</span> (Dianping), nach dem chinesischen Ladennamen suchen.</li>
+  </ol>
+  <div class="msg">
+    <p class="eyebrow">Anfrage zum Kopieren</p>
+    <p class="cn" id="msgtext">您好！我11月初在上海，想购买正规简体中文宝可梦卡牌原厂密封补充包整盒（不是训练家礼盒）：30周年庆典、宝石包（第七弹/第二弹/第三弹）、151、太晶盛聚。请问有现货吗？一盒几包？单盒价格多少？买5/10盒有优惠吗？能开发票吗？可以发一下实拍照片（含封口）吗？谢谢！</p>
+    <p style="font-size:14px;color:var(--muted)">Auf Deutsch: originalversiegelte Booster-Displays, keine Trainerboxen. Gefragt wird nach Bestand, Packs pro Display, Preis, Rabatt ab 5 oder 10 Stück, Rechnung und Fotos vom Siegel.</p>
+    <div><button class="copy" type="button" data-copy-target="msgtext" id="copy-msg">Text kopieren</button></div>
+  </div>
+
+  <h2 id="vorher">Vor Abflug erledigen</h2>
+  <ul>
+    <li>Anfrage-Text an die Pudong-Läden und JE schicken, Gem Pack 7 für den 06.11. reservieren lassen.</li>
+    <li>Alipay und WeChat Pay mit Ihrer Karte einrichten und testen.</li>
+    <li>Airline: Preis und Gewicht pro Zusatzkoffer klären, auch für die drei Mitreisenden.</li>
+    <li>Zollamt Flughafen Düsseldorf anrufen: Wie läuft die schriftliche Anmeldung für gewerbliche Ware im Reisegepäck? Gibt es einen Zollagenten vor Ort?</li>
+    <li>Mit den Freunden den Endpreis vereinbaren: EK plus Anteil an Zoll, Einfuhrumsatzsteuer und Gepäck (≈ 79 € pro 30-Jahre-Display bei 450 RMB).</li>
+  </ul>
+
+  <p class="foot">Stand 17.10.2026. Quellen: pokemon.cn (UVPs, Releases, Gyms, Partnerliste 05/2025), EU-TARIC (Zoll 2,70 %), EZB (7,524 RMB/€ am 16.10.), Kleinanzeigen (103 Angebote am 17.10.), Ihr Einkaufsplan vom 11.10. (Händlerkontakte aus dem CGC-Verzeichnis, Cardmarket-Werte), Besucherberichte zur Baimi Hobby Mall. Kein Laden hat Bestand oder Preise verbindlich bestätigt.</p>
+</div>
+
+<script>
+const shops=[
+ {n:"Offizielles Pokémon-Gym Zhongshan Park",cn:"宝可梦官方卡牌道馆（龙之梦）",area:"Changning · Tag 3",a:"上海市长宁区长宁路1018号龙之梦购物中心3楼",tel:"021-62108552",s:["ok","offiziell"],note:"UVP-Referenz. Im selben Haus: HIT Collection, Raum 3101, Tel. 19066763443 / 18721007977, WeChat CDK-1818.",k:"宝可梦官方卡牌道馆 龙之梦"},
+ {n:"Baimi Hobby Mall · Händler-Gegend",cn:"百米 · 含 JE",area:"Huangpu, People's Square · Tag 3 + 7",a:"上海市黄浦区广西北路248号",tel:"JE: 13524507921",s:["mid","Besucherbericht"],note:"Etwa 5 Läden mit Pokémon-Ware, am Wochenende viel los. Eingang evtl. über 浙江中路299号. JE: Räume 208/212 bzw. 359/360.",k:"广西北路248号"},
+ {n:"Fuzhou Road / Zhongfu-Antikmarkt",cn:"福州路 · 中福古玩城一带",area:"Huangpu · Tag 3",a:"上海市黄浦区福州路 中福古玩城",tel:"",s:["mid","Interview"],note:"Weitere Brettspiel- und Kartenläden, zu Fuß ab People's Square.",k:"中福古玩城"},
+ {n:"DTO Guangnianhui",cn:"DTO 光年汇",area:"Pudong, am Hotel · Tag 2 + 6",a:"上海市浦东新区张杨路588号光年汇1楼",tel:"13311750517",s:["ok","Partnerliste"],note:"Offizieller Partnerladen.",k:"张杨路588号 光年汇"},
+ {n:"Steel Youth",cn:"Steel Youth",area:"Pudong · Tag 2 + 6",a:"上海市浦东新区东方路969号1楼E-3",tel:"17317808357",s:["ok","Partnerliste"],note:"Offizieller Partnerladen.",k:"东方路969号"},
+ {n:"DTO Bailian Century",cn:"DTO 百联世纪",area:"Pudong, Century Avenue · Tag 2 + 6",a:"上海市浦东新区世纪大道1217号百联世纪购物中心1楼",tel:"18621119035",s:["ok","Partnerliste"],note:"Offizieller Partnerladen.",k:"百联世纪购物中心"},
+ {n:"Xuxuting",cn:"叙叙亭",area:"Pudong, Century Avenue · Tag 2 + 6",a:"上海市浦东新区世纪汇广场L3-026",tel:"13166050096",s:["ok","Partnerliste"],note:"Offizieller Partnerladen.",k:"世纪汇广场 叙叙亭"},
+ {n:"PokeColor",cn:"PokeColor",area:"Huangpu Süd · Tag 4",a:"上海市黄浦区复兴东路1280号B1 109/110",tel:"13661655835",s:["mid","Firma bestätigt"],note:"Großer TCG-Händler, eher Einzelkarten und höhere Preise. Öffnet 12:00.",k:"复兴东路1280号"},
+ {n:"Offizielles Pokémon-Gym Wujiaochang",cn:"宝可梦官方卡牌道馆（五角场）",area:"Yangpu · Plan B 06.11.",a:"上海市杨浦区淞沪路77号万达广场B1",tel:"",s:["ok","offiziell"],note:"Ausweichstation am Release-Tag.",k:"宝可梦官方卡牌道馆 五角场"},
+ {n:"Card Hobby K11",cn:"Card Hobby",area:"Huangpu · nur nach Anruf",a:"上海市黄浦区淮海中路300号K11 B2",tel:"19921589838",s:["bad","nicht bestätigt"],note:"Eine Ladenfläche auf B2 ist nicht belegt, gefunden wurde nur ein Event auf B3 im März.",k:"K11购物艺术中心"},
+ {n:"Taidou",cn:"泰斗",area:"nur nach Anruf",a:"上海市黄浦区南苏州路1455弄303室",tel:"19946279887",s:["bad","Adresse unklar"],note:"Eine andere Quelle nennt Changning.",k:"南苏州路1455弄"}
+];
+const el=document.getElementById('shoplist');
+shops.forEach((x,i)=>{
+  const d=document.createElement('div');d.className='shop';
+  const cls={ok:'s-ok',mid:'s-mid',bad:'s-bad'}[x.s[0]];
+  d.innerHTML=`<div class="top"><h3>${x.n}</h3><span class="status ${cls}">${x.s[1]}</span></div>
+  <p class="area"><span class="cn">${x.cn}</span> · ${x.area}</p>
+  <div class="addr"><code id="addr${i}">${x.a}</code><button class="copy" type="button" data-copy-target="addr${i}" id="copy${i}">Kopieren</button></div>
+  <div class="row">${x.tel?`<span>Tel. <span style="user-select:all;color:var(--ink)">${x.tel}</span></span>`:''}<a href="https://uri.amap.com/search?keyword=${encodeURIComponent(x.k)}&city=310000" target="_blank" rel="noopener">In Amap suchen</a></div>
+  <p style="font-size:14px">${x.note}</p>`;
+  el.appendChild(d);
+});
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button.copy');if(!b)return;
+  const t=document.getElementById(b.dataset.copyTarget);if(!t)return;
+  const done=()=>{const o=b.textContent;b.textContent='Kopiert';b.classList.add('ok');setTimeout(()=>{b.textContent=o;b.classList.remove('ok')},1500)};
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(t);const s=getSelection();s.removeAllRanges();s.addRange(r)};
+  try{navigator.clipboard.writeText(t.textContent).then(done,sel)}catch(err){sel()}
+});
+</script>
