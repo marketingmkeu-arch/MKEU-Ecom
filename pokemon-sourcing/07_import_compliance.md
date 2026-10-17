@@ -1,8 +1,10 @@
-# 07 – Import & Compliance (vorläufig) · **STOP-GATE: ROT**
+# 07 – Import & Compliance (vorläufig) · **Gate: GRÜN laut anwaltlicher Beratung (Nutzerangabe)**
 
 Stand: 2026-10-17. Recherche nur über Websuche (Sekundärquellen); amtliche Seiten (zoll.de, EZT, TARIC, eur-lex) sind in dieser Umgebung `BLOCKED`. Das ist **keine Rechtsberatung**.
 
-## 1. Markenrecht / Parallelimport – GO/NO-GO: **NO-GO bis anwaltlich geklärt**
+## 1. Markenrecht / Parallelimport – GO/NO-GO: **GO (Nutzer: Anwalt hat am/vor 2026-10-17 grünes Licht gegeben)**
+
+Die Freigabe ist eine Nutzerangabe, nicht von mir geprüft. Empfehlung: Beratungsergebnis schriftlich (E-Mail/Memo) aufbewahren, inkl. etwaiger Auflagen (z. B. Kennzeichnung „Import/chinesische Ausgabe“). Die Recherche unten bleibt als Hintergrund stehen.
 - Art. 15 Abs. 1 UMV und § 24 MarkenG: Erschöpfung tritt nur ein, wenn die Ware **im EWR** vom Markeninhaber oder mit seiner Zustimmung in Verkehr gebracht wurde.
 - EuGH Silhouette (C-355/96), Sebago (C-173/98), Davidoff (C-414/99–C-416/99): keine internationale Erschöpfung.
 - Bestätigt durch BGH I ZR 226/24 (Juli 2025) und OLG Nürnberg 3 U 881/24 (29.10.2024).
@@ -21,7 +23,7 @@ Stand: 2026-10-17. Recherche nur über Websuche (Sekundärquellen); amtliche Sei
 ## 3. Einfuhr im Reisegepäck (Flughafen Düsseldorf)
 - Gewerbliche Ware fällt **nicht** unter die Reisefreimenge von 430 €.
 - Laut österreichischen/EU-Sekundärquellen ist eine mündliche Zollanmeldung bis **1.000 €** Warenwert möglich, darüber eine **elektronische/schriftliche Anmeldung** (ATLAS). Das Aufteilen auf Teilsendungen ist unzulässig.
-- Bei ~4.000 € Warenwert: **EORI-Nummer** (beim Zoll beantragen, mehrere Tage), Handelsrechnungen/Kassenbons mit 发票, Anmeldung über Zollagent/Spediteur am DUS oder Vorab-Kontakt mit dem Zollamt Düsseldorf-Flughafen. **Roter Ausgang.**
+- Bei ~4.000 € Warenwert: **EORI-Nummer** (vorhanden), Handelsrechnungen/Kassenbons mit 发票, Anmeldung über Zollagent/Spediteur am DUS oder Vorab-Kontakt mit dem Zollamt Düsseldorf-Flughafen. **Roter Ausgang.**
 - **To-do:** zoll.de-Seite „Gewerbliche Waren im Reiseverkehr“ freischalten und verifizieren. Zollamt DUS vorab anrufen.
 
 ## 4. Produktsicherheit
@@ -39,7 +41,7 @@ Stand: 2026-10-17. Recherche nur über Websuche (Sekundärquellen); amtliche Sei
 ## Fazit (Gate)
 | Punkt | Status |
 |---|---|
-| Markenrecht/Parallelimport | 🔴 ungeklärt – **STOP** |
+| Markenrecht/Parallelimport | 🟢 anwaltlich freigegeben (Nutzerangabe) |
 | Zolltarif | 🟡 plausibel 2,7 %, amtlich offen |
 | Reisegepäck-Anmeldung | 🟡 EORI + schriftliche Anmeldung voraussichtlich nötig |
 | Produktsicherheit/CE | 🟠 ungeklärt |
