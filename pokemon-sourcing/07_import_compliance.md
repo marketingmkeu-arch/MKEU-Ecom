@@ -16,7 +16,7 @@ Die Freigabe ist eine Nutzerangabe, nicht von mir geprüft. Empfehlung: Beratung
 
 ## 2. Zolltarif und Abgaben (zu verifizieren)
 - Einreihung: KN **9504 40 00** (Spielkarten). Die EU-Durchführungsverordnung 2016/1758 ordnet Kartenspiele aller Art hier ein; US-CBP-Ruling N359352 (2026) reiht Pokémon-Karten ebenfalls unter 9504.40 ein.
-- Drittlandszoll **2,7 %** laut zolltarifnummer.com. **Offen:** amtliche TARIC-Bestätigung, ggf. verbindliche Zolltarifauskunft (vZTA).
+- Drittlandszoll **2,70 %** (ERGA OMNES, R2261/98) – **amtlich verifiziert** in TARIC für 9504400000, Ursprung CN, Referenzdatum 17.10.2026: https://ec.europa.eu/taxation_customs/dds2/taric/measures.jsp?Lang=de&Taric=9504400000&SimDate=20261017&Area=CN . Keine Antidumping- oder Einfuhrbeschränkungen für CN gelistet. Hinweis: Ab 01.07.2026 gibt es einen Pauschalzoll von 3 € je Sendung ≤ 150 € (TM01066); das betrifft Ihren Gepäckimport nicht. Optional: verbindliche Zolltarifauskunft (vZTA).
 - Figurenboxen und Zubehör (Münzen, Playmats, Displays) können anders eingereiht werden → gesondert prüfen.
 - Bemessungsgrundlage der EUSt: Zollwert (Kaufpreis + Beförderung bis EU-Grenze) + Zoll. 19 %. **Als Kleinunternehmer kein Vorsteuerabzug → echter Kostenblock.**
 
@@ -42,7 +42,7 @@ Die Freigabe ist eine Nutzerangabe, nicht von mir geprüft. Empfehlung: Beratung
 | Punkt | Status |
 |---|---|
 | Markenrecht/Parallelimport | 🟢 anwaltlich freigegeben (Nutzerangabe) |
-| Zolltarif | 🟡 plausibel 2,7 %, amtlich offen |
+| Zolltarif | 🟢 2,70 % (TARIC verifiziert); Figurenbox/Zubehör separat prüfen |
 | Reisegepäck-Anmeldung | 🟡 EORI + schriftliche Anmeldung voraussichtlich nötig |
 | Produktsicherheit/CE | 🟠 ungeklärt |
 | LUCID | 🟢 lösbar, vor Verkauf registrieren |

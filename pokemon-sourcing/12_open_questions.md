@@ -2,8 +2,9 @@
 
 ## Blocker (vor Kauf zu klären)
 1. ~~Markenrecht~~ – erledigt: Anwalt hat grünes Licht gegeben (Nutzerangabe 2026-10-17).
-2. **Netzwerkfreigabe** der Cloud-Umgebung für: `www.pokemon.cn`, `campaign-30th.pokemon.cn`, `www.ebay.de`, `www.cardmarket.com`, `www.zoll.de`, `auskunft.ezt-online.de`, `ec.europa.eu`, `eur-lex.europa.eu`, `www.ecb.europa.eu`, `www.amap.com`. Ohne sie gibt es keine Verkaufsdaten und keine amtliche Verifikation.
-3. **Echte DE-Verkaufspreise** (eBay.de „Verkaufte Artikel“, Cardmarket-Trend) für 30thC-Display und Gem Pack 6/7. Alternativ: Sie liefern Screenshots.
+2. ~~Netzwerkfreigabe~~ – erledigt; zusätzlich fehlt noch `image.pokemon.com.cn` (offizielle Händlerliste-PDFs, Stand 12/2025). Ursprüngliche Liste: `www.pokemon.cn`, `campaign-30th.pokemon.cn`, `www.ebay.de`, `www.cardmarket.com`, `www.zoll.de`, `auskunft.ezt-online.de`, `ec.europa.eu`, `eur-lex.europa.eu`, `www.ecb.europa.eu`, `www.amap.com`. Ohne sie gibt es keine Verkaufsdaten und keine amtliche Verifikation.
+3. **Echte DE-Verkaufspreise:** eBay.de und Cardmarket blockieren (Bot-Schutz). Bitte Screenshots von eBay.de → Filter „Verkaufte Artikel“ für „30th Celebration chinesisch Display“ und „Glurak Figur 30th chinesisch“.
+3b. **Freigabe nötig:** 40 % statt 25 % des Budgets in 30thC-Displays (beste Datenlage).
 4. ~~Unterkunft 13.–16.11.~~ – bei Freunden in Pudong.
 
 ## Wichtig

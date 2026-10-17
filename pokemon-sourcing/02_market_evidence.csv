@@ -8,6 +8,15 @@ P01,DE,cardcosmos.de,shop asking,7.90,EUR,single pack,cardcosmos,,https://cardco
 P08,US,krystalkollectz.com,shop asking (Vorbestellung),35.95–39.95,USD,sealed box,KrystalKollectz,,https://krystalkollectz.com/products/simplified-chinese-gem-pack-volume-6-pokemon-booster-box-cbb6c,2026-10-17,via Suchsnippet
 P08,US,dacardworld.com,shop asking,49.95,USD,sealed box,Dave & Adam's,,https://www.dacardworld.com/gaming/pokemon-gem-pack-volume-6-booster-box-chinese,2026-10-17,via Suchsnippet
 P08,CA,topshelfco.ca,shop asking,49.99,CAD,sealed box,Top Shelf,ausverkauft,https://topshelfco.ca/products/pokemon-s-chinese-booster-box-gem-pack-vol-6,2026-10-17,via Suchsnippet
-ALL,DE,ebay.de (Verkauft-Filter),sold,BLOCKED,,,,,https://www.ebay.de/sch/i.html?_nkw=pokemon+chinese+gem+pack&LH_Sold=1&LH_Complete=1,2026-10-17,Netzwerkrichtlinie der Umgebung – UNVERIFIED DEMAND
-ALL,EU,cardmarket.com,sold/trend,BLOCKED,,,,,https://www.cardmarket.com,2026-10-17,Netzwerkrichtlinie – UNVERIFIED DEMAND
-ALL,CN,taobao/tmall/jd/goofish,Straßenpreis,NICHT ERHOBEN,,,,,,2026-10-17,Option 2 schließt CN-Marktplätze aus; Preise vor Ort erheben
+ALL,DE,ebay.de (Verkauft-Filter),sold,BLOCKED,,,,,https://www.ebay.de/sch/i.html?_nkw=pokemon+30th+celebration+chinesisch+display&LH_Sold=1&LH_Complete=1,2026-10-17T13:08Z,eBay liefert 403-Fehlerseite (Bot-Schutz) auch mit echtem Browser – nicht umgangen
+ALL,EU,cardmarket.com,sold/trend,BLOCKED,,,,,https://www.cardmarket.com/de/Pokemon/Products/Search?searchString=30th+celebration,2026-10-17T13:09Z,Cloudflare-Block – nicht umgangen
+ALL,CN,taobao/jd,Straßenpreis,BLOCKED,,,,,https://www.jd.com/jiage/124739305ed21b06dfd06.html,2026-10-17T13:12Z,JD zeigt Listings ohne Preise (Login); search.jd.com Tunnel verweigert; Taobao-Suche verlangt Login
+P01,DE,kleinanzeigen.de,asking (n=11; Zusammenfassung),105/115/135 (p25/Median/p75),EUR,sealed display 20 Packs,10 Anbieter,meist zzgl. Versand,02b_kleinanzeigen_asking_2026-10-17.csv,2026-10-17T13:10Z,Angebote 25.09.–16.10.; keine Verkaufsdaten; mehrere Anbieter mit ganzen Cases
+GEM6,DE,kleinanzeigen.de,asking (n=3+1),30–35,EUR,sealed display 18 Packs,,,02b_kleinanzeigen_asking_2026-10-17.csv,2026-10-17T13:10Z,
+GEM5,DE,kleinanzeigen.de,asking (n=3),49–50,EUR,sealed display,,,02b_kleinanzeigen_asking_2026-10-17.csv,2026-10-17T13:10Z,
+GEM4,DE,kleinanzeigen.de,asking (n=5),30–45 (Median 39),EUR,sealed display,,,02b_kleinanzeigen_asking_2026-10-17.csv,2026-10-17T13:10Z,
+GEM1-3,DE,kleinanzeigen.de,asking (n=7),60–80,EUR,sealed display,,,02b_kleinanzeigen_asking_2026-10-17.csv,2026-10-17T13:10Z,ältere Gem Packs notieren höher → Wertsteigerung über Zeit plausibel
+P02,DE,kleinanzeigen.de,asking VB (n=1),320,EUR,Glurak-Figurenbox inkl. 15 Booster,,,02b_kleinanzeigen_asking_2026-10-17.csv,2026-10-17T13:10Z,Einzelwert – geringe Aussagekraft
+P12,DE,kleinanzeigen.de,asking (n=1),75,EUR,Terastal Gathering Display,,,02b_kleinanzeigen_asking_2026-10-17.csv,2026-10-17T13:10Z,Packs/Display unbekannt
+P13,DE,kleinanzeigen.de,asking (n=2),35–40,EUR,Slim Display,,,02b_kleinanzeigen_asking_2026-10-17.csv,2026-10-17T13:10Z,
+151C,DE,kleinanzeigen.de,asking (n=11),40–150 (Median 65),EUR,versch. 151C-Displays,,,02b_kleinanzeigen_asking_2026-10-17.csv,2026-10-17T13:10Z,mehrere verschiedene 151C-Produkte gemischt

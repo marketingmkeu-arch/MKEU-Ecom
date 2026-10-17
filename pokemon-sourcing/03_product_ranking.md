@@ -1,27 +1,43 @@
-# 03 – Produkt-Ranking (vorläufig)
+# 03 – Produkt-Ranking (Update 2026-10-17, 13:15 UTC)
 
-Stand: 2026-10-17 · **Gesamtstatus: UNVERIFIED DEMAND.** Abgeschlossene Verkäufe auf eBay.de und Cardmarket konnten nicht abgerufen werden (Netzwerkrichtlinie → `BLOCKED`). Alle Verkaufspreise unten sind **Angebotspreise** (meist US, ein NL-Shop) und ersetzen keine Verkaufsdaten. Chinesische Straßenpreise sind nicht erhoben, nur offizielle UVP (MSRP).
+**Datenlage:** Offizielle UVPs wurden direkt von pokemon.cn abgerufen. Für den deutschen Markt gibt es **103 Kleinanzeigen-Angebote** (Datei `02b_kleinanzeigen_asking_2026-10-17.csv`); das sind **Angebots-, keine Verkaufspreise**. eBay.de und Cardmarket blockieren aktiv (Bot-Schutz) und wurden nicht umgangen. Status: **UNVERIFIED DEMAND (nur Angebotspreise)**. Chinesische Straßenpreise wurden nicht erhoben (JD/Taobao ohne Login keine Preise).
 
-## Annahmen für die Beispielrechnung (illustrativ, keine Kaufanweisung)
-- Kurs: 7,9 CNY/EUR effektiv. Die BMF-USt-Umrechnungskurse Jan–Mai 2026 lagen bei 7,93–8,18; davon ~2 % Spread/Kartengebühr abgezogen. Ein aktueller EZB-Kurs wurde noch nicht abgerufen.
-- Zoll 2,7 % (KN 9504 40 00, Sekundärquelle, TARIC-Prüfung offen), EUSt 19 % auf Zollwert + Zoll, **nicht erstattungsfähig (Kleinunternehmer)**.
-- Zusatzgepäck ≈ 3 € pro 30thC-Display bzw. 1,50 € pro Gem-Pack-Display (Annahme: ~150 € je 23-kg-Koffer, ~50 Displays).
-- 5 % Risikoreserve (Bruch, Nachweislücken, Retouren), eBay-Gebühr ≈ 11 % + 0,35 € (Annahme, prüfen), 2 € Verpackung.
+## Rechengrundlagen (verifiziert, wo markiert)
+- **Kurs:** EZB 7,524 CNY/€ (16.10.2026, verifiziert) − 2 % Karten-/FX-Gebühr = **7,374 CNY/€ effektiv**.
+- **Zoll:** **2,70 %** auf KN 9504 40 00, Ursprung China (TARIC, Referenzdatum 17.10.2026, verifiziert).
+- **EUSt:** 19 % auf (Zollwert + Zoll), als Kleinunternehmer **nicht erstattungsfähig**.
+- **Gepäck:** 3 € pro 30thC-Display, 1,50 € pro Gem-Display, 8 € pro Figurenbox (Annahme, abhängig von Airline-Preis).
+- **Risikoreserve:** 5 %.
+- **Verkauf:** Kleinanzeigen ohne Gebühr; eBay ≈ 11 % + 0,35 € (Annahme). 2 € Verpackung pro Stück. Versand zahlt der Käufer.
 
-| Rang | SKU | Produkt | Einkauf (UVP) | Landed (inkl. Reserve) | DE-Verkauf (illustrativ) | Netto/Stück | Abwärtsfall (−20 % VK, +10 % Kosten) | Urteil |
+## Ergebnis je SKU
+
+| Rang | SKU | DE-Angebote (Kleinanzeigen) | Einkauf | Landed inkl. Reserve | Netto/Stück bei 105 € (KA) | Abwärtsfall (−20 % VK, +10 % Kosten) | **Max. Einkaufspreis** | Urteil |
 |---|---|---|---|---|---|---|---|---|
-| 1 | P01 | 30周年庆典 Display (20 Packs) | 360 RMB ≈ 45,57 € | ≈ 62,30 € | 100 € (EU-Shop verlangt 129,95 €, US 90–120 $) | ≈ +24 € (ROI ~39 %) | ≈ ±0 € | **Bester Kandidat – nur wenn der Straßenpreis nahe UVP liegt.** Bei 450 RMB sinkt der Gewinn auf ≈ +10 €. |
-| 2 | P09 | 宝石包 第七弹 (Release 06.11., während der Reise) | 10 RMB/Pack | ≈ 31 €/Display (wie Vol.6) | unbekannt | – | – | Frischer Release, UVP-Kauf vor Ort plausibel. Nachfrage völlig ungeprüft; nur Testmenge. |
-| 3 | P02 | 30thC Glurak-Figurenbox | 780 RMB ≈ 99 € | ≈ 130 € | unbekannt | – | – | Sperrig/zerbrechlich, keine EU-Vergleichswerte. Nur bei belegter Nachfrage. |
-| 4 | P08 | 宝石包 第六弹 Display (18 Packs) | 180 RMB ≈ 22,78 € | ≈ 31,20 € | 40 € (US-Angebote 36–50 $) | ≈ +2 € | negativ | **Ablehnen** als Hauptposition – Marge frisst sich durch Gebühren und EUSt auf. |
-| 5 | P12/P13 | 太晶盛聚 / 共逐荣光 | 30 bzw. 10–50 RMB/Pack | – | keine Daten | – | – | Zu wenig Daten |
-| – | P03–P07, P10, P11, P14, P15 | Zubehör/Sets/ältere Sets | s. Katalog | – | keine Daten | – | – | Zurückgestellt |
-| – | P16 | 151 (简中) | – | – | – | – | – | **Nicht verifiziert** – keine aktuelle Auflage gefunden |
+| 1 | **P01 30周年庆典 Display (20 Packs)** | n=11, p25 **105 €**, Median **115 €**, p75 135 € | 360 RMB (UVP) | **66,50 €** | **+36,50 €** (ROI ≈ 55 %) | +8,85 € | Ziel ≤ **480 RMB** (≥ 15 € Gewinn); Break-even ≈ 570 RMB | **Kaufen, wenn ≤ 480 RMB.** Bei 450 RMB nur noch +21 €. |
+| 2 | **P02 30thC Glurak-Figurenbox (15 Packs)** | n=1, 320 € VB | 780 RMB (UVP) | **146 €** | +102 € bei konservativ 250 € | +37 € | ≤ 1.130 RMB für ≥ 40 € Gewinn | **Testkauf 2–3 Stück.** Nur ein Vergleichsangebot; sperrig/zerbrechlich (Zolltarif Figur ggf. abweichend). |
+| 3 | P09 Gem Pack Vol.7 (Release 06.11.) | Vol.6 aktuell 30–35 €; ältere Vol.1–3 jetzt **60–80 €** | 180 RMB/Display (UVP, falls 18 Packs) | 33,25 € | ≈ 0 € bei Sofortverkauf | negativ | – | **Nur als Langfrist-Lager** (6–18 Monate), Kleinstmenge. Kein Schnellverkauf. |
+| 4 | P08 Gem Pack Vol.6 | n=3, 30–35 € | 180 RMB | 33,25 € | −0,25 € | negativ | – | **REJECT** |
+| 5 | P17–P19 Schwarz/Weiß Münz-/Energie-Sets (06.11.) | keine DE-Daten | 39 RMB | 7,30 € | unbekannt | – | – | Beobachten; vor Ort Hype und Preise prüfen |
+| – | P12 太晶盛聚 Display | n=1, 75 € | Packs/Display unbekannt | – | – | – | – | Daten fehlen (Displaygröße vor Ort klären) |
+| – | P13/P14 共逐荣光 / 星彩晶璃 Slim Display | 35–40 € | unbekannt | – | – | – | – | Daten fehlen |
+| – | 151C-Displays | n=11, 40–150 € (gemischte Produkte) | Älteres Produkt, UVP unbekannt | – | – | – | – | Nur wenn vor Ort zu UVP verfügbar |
 
-## Bewertungsgewichte (Skill) – vorläufige Punkte
-Für alle SKUs gilt: Nachfrage/Abverkauf (25 %) bleibt bei 0/unbekannt, bis Verkaufsdaten vorliegen. Deshalb ist **keine** SKU kaufreif. Die Reihenfolge oben beruht nur auf Marge (25 %), Authentizität (20 %: offizielle Ware im Laden kaufbar) und Kapitaleffizienz (10 %).
+## Wichtige Beobachtungen
+- **Konkurrenz:** Mehrere deutsche Anbieter verkaufen 30thC-Displays bereits aus ganzen Cases („direkt von Case“, „2 Cases vorhanden“, 12er-Case). Der Markt kann sich schnell sättigen. Viele Angebote sind 2–3 Wochen alt und offenbar noch nicht verkauft.
+- **Gem Packs** sind ein Langzeitspiel: Vol.1–3 notieren heute beim 2–3-Fachen von Vol.6. Für Sofortgewinne taugen sie nicht.
+- **Absatzmenge:** Die Kleinanzeigen-Daten zeigen ~11 parallele 30thC-Angebote. 20+ Displays aus einer Hand brauchen voraussichtlich mehrere Wochen bis Monate (90-Tage-Szenario einplanen).
 
-## Kernaussagen
-- **Bekannt:** Offizielle UVP und Release-Daten für 30thC, Gem Pack 6/7 und weitere Sets (pokemon.cn, über Suchsnippets).
-- **Abgeleitet:** Positive Marge ist nur bei 30thC-Displays nahe UVP plausibel. Gem Packs sind nach EUSt kaum profitabel.
-- **Unbekannt:** Echte Verkaufspreise in DE, Preise vor Ort in Shanghai, Abverkaufsgeschwindigkeit.
+## Vorläufige Allokation (illustrativ, 4.000 € Warenbudget)
+Skill-Regel: maximal 25 % in eine nicht verifizierte SKU. 30thC hat die beste Evidenz (n=11) – ich schlage vor, für P01 auf **40 %** zu gehen. **Ihre Freigabe nötig.**
+
+| SKU | Menge | Warenwert (UVP) |
+|---|---|---|
+| P01 30thC Display | 32 Stück (≈ 1.560 € bei UVP) | 11.520 RMB |
+| P02 Glurak-Figurenbox | 3 Stück | 2.340 RMB ≈ 317 € |
+| P09 Gem Pack 7 (Langfrist) | 4 Displays | 720 RMB ≈ 98 € |
+| P17–P19 Sets (Test) | 10 Stück | 390 RMB ≈ 53 € |
+| **Summe** | | **≈ 2.030 €** |
+| Nicht eingesetzt | | ≈ 1.970 € Reserve – erst einsetzen, wenn vor Ort weitere SKUs mit belegter Marge gefunden werden |
+
+Zusätzlicher Cash-Bedarf für diese Allokation: Zoll ≈ 60 €, EUSt ≈ 430 €, Zusatzgepäck ≈ 150–300 €.

@@ -1,6 +1,27 @@
 # 11 – Quellen (Stand 2026-10-17)
 
-Zugang: Direktabrufe (WebFetch/curl) aller Hosts sind durch die Netzwerkrichtlinie der Cloud-Umgebung `BLOCKED`. Alle Angaben stammen aus **Websuche-Snippets** (Sekundärzugriff) und müssen vor Kaufentscheidungen am Original verifiziert werden.
+Update 13:15 UTC: Nach der Domain-Freigabe wurden pokemon.cn, TARIC, EZB und Kleinanzeigen **direkt abgerufen** (s. Tabelle „Direktabrufe“). Ältere Einträge = Websuche-Snippets.
+
+## Direktabrufe 2026-10-17
+| URL | Inhalt | Status |
+|---|---|---|
+| https://www.pokemon.cn/products_category/products | Offizielle Produktliste mit UVPs, Kaufkanal „宝可梦官方旗舰店及线下合作店铺、宝可梦官方卡牌道馆“ | OK |
+| https://www.pokemon.cn/tcg/product/24281.html | Gem Pack 7: 06.11.2026 10:00, 10 RMB/Pack | OK |
+| https://www.pokemon.cn/tcg/product/22759.html | Anstecker-Set 2: 06.11., 39 RMB, je 1 Pack Vol.4/5/6 | OK |
+| https://www.pokemon.cn/tcg/product/21905.html | 黑雷奔流/白焰迸涌 Münz-Sets 06.11., 39 RMB | OK |
+| https://www.pokemon.cn/tcg/product/22850.html | 黑白 Energie-Set 06.11., 39 RMB | OK |
+| https://www.pokemon.cn/tcg/product/22237.html , 22308, 23095, 23048, 21997, 20012, 21383 | 30thC, Sets, UVPs | OK |
+| https://www.pokemon.cn/tcg/other/17200.html | Partnerladen-Liste: 2 PDFs vom 2025-12-03 auf image.pokemon.com.cn | Seite OK, PDFs **BLOCKED** (Host nicht freigegeben) |
+| https://data-api.ecb.europa.eu/service/data/EXR/D.CNY.EUR.SP00.A?lastNObservations=5&format=csvdata | 7,524 CNY/€ am 16.10.2026 | OK |
+| https://ec.europa.eu/taxation_customs/dds2/taric/measures.jsp?Lang=de&Taric=9504400000&SimDate=20261017&Area=CN | 2,70 % Drittlandszoll | OK |
+| https://www.kleinanzeigen.de/s-pokemon-chinesisch-display/k0 (+4 Suchen, je 2 Seiten) | 103 Angebote | OK |
+| https://www.ebay.de/sch/i.html?...&LH_Sold=1 | Verkaufte Artikel | **BLOCKED** (403 Fehlerseite) |
+| https://www.cardmarket.com/de/Pokemon/Products/Search | | **BLOCKED** (Cloudflare) |
+| https://www.jd.com/jiage/124739305ed21b06dfd06.html | Gem-Pack-Listings ohne Preise | teilweise |
+| https://search.jd.com , https://image.pokemon.com.cn | | **BLOCKED** (Tunnel verweigert) |
+| https://s.taobao.com/search | | Login nötig |
+
+## Frühere Websuche-Snippets
 
 | Quelle | Inhalt | Typ | Zugriff |
 |---|---|---|---|
