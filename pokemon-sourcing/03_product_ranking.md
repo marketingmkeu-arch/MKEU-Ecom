@@ -35,9 +35,18 @@ Skill-Regel: maximal 25 % in eine nicht verifizierte SKU. 30thC hat die beste Ev
 |---|---|---|
 | P01 30thC Display | 32 Stück (≈ 1.560 € bei UVP) | 11.520 RMB |
 | P02 Glurak-Figurenbox | 3 Stück | 2.340 RMB ≈ 317 € |
-| P09 Gem Pack 7 (Langfrist) | 4 Displays | 720 RMB ≈ 98 € |
+| P09 Gem Pack 7 (Release-Fenster + Langfrist) | 12 Displays (Spanne 10–15) | 2.160 RMB ≈ 293 € |
 | P17–P19 Sets (Test) | 10 Stück | 390 RMB ≈ 53 € |
-| **Summe** | | **≈ 2.030 €** |
-| Nicht eingesetzt | | ≈ 1.970 € Reserve – erst einsetzen, wenn vor Ort weitere SKUs mit belegter Marge gefunden werden |
+| **Summe** | | **≈ 2.225 €** |
+| Nicht eingesetzt | | ≈ 1.775 € Reserve – erst einsetzen, wenn vor Ort weitere SKUs mit belegter Marge gefunden werden |
 
 Zusätzlicher Cash-Bedarf für diese Allokation: Zoll ≈ 60 €, EUSt ≈ 430 €, Zusatzgepäck ≈ 150–300 €.
+
+## Gem Pack 7 – Analogien zum Release-Fenster (Kleinanzeigen-Angebote)
+| Set | Release CN | Frühe DE-Angebote | Heute |
+|---|---|---|---|
+| Vol.4 | 06.02.2026 | 43 € (10.07.) | 30–45 € |
+| Vol.5 | 24.04.2026 | 49 € (26.05., ~1 Monat nach Release) | 49–50 € |
+| Vol.6 | 07.08.2026 | 30 € (30.08.), 32,50–35 € (Ende Sept.) | 30–35 € |
+
+Ein Aufschlag direkt nach Release ist **nicht garantiert**: Bei Vol.5 gab es ihn, bei Vol.6 nicht. Plan für Vol.7: ab Rückkehr (17.11.) etwa die Hälfte für ≥ 45 € anbieten, Break-even ≈ 35 €, den Rest liegen lassen. Die Nachfrage nach Vol.7 ist naturgemäß **UNVERIFIED** (noch nicht erschienen).
