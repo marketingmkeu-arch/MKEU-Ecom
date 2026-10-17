@@ -35,7 +35,7 @@ Skill-Regel: maximal 25 % in eine nicht verifizierte SKU. 30thC hat die beste Ev
 |---|---|---|
 | P01 30thC Display | 32 Stück (≈ 1.560 € bei UVP) | 11.520 RMB |
 | P02 Glurak-Figurenbox | 3 Stück | 2.340 RMB ≈ 317 € |
-| P09 Gem Pack 7 (Release-Fenster + Langfrist) | 12 Displays (Spanne 10–15) | 2.160 RMB ≈ 293 € |
+| P09 Gem Pack 7 (Community + Release-Fenster + Langfrist) | 16 Displays (Spanne 15–18; ~6 für Community-Interessenten) | 2.880 RMB ≈ 391 € |
 | P17–P19 Sets (Test) | 10 Stück | 390 RMB ≈ 53 € |
 | **Summe** | | **≈ 2.225 €** |
 | Nicht eingesetzt | | ≈ 1.775 € Reserve – erst einsetzen, wenn vor Ort weitere SKUs mit belegter Marge gefunden werden |
@@ -50,3 +50,6 @@ Zusätzlicher Cash-Bedarf für diese Allokation: Zoll ≈ 60 €, EUSt ≈ 430 �
 | Vol.6 | 07.08.2026 | 30 € (30.08.), 32,50–35 € (Ende Sept.) | 30–35 € |
 
 Ein Aufschlag direkt nach Release ist **nicht garantiert**: Bei Vol.5 gab es ihn, bei Vol.6 nicht. Plan für Vol.7: ab Rückkehr (17.11.) etwa die Hälfte für ≥ 45 € anbieten, Break-even ≈ 35 €, den Rest liegen lassen. Die Nachfrage nach Vol.7 ist naturgemäß **UNVERIFIED** (noch nicht erschienen).
+
+## Community-Nachfrage (Nutzerangabe 2026-10-17)
+Eine Discord-Umfrage mit 26 Stimmen ergab die meiste Nachfrage für 30 Jahre, danach Gem Packs, 151 und Terastal Gathering. Für Gem Pack 7 haben 5–6 Personen direkt Interesse angemeldet. Das sind **Interessensbekundungen, keine verbindlichen Bestellungen**. Vor dem 06.11. Menge und Preis bestätigen lassen (Vorschlag 40–45 €/Display, Kosten bis DE ≈ 33 €).
