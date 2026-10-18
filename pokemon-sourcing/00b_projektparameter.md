@@ -16,7 +16,7 @@ Stand: 2026-10-17 · Quelle: Nutzerangaben im Chat. Personenbezogene Daten aus d
 | EORI | vorhanden (Nutzerangabe) | schriftliche Zollanmeldung möglich |
 | Markenrecht | Anwalt hat laut Nutzer „grünes Licht“ gegeben (2026-10-17) | Gate auf Grün gesetzt; schriftliche Bestätigung zu den Akten empfohlen |
 | Verkaufskanäle | eBay, Kleinanzeigen, Cardmarket, privat an Freunde | Gebühren je Kanal modellieren |
-| Gepäckgrenzen/Airline | offen | nötig für Gepäckkosten |
+| Airline | Air China (Nutzerangabe 2026-10-18). Freigepäck Economy Europa: 1 oder 2 × 23 kg je nach Tarif (Sekundärquellen widersprüchlich). Zusatzstück Europa laut offizieller Tabelle 2022: 1.400 / 2.000 / 3.000 RMB (1./2./ab 3. Stück); Übergewicht 23–28 kg 380–690 RMB | airchina.com.cn in dieser Umgebung BLOCKED; Nutzer prüft Buchung |
 
 ## Abgeleitete Vorab-Hinweise (noch ohne Quellenprüfung)
 - 4.000 € Warenwert in Koffern übersteigt mit hoher Wahrscheinlichkeit die Grenze für vereinfachte mündliche Anmeldung → Zollabfertigung vorab planen (EORI beantragen dauert einige Tage).
