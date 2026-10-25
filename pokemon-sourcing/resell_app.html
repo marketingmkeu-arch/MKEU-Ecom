@@ -153,6 +153,7 @@ function viewErfassen(){
     <button class="btn" id="btn-parse" ${S.busy?"disabled":""}>${S.busy?"Claude liest …":"Eintrag vorschlagen"}</button>
     <button class="btn ghost" id="btn-manual">Manuell anlegen</button>
   </div>
+  <p class="hint"><b>Mikrofon:</b> Ins Textfeld tippen, dann unten rechts auf der Tastatur das Mikrofon-Symbol. Fehlt es: iPhone-Einstellungen → Allgemein → Tastatur → „Diktierfunktion aktivieren“ einschalten.</p>
   <p class="hint">Claude erkennt gleiche Produkte auch bei kürzerem Namen und ordnet Verkäufe dem passenden Einkauf zu. Du prüfst den Vorschlag, bevor er gespeichert wird.</p>
   ${S.error?`<div class="banner">${esc(S.error)}</div>`:""}
   ${p ? viewProposal(p) : ""}
