@@ -259,6 +259,8 @@ function viewUebersicht(){
   const einnahmen = soldIn.reduce((s,i)=>s+(income(i)||0),0);
   const gewinn = soldIn.reduce((s,i)=>s+(profitOf(i)||0),0);
   const kosten = expensesIn(m).reduce((s,x)=>s+(x.amount||0),0);
+  const freeG = soldIn.filter(i=>i.free).reduce((s,i)=>s+(profitOf(i)||0),0);
+  const freeAll = S.items.filter(i=>i.free && monthOf(i.date)===m), freeOpen = freeAll.filter(i=>income(i)==null).length;
   const lager = S.items.filter(i=>income(i)==null);
   const lagerwert = lager.reduce((s,i)=>s+(i.buy||0),0);
   const byP = PLATFORMS.map(p=>{ const x = soldIn.filter(i=>i.platform===p); return {p, n:x.length, sum:x.reduce((s,i)=>s+(income(i)||0),0), g:x.reduce((s,i)=>s+(profitOf(i)||0),0)}; });
@@ -270,6 +272,7 @@ function viewUebersicht(){
     <div class="kpi"><div class="l">Einnahmen (verkauft im Monat)</div><div class="v num">${eur(einnahmen)}</div></div>
     <div class="kpi"><div class="l">Ausgaben (eingekauft im Monat)</div><div class="v num">${eur(ausgaben)}</div></div>
     <div class="kpi"><div class="l">Gewinn aus Verkäufen</div><div class="v num ${gewinn>=0?"pos":"neg"}">${eur(gewinn)}</div></div>
+    <div class="kpi" style="grid-column:1 / -1"><div class="l">Free Add-ons (gratis bekommen im Monat)</div><div class="v num">${freeAll.length} Stück · ${freeAll.length-freeOpen} verkauft · Gewinn <span class="pos">${eur(freeG)}</span></div></div>
     <div class="kpi"><div class="l">Nebenkosten</div><div class="v num">${eur(kosten)}</div></div>
     <div class="kpi"><div class="l">Gewinn nach Nebenkosten</div><div class="v num ${gewinn-kosten>=0?"pos":"neg"}">${eur(gewinn-kosten)}</div></div>
     <div class="kpi" style="grid-column:1 / -1"><div class="l">Kassenstand Monat (Einnahmen − Einkäufe − Nebenkosten)</div><div class="v num ${einnahmen-ausgaben-kosten>=0?"pos":"neg"}">${eur(einnahmen-ausgaben-kosten)}</div></div>
