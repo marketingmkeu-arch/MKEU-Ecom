@@ -1,0 +1,434 @@
+<title>Resell-Buch</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+/* Layout: phone-first ledger. Sticky header + bottom tab bar; one column of rows like a cash book, platform as colour stripe. */
+:root{
+  --bg:#f5f4f0; --surface:#ffffff; --ink:#1b1d1f; --muted:#62676d; --rule:#dedbd3; --accent:#2f4b8a; --accent-ink:#ffffff;
+  --kl-bg:#e2f3e5; --kl-ink:#1c6a33; --kl-bar:#2e9b4c;
+  --eb-bg:#fbe3e1; --eb-ink:#a8231b; --eb-bar:#d93b30;
+  --cm-bg:#fdf0d3; --cm-ink:#7d5200; --cm-bar:#e0a020;
+  --pv-bg:#ebedf2; --pv-ink:#3d4656; --pv-bar:#7b8698;
+  --pos:#1c6a33; --neg:#a8231b;
+  --f-body:"Familjen Grotesk",system-ui,sans-serif; --f-num:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141517; --surface:#1d1f22; --ink:#ecebe7; --muted:#a2a6ab; --rule:#30333a; --accent:#8fa8e8; --accent-ink:#0f1320;
+  --kl-bg:#163222; --kl-ink:#8fdca6; --kl-bar:#3fb565;
+  --eb-bg:#3a1a18; --eb-ink:#ff9d94; --eb-bar:#e5564b;
+  --cm-bg:#3a2c10; --cm-ink:#f5cd73; --cm-bar:#e0a020;
+  --pv-bg:#262a31; --pv-ink:#c3c9d4; --pv-bar:#7b8698;
+  --pos:#8fdca6; --neg:#ff9d94; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141517; --surface:#1d1f22; --ink:#ecebe7; --muted:#a2a6ab; --rule:#30333a; --accent:#8fa8e8; --accent-ink:#0f1320;
+  --kl-bg:#163222; --kl-ink:#8fdca6; --kl-bar:#3fb565;
+  --eb-bg:#3a1a18; --eb-ink:#ff9d94; --eb-bar:#e5564b;
+  --cm-bg:#3a2c10; --cm-ink:#f5cd73; --cm-bar:#e0a020;
+  --pv-bg:#262a31; --pv-ink:#c3c9d4; --pv-bar:#7b8698;
+  --pos:#8fdca6; --neg:#ff9d94; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.45 var(--f-body);-webkit-font-smoothing:antialiased;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 24px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule)}
+header.top .wrap{padding-block:12px;display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-size:22px;margin:0;font-weight:700;letter-spacing:-.01em}
+h2{font-size:18px;margin:22px 0 8px;font-weight:700}
+.muted{color:var(--muted)}
+.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.banner{background:var(--cm-bg);color:var(--cm-ink);border-radius:8px;padding:10px 12px;font-size:14px;margin-top:10px}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,1fr);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+nav.tabs button{background:none;border:0;border-top:3px solid transparent;color:var(--muted);font:700 14px var(--f-body);padding:14px 4px 16px;cursor:pointer}
+nav.tabs button[aria-current="page"]{color:var(--accent);border-top-color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:11px 16px;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--rule)}
+.btn.danger{background:transparent;color:var(--neg);border:1px solid var(--rule)}
+.btn:disabled{opacity:.5}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+textarea{width:100%;min-height:120px;border:1px solid var(--rule);background:var(--surface);border-radius:10px;padding:12px;font-size:17px;resize:vertical}
+input,select{width:100%;border:1px solid var(--rule);background:var(--surface);border-radius:8px;padding:9px 10px;font-size:16px}
+label{display:grid;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+.row-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.hint{font-size:14px;color:var(--muted);margin-top:8px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:12px}
+.preview{display:grid;gap:10px;margin-top:14px}
+.pv-head{font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.monthbar{display:flex;gap:6px;overflow-x:auto;padding-block:4px}
+.monthbar button{flex:none;border:1px solid var(--rule);background:var(--surface);border-radius:999px;padding:6px 12px;font-weight:600;font-size:14px;cursor:pointer}
+.monthbar button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.ledger{display:grid;gap:6px;margin-top:10px}
+.item{display:grid;grid-template-columns:1fr auto;gap:2px 10px;background:var(--surface);border:1px solid var(--rule);border-left:5px solid var(--rule);border-radius:8px;padding:9px 10px;cursor:pointer;text-align:left;width:100%}
+.item.kl{background:var(--kl-bg);border-left-color:var(--kl-bar)}
+.item.eb{background:var(--eb-bg);border-left-color:var(--eb-bar)}
+.item.cm{background:var(--cm-bg);border-left-color:var(--cm-bar)}
+.item.pv{background:var(--pv-bg);border-left-color:var(--pv-bar)}
+.item .name{font-weight:700;min-width:0;overflow-wrap:anywhere}
+.item .meta{font-size:13px;color:var(--muted)}
+.item .money{text-align:right;font-size:14px}
+.item .profit{font-weight:700}
+.pos{color:var(--pos)} .neg{color:var(--neg)}
+.chip{display:inline-block;font-size:12px;font-weight:700;border-radius:4px;padding:1px 6px;margin-right:6px}
+.chip.kl{background:var(--kl-bar);color:#fff} .chip.eb{background:var(--eb-bar);color:#fff} .chip.cm{background:var(--cm-bar);color:#2b1d00} .chip.pv{background:var(--pv-bar);color:#fff} .chip.open{background:transparent;border:1px solid var(--rule);color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+.kpi{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:10px 12px}
+.kpi .l{font-size:13px;color:var(--muted)} .kpi .v{font-size:20px;font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:7px 6px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:13px}
+td.r,th.r{text-align:right}
+.tablewrap{overflow-x:auto;margin-top:8px;background:var(--surface);border:1px solid var(--rule);border-radius:10px}
+.bar{height:8px;border-radius:4px;background:var(--rule);overflow:hidden;margin-top:6px}
+.bar>i{display:block;height:100%;background:var(--accent)}
+dialog{border:0;border-radius:14px;padding:0;background:var(--surface);color:var(--ink);width:min(560px,calc(100vw - 24px));max-height:calc(100vh - 40px)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog form{padding:16px;display:grid;gap:10px}
+.plan li{margin-top:6px}
+.empty{padding:24px 12px;text-align:center;color:var(--muted)}
+@media (max-width:380px){.grid3{grid-template-columns:1fr 1fr}}
+</style>
+
+<header class="top"><div class="wrap"><h1 id="title">Resell-Buch</h1><span class="muted" id="status">verbinde …</span></div></header>
+<main class="wrap" id="main"></main>
+<nav class="tabs" aria-label="Bereiche">
+  <button data-tab="erfassen" id="tab-erfassen">Erfassen</button>
+  <button data-tab="tabelle" id="tab-tabelle">Tabelle</button>
+  <button data-tab="uebersicht" id="tab-uebersicht">Übersicht</button>
+  <button data-tab="shanghai" id="tab-shanghai">Shanghai</button>
+</nav>
+
+<dialog id="dlg"><form id="dlgform" method="dialog"></form></dialog>
+
+<script>
+const PLATFORMS = ["Kleinanzeigen","eBay","Cardmarket","Privat"];
+const PCLASS = {"Kleinanzeigen":"kl","eBay":"eb","Cardmarket":"cm","Privat":"pv"};
+const S = { items:[], shanghai:[], settings:{fx:7.374, freight:3}, tab:"erfassen", month:null, proposal:null, busy:false, db:null, sample:null, dl:null, loaded:false };
+try { const t = localStorage.getItem("rb-tab"); if (t) S.tab = t; } catch(e) {}
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const eur = n => (n==null || isNaN(n)) ? "–" : n.toLocaleString("de-DE",{minimumFractionDigits:2,maximumFractionDigits:2}) + " €";
+const num = v => { if (v===""||v==null) return null; const n = Number(String(v).replace(",", ".")); return isNaN(n) ? null : n; };
+const today = () => new Date().toISOString().slice(0,10);
+const monthOf = d => (d||"").slice(0,7);
+const MONTHS = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+const monthName = m => m ? MONTHS[+m.slice(5,7)-1] + " " + m.slice(0,4) : "";
+const fmtDate = d => d ? d.slice(8,10)+"."+d.slice(5,7)+"." : "";
+const income = i => i.payout != null ? i.payout : i.sell;
+const profitOf = i => i.profitManual != null ? i.profitManual : (income(i)!=null && i.buy!=null ? income(i) - i.buy : null);
+const pcls = p => PCLASS[p] || "";
+
+/* ---------- render ---------- */
+function render(){
+  document.querySelectorAll("nav.tabs button").forEach(b => b.setAttribute("aria-current", b.dataset.tab===S.tab ? "page" : "false"));
+  const m = $("#main");
+  if (S.tab==="erfassen") m.innerHTML = viewErfassen();
+  else if (S.tab==="tabelle") m.innerHTML = viewTabelle();
+  else if (S.tab==="uebersicht") m.innerHTML = viewUebersicht();
+  else m.innerHTML = viewShanghai();
+}
+function months(){
+  const set = new Set(S.items.map(i=>monthOf(i.date)).filter(Boolean));
+  S.items.forEach(i=>{ if(i.soldDate) set.add(monthOf(i.soldDate)); });
+  set.add(monthOf(today()));
+  return [...set].sort();
+}
+function monthBar(){
+  const ms = months(); if (!S.month || !ms.includes(S.month)) S.month = ms[ms.length-1];
+  return `<div class="monthbar" role="group" aria-label="Monat">${ms.map(x=>`<button data-month="${x}" aria-pressed="${x===S.month}">${monthName(x)}</button>`).join("")}</div>`;
+}
+
+function viewErfassen(){
+  const p = S.proposal;
+  return `
+  ${!S.db && S.loaded ? `<div class="banner">Speichern ist in dieser Ansicht nicht verfügbar. Öffne die App über claude.ai, angemeldet.</div>`:""}
+  <h2 style="margin-top:6px">Was hast du gekauft oder verkauft?</h2>
+  <textarea id="input" placeholder="Tippe auf das Mikrofon der Tastatur und sprich, z. B.: „Gekauft: Riftbound Secret Garden Set für 89,99.“ oder „Verkauft: TTB 30 Jahre auf Kleinanzeigen für 140.“">${esc(S.draft||"")}</textarea>
+  <div class="row-actions">
+    <button class="btn" id="btn-parse" ${S.busy?"disabled":""}>${S.busy?"Claude liest …":"Eintrag vorschlagen"}</button>
+    <button class="btn ghost" id="btn-manual">Manuell anlegen</button>
+  </div>
+  <p class="hint">Claude erkennt gleiche Produkte auch bei kürzerem Namen und ordnet Verkäufe dem passenden Einkauf zu. Du prüfst den Vorschlag, bevor er gespeichert wird.</p>
+  ${S.error?`<div class="banner">${esc(S.error)}</div>`:""}
+  ${p ? viewProposal(p) : ""}
+  <h2>Zuletzt</h2>
+  <div class="ledger">${recent().map(itemRow).join("") || `<div class="empty">Noch keine Einträge.</div>`}</div>`;
+}
+function recent(){ return [...S.items].sort((a,b)=>(b.updated||0)-(a.updated||0)).slice(0,5); }
+
+function viewProposal(p){
+  const rows = p.actions.map((a,k)=>{
+    if (a.type==="buy") return `<div class="card"><div class="pv-head">Einkauf</div>
+      <div class="grid2" style="margin-top:8px">
+        <label>Produkt<input data-pk="${k}" data-f="name" value="${esc(a.name)}"></label>
+        <label>Datum<input type="date" data-pk="${k}" data-f="date" value="${esc(a.date)}"></label>
+        <label>Stückpreis €<input inputmode="decimal" data-pk="${k}" data-f="unitPrice" value="${a.unitPrice??""}"></label>
+        <label>Anzahl<input inputmode="numeric" data-pk="${k}" data-f="qty" value="${a.qty??1}"></label>
+      </div>
+      <label style="margin-top:8px">Notiz<input data-pk="${k}" data-f="note" value="${esc(a.note||"")}"></label></div>`;
+    const match = a.matchId ? S.items.find(i=>i.id===a.matchId) : null;
+    return `<div class="card"><div class="pv-head">Verkauf ${match?`· passt zu Einkauf vom ${fmtDate(match.date)} (${eur(match.buy)})`:"· kein offener Einkauf gefunden"}</div>
+      <div class="grid2" style="margin-top:8px">
+        <label>Produkt<input data-pk="${k}" data-f="name" value="${esc(a.name)}"></label>
+        <label>Plattform<select data-pk="${k}" data-f="platform">${PLATFORMS.map(x=>`<option ${x===a.platform?"selected":""}>${x}</option>`).join("")}</select></label>
+        <label>Verkaufspreis €<input inputmode="decimal" data-pk="${k}" data-f="sellPrice" value="${a.sellPrice??""}"></label>
+        <label>Auszahlung €<input inputmode="decimal" data-pk="${k}" data-f="payout" value="${a.payout??""}" placeholder="optional"></label>
+        <label>Verkauft am<input type="date" data-pk="${k}" data-f="date" value="${esc(a.date)}"></label>
+        ${match?"":`<label>Einkaufspreis €<input inputmode="decimal" data-pk="${k}" data-f="buyPrice" value="${a.buyPrice??""}"></label>`}
+      </div></div>`;
+  }).join("");
+  return `<div class="preview">${p.question?`<div class="banner">${esc(p.question)}</div>`:""}${rows}
+    <div class="row-actions"><button class="btn" id="btn-apply">Übernehmen</button><button class="btn ghost" id="btn-discard">Verwerfen</button></div></div>`;
+}
+
+function itemRow(i){
+  const pr = profitOf(i), c = pcls(i.platform);
+  return `<button class="item ${c}" data-edit="${i.id}">
+    <span class="name">${esc(i.name)}</span>
+    <span class="money num">${i.sell!=null||i.payout!=null ? eur(income(i)) : `<span class="muted">offen</span>`}</span>
+    <span class="meta">${i.platform?`<span class="chip ${c}">${esc(i.platform)}</span>`:`<span class="chip open">nicht verkauft</span>`}${fmtDate(i.date)} · EK <span class="num">${eur(i.buy)}</span>${i.note?" · "+esc(i.note):""}</span>
+    <span class="money num profit ${pr==null?"":pr>=0?"pos":"neg"}">${pr==null?"":(pr>=0?"+":"")+eur(pr)}</span>
+  </button>`;
+}
+
+function viewTabelle(){
+  const mb = monthBar();
+  const list2 = S.items.filter(i=>monthOf(i.date)===S.month).sort((a,b)=>(a.date||"").localeCompare(b.date||""));
+  const buy = list2.reduce((s,i)=>s+(i.buy||0),0), sold = list2.filter(i=>income(i)!=null);
+  return `${mb}
+  <p class="muted" style="margin:6px 0 0">Einkäufe im ${monthName(S.month)} · ${list2.length} Positionen · EK <span class="num">${eur(buy)}</span> · ${sold.length} verkauft</p>
+  <div class="row-actions"><button class="btn ghost" id="btn-manual">+ Zeile</button><button class="btn ghost" id="btn-export">Als Excel speichern</button></div>
+  <div class="ledger">${list2.map(itemRow).join("") || `<div class="empty">Keine Einkäufe in diesem Monat.</div>`}</div>
+  <p class="hint">Zeile antippen zum Bearbeiten oder Löschen. Farben: <span class="chip kl">Kleinanzeigen</span><span class="chip eb">eBay</span><span class="chip cm">Cardmarket</span><span class="chip pv">Privat</span></p>`;
+}
+
+function viewUebersicht(){
+  const mb = monthBar(), m = S.month;
+  const bought = S.items.filter(i=>monthOf(i.date)===m);
+  const soldIn = S.items.filter(i=>income(i)!=null && monthOf(i.soldDate||i.date)===m);
+  const ausgaben = bought.reduce((s,i)=>s+(i.buy||0),0);
+  const einnahmen = soldIn.reduce((s,i)=>s+(income(i)||0),0);
+  const gewinn = soldIn.reduce((s,i)=>s+(profitOf(i)||0),0);
+  const lager = S.items.filter(i=>income(i)==null);
+  const lagerwert = lager.reduce((s,i)=>s+(i.buy||0),0);
+  const byP = PLATFORMS.map(p=>{ const x = soldIn.filter(i=>i.platform===p); return {p, n:x.length, sum:x.reduce((s,i)=>s+(income(i)||0),0), g:x.reduce((s,i)=>s+(profitOf(i)||0),0)}; });
+  const year = m.slice(0,4);
+  const yUmsatz = S.items.filter(i=>income(i)!=null && (i.soldDate||i.date||"").startsWith(year)).reduce((s,i)=>s+(i.sell??i.payout??0),0);
+  const pct = Math.min(100, yUmsatz/25000*100);
+  return `${mb}
+  <div class="kpis">
+    <div class="kpi"><div class="l">Einnahmen (verkauft im Monat)</div><div class="v num">${eur(einnahmen)}</div></div>
+    <div class="kpi"><div class="l">Ausgaben (eingekauft im Monat)</div><div class="v num">${eur(ausgaben)}</div></div>
+    <div class="kpi"><div class="l">Gewinn aus Verkäufen</div><div class="v num ${gewinn>=0?"pos":"neg"}">${eur(gewinn)}</div></div>
+    <div class="kpi"><div class="l">Kassenstand Monat</div><div class="v num ${einnahmen-ausgaben>=0?"pos":"neg"}">${eur(einnahmen-ausgaben)}</div></div>
+  </div>
+  <h2>Nach Plattform</h2>
+  <div class="tablewrap"><table><thead><tr><th>Plattform</th><th class="r">Stück</th><th class="r">Einnahmen</th><th class="r">Gewinn</th></tr></thead>
+  <tbody>${byP.map(r=>`<tr><td><span class="chip ${pcls(r.p)}">${r.p}</span></td><td class="r num">${r.n}</td><td class="r num">${eur(r.sum)}</td><td class="r num">${eur(r.g)}</td></tr>`).join("")}</tbody></table></div>
+  <h2>Lager</h2>
+  <p>${lager.length} Artikel noch nicht verkauft · gebunden <span class="num">${eur(lagerwert)}</span></p>
+  <h2>Umsatz ${year} (Kleinunternehmer)</h2>
+  <p class="num">${eur(yUmsatz)} von 25.000 €</p><div class="bar"><i style="width:${pct}%"></i></div>
+  <p class="hint">Grenze Vorjahr 25.000 €, im laufenden Jahr 100.000 € (§ 19 UStG, Stand 2025, bitte mit Steuerberater prüfen).</p>`;
+}
+
+/* ---------- Shanghai ---------- */
+function landed(rmb){ const f = S.settings; const e = rmb / f.fx; return (e + f.freight) * 1.027 * 1.19; }
+function viewShanghai(){
+  const rows = [...S.shanghai].sort((a,b)=>(a.order||0)-(b.order||0));
+  let tq=0,trmb=0,tland=0,tsell=0;
+  const body = rows.map(r=>{
+    const q = r.qty||0, l = r.rmb!=null ? landed(r.rmb) : null, prof = (r.expSell!=null && l!=null) ? (r.expSell - l) : null;
+    tq+=q; trmb+=q*(r.rmb||0); tland+=q*(l||0); tsell+=q*(r.expSell||0);
+    return `<tr data-sh="${r.id}" style="cursor:pointer"><td>${esc(r.name)}${r.status?`<div class="muted" style="font-size:12px">${esc(r.status)}</div>`:""}</td><td class="r num">${q}</td><td class="r num">${r.rmb??"–"}</td><td class="r num">${l==null?"–":l.toFixed(2)}</td><td class="r num">${r.expSell??"–"}</td><td class="r num ${prof==null?"":prof>=0?"pos":"neg"}">${prof==null?"–":(prof>=0?"+":"")+prof.toFixed(2)}</td></tr>`;
+  }).join("");
+  return `
+  <h2 style="margin-top:6px">Shanghai 01.–16.11.2026</h2>
+  <ol class="plan">
+    <li><b>02.11.</b> Pudong-Läden zu Fuß, Gem Pack 7 reservieren.</li>
+    <li><b>03.11.</b> Offizielles Gym Zhongshan Park, dann Baimi-Mall (JE) und Fuzhou Road.</li>
+    <li><b>04.11.</b> PokeColor, Card Hobby K11. Angebote vergleichen.</li>
+    <li><b>06.11. 10:00</b> Release Gem Pack 7 + Schwarz/Weiß-Sets.</li>
+    <li><b>07.–09.11.</b> Hauptkäufe. <b>10.–12.11.</b> Double 11, Lieferungen ins Hotel bis 12.11.</li>
+    <li><b>14.–15.11.</b> Packen. <b>16.11.</b> Flug, Düsseldorf roter Ausgang (EORI).</li>
+  </ol>
+  <p class="hint">Stand Läden: 30 Jahre bei Card Hobby und Agul ausverkauft. Card Hobby: Terastal 300 RMB nur mit Zusatzkauf, Gem Pack 7 voraussichtlich zum UVP, keine Reservierung. <a href="https://claude.ai/artifact/5WXyBfaYeNL6QfAntYZKWw" target="_blank" rel="noopener">Ganzer Reiseplan</a></p>
+  <h2>Einkaufsliste</h2>
+  <div class="grid2" style="max-width:360px"><label>Kurs RMB/€<input id="set-fx" inputmode="decimal" value="${S.settings.fx}"></label><label>Gepäck €/Stück<input id="set-fr" inputmode="decimal" value="${S.settings.freight}"></label></div>
+  <div class="tablewrap"><table><thead><tr><th>Produkt</th><th class="r">Stk</th><th class="r">EK RMB</th><th class="r">bis DE €</th><th class="r">VK €</th><th class="r">Gewinn/Stk</th></tr></thead>
+  <tbody>${body || `<tr><td colspan="6" class="muted">Noch keine Positionen.</td></tr>`}</tbody>
+  <tfoot><tr><th>Summe</th><th class="r num">${tq}</th><th class="r num">${trmb.toLocaleString("de-DE")}</th><th class="r num">${tland.toFixed(0)}</th><th class="r num">${tsell.toFixed(0)}</th><th class="r num ${tsell-tland>=0?"pos":"neg"}">${(tsell-tland).toFixed(0)}</th></tr></tfoot></table></div>
+  <p class="hint">„bis DE“ = EK ÷ Kurs + Gepäck, dann 2,7 % Zoll und 19 % Einfuhrumsatzsteuer. Warenwert ${eur(trmb/S.settings.fx)} von 4.000 € Budget. Zeile antippen zum Bearbeiten.</p>
+  <div class="row-actions"><button class="btn ghost" id="btn-sh-add">+ Position</button></div>`;
+}
+
+/* ---------- dialogs ---------- */
+function openItemDialog(item){
+  const it = item || {date:today(), name:"", buy:null, sell:null, payout:null, platform:"", soldDate:"", note:""};
+  $("#dlgform").innerHTML = `
+    <h2 style="margin:0">${item?"Eintrag bearbeiten":"Neuer Eintrag"}</h2>
+    <label>Produkt<input name="name" value="${esc(it.name)}" required></label>
+    <div class="grid2">
+      <label>Kaufdatum<input type="date" name="date" value="${esc(it.date)}"></label>
+      <label>Einkaufspreis €<input name="buy" inputmode="decimal" value="${it.buy??""}"></label>
+      <label>Verkaufspreis €<input name="sell" inputmode="decimal" value="${it.sell??""}"></label>
+      <label>Auszahlung €<input name="payout" inputmode="decimal" value="${it.payout??""}" placeholder="optional"></label>
+      <label>Plattform<select name="platform"><option value="">– nicht verkauft –</option>${PLATFORMS.map(p=>`<option ${p===it.platform?"selected":""}>${p}</option>`).join("")}</select></label>
+      <label>Verkauft am<input type="date" name="soldDate" value="${esc(it.soldDate||"")}"></label>
+    </div>
+    <label>Gewinn manuell € (optional, sonst automatisch)<input name="profitManual" inputmode="decimal" value="${it.profitManual??""}"></label>
+    <label>Notiz<input name="note" value="${esc(it.note||"")}"></label>
+    <div class="row-actions"><button class="btn" value="save">Speichern</button><button class="btn ghost" value="cancel" formnovalidate>Abbrechen</button>${item?`<button class="btn danger" value="delete" formnovalidate>Löschen</button>`:""}</div>`;
+  const dlg = $("#dlg");
+  dlg.onclose = async () => {
+    const v = dlg.returnValue; if (!S.db || v==="cancel" || !v) return;
+    const fd = new FormData($("#dlgform"));
+    if (v==="delete" && item){ await S.db.doc("items/"+item.id).delete(); return; }
+    const data = { name:String(fd.get("name")||"").trim(), date:fd.get("date")||today(), buy:num(fd.get("buy")), sell:num(fd.get("sell")), payout:num(fd.get("payout")),
+      platform:fd.get("platform")||"", soldDate:fd.get("soldDate")||"", profitManual:num(fd.get("profitManual")), note:String(fd.get("note")||""), updated:Date.now() };
+    if (data.sell!=null && !data.soldDate) data.soldDate = today();
+    try { if (item) await S.db.doc("items/"+item.id).set(data); else await S.db.collection("items").add(data); } catch(e){ alertMsg(e); }
+  };
+  dlg.returnValue = ""; dlg.showModal();
+}
+function openShDialog(r){
+  const x = r || {name:"", qty:1, rmb:null, expSell:null, status:""};
+  $("#dlgform").innerHTML = `
+    <h2 style="margin:0">${r?"Position bearbeiten":"Neue Position"}</h2>
+    <label>Produkt<input name="name" value="${esc(x.name)}" required></label>
+    <div class="grid3">
+      <label>Stück<input name="qty" inputmode="numeric" value="${x.qty??""}"></label>
+      <label>EK RMB/Stk<input name="rmb" inputmode="decimal" value="${x.rmb??""}"></label>
+      <label>VK €/Stk<input name="expSell" inputmode="decimal" value="${x.expSell??""}"></label>
+    </div>
+    <label>Status / Notiz<input name="status" value="${esc(x.status||"")}"></label>
+    <div class="row-actions"><button class="btn" value="save">Speichern</button><button class="btn ghost" value="cancel" formnovalidate>Abbrechen</button>${r?`<button class="btn danger" value="delete" formnovalidate>Löschen</button>`:""}</div>`;
+  const dlg = $("#dlg");
+  dlg.onclose = async () => {
+    const v = dlg.returnValue; if (!S.db || v==="cancel" || !v) return;
+    const fd = new FormData($("#dlgform"));
+    if (v==="delete" && r){ await S.db.doc("shanghai/"+r.id).delete(); return; }
+    const data = { name:String(fd.get("name")||"").trim(), qty:num(fd.get("qty"))||0, rmb:num(fd.get("rmb")), expSell:num(fd.get("expSell")), status:String(fd.get("status")||""), order: r?.order ?? Date.now() };
+    try { if (r) await S.db.doc("shanghai/"+r.id).set(data); else await S.db.collection("shanghai").add(data); } catch(e){ alertMsg(e); }
+  };
+  dlg.returnValue = ""; dlg.showModal();
+}
+function alertMsg(e){ S.error = "Speichern fehlgeschlagen: " + (e?.message||e?.code||e); render(); }
+
+/* ---------- Claude parsing ---------- */
+async function parse(){
+  const text = ($("#input")?.value||"").trim(); S.draft = text; if (!text) return;
+  if (!S.sample){ S.error = "Claude ist in dieser Ansicht nicht verfügbar. Lege den Eintrag manuell an."; render(); return; }
+  S.busy = true; S.error = null; render();
+  const names = [...new Set(S.items.map(i=>i.name))].slice(0,300);
+  const open = S.items.filter(i=>income(i)==null).sort((a,b)=>(a.date||"").localeCompare(b.date||"")).map(i=>({id:i.id,name:i.name,buy:i.buy,date:i.date})).slice(0,200);
+  const prompt = `Du bist die Eingabehilfe eines Resell-Kassenbuchs (Sammelkarten, Spielzeug). Heute ist ${today()}.
+Wandle die diktierte Notiz in Aktionen um. Antworte NUR mit JSON in genau dieser Form:
+{"actions":[{"type":"buy","name":string,"qty":number,"unitPrice":number|null,"date":"YYYY-MM-DD","note":string},{"type":"sell","name":string,"matchId":string|null,"sellPrice":number|null,"payout":number|null,"platform":"Kleinanzeigen"|"eBay"|"Cardmarket"|"Privat","date":"YYYY-MM-DD","buyPrice":number|null}],"question":string|null}
+Regeln:
+- "gekauft/geholt/bestellt" = buy, "verkauft/weg für" = sell. Mehrere Dinge = mehrere Aktionen.
+- Bei Stückzahl und Gesamtpreis: unitPrice = Gesamtpreis / Anzahl.
+- Produktnamen vereinheitlichen: Wenn ein bekannter Name dasselbe Produkt meint (z. B. "Garden Set" = "Riftbound Secret Garden Set", "30er TTB" = "TTB 30 J"), nimm den bekannten Namen genau so. Sonst einen klaren, kurzen Namen.
+- Bei sell: matchId = id des ÄLTESTEN offenen Einkaufs mit demselben Produkt, sonst null. "Auszahlung" = payout. Plattform: Kleinanzeigen/eBay/Cardmarket, privat/Freund = Privat.
+- Datum: "heute" = ${today()}, "gestern" = Vortag; ohne Angabe heute.
+- Fehlt etwas Wichtiges (Preis), setze null und stelle in "question" eine kurze Rückfrage auf Deutsch, sonst null.
+Bekannte Produktnamen: ${JSON.stringify(names)}
+Offene (unverkaufte) Einkäufe: ${JSON.stringify(open)}
+Notiz: """${text}"""`;
+  try {
+    const res = await S.sample.json(prompt, { modelTier:"default" });
+    const acts = Array.isArray(res?.actions) ? res.actions.filter(a=>a && (a.type==="buy"||a.type==="sell")) : [];
+    acts.forEach(a=>{ a.date = /^\d{4}-\d{2}-\d{2}$/.test(a.date||"") ? a.date : today(); if (a.type==="sell" && a.matchId && !S.items.some(i=>i.id===a.matchId)) a.matchId=null; if (a.type==="sell" && !PLATFORMS.includes(a.platform)) a.platform="Kleinanzeigen"; });
+    S.proposal = acts.length ? { actions:acts, question: res.question||null } : null;
+    if (!acts.length) S.error = res?.question || "Ich konnte daraus keinen Kauf oder Verkauf lesen. Formuliere es etwas genauer.";
+  } catch(e){
+    S.error = e?.code==="not_granted" ? "Claude-Zugriff wurde nicht erlaubt. Lege den Eintrag manuell an." : e?.code==="rate_limited" ? "Gerade zu viele Anfragen, versuch es gleich noch einmal." : "Claude konnte die Notiz nicht lesen ("+(e?.code||"Fehler")+").";
+  }
+  S.busy = false; render();
+}
+function readProposalInputs(){
+  document.querySelectorAll("[data-pk]").forEach(el=>{
+    const a = S.proposal.actions[+el.dataset.pk], f = el.dataset.f;
+    a[f] = ["unitPrice","qty","sellPrice","payout","buyPrice"].includes(f) ? num(el.value) : el.value;
+  });
+}
+async function applyProposal(){
+  if (!S.db || !S.proposal) return; readProposalInputs();
+  const btn = $("#btn-apply"); if (btn) btn.disabled = true;
+  try {
+    for (const a of S.proposal.actions){
+      if (a.type==="buy"){
+        const q = Math.max(1, Math.round(a.qty||1));
+        for (let k=0;k<q;k++) await S.db.collection("items").add({ name:(a.name||"").trim(), date:a.date, buy:a.unitPrice??null, sell:null, payout:null, platform:"", soldDate:"", profitManual:null, note:a.note||"", updated:Date.now() });
+      } else {
+        const m = a.matchId ? S.items.find(i=>i.id===a.matchId) : null;
+        const patch = { sell:a.sellPrice??null, payout:a.payout??null, platform:a.platform, soldDate:a.date, updated:Date.now() };
+        if (m) await S.db.doc("items/"+m.id).update(patch);
+        else await S.db.collection("items").add({ name:(a.name||"").trim(), date:a.date, buy:a.buyPrice??null, profitManual:null, note:"Einkauf nicht gefunden", ...patch });
+      }
+    }
+    S.proposal = null; S.draft = ""; S.error = null;
+  } catch(e){ S.error = "Speichern fehlgeschlagen: "+(e?.message||e?.code||e); }
+  render();
+}
+
+/* ---------- export ---------- */
+async function exportXlsx(){
+  if (!window.XLSX){ S.error="Excel-Export konnte nicht geladen werden."; render(); return; }
+  const wb = XLSX.utils.book_new();
+  const ms = [...new Set(S.items.map(i=>monthOf(i.date)).filter(Boolean))].sort();
+  ms.forEach(m=>{
+    const rows = S.items.filter(i=>monthOf(i.date)===m).sort((a,b)=>(a.date||"").localeCompare(b.date||""))
+      .map(i=>[i.date, i.name, i.buy, i.sell, i.payout, profitOf(i), i.platform, i.soldDate, i.note]);
+    const ws = XLSX.utils.aoa_to_sheet([["Datum","Sache","Einkaufspreis","Verkaufspreis","Auszahlung","Gewinn","Plattform","Verkauft am","Sonstiges"], ...rows]);
+    ws["!cols"] = [{wch:11},{wch:30},{wch:13},{wch:13},{wch:11},{wch:10},{wch:14},{wch:11},{wch:30}];
+    XLSX.utils.book_append_sheet(wb, ws, monthName(m).slice(0,31));
+  });
+  const sh = [["Produkt","Stück","EK RMB","bis DE €/Stk","VK €/Stk","Status"], ...S.shanghai.map(r=>[r.name,r.qty,r.rmb,r.rmb!=null?+landed(r.rmb).toFixed(2):null,r.expSell,r.status])];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(sh), "Shanghai");
+  const buf = XLSX.write(wb, {type:"array", bookType:"xlsx"});
+  if (!S.dl){ S.error="Speichern von Dateien ist in dieser Ansicht nicht verfügbar."; render(); return; }
+  try { await S.dl.save({ filename:"Resell-Buch_"+today()+".xlsx", data:new Blob([buf]) }); }
+  catch(e){ if (e?.code!=="declined"){ S.error="Export nicht möglich ("+(e?.code||"Fehler")+")."; render(); } }
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", e=>{
+  const t = e.target.closest("button, tr[data-sh]"); if (!t) return;
+  if (t.dataset.tab){ S.tab = t.dataset.tab; try{localStorage.setItem("rb-tab",S.tab)}catch(_){}; render(); window.scrollTo(0,0); return; }
+  if (t.dataset.month){ S.month = t.dataset.month; render(); return; }
+  if (t.dataset.edit){ openItemDialog(S.items.find(i=>i.id===t.dataset.edit)); return; }
+  if (t.dataset.sh){ openShDialog(S.shanghai.find(r=>r.id===t.dataset.sh)); return; }
+  if (t.id==="btn-parse") parse();
+  else if (t.id==="btn-manual") openItemDialog(null);
+  else if (t.id==="btn-apply") applyProposal();
+  else if (t.id==="btn-discard"){ S.proposal=null; render(); }
+  else if (t.id==="btn-export") exportXlsx();
+  else if (t.id==="btn-sh-add") openShDialog(null);
+});
+document.addEventListener("input", e=>{ if (e.target.id==="input") S.draft = e.target.value; });
+document.addEventListener("change", async e=>{
+  if ((e.target.id==="set-fx" || e.target.id==="set-fr") && S.db){
+    const fx = num($("#set-fx").value), fr = num($("#set-fr").value);
+    if (fx && fr!=null) { try { await S.db.doc("settings/main").set({fx, freight:fr}); } catch(err){ alertMsg(err); } }
+  }
+});
+
+/* ---------- boot ---------- */
+render();
+(async()=>{
+  if (!window.claude?.use){ S.loaded = true; $("#status").textContent = "nur Ansicht"; render(); return; }
+  const [db, sample, dl] = await Promise.all([claude.use("db"), claude.use("sample"), claude.use("downloads")]);
+  S.db = db; S.sample = sample; S.dl = dl; S.loaded = true;
+  $("#status").textContent = db ? "" : "nur Ansicht";
+  if (!db){ render(); return; }
+  db.collection("items").onSnapshot(s=>{ S.items = s.docs.map(d=>({id:d.id, ...d.data()})); render(); }, err=>{ $("#status").textContent="Verbindung verloren"; });
+  db.collection("shanghai").onSnapshot(s=>{ S.shanghai = s.docs.map(d=>({id:d.id, ...d.data()})); if (S.tab==="shanghai") render(); });
+  db.doc("settings/main").onSnapshot(s=>{ if (s.exists) { S.settings = {fx:7.374, freight:3, ...s.data()}; if (S.tab==="shanghai") render(); } });
+})();
+</script>
