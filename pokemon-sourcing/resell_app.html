@@ -109,7 +109,7 @@ dialog form{padding:16px;display:grid;gap:10px}
 <script>
 const PLATFORMS = ["Kleinanzeigen","eBay","Cardmarket","Privat"];
 const PCLASS = {"Kleinanzeigen":"kl","eBay":"eb","Cardmarket":"cm","Privat":"pv"};
-const S = { items:[], shanghai:[], settings:{fx:7.374, freight:3}, tab:"erfassen", month:null, proposal:null, busy:false, db:null, sample:null, dl:null, loaded:false };
+const S = { items:[], expenses:[], shanghai:[], settings:{fx:7.374, freight:3}, tab:"erfassen", month:null, proposal:null, busy:false, db:null, sample:null, dl:null, loaded:false };
 try { const t = localStorage.getItem("rb-tab"); if (t) S.tab = t; } catch(e) {}
 
 const $ = s => document.querySelector(s);
@@ -137,6 +137,7 @@ function render(){
 function months(){
   const set = new Set(S.items.map(i=>monthOf(i.date)).filter(Boolean));
   S.items.forEach(i=>{ if(i.soldDate) set.add(monthOf(i.soldDate)); });
+  S.expenses.forEach(x=>{ if(x.date) set.add(monthOf(x.date)); });
   set.add(monthOf(today()));
   return [...set].sort();
 }
@@ -149,7 +150,7 @@ function viewErfassen(){
   const p = S.proposal;
   return `
   ${!S.db && S.loaded ? `<div class="banner">Speichern ist in dieser Ansicht nicht verfügbar. Öffne die App über claude.ai, angemeldet.</div>`:""}
-  <h2 style="margin-top:6px">Was hast du gekauft oder verkauft?</h2>
+  <h2 style="margin-top:6px">Was hast du gekauft, verkauft oder ausgegeben?</h2>
   <textarea id="input" placeholder="Tippe auf das Mikrofon der Tastatur und sprich, z. B.: „Gekauft: Riftbound Secret Garden Set für 89,99.“ oder „Verkauft: TTB 30 Jahre auf Kleinanzeigen für 140.“">${esc(S.draft||"")}</textarea>
   <div class="row-actions">
     <button class="btn" id="btn-parse" ${S.busy?"disabled":""}>${S.busy?"Claude liest …":"Eintrag vorschlagen"}</button>
@@ -174,6 +175,12 @@ function viewProposal(p){
         <label>Anzahl<input inputmode="numeric" data-pk="${k}" data-f="qty" value="${a.qty??1}"></label>
       </div>
       <label style="margin-top:8px">Notiz<input data-pk="${k}" data-f="note" value="${esc(a.note||"")}"></label></div>`;
+    if (a.type==="expense") return `<div class="card"><div class="pv-head">Nebenkosten</div>
+      <div class="grid3" style="margin-top:8px">
+        <label>Wofür<input data-pk="${k}" data-f="text" value="${esc(a.text)}"></label>
+        <label>Betrag €<input inputmode="decimal" data-pk="${k}" data-f="amount" value="${a.amount??""}"></label>
+        <label>Datum<input type="date" data-pk="${k}" data-f="date" value="${esc(a.date)}"></label>
+      </div></div>`;
     const match = a.matchId ? S.items.find(i=>i.id===a.matchId) : null;
     return `<div class="card"><div class="pv-head">Verkauf ${match?`· passt zu Einkauf vom ${fmtDate(match.date)} (${eur(match.buy)})`:"· kein offener Einkauf gefunden"}</div>
       <div class="grid2" style="margin-top:8px">
@@ -195,7 +202,7 @@ function itemRow(i){
     <span class="dt">${fmtDate(i.date)||"–"}<small>${i.soldDate?"Verk. "+fmtDate(i.soldDate):"Kauf"}</small></span>
     <span class="name">${esc(i.name)}</span>
     <span class="money num">${i.sell!=null||i.payout!=null ? eur(income(i)) : `<span class="muted">offen</span>`}</span>
-    <span class="meta">${i.platform?`<span class="chip ${c}">${esc(i.platform)}</span>`:`<span class="chip open">nicht verkauft</span>`}EK <span class="num">${eur(i.buy)}</span>${i.note?" · "+esc(i.note):""}</span>
+    <span class="meta">${i.platform?`<span class="chip ${c}">${esc(i.platform)}</span>`:(income(i)!=null?`<span class="chip open">Plattform?</span>`:`<span class="chip open">nicht verkauft</span>`)}EK <span class="num">${eur(i.buy)}</span>${i.note?" · "+esc(i.note):""}</span>
     <span class="money num profit ${pr==null?"":pr>=0?"pos":"neg"}">${pr==null?"":(pr>=0?"+":"")+eur(pr)}</span>
   </button>`;
 }
@@ -208,7 +215,37 @@ function viewTabelle(){
   <p class="muted" style="margin:6px 0 0">Einkäufe im ${monthName(S.month)} · ${list2.length} Positionen · EK <span class="num">${eur(buy)}</span> · ${sold.length} verkauft</p>
   <div class="row-actions"><button class="btn ghost" id="btn-manual">+ Zeile</button><button class="btn ghost" id="btn-export">Als Excel speichern</button></div>
   <div class="ledger">${list2.map(itemRow).join("") || `<div class="empty">Keine Einkäufe in diesem Monat.</div>`}</div>
-  <p class="hint">Zeile antippen zum Bearbeiten oder Löschen. Farben: <span class="chip kl">Kleinanzeigen</span><span class="chip eb">eBay</span><span class="chip cm">Cardmarket</span><span class="chip pv">Privat</span></p>`;
+  <p class="hint">Zeile antippen zum Bearbeiten oder Löschen. Farben: <span class="chip kl">Kleinanzeigen</span><span class="chip eb">eBay</span><span class="chip cm">Cardmarket</span><span class="chip pv">Privat</span></p>
+  ${viewExpenses()}`;
+}
+function expensesIn(m){ return S.expenses.filter(x=>monthOf(x.date)===m).sort((a,b)=>(a.date||"").localeCompare(b.date||"")); }
+function viewExpenses(){
+  const list = expensesIn(S.month), sum = list.reduce((s,x)=>s+(x.amount||0),0);
+  return `<h2>Nebenkosten im ${monthName(S.month)}</h2>
+  <p class="muted" style="margin:0">Tickets, Eintritt, Versand, Material … · Summe <span class="num">${eur(sum)}</span></p>
+  <div class="row-actions"><button class="btn ghost" id="btn-exp-add">+ Nebenkosten</button></div>
+  <div class="ledger">${list.map(x=>`<button class="item" data-exp="${x.id}">
+    <span class="dt">${fmtDate(x.date)}<small>Kosten</small></span>
+    <span class="name">${esc(x.text)}</span><span class="money num neg">−${eur(x.amount)}</span>
+    <span class="meta">${esc(x.note||"")}</span><span></span></button>`).join("") || `<div class="empty">Keine Nebenkosten in diesem Monat.</div>`}</div>`;
+}
+function openExpDialog(x){
+  const e = x || {date:today(), text:"", amount:null, note:""};
+  $("#dlgform").innerHTML = `
+    <h2 style="margin:0">${x?"Nebenkosten bearbeiten":"Neue Nebenkosten"}</h2>
+    <label>Wofür<input name="text" value="${esc(e.text)}" required></label>
+    <div class="grid2"><label>Datum<input type="date" name="date" value="${esc(e.date)}"></label><label>Betrag €<input name="amount" inputmode="decimal" value="${e.amount??""}"></label></div>
+    <label>Notiz<input name="note" value="${esc(e.note||"")}"></label>
+    <div class="row-actions"><button class="btn" value="save">Speichern</button><button class="btn ghost" value="cancel" formnovalidate>Abbrechen</button>${x?`<button class="btn danger" value="delete" formnovalidate>Löschen</button>`:""}</div>`;
+  const dlg = $("#dlg");
+  dlg.onclose = async () => {
+    const v = dlg.returnValue; if (!S.db || v==="cancel" || !v) return;
+    const fd = new FormData($("#dlgform"));
+    if (v==="delete" && x){ await S.db.doc("expenses/"+x.id).delete(); return; }
+    const data = { text:String(fd.get("text")||"").trim(), date:fd.get("date")||today(), amount:num(fd.get("amount")), note:String(fd.get("note")||""), updated:Date.now() };
+    try { if (x) await S.db.doc("expenses/"+x.id).set(data); else await S.db.collection("expenses").add(data); } catch(err){ alertMsg(err); }
+  };
+  dlg.returnValue = ""; dlg.showModal();
 }
 
 function viewUebersicht(){
@@ -218,6 +255,7 @@ function viewUebersicht(){
   const ausgaben = bought.reduce((s,i)=>s+(i.buy||0),0);
   const einnahmen = soldIn.reduce((s,i)=>s+(income(i)||0),0);
   const gewinn = soldIn.reduce((s,i)=>s+(profitOf(i)||0),0);
+  const kosten = expensesIn(m).reduce((s,x)=>s+(x.amount||0),0);
   const lager = S.items.filter(i=>income(i)==null);
   const lagerwert = lager.reduce((s,i)=>s+(i.buy||0),0);
   const byP = PLATFORMS.map(p=>{ const x = soldIn.filter(i=>i.platform===p); return {p, n:x.length, sum:x.reduce((s,i)=>s+(income(i)||0),0), g:x.reduce((s,i)=>s+(profitOf(i)||0),0)}; });
@@ -229,7 +267,9 @@ function viewUebersicht(){
     <div class="kpi"><div class="l">Einnahmen (verkauft im Monat)</div><div class="v num">${eur(einnahmen)}</div></div>
     <div class="kpi"><div class="l">Ausgaben (eingekauft im Monat)</div><div class="v num">${eur(ausgaben)}</div></div>
     <div class="kpi"><div class="l">Gewinn aus Verkäufen</div><div class="v num ${gewinn>=0?"pos":"neg"}">${eur(gewinn)}</div></div>
-    <div class="kpi"><div class="l">Kassenstand Monat</div><div class="v num ${einnahmen-ausgaben>=0?"pos":"neg"}">${eur(einnahmen-ausgaben)}</div></div>
+    <div class="kpi"><div class="l">Nebenkosten</div><div class="v num">${eur(kosten)}</div></div>
+    <div class="kpi"><div class="l">Gewinn nach Nebenkosten</div><div class="v num ${gewinn-kosten>=0?"pos":"neg"}">${eur(gewinn-kosten)}</div></div>
+    <div class="kpi" style="grid-column:1 / -1"><div class="l">Kassenstand Monat (Einnahmen − Einkäufe − Nebenkosten)</div><div class="v num ${einnahmen-ausgaben-kosten>=0?"pos":"neg"}">${eur(einnahmen-ausgaben-kosten)}</div></div>
   </div>
   <h2>Nach Plattform</h2>
   <div class="tablewrap"><table><thead><tr><th>Plattform</th><th class="r">Stück</th><th class="r">Einnahmen</th><th class="r">Gewinn</th></tr></thead>
@@ -333,9 +373,10 @@ async function parse(){
   const open = S.items.filter(i=>income(i)==null).sort((a,b)=>(a.date||"").localeCompare(b.date||"")).map(i=>({id:i.id,name:i.name,buy:i.buy,date:i.date})).slice(0,200);
   const prompt = `Du bist die Eingabehilfe eines Resell-Kassenbuchs (Sammelkarten, Spielzeug). Heute ist ${today()}.
 Wandle die diktierte Notiz in Aktionen um. Antworte NUR mit JSON in genau dieser Form:
-{"actions":[{"type":"buy","name":string,"qty":number,"unitPrice":number|null,"date":"YYYY-MM-DD","note":string},{"type":"sell","name":string,"matchId":string|null,"sellPrice":number|null,"payout":number|null,"platform":"Kleinanzeigen"|"eBay"|"Cardmarket"|"Privat","date":"YYYY-MM-DD","buyPrice":number|null}],"question":string|null}
+{"actions":[{"type":"buy","name":string,"qty":number,"unitPrice":number|null,"date":"YYYY-MM-DD","note":string},{"type":"sell","name":string,"matchId":string|null,"sellPrice":number|null,"payout":number|null,"platform":"Kleinanzeigen"|"eBay"|"Cardmarket"|"Privat","date":"YYYY-MM-DD","buyPrice":number|null},{"type":"expense","text":string,"amount":number|null,"date":"YYYY-MM-DD"}],"question":string|null}
 Regeln:
 - "gekauft/geholt/bestellt" = buy, "verkauft/weg für" = sell. Mehrere Dinge = mehrere Aktionen.
+- Kosten, die keine Ware sind (Bahnticket, Eintritt, Versand, Verpackung, Gebühren, Spiele vor Ort) = expense mit kurzem "text".
 - Bei Stückzahl und Gesamtpreis: unitPrice = Gesamtpreis / Anzahl.
 - Produktnamen vereinheitlichen: Wenn ein bekannter Name dasselbe Produkt meint (z. B. "Garden Set" = "Riftbound Secret Garden Set", "30er TTB" = "TTB 30 J"), nimm den bekannten Namen genau so. Sonst einen klaren, kurzen Namen.
 - Bei sell: matchId = id des ÄLTESTEN offenen Einkaufs mit demselben Produkt, sonst null. "Auszahlung" = payout. Plattform: Kleinanzeigen/eBay/Cardmarket, privat/Freund = Privat.
@@ -346,7 +387,7 @@ Offene (unverkaufte) Einkäufe: ${JSON.stringify(open)}
 Notiz: """${text}"""`;
   try {
     const res = await S.sample.json(prompt, { modelTier:"default" });
-    const acts = Array.isArray(res?.actions) ? res.actions.filter(a=>a && (a.type==="buy"||a.type==="sell")) : [];
+    const acts = Array.isArray(res?.actions) ? res.actions.filter(a=>a && (a.type==="buy"||a.type==="sell"||a.type==="expense")) : [];
     acts.forEach(a=>{ a.date = /^\d{4}-\d{2}-\d{2}$/.test(a.date||"") ? a.date : today(); if (a.type==="sell" && a.matchId && !S.items.some(i=>i.id===a.matchId)) a.matchId=null; if (a.type==="sell" && !PLATFORMS.includes(a.platform)) a.platform="Kleinanzeigen"; });
     S.proposal = acts.length ? { actions:acts, question: res.question||null } : null;
     if (!acts.length) S.error = res?.question || "Ich konnte daraus keinen Kauf oder Verkauf lesen. Formuliere es etwas genauer.";
@@ -358,7 +399,7 @@ Notiz: """${text}"""`;
 function readProposalInputs(){
   document.querySelectorAll("[data-pk]").forEach(el=>{
     const a = S.proposal.actions[+el.dataset.pk], f = el.dataset.f;
-    a[f] = ["unitPrice","qty","sellPrice","payout","buyPrice"].includes(f) ? num(el.value) : el.value;
+    a[f] = ["unitPrice","qty","sellPrice","payout","buyPrice","amount"].includes(f) ? num(el.value) : el.value;
   });
 }
 async function applyProposal(){
@@ -366,7 +407,9 @@ async function applyProposal(){
   const btn = $("#btn-apply"); if (btn) btn.disabled = true;
   try {
     for (const a of S.proposal.actions){
-      if (a.type==="buy"){
+      if (a.type==="expense"){
+        await S.db.collection("expenses").add({ text:(a.text||"").trim(), amount:a.amount??null, date:a.date, note:"", updated:Date.now() });
+      } else if (a.type==="buy"){
         const q = Math.max(1, Math.round(a.qty||1));
         for (let k=0;k<q;k++) await S.db.collection("items").add({ name:(a.name||"").trim(), date:a.date, buy:a.unitPrice??null, sell:null, payout:null, platform:"", soldDate:"", profitManual:null, note:a.note||"", updated:Date.now() });
       } else {
@@ -393,6 +436,8 @@ async function exportXlsx(){
     ws["!cols"] = [{wch:11},{wch:30},{wch:13},{wch:13},{wch:11},{wch:10},{wch:14},{wch:11},{wch:30}];
     XLSX.utils.book_append_sheet(wb, ws, monthName(m).slice(0,31));
   });
+  const ex = [["Datum","Wofür","Betrag","Notiz"], ...[...S.expenses].sort((a,b)=>(a.date||"").localeCompare(b.date||"")).map(x=>[x.date,x.text,x.amount,x.note])];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(ex), "Nebenkosten");
   const sh = [["Produkt","Stück","EK RMB","bis DE €/Stk","VK €/Stk","Status"], ...S.shanghai.map(r=>[r.name,r.qty,r.rmb,r.rmb!=null?+landed(r.rmb).toFixed(2):null,r.expSell,r.status])];
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(sh), "Shanghai");
   const buf = XLSX.write(wb, {type:"array", bookType:"xlsx"});
@@ -408,6 +453,8 @@ document.addEventListener("click", e=>{
   if (t.dataset.month){ S.month = t.dataset.month; render(); return; }
   if (t.dataset.edit){ openItemDialog(S.items.find(i=>i.id===t.dataset.edit)); return; }
   if (t.dataset.sh){ openShDialog(S.shanghai.find(r=>r.id===t.dataset.sh)); return; }
+  if (t.dataset.exp){ openExpDialog(S.expenses.find(x=>x.id===t.dataset.exp)); return; }
+  if (t.id==="btn-exp-add"){ openExpDialog(null); return; }
   if (t.id==="btn-parse") parse();
   else if (t.id==="btn-manual") openItemDialog(null);
   else if (t.id==="btn-apply") applyProposal();
@@ -432,6 +479,7 @@ render();
   $("#status").textContent = db ? "" : "nur Ansicht";
   if (!db){ render(); return; }
   db.collection("items").onSnapshot(s=>{ S.items = s.docs.map(d=>({id:d.id, ...d.data()})); render(); }, err=>{ $("#status").textContent="Verbindung verloren"; });
+  db.collection("expenses").onSnapshot(s=>{ S.expenses = s.docs.map(d=>({id:d.id, ...d.data()})); if (S.tab!=="erfassen") render(); });
   db.collection("shanghai").onSnapshot(s=>{ S.shanghai = s.docs.map(d=>({id:d.id, ...d.data()})); if (S.tab==="shanghai") render(); });
   db.doc("settings/main").onSnapshot(s=>{ if (s.exists) { S.settings = {fx:7.374, freight:3, ...s.data()}; if (S.tab==="shanghai") render(); } });
 })();
