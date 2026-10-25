@@ -40,7 +40,7 @@ h2{font-size:18px;margin:22px 0 8px;font-weight:700}
 .muted{color:var(--muted)}
 .num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
 .banner{background:var(--cm-bg);color:var(--cm-ink);border-radius:8px;padding:10px 12px;font-size:14px;margin-top:10px}
-nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,1fr);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
 nav.tabs button{background:none;border:0;border-top:3px solid transparent;color:var(--muted);font:700 14px var(--f-body);padding:14px 4px 16px;cursor:pointer}
 nav.tabs button[aria-current="page"]{color:var(--accent);border-top-color:var(--accent)}
 button,input,select,textarea{font:inherit;color:inherit}
@@ -101,6 +101,7 @@ dialog form{padding:16px;display:grid;gap:10px}
   <button data-tab="erfassen" id="tab-erfassen">Erfassen</button>
   <button data-tab="tabelle" id="tab-tabelle">Tabelle</button>
   <button data-tab="uebersicht" id="tab-uebersicht">Übersicht</button>
+  <button data-tab="event" id="tab-event">Essen</button>
   <button data-tab="shanghai" id="tab-shanghai">Shanghai</button>
 </nav>
 
@@ -132,6 +133,7 @@ function render(){
   if (S.tab==="erfassen") m.innerHTML = viewErfassen();
   else if (S.tab==="tabelle") m.innerHTML = viewTabelle();
   else if (S.tab==="uebersicht") m.innerHTML = viewUebersicht();
+  else if (S.tab==="event") m.innerHTML = viewEvent();
   else m.innerHTML = viewShanghai();
 }
 function months(){
@@ -200,7 +202,7 @@ function itemRow(i){
   const pr = profitOf(i), c = pcls(i.platform);
   return `<button class="item ${c}" data-edit="${i.id}">
     <span class="dt">${fmtDate(i.date)||"–"}<small>${i.soldDate?"Verk. "+fmtDate(i.soldDate):"Kauf"}</small></span>
-    <span class="name">${esc(i.name)}</span>
+    <span class="name">${esc(i.name)}${i.free?` <span class="chip open">gratis</span>`:""}</span>
     <span class="money num">${i.sell!=null||i.payout!=null ? eur(income(i)) : `<span class="muted">offen</span>`}</span>
     <span class="meta">${i.platform?`<span class="chip ${c}">${esc(i.platform)}</span>`:(income(i)!=null?`<span class="chip open">Plattform?</span>`:`<span class="chip open">nicht verkauft</span>`)}EK <span class="num">${eur(i.buy)}</span>${i.note?" · "+esc(i.note):""}</span>
     <span class="money num profit ${pr==null?"":pr>=0?"pos":"neg"}">${pr==null?"":(pr>=0?"+":"")+eur(pr)}</span>
@@ -236,13 +238,14 @@ function openExpDialog(x){
     <label>Wofür<input name="text" value="${esc(e.text)}" required></label>
     <div class="grid2"><label>Datum<input type="date" name="date" value="${esc(e.date)}"></label><label>Betrag €<input name="amount" inputmode="decimal" value="${e.amount??""}"></label></div>
     <label>Notiz<input name="note" value="${esc(e.note||"")}"></label>
+    <label>Event<input name="event" value="${esc(e.event||"")}" placeholder="z. B. SPIEL Essen 2026"></label>
     <div class="row-actions"><button class="btn" value="save">Speichern</button><button class="btn ghost" value="cancel" formnovalidate>Abbrechen</button>${x?`<button class="btn danger" value="delete" formnovalidate>Löschen</button>`:""}</div>`;
   const dlg = $("#dlg");
   dlg.onclose = async () => {
     const v = dlg.returnValue; if (!S.db || v==="cancel" || !v) return;
     const fd = new FormData($("#dlgform"));
     if (v==="delete" && x){ await S.db.doc("expenses/"+x.id).delete(); return; }
-    const data = { text:String(fd.get("text")||"").trim(), date:fd.get("date")||today(), amount:num(fd.get("amount")), note:String(fd.get("note")||""), updated:Date.now() };
+    const data = { text:String(fd.get("text")||"").trim(), date:fd.get("date")||today(), amount:num(fd.get("amount")), note:String(fd.get("note")||""), event:String(fd.get("event")||""), updated:Date.now() };
     try { if (x) await S.db.doc("expenses/"+x.id).set(data); else await S.db.collection("expenses").add(data); } catch(err){ alertMsg(err); }
   };
   dlg.returnValue = ""; dlg.showModal();
@@ -279,6 +282,38 @@ function viewUebersicht(){
   <h2>Umsatz ${year} (Kleinunternehmer)</h2>
   <p class="num">${eur(yUmsatz)} von 25.000 €</p><div class="bar"><i style="width:${pct}%"></i></div>
   <p class="hint">Grenze Vorjahr 25.000 €, im laufenden Jahr 100.000 € (§ 19 UStG, Stand 2025, bitte mit Steuerberater prüfen).</p>`;
+}
+
+/* ---------- Event ---------- */
+const EVENT = "SPIEL Essen 2026";
+function viewEvent(){
+  const it = S.items.filter(i=>i.event===EVENT), ex = S.expenses.filter(x=>x.event===EVENT);
+  const normal = it.filter(i=>!i.free), free = it.filter(i=>i.free);
+  const einkauf = normal.reduce((s,i)=>s+(i.buy||0),0);
+  const sold = it.filter(i=>income(i)!=null);
+  const umsatz = sold.reduce((s,i)=>s+(income(i)||0),0);
+  const gewinnN = normal.filter(i=>income(i)!=null).reduce((s,i)=>s+(profitOf(i)||0),0);
+  const gewinnF = free.filter(i=>income(i)!=null).reduce((s,i)=>s+(profitOf(i)||0),0);
+  const kosten = ex.reduce((s,x)=>s+(x.amount||0),0);
+  const lager = it.filter(i=>income(i)==null), lagerEK = lager.reduce((s,i)=>s+(i.buy||0),0);
+  const sortD = a=>[...a].sort((x,y)=>(x.date||"").localeCompare(y.date||"")||(x.name||"").localeCompare(y.name||""));
+  return `<h2 style="margin-top:6px">${EVENT}</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="l">Eingekauft (Ware)</div><div class="v num">${eur(einkauf)}</div></div>
+    <div class="kpi"><div class="l">Verkauft (Auszahlung)</div><div class="v num">${eur(umsatz)}</div></div>
+    <div class="kpi"><div class="l">Gewinn normale Verkäufe</div><div class="v num ${gewinnN>=0?"pos":"neg"}">${eur(gewinnN)}</div></div>
+    <div class="kpi"><div class="l">Gewinn Free Add-ons</div><div class="v num pos">${eur(gewinnF)}</div></div>
+    <div class="kpi"><div class="l">Nebenkosten</div><div class="v num">${eur(kosten)}</div></div>
+    <div class="kpi"><div class="l">Ergebnis bisher</div><div class="v num ${gewinnN+gewinnF-kosten>=0?"pos":"neg"}">${eur(gewinnN+gewinnF-kosten)}</div></div>
+    <div class="kpi" style="grid-column:1 / -1"><div class="l">Noch auf Lager</div><div class="v num">${lager.length} Artikel · EK ${eur(lagerEK)}</div></div>
+  </div>
+  <h2>Free Add-ons (gratis bekommen)</h2>
+  <div class="ledger">${sortD(free).map(itemRow).join("") || `<div class="empty">Keine.</div>`}</div>
+  <h2>Ware</h2>
+  <div class="ledger">${sortD(normal).map(itemRow).join("") || `<div class="empty">Keine.</div>`}</div>
+  <h2>Nebenkosten</h2>
+  <div class="ledger">${sortD(ex).map(x=>`<button class="item" data-exp="${x.id}"><span class="dt">${fmtDate(x.date)}<small>Kosten</small></span><span class="name">${esc(x.text)}</span><span class="money num neg">−${eur(x.amount)}</span><span class="meta">${esc(x.note||"")}</span><span></span></button>`).join("") || `<div class="empty">Keine.</div>`}</div>
+  <p class="hint">Einträge gehören zum Event, wenn bei „Event“ ${EVENT} steht. Gratis-Artikel haben Einkaufspreis 0 €, ihr Verkauf ist reiner Gewinn.</p>`;
 }
 
 /* ---------- Shanghai ---------- */
@@ -327,6 +362,8 @@ function openItemDialog(item){
     </div>
     <label>Gewinn manuell € (optional, sonst automatisch)<input name="profitManual" inputmode="decimal" value="${it.profitManual??""}"></label>
     <label>Notiz<input name="note" value="${esc(it.note||"")}"></label>
+    <div class="grid2"><label>Event<input name="event" value="${esc(it.event||"")}" placeholder="z. B. SPIEL Essen 2026"></label>
+    <label style="align-content:end"><span><input type="checkbox" name="free" style="width:auto;margin-right:6px" ${it.free?"checked":""}>Gratis (Free Add-on)</span></label></div>
     <div class="row-actions"><button class="btn" value="save">Speichern</button><button class="btn ghost" value="cancel" formnovalidate>Abbrechen</button>${item?`<button class="btn danger" value="delete" formnovalidate>Löschen</button>`:""}</div>`;
   const dlg = $("#dlg");
   dlg.onclose = async () => {
@@ -334,7 +371,8 @@ function openItemDialog(item){
     const fd = new FormData($("#dlgform"));
     if (v==="delete" && item){ await S.db.doc("items/"+item.id).delete(); return; }
     const data = { name:String(fd.get("name")||"").trim(), date:fd.get("date")||today(), buy:num(fd.get("buy")), sell:num(fd.get("sell")), payout:num(fd.get("payout")),
-      platform:fd.get("platform")||"", soldDate:fd.get("soldDate")||"", profitManual:num(fd.get("profitManual")), note:String(fd.get("note")||""), updated:Date.now() };
+      platform:fd.get("platform")||"", soldDate:fd.get("soldDate")||"", profitManual:num(fd.get("profitManual")), note:String(fd.get("note")||""), event:String(fd.get("event")||""), free:fd.get("free")==="on", updated:Date.now() };
+    if (data.free && data.buy==null) data.buy = 0;
     if (data.sell!=null && !data.soldDate) data.soldDate = today();
     try { if (item) await S.db.doc("items/"+item.id).set(data); else await S.db.collection("items").add(data); } catch(e){ alertMsg(e); }
   };
