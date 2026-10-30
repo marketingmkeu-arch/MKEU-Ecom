@@ -1,0 +1,187 @@
+/* =====================================================================
+   FARBEN & SCHRIFTEN – hier zentral anpassen
+   ===================================================================== */
+:root {
+  --navy: #0d2240;         /* Dunkelblau (Hero, Karten, Know-how) */
+  --navy-hell: #1d3557;    /* Seiten-Buttons */
+  --gold: #b89d5f;         /* Gold (Akzente, Karten) */
+  --blau-hell: #5aa6d8;    /* Hellblau (Logo, Kategorien, News-Button) */
+  --hintergrund-hell: #f0f4f9;
+  --text: #5c5f73;         /* Fließtext grau */
+  --weiss: #ffffff;
+
+  --schrift: "Mulish", "Helvetica Neue", Arial, sans-serif;
+  --breite: 1200px;        /* maximale Inhaltsbreite */
+}
+
+/* ---------- Grundlagen ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--schrift); color: var(--text); background: var(--weiss); font-weight: 300; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+sup { font-size: .5em; vertical-align: super; line-height: 0; }
+.gold { color: var(--gold); }
+.container { max-width: var(--breite); margin: 0 auto; padding: 0 24px; }
+
+.titel { color: var(--navy); font-weight: 900; text-transform: uppercase; font-size: clamp(2.1rem, 6vw, 3.2rem); line-height: 1.05; letter-spacing: .01em; margin-bottom: 48px; }
+.kategorie, .karte-meta { color: var(--blau-hell); font-weight: 700; letter-spacing: .18em; text-transform: uppercase; font-size: 1rem; margin-bottom: 14px; }
+.text { font-size: 1.25rem; line-height: 1.65; margin-bottom: 1.6em; }
+.lead { font-size: 1.35rem; line-height: 1.55; font-weight: 400; margin-bottom: 1.4em; }
+
+/* Platzhalter für Bilder */
+.platzhalter { width: 100%; height: 100%; min-height: 200px; display: grid; place-items: center;
+  background: repeating-linear-gradient(45deg, #c9d3e0 0 14px, #d5dde8 14px 28px); color: #6b7a90; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+
+/* ---------- Logo ---------- */
+.logo { display: inline-flex; align-items: center; gap: 10px; color: var(--weiss); }
+.logo-icon { width: 34px; height: 34px; color: var(--blau-hell); }
+.logo-text { font-weight: 900; font-size: 2rem; letter-spacing: .08em; }
+.logo--dunkel { color: #111; }
+.logo-bild { height: 40px; width: auto; }
+
+/* ---------- Header ---------- */
+.kopf { position: absolute; top: 0; left: 0; right: 0; z-index: 20; display: flex; justify-content: space-between; align-items: center; padding: 28px 24px; max-width: calc(var(--breite) + 48px); margin: 0 auto; }
+.burger { background: none; border: 0; cursor: pointer; width: 52px; display: flex; flex-direction: column; align-items: flex-end; gap: 13px; }
+.burger span { display: block; height: 2px; background: var(--weiss); }
+.burger span:nth-child(1), .burger span:nth-child(2) { width: 52px; }
+.burger span:nth-child(3) { width: 30px; }
+
+/* ---------- Menü-Overlay ---------- */
+.menue { position: fixed; inset: 0; z-index: 50; background: var(--navy); color: var(--weiss); padding: 28px 24px 60px; overflow-y: auto;
+  transform: translateX(100%); transition: transform .35s ease; }
+.menue.offen { transform: none; }
+.menue-kopf { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+.menue-zu { background: none; border: 0; color: var(--weiss); font-size: 3rem; line-height: 1; cursor: pointer; }
+.menue-gruppe { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.menue-gruppe a { font-size: 1.2rem; opacity: .8; }
+.menue-gruppe .menue-titel { font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); opacity: 1; font-size: 1rem; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; min-height: 100vh; color: var(--weiss); display: flex; flex-direction: column; justify-content: flex-end;
+  background:
+    radial-gradient(ellipse 40% 60% at 95% 55%, rgba(120,150,210,.45), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 30%, rgba(60,90,160,.35), transparent 70%),
+    linear-gradient(120deg, #0d2240 0%, #13305a 55%, #24477f 100%);
+  background-size: cover; background-position: center; }
+.hero-inhalt { width: 100%; max-width: calc(var(--breite) + 48px); margin: 0 auto; padding: 160px 24px 60px; }
+.hero-marke { display: inline-block; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); padding: 18px 0;
+  color: var(--gold); font-weight: 900; font-size: clamp(2.4rem, 8vw, 4rem); letter-spacing: .01em; margin-bottom: 20px; }
+.hero-titel { font-weight: 200; font-size: clamp(2.8rem, 9vw, 5.2rem); line-height: 1.12; letter-spacing: .02em; margin-bottom: 50px; }
+.hero-text { font-size: clamp(1.25rem, 2.6vw, 1.5rem); line-height: 1.6; max-width: 640px; opacity: .85; letter-spacing: .02em; }
+
+.hero-reiter { display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 0 36px; max-width: calc(var(--breite) + 48px); margin: 0 auto; width: 100%; }
+.hero-reiter::-webkit-scrollbar { display: none; }
+.reiter { flex: 1 0 auto; display: flex; flex-direction: column; gap: 32px; min-width: 210px; }
+.reiter-linie { position: relative; height: 2px; background: rgba(255,255,255,.55); margin-right: 18px; }
+.reiter:not(:first-child) .reiter-linie::before { content: ""; position: absolute; left: -10px; top: -10px; width: 3px; height: 22px; background: var(--gold); }
+.reiter-text { font-size: 1.3rem; font-weight: 400; padding: 0 18px 0 24px; white-space: nowrap; transition: color .2s; }
+.reiter:hover .reiter-text { color: var(--gold); }
+
+/* ---------- Zahlen ---------- */
+.zahlen { display: flex; justify-content: center; padding: 70px 0; }
+.zahl { flex: 1; max-width: 460px; text-align: center; display: flex; flex-direction: column; padding: 40px 10px; }
+.zahl + .zahl { border-left: 3px solid #e3e3e3; }
+.zahl strong { color: var(--navy); font-weight: 900; font-size: clamp(2rem, 7vw, 3.4rem); line-height: 1; }
+.zahl span { font-size: clamp(1.3rem, 3.5vw, 1.8rem); letter-spacing: .05em; margin-top: 6px; }
+
+/* ---------- Intro ---------- */
+.intro { background: var(--hintergrund-hell); padding: 100px 0 60px; }
+.intro-raster { display: grid; gap: 48px; }
+.video { position: relative; display: block; aspect-ratio: 16 / 7; background: radial-gradient(circle at 50% 40%, #1b2f52, #08152b); overflow: hidden; margin: 0 4%; cursor: pointer; }
+.video-flaeche { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+.video-flaeche .logo-icon { width: 70px; height: 70px; }
+.video-flaeche .logo-text { font-size: clamp(2.6rem, 10vw, 5rem); }
+.video-flaeche small { color: var(--weiss); font-weight: 600; letter-spacing: .05em; font-size: clamp(.7rem, 2vw, 1rem); margin-left: 15%; }
+.play { position: absolute; left: 50%; top: 50%; width: 72px; height: 72px; transform: translate(-50%, -55%); border-radius: 50%; background: rgba(60,60,70,.85); }
+.play::after { content: ""; position: absolute; left: 28px; top: 21px; border-left: 24px solid var(--weiss); border-top: 15px solid transparent; border-bottom: 15px solid transparent; }
+
+/* ---------- Banner ---------- */
+.banner { background: linear-gradient(90deg, #0b1d38, #1a3560 60%, #0b1d38); color: var(--weiss); overflow: hidden; }
+.banner-inhalt { max-width: 900px; margin: 0 auto; padding: 18px 24px 0; display: flex; align-items: center; gap: 24px; }
+.banner-titel { font-weight: 900; font-size: clamp(1.1rem, 3.5vw, 1.9rem); line-height: 1.1; text-transform: uppercase; margin-bottom: 8px; }
+.banner-gold { color: var(--gold); font-family: Georgia, serif; font-weight: 700; font-size: clamp(.7rem, 1.8vw, 1rem); }
+.banner-text { font-family: Georgia, serif; font-size: clamp(.7rem, 1.8vw, 1rem); padding-bottom: 18px; }
+.banner-linie { flex: 0 0 60px; height: 2px; background: var(--gold); }
+.banner-bild { flex: 0 0 28%; height: 130px; align-self: flex-end; transform: translateY(8px) rotate(-2deg); box-shadow: 0 0 30px rgba(0,0,0,.5); }
+.banner-bild .platzhalter { min-height: 0; font-size: .6rem; background: #2a2f5a; color: #aab; }
+
+/* ---------- Karten ---------- */
+.news { padding: 110px 0 60px; }
+.experten { padding: 60px 0 80px; }
+.karten { display: grid; gap: 56px; }
+.karte { display: flex; flex-direction: column; color: var(--weiss); transition: transform .25s; }
+.karte:hover { transform: translateY(-4px); }
+.karte-bild { aspect-ratio: 6 / 5; overflow: hidden; }
+.karte-text { flex: 1; padding: 56px 56px 64px; display: flex; flex-direction: column; }
+.karte--blau .karte-text { background: var(--navy); }
+.karte--gold .karte-text { background: var(--gold); }
+.karte--gold .karte-meta { color: var(--weiss); }
+.karte h3 { font-weight: 900; text-transform: uppercase; font-size: clamp(1.7rem, 5vw, 2.4rem); line-height: 1.15; margin: 20px 0 48px; flex: 1; hyphens: auto; }
+.mehr { display: inline-flex; align-items: center; gap: 14px; font-size: 1.6rem; }
+.karte--blau .mehr { color: var(--gold); }
+.mehr--gold { color: var(--gold); }
+.pfeil { width: 70px; height: 10px; }
+
+/* ---------- Kontakt ---------- */
+.kontakt { padding: 110px 0 120px; }
+.kontakt-raster { display: grid; gap: 70px; align-items: center; }
+.kontakt .titel { padding-left: 20px; }
+.kontakt-bild { aspect-ratio: 16 / 10; }
+
+/* ---------- Know-how ---------- */
+.knowhow { background: var(--navy); color: rgba(255,255,255,.85); padding: 60px 0 70px; }
+.knowhow .titel { color: var(--weiss); }
+.knowhow-raster { display: grid; gap: 70px; }
+.knowhow-bild { aspect-ratio: 3 / 2; }
+
+/* ---------- Footer ---------- */
+.fuss { padding: 110px 0 60px; }
+.fuss-logo { margin-bottom: 70px; padding-left: 20px; }
+.fuss-spalten { display: grid; gap: 40px; padding-left: 20px; }
+.fuss-spalte { display: flex; flex-direction: column; gap: 22px; }
+.fuss-spalte a { font-size: 1.35rem; color: #8a8d9e; }
+.fuss-spalte a:hover { color: var(--navy); }
+.fuss-spalte .fuss-titel { color: var(--navy); font-weight: 800; letter-spacing: .18em; text-transform: uppercase; font-size: 1.05rem; margin-bottom: 18px; }
+.fuss-extras { margin-top: 50px; display: flex; flex-direction: column; align-items: flex-start; gap: 40px; }
+.news-button { display: inline-flex; align-items: center; gap: 18px; background: var(--blau-hell); color: var(--weiss); border-radius: 60px; padding: 20px 26px; }
+.news-button svg { width: 42px; height: 42px; }
+.news-button span { font-weight: 900; font-size: 1.6rem; letter-spacing: .03em; }
+.news-button em { font-style: normal; border: 2px solid var(--weiss); padding: 4px 10px; letter-spacing: .15em; font-size: 1rem; }
+.auszeichnung { width: 220px; height: 240px; margin-left: 20px; }
+.auszeichnung .platzhalter { min-height: 0; border-radius: 20px; }
+.fuss-linkedin { width: 104px; height: 104px; color: #3576b1; align-self: center; }
+.fuss-linkedin svg { width: 100%; height: 100%; }
+.fuss-linkedin svg path { fill: var(--weiss); }
+
+/* ---------- Testprojekt-Hinweis ---------- */
+.hinweis { background: #fff4d6; color: #5a4300; border-top: 3px solid var(--gold); padding: 18px 24px 22px; text-align: center; font-size: .95rem; line-height: 1.5; font-weight: 400; }
+.hinweis strong { text-transform: uppercase; letter-spacing: .1em; }
+
+/* ---------- Schwebende Seiten-Buttons ---------- */
+.seiten-buttons { position: fixed; right: 0; top: 57%; z-index: 30; display: flex; flex-direction: column; gap: 12px; }
+.seiten-buttons a { width: 62px; height: 64px; display: grid; place-items: center; background: var(--navy-hell); color: var(--weiss); box-shadow: 0 2px 10px rgba(0,0,0,.15); transition: background .2s; }
+.seiten-buttons a:hover { background: var(--gold); }
+.seiten-buttons svg { width: 36px; height: 36px; }
+
+/* =====================================================================
+   DESKTOP (ab 900px Breite)
+   ===================================================================== */
+@media (min-width: 900px) {
+  .kopf, .hero-inhalt { padding-left: 48px; padding-right: 48px; }
+  .hero-reiter { padding-left: 24px; }
+  .intro-raster { grid-template-columns: 1.1fr 1fr; align-items: start; }
+  .video { margin: 0; }
+  .karten--3 { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .karten--2 { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  .karte-text { padding: 40px 40px 48px; }
+  .karte h3 { font-size: 1.6rem; }
+  .mehr { font-size: 1.3rem; }
+  .kontakt-raster { grid-template-columns: 1fr 1fr; }
+  .knowhow-raster { grid-template-columns: 1.2fr 1fr; align-items: center; }
+  .fuss-spalten { grid-template-columns: repeat(4, 1fr); }
+  .fuss-spalte a { font-size: 1.05rem; }
+  .fuss-extras { flex-direction: row; align-items: center; justify-content: space-between; }
+  .fuss-linkedin { width: 64px; height: 64px; }
+  .auszeichnung { width: 150px; height: 165px; }
+}
