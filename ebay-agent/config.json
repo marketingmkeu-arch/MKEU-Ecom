@@ -4,15 +4,40 @@
   "postal_code": "40235",
   "country": "DE",
   "dispatch_days": 2,
-  "returns": { "accepted": true, "days": "Days_14", "paid_by": "Buyer" },
-  "shipping": {
-    "sealed": { "service": "DE_DHLPaket",    "cost": "6.19", "intl_service": "DE_PaketInternational", "intl_cost": "20.00" },
-    "single": { "service": "DE_DHLPackchen", "cost": "4.00", "intl_service": "DE_PaketInternational", "intl_cost": "20.00" }
+  "returns": {
+    "accepted": false,
+    "days": "Days_14",
+    "paid_by": "Buyer"
   },
-  "categories": { "sealed": "261044", "single": "183454" },
-  "condition_ids": { "sealed": "1000", "single": "4000" },
-  "card_condition": { "NM": "400010", "EX": "400011", "VG": "400012", "PO": "400013" },
-  "best_offer_default": false,
-  "footer_html": "<p><b>Versand:</b> sicher verpackt, Versand innerhalb von 2 Werktagen aus Düsseldorf. Weltweiter Versand möglich. Kombiversand bei mehreren Artikeln auf Anfrage.</p><p><b>Rückgabe:</b> 14 Tage Rückgabe, Rücksendekosten trägt der Käufer.</p><p>Gemäß § 19 UStG wird keine Umsatzsteuer berechnet (Kleinunternehmer).</p>",
+  "shipping": {
+    "sealed": {
+      "service": "DE_DHLPaket",
+      "cost": "6.19",
+      "intl_service": "DE_PaketInternational",
+      "intl_cost": "20.00"
+    },
+    "single": {
+      "service": "DE_DHLPackchen",
+      "cost": "4.00",
+      "intl_service": "DE_PaketInternational",
+      "intl_cost": "20.00"
+    }
+  },
+  "categories": {
+    "sealed": "261044",
+    "single": "183454"
+  },
+  "condition_ids": {
+    "sealed": "1000",
+    "single": "4000"
+  },
+  "card_condition": {
+    "NM": "400010",
+    "EX": "400011",
+    "VG": "400012",
+    "PO": "400013"
+  },
+  "best_offer_default": true,
+  "footer_html": "<p><b>Versand:</b> sicher verpackt, Versand innerhalb von 2 Werktagen aus Düsseldorf, immer mit Sendungsnummer. Weltweiter Versand möglich. Kombiversand bei mehreren Artikeln gerne auf Anfrage.</p><p>Bei Fragen einfach über eBay schreiben.</p>",
   "manufacturers": {}
 }

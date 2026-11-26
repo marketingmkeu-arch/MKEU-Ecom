@@ -169,7 +169,9 @@ def item_xml(L, picture_urls):
         f"<ShippingCostPaidByOption>{rp['paid_by']}</ShippingCostPaidByOption></ReturnPolicy>"
         if rp.get("accepted") else "<ReturnPolicy><ReturnsAcceptedOption>ReturnsNotAccepted</ReturnsAcceptedOption></ReturnPolicy>")
     bo = L.get("best_offer")
-    if bo:
+    if bo is None and CFG.get("best_offer_default"):
+        bo = {}
+    if bo is not None and bo is not False:
         parts.append("<BestOfferDetails><BestOfferEnabled>true</BestOfferEnabled></BestOfferDetails>")
         lp = []
         if bo.get("auto_accept"):
@@ -220,6 +222,22 @@ def run_check():
     }
 
 
+def run_shipping_list():
+    root, ack, errors = call("GeteBayDetails", "<DetailName>ShippingServiceDetails</DetailName>")
+    out = []
+    for d in root.findall("e:ShippingServiceDetails", NS):
+        if d.findtext("e:ValidForSellingFlow", "", NS) != "true":
+            continue
+        out.append({
+            "code": d.findtext("e:ShippingService", "", NS),
+            "name": d.findtext("e:Description", "", NS),
+            "international": d.findtext("e:InternationalService", "false", NS) == "true",
+            "carrier": d.findtext("e:ShippingCarrier", "", NS),
+            "tracking": d.findtext("e:ShippingCategory", "", NS),
+        })
+    return {"ack": ack, "errors": errors, "services": out}
+
+
 def run_listing(L, mode):
     res = {"sku": L.get("sku"), "title": L.get("title"), "price": L.get("price")}
     try:
@@ -254,7 +272,10 @@ def main():
         mode = data.get("mode", "verify")
         print(f"== {b.name} ({mode})")
         out = {"batch": b.stem, "mode": mode, "time": datetime.now(timezone.utc).isoformat(timespec="seconds")}
-        if mode == "check":
+        if mode == "shipping":
+            out["shipping"] = run_shipping_list()
+            print(f"{len(out['shipping']['services'])} Versandarten")
+        elif mode == "check":
             out["check"] = run_check()
             print(json.dumps(out["check"], ensure_ascii=False, indent=1))
             failed |= out["check"]["ack"] not in ("Success", "Warning")
