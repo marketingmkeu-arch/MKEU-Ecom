@@ -1,0 +1,19 @@
+{
+  "batch": "0001-zugangstest",
+  "mode": "check",
+  "time": "2026-11-26T20:13:00+00:00",
+  "check": {
+    "ack": "Failure",
+    "user": "",
+    "site": "",
+    "business_type": "",
+    "store": "",
+    "errors": [
+      {
+        "severity": "Error",
+        "code": "931",
+        "message": "Die PrÃ¼fung des Authentifizierungs-Tokens in der API-Anforderung war nicht erfolgreich."
+      }
+    ]
+  }
+}

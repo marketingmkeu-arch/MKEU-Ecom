@@ -1,0 +1,20 @@
+{
+  "batch": "0011-pkm-30th-cn-verify",
+  "mode": "verify",
+  "time": "2026-11-26T20:51:33+00:00",
+  "listings": [
+    {
+      "sku": "PKM-30TH-DISPLAY-CN",
+      "title": "Pokémon 30th Celebration Booster Display Box Chinesisch Simplified Neu OVP",
+      "price": 80,
+      "ack": "Failure",
+      "errors": [
+        {
+          "severity": "Error",
+          "code": "local",
+          "message": "Bild ebay-agent/done/0008-pkm-30th-cn/1.jpg: Datei-Upload: eBay-Antwort nicht lesbar: HTTP 404, Header {'Content-Type': 'text/xml', 'x-ebay-pop-id': 'UFES2-RNOAZ05-api'}, Inhalt 'Resource not found' | eBay-Antwort nicht lesbar: HTTP 404, Header {'Content-Type': 'text/xml', 'x-ebay-pop-id': 'UFES2-RNOAZ03-api'}, Inhalt 'Resource not found'"
+        }
+      ]
+    }
+  ]
+}

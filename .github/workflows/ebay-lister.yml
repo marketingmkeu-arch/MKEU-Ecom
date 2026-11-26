@@ -1,0 +1,43 @@
+name: eBay-Lister
+
+on:
+  push:
+    paths:
+      - "ebay-agent/queue/**"
+  workflow_dispatch:
+
+concurrency:
+  group: ebay-lister-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r ebay-agent/requirements.txt
+
+      - name: Inserate einstellen
+        env:
+          EBAY_APP_ID: ${{ secrets.APP_ID_EBAY_API || secrets.EBAY_APP_ID }}
+          EBAY_DEV_ID: ${{ secrets.DEV_ID_EBAY_API || secrets.EBAY_DEV_ID }}
+          EBAY_CERT_ID: ${{ secrets.CERT_ID_EBAY_API || secrets.EBAY_CERT_ID }}
+          EBAY_AUTH_TOKEN: ${{ secrets.TOKEN_EBAY_API || secrets.AUTH_TOKEN_EBAY_API || secrets.USER_TOKEN_EBAY_API || secrets.AUTHNAUTH_TOKEN_EBAY_API || secrets.OAUTH_TOKEN_EBAY_API || secrets.EBAY_API_TOKEN || secrets.EBAY_TOKEN || secrets.EBAY_AUTH_TOKEN || secrets.EBAY_USER_TOKEN }}
+        run: python ebay-agent/lister.py
+
+      - name: Ergebnisse speichern
+        run: |
+          git config user.email "ebay-agent@users.noreply.github.com"
+          git config user.name "eBay-Lister"
+          git add -A ebay-agent
+          git diff --staged --quiet || git commit -m "eBay-Lister: Ergebnisse [skip ci]"
+          git push

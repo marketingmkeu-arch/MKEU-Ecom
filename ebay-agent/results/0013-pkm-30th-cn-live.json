@@ -1,0 +1,44 @@
+{
+  "batch": "0013-pkm-30th-cn-live",
+  "mode": "live",
+  "time": "2026-11-26T20:54:18+00:00",
+  "listings": [
+    {
+      "sku": "PKM-30TH-DISPLAY-CN",
+      "title": "Pokémon 30th Celebration Booster Display Box Chinesisch Simplified Neu OVP",
+      "price": 80,
+      "pictures": [
+        {
+          "url": "https://raw.githubusercontent.com/marketingmkeu-arch/MKEU-Ecom/9214f7b26c2efbdac2880dd03c980f5dd4ba2de6/ebay-agent/done/0008-pkm-30th-cn/1.jpg",
+          "weg": "GitHub-Link (Media API: HTTP 403 '{\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}')"
+        }
+      ],
+      "ack": "Warning",
+      "errors": [
+        {
+          "severity": "Warning",
+          "code": "219026",
+          "message": "Sie haben für die zusätzlichen Versandkosten keinen Wert eingegeben.  Der Wert, den Sie für die Versandkosten angegeben haben, wurde in das Feld für zusätzliche Versandkosten kopiert."
+        },
+        {
+          "severity": "Warning",
+          "code": "219026",
+          "message": "Sie haben für die zusätzlichen Versandkosten keinen Wert eingegeben.  Der Wert, den Sie für die Versandkosten angegeben haben, wurde in das Feld für zusätzliche Versandkosten kopiert."
+        },
+        {
+          "severity": "Warning",
+          "code": "21920376",
+          "message": "Verkaufsprovision erlassen."
+        },
+        {
+          "severity": "Warning",
+          "code": "21920377",
+          "message": "Internationale Gebühren fallen ggf. an."
+        }
+      ],
+      "fees": {},
+      "item_id": "366840773285",
+      "url": "https://www.ebay.de/itm/366840773285"
+    }
+  ]
+}

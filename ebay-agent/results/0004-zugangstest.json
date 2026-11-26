@@ -1,0 +1,33 @@
+{
+  "batch": "0004-zugangstest",
+  "mode": "check",
+  "time": "2026-11-26T20:39:02+00:00",
+  "check": {
+    "ack": "Failure",
+    "user": "",
+    "site": "",
+    "business_type": "",
+    "store": "",
+    "errors": [
+      {
+        "severity": "Error",
+        "code": "21916984",
+        "message": "Das zur Verfügung gestellte IAF-Token ist ungültig."
+      }
+    ],
+    "diagnose": {
+      "token_uebergabe": "IAF-Header",
+      "token_laenge": 0,
+      "token_beginnt_mit": "",
+      "app_id_endung": "94f8",
+      "app_id_ist_sandbox": false,
+      "app_id_ist_production": true,
+      "secrets_vorhanden": {
+        "EBAY_APP_ID": true,
+        "EBAY_DEV_ID": true,
+        "EBAY_CERT_ID": true,
+        "EBAY_AUTH_TOKEN": false
+      }
+    }
+  }
+}

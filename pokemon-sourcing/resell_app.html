@@ -1,0 +1,821 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Resell-Buch</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+/* Layout: phone-first ledger. Sticky header + bottom tab bar; one column of rows like a cash book, platform as colour stripe. */
+:root{
+  --bg:#f5f4f0; --surface:#ffffff; --ink:#1b1d1f; --muted:#62676d; --rule:#dedbd3; --accent:#2f4b8a; --accent-ink:#ffffff;
+  --kl-bg:#e2f3e5; --kl-ink:#1c6a33; --kl-bar:#2e9b4c;
+  --eb-bg:#fbe3e1; --eb-ink:#a8231b; --eb-bar:#d93b30;
+  --cm-bg:#fdf0d3; --cm-ink:#7d5200; --cm-bar:#e0a020;
+  --pv-bg:#ebedf2; --pv-ink:#3d4656; --pv-bar:#7b8698;
+  --pos:#1c6a33; --neg:#a8231b;
+  --f-body:"Familjen Grotesk",system-ui,sans-serif; --f-num:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141517; --surface:#1d1f22; --ink:#ecebe7; --muted:#a2a6ab; --rule:#30333a; --accent:#8fa8e8; --accent-ink:#0f1320;
+  --kl-bg:#163222; --kl-ink:#8fdca6; --kl-bar:#3fb565;
+  --eb-bg:#3a1a18; --eb-ink:#ff9d94; --eb-bar:#e5564b;
+  --cm-bg:#3a2c10; --cm-ink:#f5cd73; --cm-bar:#e0a020;
+  --pv-bg:#262a31; --pv-ink:#c3c9d4; --pv-bar:#7b8698;
+  --pos:#8fdca6; --neg:#ff9d94; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141517; --surface:#1d1f22; --ink:#ecebe7; --muted:#a2a6ab; --rule:#30333a; --accent:#8fa8e8; --accent-ink:#0f1320;
+  --kl-bg:#163222; --kl-ink:#8fdca6; --kl-bar:#3fb565;
+  --eb-bg:#3a1a18; --eb-ink:#ff9d94; --eb-bar:#e5564b;
+  --cm-bg:#3a2c10; --cm-ink:#f5cd73; --cm-bar:#e0a020;
+  --pv-bg:#262a31; --pv-ink:#c3c9d4; --pv-bar:#7b8698;
+  --pos:#8fdca6; --neg:#ff9d94; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.45 var(--f-body);-webkit-font-smoothing:antialiased;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 24px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule)}
+header.top .wrap{padding-block:12px;display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-size:22px;margin:0;font-weight:700;letter-spacing:-.01em}
+h2{font-size:18px;margin:22px 0 8px;font-weight:700}
+.muted{color:var(--muted)}
+.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.banner{background:var(--cm-bg);color:var(--cm-ink);border-radius:8px;padding:10px 12px;font-size:14px;margin-top:10px}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(6,1fr);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+nav.tabs button{background:none;border:0;border-top:3px solid transparent;color:var(--muted);font:700 14px var(--f-body);padding:14px 4px 16px;cursor:pointer}
+nav.tabs button[aria-current="page"]{color:var(--accent);border-top-color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:11px 16px;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--rule)}
+.btn.danger{background:transparent;color:var(--neg);border:1px solid var(--rule)}
+.btn:disabled{opacity:.5}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+textarea{width:100%;min-height:120px;border:1px solid var(--rule);background:var(--surface);border-radius:10px;padding:12px;font-size:17px;resize:vertical}
+input,select{width:100%;border:1px solid var(--rule);background:var(--surface);border-radius:8px;padding:9px 10px;font-size:16px}
+label{display:grid;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+.row-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.hint{font-size:14px;color:var(--muted);margin-top:8px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:12px}
+.preview{display:grid;gap:10px;margin-top:14px}
+.pv-head{font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.monthbar{display:flex;gap:6px;overflow-x:auto;padding-block:4px}
+.monthbar button{flex:none;border:1px solid var(--rule);background:var(--surface);border-radius:999px;padding:6px 12px;font-weight:600;font-size:14px;cursor:pointer}
+.monthbar button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.ledger{display:grid;gap:6px;margin-top:10px}
+.item{display:grid;grid-template-columns:auto 1fr auto;gap:2px 10px;background:var(--surface);border:1px solid var(--rule);border-left:5px solid var(--rule);border-radius:8px;padding:9px 10px;cursor:pointer;text-align:left;width:100%}
+.item.kl{background:var(--kl-bg);border-left-color:var(--kl-bar)}
+.item.eb{background:var(--eb-bg);border-left-color:var(--eb-bar)}
+.item.cm{background:var(--cm-bg);border-left-color:var(--cm-bar)}
+.item.pv{background:var(--pv-bg);border-left-color:var(--pv-bar)}
+.item .name{font-weight:700;min-width:0;overflow-wrap:anywhere}
+.item .dt{grid-row:1 / span 2;align-self:center;font-family:var(--f-num);font-size:13px;line-height:1.3;color:var(--ink);padding-right:8px;border-right:1px solid var(--rule);min-width:52px}
+.item .dt small{display:block;color:var(--muted);font-size:11px}
+.item .meta{font-size:13px;color:var(--muted)}
+.item .money{text-align:right;font-size:14px}
+.item .profit{font-weight:700}
+.pos{color:var(--pos)} .neg{color:var(--neg)}
+.chip{display:inline-block;font-size:12px;font-weight:700;border-radius:4px;padding:1px 6px;margin-right:6px}
+.chip.kl{background:var(--kl-bar);color:#fff} .chip.eb{background:var(--eb-bar);color:#fff} .chip.cm{background:var(--cm-bar);color:#2b1d00} .chip.pv{background:var(--pv-bar);color:#fff} .chip.open{background:transparent;border:1px solid var(--rule);color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+.kpi{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:10px 12px}
+.kpi .l{font-size:13px;color:var(--muted)} .kpi .v{font-size:20px;font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:7px 6px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:13px}
+td.r,th.r{text-align:right}
+.tablewrap{overflow-x:auto;margin-top:8px;background:var(--surface);border:1px solid var(--rule);border-radius:10px}
+.bar{height:8px;border-radius:4px;background:var(--rule);overflow:hidden;margin-top:6px}
+.bar>i{display:block;height:100%;background:var(--accent)}
+dialog{border:0;border-radius:14px;padding:0;background:var(--surface);color:var(--ink);width:min(560px,calc(100vw - 24px));max-height:calc(100vh - 40px)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog form{padding:16px;display:grid;gap:10px}
+.plan li{margin-top:6px}
+.ebrow{grid-template-columns:auto 1fr 92px;align-items:center;cursor:default;gap:10px}
+.ebrow.sel{border-left-color:var(--accent)}
+.ebchk{width:22px;height:22px;margin:0;accent-color:var(--accent)}
+.ebmain{background:none;border:0;padding:0;text-align:left;display:grid;gap:3px;cursor:pointer;min-width:0}
+.ebprice input{padding:7px 8px;font-family:var(--f-num);text-align:right}
+.ebfactor{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px;font-size:14px;color:var(--muted)}
+.ebfactor input{width:72px}
+@media (max-width:430px){nav.tabs button{font-size:12.5px;padding-inline:2px}}
+.empty{padding:24px 12px;text-align:center;color:var(--muted)}
+@media (max-width:380px){.grid3{grid-template-columns:1fr 1fr}}
+</style>
+
+<header class="top"><div class="wrap"><h1 id="title">Resell-Buch</h1><span class="muted" id="status">verbinde …</span></div></header>
+<main class="wrap" id="main"></main>
+<nav class="tabs" aria-label="Bereiche">
+  <button data-tab="erfassen" id="tab-erfassen">Erfassen</button>
+  <button data-tab="tabelle" id="tab-tabelle">Tabelle</button>
+  <button data-tab="uebersicht" id="tab-uebersicht">Übersicht</button>
+  <button data-tab="event" id="tab-event">Essen</button>
+  <button data-tab="ebay" id="tab-ebay">eBay</button>
+  <button data-tab="shanghai" id="tab-shanghai">Shanghai</button>
+</nav>
+
+<dialog id="dlg"><form id="dlgform" method="dialog"></form></dialog>
+
+<script>
+const PLATFORMS = ["Kleinanzeigen","eBay","Cardmarket","Privat"];
+const PCLASS = {"Kleinanzeigen":"kl","eBay":"eb","Cardmarket":"cm","Privat":"pv"};
+const S = { items:[], expenses:[], shanghai:[], settings:{fx:7.374, freight:3}, tab:"erfassen", month:null, proposal:null, busy:false, db:null, sample:null, dl:null, loaded:false, ebay:{}, ebSettings:null, ebSel:new Set(), ebFilter:"offen", ebBusy:false, ebMsg:null };
+try { const t = localStorage.getItem("rb-tab"); if (t) S.tab = t; } catch(e) {}
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const eur = n => (n==null || isNaN(n)) ? "–" : n.toLocaleString("de-DE",{minimumFractionDigits:2,maximumFractionDigits:2}) + " €";
+const num = v => { if (v===""||v==null) return null; const n = Number(String(v).replace(",", ".")); return isNaN(n) ? null : n; };
+const today = () => new Date().toISOString().slice(0,10);
+const monthOf = d => (d||"").slice(0,7);
+const MONTHS = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+const monthName = m => m ? MONTHS[+m.slice(5,7)-1] + " " + m.slice(0,4) : "";
+const fmtDate = d => d ? d.slice(8,10)+"."+d.slice(5,7)+"." : "";
+const income = i => i.payout != null ? i.payout : i.sell;
+const profitOf = i => i.profitManual != null ? i.profitManual : (income(i)!=null && i.buy!=null ? income(i) - i.buy : null);
+const pcls = p => PCLASS[p] || "";
+
+/* ---------- render ---------- */
+function render(){
+  document.querySelectorAll("nav.tabs button").forEach(b => b.setAttribute("aria-current", b.dataset.tab===S.tab ? "page" : "false"));
+  const m = $("#main"), fid = document.activeElement?.id;
+  if (S.tab==="erfassen") m.innerHTML = viewErfassen();
+  else if (S.tab==="tabelle") m.innerHTML = viewTabelle();
+  else if (S.tab==="uebersicht") m.innerHTML = viewUebersicht();
+  else if (S.tab==="event") m.innerHTML = viewEvent();
+  else if (S.tab==="ebay") m.innerHTML = viewEbay();
+  else m.innerHTML = viewShanghai();
+  if (fid && !$("#dlg").open){ const el = document.getElementById(fid); if (el && el !== document.activeElement) el.focus(); }
+}
+function months(){
+  const set = new Set(S.items.map(i=>monthOf(i.date)).filter(Boolean));
+  S.items.forEach(i=>{ if(i.soldDate) set.add(monthOf(i.soldDate)); });
+  S.expenses.forEach(x=>{ if(x.date) set.add(monthOf(x.date)); });
+  set.add(monthOf(today()));
+  return [...set].sort();
+}
+function monthBar(){
+  const ms = months(); if (!S.month || !ms.includes(S.month)) S.month = ms[ms.length-1];
+  return `<div class="monthbar" role="group" aria-label="Monat">${ms.map(x=>`<button data-month="${x}" aria-pressed="${x===S.month}">${monthName(x)}</button>`).join("")}</div>`;
+}
+
+function viewErfassen(){
+  const p = S.proposal;
+  return `
+  ${!S.db && S.loaded ? `<div class="banner">Speichern ist in dieser Ansicht nicht verfügbar. Öffne die App über claude.ai, angemeldet.</div>`:""}
+  <h2 style="margin-top:6px">Was hast du gekauft, verkauft oder ausgegeben?</h2>
+  <textarea id="input" placeholder="Tippe auf das Mikrofon der Tastatur und sprich, z. B.: „Gekauft: Riftbound Secret Garden Set für 89,99.“ oder „Verkauft: TTB 30 Jahre auf Kleinanzeigen für 140.“">${esc(S.draft||"")}</textarea>
+  <div class="row-actions">
+    <button class="btn" id="btn-parse" ${S.busy?"disabled":""}>${S.busy?"Claude liest …":"Eintrag vorschlagen"}</button>
+    <button class="btn ghost" id="btn-manual">Manuell anlegen</button>
+  </div>
+  <p class="hint"><b>Mikrofon:</b> Ins Textfeld tippen, dann unten rechts auf der Tastatur das Mikrofon-Symbol. Fehlt es: iPhone-Einstellungen → Allgemein → Tastatur → „Diktierfunktion aktivieren“ einschalten.</p>
+  <p class="hint">Claude erkennt gleiche Produkte auch bei kürzerem Namen und ordnet Verkäufe dem passenden Einkauf zu. Du prüfst den Vorschlag, bevor er gespeichert wird.</p>
+  ${S.error?`<div class="banner">${esc(S.error)}</div>`:""}
+  ${p ? viewProposal(p) : ""}
+  <h2>Zuletzt</h2>
+  <div class="ledger">${recent().map(itemRow).join("") || `<div class="empty">Noch keine Einträge.</div>`}</div>`;
+}
+function recent(){ return [...S.items].sort((a,b)=>(b.updated||0)-(a.updated||0)).slice(0,5); }
+
+function viewProposal(p){
+  const rows = p.actions.map((a,k)=>{
+    if (a.type==="buy") return `<div class="card"><div class="pv-head">Einkauf</div>
+      <div class="grid2" style="margin-top:8px">
+        <label>Produkt<input data-pk="${k}" data-f="name" value="${esc(a.name)}"></label>
+        <label>Datum<input type="date" data-pk="${k}" data-f="date" value="${esc(a.date)}"></label>
+        <label>Stückpreis €<input inputmode="decimal" data-pk="${k}" data-f="unitPrice" value="${a.unitPrice??""}"></label>
+        <label>Anzahl<input inputmode="numeric" data-pk="${k}" data-f="qty" value="${a.qty??1}"></label>
+      </div>
+      <label style="margin-top:8px">Notiz<input data-pk="${k}" data-f="note" value="${esc(a.note||"")}"></label></div>`;
+    if (a.type==="expense") return `<div class="card"><div class="pv-head">Nebenkosten</div>
+      <div class="grid3" style="margin-top:8px">
+        <label>Wofür<input data-pk="${k}" data-f="text" value="${esc(a.text)}"></label>
+        <label>Betrag €<input inputmode="decimal" data-pk="${k}" data-f="amount" value="${a.amount??""}"></label>
+        <label>Datum<input type="date" data-pk="${k}" data-f="date" value="${esc(a.date)}"></label>
+      </div></div>`;
+    const match = a.matchId ? S.items.find(i=>i.id===a.matchId) : null;
+    return `<div class="card"><div class="pv-head">Verkauf ${match?`· passt zu Einkauf vom ${fmtDate(match.date)} (${eur(match.buy)})`:"· kein offener Einkauf gefunden"}</div>
+      <div class="grid2" style="margin-top:8px">
+        <label>Produkt<input data-pk="${k}" data-f="name" value="${esc(a.name)}"></label>
+        <label>Plattform<select data-pk="${k}" data-f="platform">${PLATFORMS.map(x=>`<option ${x===a.platform?"selected":""}>${x}</option>`).join("")}</select></label>
+        <label>Verkaufspreis €<input inputmode="decimal" data-pk="${k}" data-f="sellPrice" value="${a.sellPrice??""}"></label>
+        <label>Auszahlung €<input inputmode="decimal" data-pk="${k}" data-f="payout" value="${a.payout??""}" placeholder="optional"></label>
+        <label>Verkauft am<input type="date" data-pk="${k}" data-f="date" value="${esc(a.date)}"></label>
+        ${match?"":`<label>Einkaufspreis €<input inputmode="decimal" data-pk="${k}" data-f="buyPrice" value="${a.buyPrice??""}"></label>`}
+      </div></div>`;
+  }).join("");
+  return `<div class="preview">${p.question?`<div class="banner">${esc(p.question)}</div>`:""}${rows}
+    <div class="row-actions"><button class="btn" id="btn-apply">Übernehmen</button><button class="btn ghost" id="btn-discard">Verwerfen</button></div></div>`;
+}
+
+function itemRow(i){
+  const pr = profitOf(i), c = pcls(i.platform);
+  return `<button class="item ${c}" data-edit="${i.id}">
+    <span class="dt">${fmtDate(i.date)||"–"}<small>${i.soldDate?"Verk. "+fmtDate(i.soldDate):"Kauf"}</small></span>
+    <span class="name">${esc(i.name)}${i.free?` <span class="chip open">gratis</span>`:""}</span>
+    <span class="money num">${i.sell!=null||i.payout!=null ? eur(income(i)) : `<span class="muted">offen</span>`}</span>
+    <span class="meta">${i.platform?`<span class="chip ${c}">${esc(i.platform)}</span>`:(income(i)!=null?`<span class="chip open">Plattform?</span>`:`<span class="chip open">nicht verkauft</span>`)}EK <span class="num">${eur(i.buy)}</span>${i.note?" · "+esc(i.note):""}</span>
+    <span class="money num profit ${pr==null?"":pr>=0?"pos":"neg"}">${pr==null?"":(pr>=0?"+":"")+eur(pr)}</span>
+  </button>`;
+}
+
+function viewTabelle(){
+  const mb = monthBar();
+  const list2 = S.items.filter(i=>monthOf(i.date)===S.month).sort((a,b)=>(a.date||"").localeCompare(b.date||""));
+  const buy = list2.reduce((s,i)=>s+(i.buy||0),0), sold = list2.filter(i=>income(i)!=null);
+  return `${mb}
+  <p class="muted" style="margin:6px 0 0">Einkäufe im ${monthName(S.month)} · ${list2.length} Positionen · EK <span class="num">${eur(buy)}</span> · ${sold.length} verkauft</p>
+  <div class="row-actions"><button class="btn ghost" id="btn-manual">+ Zeile</button><button class="btn ghost" id="btn-export">Als Excel speichern</button></div>
+  <div class="ledger">${list2.map(itemRow).join("") || `<div class="empty">Keine Einkäufe in diesem Monat.</div>`}</div>
+  <p class="hint">Zeile antippen zum Bearbeiten oder Löschen. Farben: <span class="chip kl">Kleinanzeigen</span><span class="chip eb">eBay</span><span class="chip cm">Cardmarket</span><span class="chip pv">Privat</span></p>
+  ${viewExpenses()}`;
+}
+function expensesIn(m){ return S.expenses.filter(x=>monthOf(x.date)===m).sort((a,b)=>(a.date||"").localeCompare(b.date||"")); }
+function viewExpenses(){
+  const list = expensesIn(S.month), sum = list.reduce((s,x)=>s+(x.amount||0),0);
+  return `<h2>Nebenkosten im ${monthName(S.month)}</h2>
+  <p class="muted" style="margin:0">Tickets, Eintritt, Versand, Material … · Summe <span class="num">${eur(sum)}</span></p>
+  <div class="row-actions"><button class="btn ghost" id="btn-exp-add">+ Nebenkosten</button></div>
+  <div class="ledger">${list.map(x=>`<button class="item" data-exp="${x.id}">
+    <span class="dt">${fmtDate(x.date)}<small>Kosten</small></span>
+    <span class="name">${esc(x.text)}</span><span class="money num neg">−${eur(x.amount)}</span>
+    <span class="meta">${esc(x.note||"")}</span><span></span></button>`).join("") || `<div class="empty">Keine Nebenkosten in diesem Monat.</div>`}</div>`;
+}
+function openExpDialog(x){
+  const e = x || {date:today(), text:"", amount:null, note:""};
+  $("#dlgform").innerHTML = `
+    <h2 style="margin:0">${x?"Nebenkosten bearbeiten":"Neue Nebenkosten"}</h2>
+    <label>Wofür<input name="text" value="${esc(e.text)}" required></label>
+    <div class="grid2"><label>Datum<input type="date" name="date" value="${esc(e.date)}"></label><label>Betrag €<input name="amount" inputmode="decimal" value="${e.amount??""}"></label></div>
+    <label>Notiz<input name="note" value="${esc(e.note||"")}"></label>
+    <label>Event<input name="event" value="${esc(e.event||"")}" placeholder="z. B. SPIEL Essen 2026"></label>
+    <div class="row-actions"><button class="btn" value="save">Speichern</button><button class="btn ghost" value="cancel" formnovalidate>Abbrechen</button>${x?`<button class="btn danger" value="delete" formnovalidate>Löschen</button>`:""}</div>`;
+  const dlg = $("#dlg");
+  dlg.onclose = async () => {
+    const v = dlg.returnValue; if (!S.db || v==="cancel" || !v) return;
+    const fd = new FormData($("#dlgform"));
+    if (v==="delete" && x){ await S.db.doc("expenses/"+x.id).delete(); return; }
+    const data = { text:String(fd.get("text")||"").trim(), date:fd.get("date")||today(), amount:num(fd.get("amount")), note:String(fd.get("note")||""), event:String(fd.get("event")||""), updated:Date.now() };
+    try { if (x) await S.db.doc("expenses/"+x.id).set(data); else await S.db.collection("expenses").add(data); } catch(err){ alertMsg(err); }
+  };
+  dlg.returnValue = ""; dlg.showModal();
+}
+
+function viewUebersicht(){
+  const mb = monthBar(), m = S.month;
+  const bought = S.items.filter(i=>monthOf(i.date)===m);
+  const soldIn = S.items.filter(i=>income(i)!=null && monthOf(i.soldDate||i.date)===m);
+  const ausgaben = bought.reduce((s,i)=>s+(i.buy||0),0);
+  const einnahmen = soldIn.reduce((s,i)=>s+(income(i)||0),0);
+  const gewinn = soldIn.reduce((s,i)=>s+(profitOf(i)||0),0);
+  const kosten = expensesIn(m).reduce((s,x)=>s+(x.amount||0),0);
+  const freeG = soldIn.filter(i=>i.free).reduce((s,i)=>s+(profitOf(i)||0),0);
+  const freeAll = S.items.filter(i=>i.free && monthOf(i.date)===m), freeOpen = freeAll.filter(i=>income(i)==null).length;
+  const lager = S.items.filter(i=>income(i)==null);
+  const lagerwert = lager.reduce((s,i)=>s+(i.buy||0),0);
+  const byP = PLATFORMS.map(p=>{ const x = soldIn.filter(i=>i.platform===p); return {p, n:x.length, sum:x.reduce((s,i)=>s+(income(i)||0),0), g:x.reduce((s,i)=>s+(profitOf(i)||0),0)}; });
+  const year = m.slice(0,4);
+  const yUmsatz = S.items.filter(i=>income(i)!=null && (i.soldDate||i.date||"").startsWith(year)).reduce((s,i)=>s+(i.sell??i.payout??0),0);
+  const pct = Math.min(100, yUmsatz/25000*100);
+  return `${mb}
+  <div class="kpis">
+    <div class="kpi"><div class="l">Einnahmen (verkauft im Monat)</div><div class="v num">${eur(einnahmen)}</div></div>
+    <div class="kpi"><div class="l">Ausgaben (eingekauft im Monat)</div><div class="v num">${eur(ausgaben)}</div></div>
+    <div class="kpi"><div class="l">Gewinn aus Verkäufen</div><div class="v num ${gewinn>=0?"pos":"neg"}">${eur(gewinn)}</div></div>
+    <div class="kpi" style="grid-column:1 / -1"><div class="l">Free Add-ons (gratis bekommen im Monat)</div><div class="v num">${freeAll.length} Stück · ${freeAll.length-freeOpen} verkauft · Gewinn <span class="pos">${eur(freeG)}</span></div></div>
+    <div class="kpi"><div class="l">Nebenkosten</div><div class="v num">${eur(kosten)}</div></div>
+    <div class="kpi"><div class="l">Gewinn nach Nebenkosten</div><div class="v num ${gewinn-kosten>=0?"pos":"neg"}">${eur(gewinn-kosten)}</div></div>
+    <div class="kpi" style="grid-column:1 / -1"><div class="l">Kassenstand Monat (Einnahmen − Einkäufe − Nebenkosten)</div><div class="v num ${einnahmen-ausgaben-kosten>=0?"pos":"neg"}">${eur(einnahmen-ausgaben-kosten)}</div></div>
+  </div>
+  <h2>Nach Plattform</h2>
+  <div class="tablewrap"><table><thead><tr><th>Plattform</th><th class="r">Stück</th><th class="r">Einnahmen</th><th class="r">Gewinn</th></tr></thead>
+  <tbody>${byP.map(r=>`<tr><td><span class="chip ${pcls(r.p)}">${r.p}</span></td><td class="r num">${r.n}</td><td class="r num">${eur(r.sum)}</td><td class="r num">${eur(r.g)}</td></tr>`).join("")}</tbody></table></div>
+  <h2>Lager</h2>
+  <p>${lager.length} Artikel noch nicht verkauft · gebunden <span class="num">${eur(lagerwert)}</span></p>
+  <h2>Umsatz ${year} (Kleinunternehmer)</h2>
+  <p class="num">${eur(yUmsatz)} von 25.000 €</p><div class="bar"><i style="width:${pct}%"></i></div>
+  <p class="hint">Grenze Vorjahr 25.000 €, im laufenden Jahr 100.000 € (§ 19 UStG, Stand 2025, bitte mit Steuerberater prüfen).</p>`;
+}
+
+/* ---------- Event ---------- */
+const EVENT = "SPIEL Essen 2026";
+function viewEvent(){
+  const it = S.items.filter(i=>i.event===EVENT), ex = S.expenses.filter(x=>x.event===EVENT);
+  const normal = it.filter(i=>!i.free), free = it.filter(i=>i.free);
+  const einkauf = normal.reduce((s,i)=>s+(i.buy||0),0);
+  const sold = it.filter(i=>income(i)!=null);
+  const umsatz = sold.reduce((s,i)=>s+(income(i)||0),0);
+  const gewinnN = normal.filter(i=>income(i)!=null).reduce((s,i)=>s+(profitOf(i)||0),0);
+  const gewinnF = free.filter(i=>income(i)!=null).reduce((s,i)=>s+(profitOf(i)||0),0);
+  const kosten = ex.reduce((s,x)=>s+(x.amount||0),0);
+  const lager = it.filter(i=>income(i)==null), lagerEK = lager.reduce((s,i)=>s+(i.buy||0),0);
+  const sortD = a=>[...a].sort((x,y)=>(x.date||"").localeCompare(y.date||"")||(x.name||"").localeCompare(y.name||""));
+  return `<h2 style="margin-top:6px">${EVENT}</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="l">Eingekauft (Ware)</div><div class="v num">${eur(einkauf)}</div></div>
+    <div class="kpi"><div class="l">Verkauft (Auszahlung)</div><div class="v num">${eur(umsatz)}</div></div>
+    <div class="kpi"><div class="l">Gewinn normale Verkäufe</div><div class="v num ${gewinnN>=0?"pos":"neg"}">${eur(gewinnN)}</div></div>
+    <div class="kpi"><div class="l">Gewinn Free Add-ons</div><div class="v num pos">${eur(gewinnF)}</div></div>
+    <div class="kpi"><div class="l">Nebenkosten</div><div class="v num">${eur(kosten)}</div></div>
+    <div class="kpi"><div class="l">Ergebnis bisher</div><div class="v num ${gewinnN+gewinnF-kosten>=0?"pos":"neg"}">${eur(gewinnN+gewinnF-kosten)}</div></div>
+    <div class="kpi" style="grid-column:1 / -1"><div class="l">Noch auf Lager</div><div class="v num">${lager.length} Artikel · EK ${eur(lagerEK)}</div></div>
+  </div>
+  <h2>Free Add-ons (gratis bekommen)</h2>
+  <div class="ledger">${sortD(free).map(itemRow).join("") || `<div class="empty">Keine.</div>`}</div>
+  <h2>Ware</h2>
+  <div class="ledger">${sortD(normal).map(itemRow).join("") || `<div class="empty">Keine.</div>`}</div>
+  <h2>Nebenkosten</h2>
+  <div class="ledger">${sortD(ex).map(x=>`<button class="item" data-exp="${x.id}"><span class="dt">${fmtDate(x.date)}<small>Kosten</small></span><span class="name">${esc(x.text)}</span><span class="money num neg">−${eur(x.amount)}</span><span class="meta">${esc(x.note||"")}</span><span></span></button>`).join("") || `<div class="empty">Keine.</div>`}</div>
+  <p class="hint">Einträge gehören zum Event, wenn bei „Event“ ${EVENT} steht. Gratis-Artikel haben Einkaufspreis 0 €, ihr Verkauf ist reiner Gewinn.</p>`;
+}
+
+/* ---------- Shanghai ---------- */
+function landed(rmb){ const f = S.settings; const e = rmb / f.fx; return (e + f.freight) * 1.027 * 1.19; }
+function viewShanghai(){
+  const rows = [...S.shanghai].sort((a,b)=>(a.order||0)-(b.order||0));
+  let tq=0,trmb=0,tland=0,tsell=0;
+  const body = rows.map(r=>{
+    const q = r.qty||0, l = r.rmb!=null ? landed(r.rmb) : null, prof = (r.expSell!=null && l!=null) ? (r.expSell - l) : null;
+    tq+=q; trmb+=q*(r.rmb||0); tland+=q*(l||0); tsell+=q*(r.expSell||0);
+    return `<tr data-sh="${r.id}" style="cursor:pointer"><td>${esc(r.name)}${r.status?`<div class="muted" style="font-size:12px">${esc(r.status)}</div>`:""}</td><td class="r num">${q}</td><td class="r num">${r.rmb??"–"}</td><td class="r num">${l==null?"–":l.toFixed(2)}</td><td class="r num">${r.expSell??"–"}</td><td class="r num ${prof==null?"":prof>=0?"pos":"neg"}">${prof==null?"–":(prof>=0?"+":"")+prof.toFixed(2)}</td></tr>`;
+  }).join("");
+  return `
+  <h2 style="margin-top:6px">Shanghai 01.–16.11.2026</h2>
+  <ol class="plan">
+    <li><b>02.11.</b> Pudong-Läden zu Fuß, Gem Pack 7 reservieren.</li>
+    <li><b>03.11.</b> Offizielles Gym Zhongshan Park, dann Baimi-Mall (JE) und Fuzhou Road.</li>
+    <li><b>04.11.</b> PokeColor, Card Hobby K11. Angebote vergleichen.</li>
+    <li><b>06.11. 10:00</b> Release Gem Pack 7 + Schwarz/Weiß-Sets.</li>
+    <li><b>07.–09.11.</b> Hauptkäufe. <b>10.–12.11.</b> Double 11, Lieferungen ins Hotel bis 12.11.</li>
+    <li><b>14.–15.11.</b> Packen. <b>16.11.</b> Flug, Düsseldorf roter Ausgang (EORI).</li>
+  </ol>
+  <p class="hint">Stand Läden: 30 Jahre bei Card Hobby und Agul ausverkauft. Card Hobby: Terastal 300 RMB nur mit Zusatzkauf, Gem Pack 7 voraussichtlich zum UVP, keine Reservierung. <a href="https://claude.ai/artifact/5WXyBfaYeNL6QfAntYZKWw" target="_blank" rel="noopener">Ganzer Reiseplan</a></p>
+  <h2>Einkaufsliste</h2>
+  <div class="grid2" style="max-width:360px"><label>Kurs RMB/€<input id="set-fx" inputmode="decimal" value="${S.settings.fx}"></label><label>Gepäck €/Stück<input id="set-fr" inputmode="decimal" value="${S.settings.freight}"></label></div>
+  <div class="tablewrap"><table><thead><tr><th>Produkt</th><th class="r">Stk</th><th class="r">EK RMB</th><th class="r">bis DE €</th><th class="r">VK €</th><th class="r">Gewinn/Stk</th></tr></thead>
+  <tbody>${body || `<tr><td colspan="6" class="muted">Noch keine Positionen.</td></tr>`}</tbody>
+  <tfoot><tr><th>Summe</th><th class="r num">${tq}</th><th class="r num">${trmb.toLocaleString("de-DE")}</th><th class="r num">${tland.toFixed(0)}</th><th class="r num">${tsell.toFixed(0)}</th><th class="r num ${tsell-tland>=0?"pos":"neg"}">${(tsell-tland).toFixed(0)}</th></tr></tfoot></table></div>
+  <p class="hint">„bis DE“ = EK ÷ Kurs + Gepäck, dann 2,7 % Zoll und 19 % Einfuhrumsatzsteuer. Warenwert ${eur(trmb/S.settings.fx)} von 4.000 € Budget. Zeile antippen zum Bearbeiten.</p>
+  <div class="row-actions"><button class="btn ghost" id="btn-sh-add">+ Position</button></div>`;
+}
+
+/* ---------- eBay ---------- */
+const EB_INFO = "Info;Version=1.0.0;Template=fx_category_template_EBAY_DE";
+const EB_HEAD = "*Action(SiteID=Germany|Country=DE|Currency=EUR|Version=1193|CC=UTF-8);CustomLabel;*Category;StoreCategory;*Title;Subtitle;Relationship;RelationshipDetails;ScheduleTime;*ConditionID;VAT%;CD:Bewertungsexperte - (ID: 27501);CD:Bewertung - (ID: 27502);CDA:Zertifikationsnummer - (ID: 27503);CD:Kartenzustand - (ID: 40001);C:Hersteller;*C:Edition;*C:Spiel;C:Produktart;C:Charakter;C:Altersempfehlung;C:Herstellungsjahr;C:Material;C:Sprache;C:Farbe;C:Besonderheiten;C:Ursprungsland;C:Vintage;C:Herstellernummer;C:Breite;C:Durchmesser;C:Gewicht;C:Höhe;C:Illustrator;C:Länge;*C:Break-Art;C:Anzahl der Displays/Umkartons;C:Datum;C:Kartenanzahl;C:Konfiguration;C:Uhrzeit;C:Kartentyp;C:Abgebildete Person/Künstler;C:Convention/Event;C:Kartengröße;C:Kreaturen-/Monstertyp;C:Seltenheit;C:Spezialkarte;C:Streamingdienst;C:Typ/MTG: Farbe;C:Zeichner;C:Anzahl der Decks oder Starter;C:Bewertung;C:Archetyp;C:Signiert von;C:Autogramm-Authentifizierung;C:Mit Autogramm;C:Autogramm-Authentifizierungsnummer;C:Autogrammart;C:Bewertungsexperte;C:Zertifikationsnummer;C:Anzahl der Displays;C:Kartenname;C:Oberflächeneffekt;C:Kartennummer;C:Entwicklungsstufe;C:Angriffskosten/Manakosten;C:Angriffsschaden/Stärke;C:Verteidigungs-Wert/Widerstandskraft;C:KP;C:Maßgefertigt;PicURL;GalleryType;VideoID;*Description;*Format;*Duration;*StartPrice;BuyItNowPrice;BestOfferEnabled;BestOfferAutoAcceptPrice;MinimumBestOfferPrice;*Quantity;ImmediatePayRequired;*Location;ShippingType;ShippingService-1:Option;ShippingService-1:Cost;ShippingService-2:Option;ShippingService-2:Cost;*DispatchTimeMax;PromotionalShippingDiscount;ShippingDiscountProfileID;DomesticRateTable;*ReturnsAcceptedOption;ReturnsWithinOption;RefundOption;ShippingCostPaidByOption;AdditionalDetails;Product Safety Pictograms;Product Safety Statements;Product Safety Component;Regulatory Document Ids;Manufacturer Name;Manufacturer AddressLine1;Manufacturer AddressLine2;Manufacturer City;Manufacturer Country;Manufacturer PostalCode;Manufacturer StateOrProvince;Manufacturer Phone;Manufacturer Email;Manufacturer ContactURL;Responsible Person 1;Responsible Person 1 Type;Responsible Person 1 AddressLine1;Responsible Person 1 AddressLine2;Responsible Person 1 City;Responsible Person 1 Country;Responsible Person 1 PostalCode;Responsible Person 1 StateOrProvince;Responsible Person 1 Phone;Responsible Person 1 Email;Responsible Person 1 ContactURL;IntlShippingService-1:Option;IntlShippingService-1:Cost;IntlShippingService-1:Locations".split(";");
+const EB_COL = {}; EB_HEAD.forEach((h,i)=>{ EB_COL[h.startsWith("*Action") ? "Action" : h.replace(/^\*/,"")] = i; });
+const EB_COND = { NM:{id:"400010",l:"Near Mint oder besser"}, EX:{id:"400011",l:"Excellent"}, VG:{id:"400012",l:"Very Good"}, PO:{id:"400013",l:"Poor"} };
+const EB_SHIP = { brief:{code:"DE_DeutschePostBrief",l:"Brief"}, paeckchen:{code:"DE_DHLPackchen",l:"DHL Päckchen"}, paket:{code:"DE_DHLPaket",l:"DHL Paket"} };
+const EB_FOOT = "<p><b>Versand:</b> sicher verpackt, Versand innerhalb von 2 Werktagen aus Düsseldorf. Kombiversand bei mehreren Artikeln möglich, bitte vor dem Kauf anfragen.</p><p><b>Rückgabe:</b> 14 Tage Rückgabe, Rücksendekosten trägt der Käufer.</p><p>Gemäß § 19 UStG wird keine Umsatzsteuer berechnet (Kleinunternehmer).</p>";
+const EB_DEF = { action:"Draft", location:"40235 Düsseldorf", dispatch:"2",
+  cost:{brief:"1.80", paeckchen:"5.00", paket:"6.50"}, intl:true, intlCost:{brief:"15.00", paeckchen:"15.00", paket:"20.00"},
+  bestOffer:true, autoPct:92, minPct:85, factor:1.4, footer:EB_FOOT };
+const ebSet = () => { const x = S.ebSettings||{}; return {...EB_DEF, ...x, cost:{...EB_DEF.cost, ...(x.cost||{})}, intlCost:{...EB_DEF.intlCost, ...(x.intlCost||{})}}; };
+const ebKey = n => String(n||"").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/ß/g,"ss").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,90) || "x";
+const ebMoney = n => n==null ? "" : Number(n).toFixed(2);
+const ebPics = L => String(L?.pics||"").split(/[\s|]+/).filter(u=>/^https:\/\//i.test(u));
+
+function ebGroups(){
+  const m = new Map();
+  S.items.filter(i=>income(i)==null && (i.name||"").trim()).forEach(i=>{
+    const k = ebKey(i.name); const g = m.get(k) || {key:k, name:i.name.trim(), qty:0, sum:0, nb:0, notes:new Set()};
+    g.qty++; if (i.buy!=null){ g.sum+=i.buy; g.nb++; } if (i.note) g.notes.add(i.note); if (i.event) g.notes.add(i.event); m.set(k,g);
+  });
+  return [...m.values()].map(g=>({...g, ek: g.nb ? g.sum/g.nb : null, L: S.ebay[g.key]||null})).sort((a,b)=>a.name.localeCompare(b.name,"de"));
+}
+function ebMissing(g){
+  const L = g.L; if (!L) return ["noch nicht ausgefüllt"];
+  const out = [];
+  if (!L.title) out.push("Titel"); else if (L.title.length>80) out.push("Titel über 80 Zeichen");
+  if (L.price==null) out.push("Preis");
+  if (!L.spiel) out.push("Spiel");
+  if (!L.edition) out.push("Edition/Set");
+  return out;
+}
+function ebStatus(g){
+  if (g.L?.exportedAt) return {c:"pv", l:"exportiert "+fmtDate(new Date(g.L.exportedAt).toISOString().slice(0,10))};
+  if (!g.L) return {c:"open", l:"neu"};
+  return ebMissing(g).length ? {c:"cm", l:"fehlt: "+ebMissing(g).join(", ")} : {c:"kl", l:"bereit"};
+}
+
+function viewEbay(){
+  const all = ebGroups(), st = ebSet();
+  const f = S.ebFilter||"offen";
+  const list = all.filter(g => f==="alle" ? true : f==="exportiert" ? !!g.L?.exportedAt : !g.L?.exportedAt);
+  [...S.ebSel].forEach(k=>{ if (!all.some(g=>g.key===k)) S.ebSel.delete(k); });
+  const sel = all.filter(g=>S.ebSel.has(g.key));
+  const ready = all.filter(g=>!g.L?.exportedAt && !ebMissing(g).length).length;
+  const allSel = list.length && list.every(g=>S.ebSel.has(g.key));
+  return `<h2 style="margin-top:6px">eBay-Inserate</h2>
+  <p class="muted" style="margin:0">${all.length} Produkte auf Lager · ${ready} bereit · ${sel.length} ausgewählt · Upload als <b>${st.action==="Add"?"Live-Inserat":"Entwurf"}</b></p>
+  <div class="monthbar" role="group" aria-label="Filter" style="margin-top:8px">${[["offen","Noch nicht exportiert"],["exportiert","Exportiert"],["alle","Alle"]].map(([k,l])=>`<button data-ebf="${k}" aria-pressed="${k===f}">${l}</button>`).join("")}</div>
+  <div class="row-actions">
+    <button class="btn ghost" id="btn-eb-all">${allSel?"Auswahl aufheben":"Alle auswählen"}</button>
+    <button class="btn" id="btn-eb-fill" ${S.ebBusy||!sel.length?"disabled":""}>${S.ebBusy?"Claude schreibt … "+esc(S.ebProg||""):`Mit Claude ausfüllen (${sel.length})`}</button>
+    <button class="btn" id="btn-eb-csv" ${S.ebBusy||!sel.length?"disabled":""}>eBay-Datei laden (${sel.length})</button>
+    <button class="btn ghost" id="btn-eb-set">Einstellungen</button>
+  </div>
+  <div class="ebfactor"><span>Preis für Auswahl ohne Preis: EK ×</span><input id="eb-factor" inputmode="decimal" value="${st.factor}"><button class="btn ghost" id="btn-eb-factor" ${!sel.length?"disabled":""}>Setzen</button></div>
+  ${S.ebMsg?`<div class="banner">${S.ebMsg}</div>`:""}
+  <div class="ledger">${list.map(ebRow).join("") || `<div class="empty">${all.length?"Nichts in diesem Filter.":"Alles verkauft. Neue Einkäufe erscheinen hier automatisch."}</div>`}</div>
+  <h2>So kommt es zu eBay</h2>
+  <ol class="plan">
+    <li>Produkte anhaken und <b>Mit Claude ausfüllen</b>. Titel, Beschreibung, Spiel, Set, Sprache und Zustand werden vorgeschlagen.</li>
+    <li>Preis eintragen (direkt im Feld oder per „EK ×“). Zeile antippen, um alles andere zu ändern.</li>
+    <li><b>eBay-Datei laden</b> speichert eine CSV. Nur Inserate mit Status „bereit“ kommen hinein.</li>
+    <li>Im eBay Seller Hub: <b>Berichte → Uploads → Vorlagen hochladen</b>, Datei wählen. Ein Upload für alle Inserate.</li>
+    <li>Als Entwurf: unter <b>Inserate → Entwürfe</b> Fotos hinzufügen und einstellen.</li>
+  </ol>
+  <p class="hint">Gegradete Karten (PSA, BGS …) lädt die Datei als ungegradet hoch. Note und Grading-Firma im Entwurf ergänzen. Einzelkarten gehen in Kategorie 183454, Sealed in 261044.</p>`;
+}
+function ebRow(g){
+  const L = g.L, s = ebStatus(g), qty = L?.qty ?? g.qty;
+  return `<div class="item ebrow ${S.ebSel.has(g.key)?"sel":""}">
+    <input type="checkbox" class="ebchk" id="ebs-${g.key}" data-ebsel="${g.key}" ${S.ebSel.has(g.key)?"checked":""} aria-label="${esc(g.name)} auswählen">
+    <button class="ebmain" data-ebedit="${g.key}">
+      <span class="name">${esc(L?.title || g.name)}</span>
+      <span class="meta">${L?.title?esc(g.name)+" · ":""}${qty} Stk · EK <span class="num">${eur(g.ek)}</span>${L?.type?` · ${L.type==="single"?"Einzelkarte":"Sealed"}`:""}</span>
+      <span class="meta"><span class="chip ${s.c}">${esc(s.l)}</span></span>
+    </button>
+    <label class="ebprice">Preis €<input inputmode="decimal" id="ebp-${g.key}" data-ebprice="${g.key}" value="${L?.price??""}" placeholder="–"></label>
+  </div>`;
+}
+
+async function ebSave(key, patch){
+  const g = ebGroups().find(x=>x.key===key); const L = S.ebay[key] || {};
+  const data = {...L, name: g?.name || L.name || key, ...patch, updated:Date.now()}; delete data.id;
+  await S.db.doc("ebay/"+key).set(data);
+}
+function ebSku(spiel, key){
+  const ini = String(spiel||"TCG").normalize("NFD").replace(/[^A-Za-z ]/g," ").split(/\s+/).filter(Boolean).map(w=>w[0]).join("").slice(0,3).toUpperCase() || "TCG";
+  return (ini+"-"+key).slice(0,50).toUpperCase();
+}
+
+async function ebFill(){
+  if (!S.db) return;
+  if (!S.sample){ S.ebMsg = "Claude ist in dieser Ansicht nicht verfügbar. Öffne die App über claude.ai."; render(); return; }
+  const groups = ebGroups().filter(g=>S.ebSel.has(g.key)); if (!groups.length) return;
+  S.ebBusy = true; S.ebMsg = null; let done = 0; S.ebProg = `0/${groups.length}`; render();
+  try {
+    for (let k=0; k<groups.length; k+=8){
+      const chunk = groups.slice(k,k+8);
+      const input = chunk.map(g=>({key:g.key, name:g.name, qty:g.qty, notes:[...g.notes].slice(0,5)}));
+      const prompt = `Du schreibst eBay.de-Inserate für einen Sammelkarten-Verkäufer (TCG: Einzelkarten und Sealed-Produkte). Antworte NUR mit JSON in genau dieser Form:
+{"listings":[{"key":string,"type":"single"|"sealed","title":string,"spiel":string,"edition":string,"hersteller":string,"sprache":string,"jahr":string,"zustand":"NM"|"EX"|"VG"|"PO"|null,"intro":string,"bullets":[string]}]}
+Regeln:
+- Ein Eintrag pro Produkt, "key" unverändert übernehmen.
+- type: "single" = einzelne Karte oder Promo-Karte. "sealed" = verschlossenes Produkt (Booster, Display, Elite-Trainer-Box, Top-Trainer-Box, Bundle, Tin, Kollektion, Starter-Deck).
+- title: höchstens 80 Zeichen, Deutsch, wichtigste Suchbegriffe zuerst: Spiel, Kartenname bzw. Produkt, Set, Sprache. Sealed endet mit "Neu OVP", Einzelkarten mit dem Zustand (z. B. "Near Mint"). Keine Emojis, keine Großbuchstaben-Wörter, kein "L@@K", keine Anführungszeichen.
+- spiel: offizieller Name, z. B. "Pokémon TCG", "Magic: The Gathering", "Yu-Gi-Oh! TCG", "One Piece Card Game", "Riftbound: League of Legends TCG", "Disney Lorcana", "Dragon Ball Super Card Game".
+- edition: Set- oder Serienname (z. B. "Karmesin & Purpur – Prismatische Entwicklungen"). Bei Promos ohne Set "Promo".
+- hersteller: z. B. "The Pokémon Company", "Wizards of the Coast", "Konami", "Bandai", "Riot Games", "Ravensburger".
+- sprache: "Deutsch", "Englisch", "Japanisch", "Chinesisch", "Koreanisch" usw., wenn aus Name oder Notiz erkennbar, sonst "".
+- jahr: Erscheinungsjahr als vierstellige Zahl, wenn du es sicher weißt, sonst "".
+- zustand nur bei single: "NM", außer die Notiz nennt einen schlechteren Zustand. Bei sealed null.
+- intro: ein Satz, was verkauft wird. bullets: 2 bis 4 kurze Fakten (Zustand, Inhalt, geschützter Versand in Sleeve und Toploader bei Karten). Erfinde nichts, was nicht aus Name oder Notiz folgt: keine Inhaltsangaben, Auflagen oder Preise, wenn du sie nicht sicher kennst.
+Produkte: ${JSON.stringify(input)}`;
+      const res = await S.sample.json(prompt, { modelTier:"default" });
+      const arr = Array.isArray(res?.listings) ? res.listings : [];
+      for (const r of arr){
+        const g = chunk.find(x=>x.key===r?.key); if (!g) continue;
+        const type = r.type==="single" ? "single" : "sealed";
+        let title = String(r.title||g.name).replace(/\s+/g," ").trim();
+        if (title.length>80){ title = title.slice(0,80); const sp = title.lastIndexOf(" "); if (sp>50) title = title.slice(0,sp); }
+        const old = S.ebay[g.key] || {};
+        await ebSave(g.key, { type, title, spiel:String(r.spiel||""), edition:String(r.edition||""), hersteller:String(r.hersteller||""),
+          sprache:String(r.sprache||""), jahr:/^\d{4}$/.test(String(r.jahr||"")) ? String(r.jahr) : "",
+          zustand: type==="single" ? (EB_COND[r.zustand] ? r.zustand : "NM") : null,
+          intro:String(r.intro||""), bullets:(Array.isArray(r.bullets)?r.bullets:[]).map(String).slice(0,5),
+          ship: old.ship || (type==="single" ? "paeckchen" : "paket"), sku: old.sku || ebSku(r.spiel, g.key) });
+        done++;
+      }
+      S.ebProg = `${Math.min(k+8,groups.length)}/${groups.length}`; render();
+    }
+    S.ebMsg = `${done} Inserate ausgefüllt. Bitte Titel und Preise kurz prüfen.`;
+  } catch(e){
+    S.ebMsg = e?.code==="not_granted" ? "Claude-Zugriff wurde nicht erlaubt." : e?.code==="rate_limited" ? `Gerade zu viele Anfragen. ${done} sind fertig, starte den Rest gleich noch einmal.` : `Claude konnte nicht alles ausfüllen (${esc(e?.code||e?.message||"Fehler")}). ${done} sind fertig.`;
+  }
+  S.ebBusy = false; render();
+}
+
+async function ebFactor(){
+  const f = num($("#eb-factor")?.value); if (!f || !S.db) return;
+  try {
+    await S.db.doc("settings/ebay").set({...(S.ebSettings||{}), factor:f});
+    let n = 0;
+    for (const g of ebGroups().filter(g=>S.ebSel.has(g.key) && g.L?.price==null && g.ek!=null)){
+      await ebSave(g.key, {price: Math.max(1, Math.round(g.ek*f) - 0.01)}); n++;
+    }
+    S.ebMsg = n ? `${n} Preise gesetzt (auf ,99 gerundet).` : "Keine ausgewählten Produkte ohne Preis mit bekanntem EK.";
+  } catch(e){ S.ebMsg = "Speichern fehlgeschlagen: "+esc(e?.message||e?.code||e); }
+  render();
+}
+
+function ebDesc(name, L, st){
+  const lis = (L.bullets||[]).filter(Boolean).map(b=>`<li>${esc(b)}</li>`).join("");
+  return `<h2>${esc(L.title||name)}</h2>${L.intro?`<p>${esc(L.intro)}</p>`:""}${lis?`<ul>${lis}</ul>`:""}${st.footer||""}`.replace(/[\r\n]+/g," ");
+}
+function ebLine(g, st){
+  const L = g.L, r = new Array(EB_HEAD.length).fill("");
+  const s = (k,v) => { if (EB_COL[k]!=null && v!=null && v!=="") r[EB_COL[k]] = String(v); };
+  const single = L.type==="single", ship = EB_SHIP[L.ship] ? L.ship : (single?"paeckchen":"paket");
+  r[0] = st.action==="Add" ? "Add" : "Draft";
+  s("CustomLabel", L.sku || ebSku(L.spiel, g.key)); s("Category", single ? "183454" : "261044"); s("Title", L.title);
+  s("ConditionID", single ? "4000" : "1000");
+  if (single) s("CD:Kartenzustand - (ID: 40001)", (EB_COND[L.zustand]||EB_COND.NM).id);
+  s("C:Spiel", L.spiel); s("C:Edition", L.edition); s("C:Hersteller", L.hersteller); s("C:Sprache", L.sprache); s("C:Herstellungsjahr", L.jahr);
+  s("PicURL", ebPics(L).join("|"));
+  s("Description", ebDesc(g.name, L, st)); s("Format","FixedPrice"); s("Duration","GTC");
+  s("StartPrice", ebMoney(L.price)); s("Quantity", String(Math.max(1, Math.round(L.qty ?? g.qty))));
+  if (st.bestOffer && L.bestOffer!==false && L.price>=10){
+    s("BestOfferEnabled","1"); s("BestOfferAutoAcceptPrice", ebMoney(L.price*st.autoPct/100)); s("MinimumBestOfferPrice", ebMoney(L.price*st.minPct/100));
+  }
+  s("Location", st.location); s("ShippingType","Flat");
+  s("ShippingService-1:Option", EB_SHIP[ship].code); s("ShippingService-1:Cost", ebMoney(num(st.cost[ship])));
+  if (st.intl){ s("IntlShippingService-1:Option","DE_PaketInternational"); s("IntlShippingService-1:Cost", ebMoney(num(st.intlCost[ship]))); s("IntlShippingService-1:Locations","Worldwide"); }
+  s("DispatchTimeMax", st.dispatch||"2");
+  s("ReturnsAcceptedOption","ReturnsAccepted"); s("ReturnsWithinOption","Days_14"); s("RefundOption","MoneyBack"); s("ShippingCostPaidByOption","Buyer");
+  return r;
+}
+const ebCsvCell = v => /[;"\n\r]/.test(v) ? `"${v.replace(/"/g,'""')}"` : v;
+
+async function ebExport(){
+  const st = ebSet();
+  const sel = ebGroups().filter(g=>S.ebSel.has(g.key));
+  const ok = sel.filter(g=>!ebMissing(g).length), skip = sel.filter(g=>ebMissing(g).length);
+  if (!ok.length){ S.ebMsg = "Keins der ausgewählten Inserate ist bereit. Erst mit Claude ausfüllen und Preise eintragen."; render(); return; }
+  if (!S.dl){ S.ebMsg = "Dateien speichern ist in dieser Ansicht nicht verfügbar."; render(); return; }
+  const text = "﻿" + EB_INFO + "\n" + [EB_HEAD, ...ok.map(g=>ebLine(g,st))].map(row=>row.map(ebCsvCell).join(";")).join("\n") + "\n";
+  try {
+    await S.dl.save({ filename:`ebay_upload_${today()}.csv`, data:new Blob([text], {type:"text/csv"}) });
+    const t = Date.now();
+    for (const g of ok) await S.db.doc("ebay/"+g.key).update({exportedAt:t});
+    ok.forEach(g=>S.ebSel.delete(g.key));
+    S.ebMsg = `${ok.length} Inserate in der Datei. Jetzt im Seller Hub unter Berichte → Uploads hochladen.` + (skip.length ? ` Nicht dabei (unvollständig): ${skip.map(g=>esc(g.name)).join(", ")}.` : "");
+  } catch(e){
+    if (e?.code!=="declined") S.ebMsg = "Datei konnte nicht gespeichert werden ("+esc(e?.code||"Fehler")+").";
+  }
+  render();
+}
+
+function openEbDialog(key){
+  const g = ebGroups().find(x=>x.key===key); if (!g) return;
+  const L = {type:"sealed", title:g.name, spiel:"", edition:"", hersteller:"", sprache:"", jahr:"", zustand:null, intro:"", bullets:[], ship:"paket", pics:"", bestOffer:true, ...(g.L||{})};
+  $("#dlgform").innerHTML = `
+    <h2 style="margin:0">${esc(g.name)}</h2>
+    <p class="muted" style="margin:0">${g.qty} auf Lager · EK ${eur(g.ek)}</p>
+    <label>Titel <span id="eb-tlen">${(L.title||"").length}/80</span><input name="title" id="eb-title" maxlength="80" value="${esc(L.title)}"></label>
+    <div class="grid2">
+      <label>Art<select name="type"><option value="sealed" ${L.type!=="single"?"selected":""}>Sealed (neu, OVP)</option><option value="single" ${L.type==="single"?"selected":""}>Einzelkarte</option></select></label>
+      <label>Kartenzustand<select name="zustand">${Object.entries(EB_COND).map(([k,v])=>`<option value="${k}" ${(L.zustand||"NM")===k?"selected":""}>${v.l}</option>`).join("")}</select></label>
+      <label>Spiel<input name="spiel" value="${esc(L.spiel)}"></label>
+      <label>Edition / Set<input name="edition" value="${esc(L.edition)}"></label>
+      <label>Hersteller<input name="hersteller" value="${esc(L.hersteller)}"></label>
+      <label>Sprache<input name="sprache" value="${esc(L.sprache)}"></label>
+      <label>Jahr<input name="jahr" inputmode="numeric" value="${esc(L.jahr)}"></label>
+      <label>Versand<select name="ship">${Object.entries(EB_SHIP).map(([k,v])=>`<option value="${k}" ${L.ship===k?"selected":""}>${v.l}</option>`).join("")}</select></label>
+      <label>Preis €<input name="price" inputmode="decimal" value="${L.price??""}"></label>
+      <label>Stückzahl<input name="qty" inputmode="numeric" value="${L.qty??g.qty}"></label>
+    </div>
+    <label style="display:flex;gap:8px;align-items:center;color:var(--ink)"><input type="checkbox" name="bestOffer" style="width:auto" ${L.bestOffer!==false?"checked":""}>Preisvorschlag erlauben (ab 10 €)</label>
+    <label>Einleitung<input name="intro" value="${esc(L.intro)}"></label>
+    <label>Stichpunkte (eine Zeile pro Punkt)<textarea name="bullets" style="min-height:90px;font-size:16px">${esc((L.bullets||[]).join("\n"))}</textarea></label>
+    <label>Bild-Links (optional, https, einer pro Zeile)<textarea name="pics" style="min-height:60px;font-size:14px">${esc(L.pics||"")}</textarea></label>
+    <div class="row-actions"><button class="btn" value="save">Speichern</button><button class="btn ghost" value="cancel" formnovalidate>Abbrechen</button>${L.exportedAt?`<button class="btn ghost" value="reset" formnovalidate>Wieder als offen markieren</button>`:""}</div>`;
+  const dlg = $("#dlg");
+  dlg.onclose = async () => {
+    const v = dlg.returnValue; if (!S.db || v==="cancel" || !v) return;
+    const fd = new FormData($("#dlgform"));
+    try {
+      if (v==="reset"){ await ebSave(key, {exportedAt:null}); return; }
+      const type = fd.get("type")==="single" ? "single" : "sealed";
+      const qty = num(fd.get("qty"));
+      await ebSave(key, { type, title:String(fd.get("title")||"").trim(), zustand: type==="single" ? String(fd.get("zustand")||"NM") : null,
+        spiel:String(fd.get("spiel")||"").trim(), edition:String(fd.get("edition")||"").trim(), hersteller:String(fd.get("hersteller")||"").trim(),
+        sprache:String(fd.get("sprache")||"").trim(), jahr:String(fd.get("jahr")||"").trim(), ship:String(fd.get("ship")||"paket"),
+        price:num(fd.get("price")), qty: qty!=null && qty!==g.qty ? qty : null, bestOffer: fd.get("bestOffer")==="on",
+        intro:String(fd.get("intro")||"").trim(), bullets:String(fd.get("bullets")||"").split("\n").map(x=>x.trim()).filter(Boolean),
+        pics:String(fd.get("pics")||"").trim(), sku: L.sku || ebSku(fd.get("spiel"), key) });
+    } catch(e){ alertMsg(e); }
+  };
+  dlg.returnValue = ""; dlg.showModal();
+}
+
+function openEbSettings(){
+  const st = ebSet();
+  const c = (k,o) => `<label>${EB_SHIP[k].l} €<input name="${o}-${k}" inputmode="decimal" value="${esc((o==="c"?st.cost:st.intlCost)[k])}"></label>`;
+  $("#dlgform").innerHTML = `
+    <h2 style="margin:0">eBay-Einstellungen</h2>
+    <label>Hochladen als<select name="action"><option value="Draft" ${st.action!=="Add"?"selected":""}>Entwurf (Fotos danach in eBay hinzufügen)</option><option value="Add" ${st.action==="Add"?"selected":""}>Sofort live (nur mit Bild-Links)</option></select></label>
+    <div class="grid2"><label>Artikelstandort<input name="location" value="${esc(st.location)}"></label><label>Bearbeitungszeit (Werktage)<input name="dispatch" inputmode="numeric" value="${esc(st.dispatch)}"></label></div>
+    <div class="pv-head">Versand Deutschland</div>
+    <div class="grid3">${c("brief","c")}${c("paeckchen","c")}${c("paket","c")}</div>
+    <label style="display:flex;gap:8px;align-items:center;color:var(--ink)"><input type="checkbox" name="intl" style="width:auto" ${st.intl?"checked":""}>Auch weltweit versenden</label>
+    <div class="grid3">${c("brief","i")}${c("paeckchen","i")}${c("paket","i")}</div>
+    <label style="display:flex;gap:8px;align-items:center;color:var(--ink)"><input type="checkbox" name="bestOffer" style="width:auto" ${st.bestOffer?"checked":""}>Preisvorschlag standardmäßig an</label>
+    <div class="grid2"><label>Automatisch annehmen ab % vom Preis<input name="autoPct" inputmode="numeric" value="${st.autoPct}"></label><label>Automatisch ablehnen unter %<input name="minPct" inputmode="numeric" value="${st.minPct}"></label></div>
+    <label>Fußtext jeder Beschreibung (HTML)<textarea name="footer" style="min-height:110px;font-size:14px">${esc(st.footer)}</textarea></label>
+    <div class="row-actions"><button class="btn" value="save">Speichern</button><button class="btn ghost" value="cancel" formnovalidate>Abbrechen</button></div>`;
+  const dlg = $("#dlg");
+  dlg.onclose = async () => {
+    const v = dlg.returnValue; if (!S.db || v!=="save") return;
+    const fd = new FormData($("#dlgform")), g = n => String(fd.get(n)||"").trim();
+    const data = { ...(S.ebSettings||{}), action: g("action")==="Add"?"Add":"Draft", location:g("location"), dispatch:g("dispatch")||"2",
+      cost:{brief:g("c-brief"), paeckchen:g("c-paeckchen"), paket:g("c-paket")}, intl: fd.get("intl")==="on",
+      intlCost:{brief:g("i-brief"), paeckchen:g("i-paeckchen"), paket:g("i-paket")}, bestOffer: fd.get("bestOffer")==="on",
+      autoPct:num(g("autoPct"))??EB_DEF.autoPct, minPct:num(g("minPct"))??EB_DEF.minPct, footer:g("footer") };
+    try { await S.db.doc("settings/ebay").set(data); } catch(e){ alertMsg(e); }
+  };
+  dlg.returnValue = ""; dlg.showModal();
+}
+
+/* ---------- dialogs ---------- */
+function openItemDialog(item){
+  const it = item || {date:today(), name:"", buy:null, sell:null, payout:null, platform:"", soldDate:"", note:""};
+  $("#dlgform").innerHTML = `
+    <h2 style="margin:0">${item?"Eintrag bearbeiten":"Neuer Eintrag"}</h2>
+    <label>Produkt<input name="name" value="${esc(it.name)}" required></label>
+    <div class="grid2">
+      <label>Kaufdatum<input type="date" name="date" value="${esc(it.date)}"></label>
+      <label>Einkaufspreis €<input name="buy" inputmode="decimal" value="${it.buy??""}"></label>
+      <label>Verkaufspreis €<input name="sell" inputmode="decimal" value="${it.sell??""}"></label>
+      <label>Auszahlung €<input name="payout" inputmode="decimal" value="${it.payout??""}" placeholder="optional"></label>
+      <label>Plattform<select name="platform"><option value="">– nicht verkauft –</option>${PLATFORMS.map(p=>`<option ${p===it.platform?"selected":""}>${p}</option>`).join("")}</select></label>
+      <label>Verkauft am<input type="date" name="soldDate" value="${esc(it.soldDate||"")}"></label>
+    </div>
+    <label>Gewinn manuell € (optional, sonst automatisch)<input name="profitManual" inputmode="decimal" value="${it.profitManual??""}"></label>
+    <label>Notiz<input name="note" value="${esc(it.note||"")}"></label>
+    <div class="grid2"><label>Event<input name="event" value="${esc(it.event||"")}" placeholder="z. B. SPIEL Essen 2026"></label>
+    <label style="align-content:end"><span><input type="checkbox" name="free" style="width:auto;margin-right:6px" ${it.free?"checked":""}>Gratis (Free Add-on)</span></label></div>
+    <div class="row-actions"><button class="btn" value="save">Speichern</button><button class="btn ghost" value="cancel" formnovalidate>Abbrechen</button>${item?`<button class="btn danger" value="delete" formnovalidate>Löschen</button>`:""}</div>`;
+  const dlg = $("#dlg");
+  dlg.onclose = async () => {
+    const v = dlg.returnValue; if (!S.db || v==="cancel" || !v) return;
+    const fd = new FormData($("#dlgform"));
+    if (v==="delete" && item){ await S.db.doc("items/"+item.id).delete(); return; }
+    const data = { name:String(fd.get("name")||"").trim(), date:fd.get("date")||today(), buy:num(fd.get("buy")), sell:num(fd.get("sell")), payout:num(fd.get("payout")),
+      platform:fd.get("platform")||"", soldDate:fd.get("soldDate")||"", profitManual:num(fd.get("profitManual")), note:String(fd.get("note")||""), event:String(fd.get("event")||""), free:fd.get("free")==="on", updated:Date.now() };
+    if (data.free && data.buy==null) data.buy = 0;
+    if (data.sell!=null && !data.soldDate) data.soldDate = today();
+    try { if (item) await S.db.doc("items/"+item.id).set(data); else await S.db.collection("items").add(data); } catch(e){ alertMsg(e); }
+  };
+  dlg.returnValue = ""; dlg.showModal();
+}
+function openShDialog(r){
+  const x = r || {name:"", qty:1, rmb:null, expSell:null, status:""};
+  $("#dlgform").innerHTML = `
+    <h2 style="margin:0">${r?"Position bearbeiten":"Neue Position"}</h2>
+    <label>Produkt<input name="name" value="${esc(x.name)}" required></label>
+    <div class="grid3">
+      <label>Stück<input name="qty" inputmode="numeric" value="${x.qty??""}"></label>
+      <label>EK RMB/Stk<input name="rmb" inputmode="decimal" value="${x.rmb??""}"></label>
+      <label>VK €/Stk<input name="expSell" inputmode="decimal" value="${x.expSell??""}"></label>
+    </div>
+    <label>Status / Notiz<input name="status" value="${esc(x.status||"")}"></label>
+    <div class="row-actions"><button class="btn" value="save">Speichern</button><button class="btn ghost" value="cancel" formnovalidate>Abbrechen</button>${r?`<button class="btn danger" value="delete" formnovalidate>Löschen</button>`:""}</div>`;
+  const dlg = $("#dlg");
+  dlg.onclose = async () => {
+    const v = dlg.returnValue; if (!S.db || v==="cancel" || !v) return;
+    const fd = new FormData($("#dlgform"));
+    if (v==="delete" && r){ await S.db.doc("shanghai/"+r.id).delete(); return; }
+    const data = { name:String(fd.get("name")||"").trim(), qty:num(fd.get("qty"))||0, rmb:num(fd.get("rmb")), expSell:num(fd.get("expSell")), status:String(fd.get("status")||""), order: r?.order ?? Date.now() };
+    try { if (r) await S.db.doc("shanghai/"+r.id).set(data); else await S.db.collection("shanghai").add(data); } catch(e){ alertMsg(e); }
+  };
+  dlg.returnValue = ""; dlg.showModal();
+}
+function alertMsg(e){ S.error = "Speichern fehlgeschlagen: " + (e?.message||e?.code||e); render(); }
+
+/* ---------- Claude parsing ---------- */
+async function parse(){
+  const text = ($("#input")?.value||"").trim(); S.draft = text; if (!text) return;
+  if (!S.sample){ S.error = "Claude ist in dieser Ansicht nicht verfügbar. Lege den Eintrag manuell an."; render(); return; }
+  S.busy = true; S.error = null; render();
+  const names = [...new Set(S.items.map(i=>i.name))].slice(0,300);
+  const open = S.items.filter(i=>income(i)==null).sort((a,b)=>(a.date||"").localeCompare(b.date||"")).map(i=>({id:i.id,name:i.name,buy:i.buy,date:i.date})).slice(0,200);
+  const prompt = `Du bist die Eingabehilfe eines Resell-Kassenbuchs (Sammelkarten, Spielzeug). Heute ist ${today()}.
+Wandle die diktierte Notiz in Aktionen um. Antworte NUR mit JSON in genau dieser Form:
+{"actions":[{"type":"buy","name":string,"qty":number,"unitPrice":number|null,"date":"YYYY-MM-DD","note":string},{"type":"sell","name":string,"matchId":string|null,"sellPrice":number|null,"payout":number|null,"platform":"Kleinanzeigen"|"eBay"|"Cardmarket"|"Privat","date":"YYYY-MM-DD","buyPrice":number|null},{"type":"expense","text":string,"amount":number|null,"date":"YYYY-MM-DD"}],"question":string|null}
+Regeln:
+- "gekauft/geholt/bestellt" = buy, "verkauft/weg für" = sell. Mehrere Dinge = mehrere Aktionen.
+- Kosten, die keine Ware sind (Bahnticket, Eintritt, Versand, Verpackung, Gebühren, Spiele vor Ort) = expense mit kurzem "text".
+- Bei Stückzahl und Gesamtpreis: unitPrice = Gesamtpreis / Anzahl.
+- Produktnamen vereinheitlichen: Wenn ein bekannter Name dasselbe Produkt meint (z. B. "Garden Set" = "Riftbound Secret Garden Set", "30er TTB" = "TTB 30 J"), nimm den bekannten Namen genau so. Sonst einen klaren, kurzen Namen.
+- Bei sell: matchId = id des ÄLTESTEN offenen Einkaufs mit demselben Produkt, sonst null. "Auszahlung" = payout. Plattform: Kleinanzeigen/eBay/Cardmarket, privat/Freund = Privat.
+- Datum: "heute" = ${today()}, "gestern" = Vortag; ohne Angabe heute.
+- Fehlt etwas Wichtiges (Preis), setze null und stelle in "question" eine kurze Rückfrage auf Deutsch, sonst null.
+Bekannte Produktnamen: ${JSON.stringify(names)}
+Offene (unverkaufte) Einkäufe: ${JSON.stringify(open)}
+Notiz: """${text}"""`;
+  try {
+    const res = await S.sample.json(prompt, { modelTier:"default" });
+    const acts = Array.isArray(res?.actions) ? res.actions.filter(a=>a && (a.type==="buy"||a.type==="sell"||a.type==="expense")) : [];
+    acts.forEach(a=>{ a.date = /^\d{4}-\d{2}-\d{2}$/.test(a.date||"") ? a.date : today(); if (a.type==="sell" && a.matchId && !S.items.some(i=>i.id===a.matchId)) a.matchId=null; if (a.type==="sell" && !PLATFORMS.includes(a.platform)) a.platform="Kleinanzeigen"; });
+    S.proposal = acts.length ? { actions:acts, question: res.question||null } : null;
+    if (!acts.length) S.error = res?.question || "Ich konnte daraus keinen Kauf oder Verkauf lesen. Formuliere es etwas genauer.";
+  } catch(e){
+    S.error = e?.code==="not_granted" ? "Claude-Zugriff wurde nicht erlaubt. Lege den Eintrag manuell an." : e?.code==="rate_limited" ? "Gerade zu viele Anfragen, versuch es gleich noch einmal." : "Claude konnte die Notiz nicht lesen ("+(e?.code||"Fehler")+").";
+  }
+  S.busy = false; render();
+}
+function readProposalInputs(){
+  document.querySelectorAll("[data-pk]").forEach(el=>{
+    const a = S.proposal.actions[+el.dataset.pk], f = el.dataset.f;
+    a[f] = ["unitPrice","qty","sellPrice","payout","buyPrice","amount"].includes(f) ? num(el.value) : el.value;
+  });
+}
+async function applyProposal(){
+  if (!S.db || !S.proposal) return; readProposalInputs();
+  const btn = $("#btn-apply"); if (btn) btn.disabled = true;
+  try {
+    for (const a of S.proposal.actions){
+      if (a.type==="expense"){
+        await S.db.collection("expenses").add({ text:(a.text||"").trim(), amount:a.amount??null, date:a.date, note:"", updated:Date.now() });
+      } else if (a.type==="buy"){
+        const q = Math.max(1, Math.round(a.qty||1));
+        for (let k=0;k<q;k++) await S.db.collection("items").add({ name:(a.name||"").trim(), date:a.date, buy:a.unitPrice??null, sell:null, payout:null, platform:"", soldDate:"", profitManual:null, note:a.note||"", updated:Date.now() });
+      } else {
+        const m = a.matchId ? S.items.find(i=>i.id===a.matchId) : null;
+        const patch = { sell:a.sellPrice??null, payout:a.payout??null, platform:a.platform, soldDate:a.date, updated:Date.now() };
+        if (m) await S.db.doc("items/"+m.id).update(patch);
+        else await S.db.collection("items").add({ name:(a.name||"").trim(), date:a.date, buy:a.buyPrice??null, profitManual:null, note:"Einkauf nicht gefunden", ...patch });
+      }
+    }
+    S.proposal = null; S.draft = ""; S.error = null;
+  } catch(e){ S.error = "Speichern fehlgeschlagen: "+(e?.message||e?.code||e); }
+  render();
+}
+
+/* ---------- export ---------- */
+async function exportXlsx(){
+  if (!window.XLSX){ S.error="Excel-Export konnte nicht geladen werden."; render(); return; }
+  const wb = XLSX.utils.book_new();
+  const ms = [...new Set(S.items.map(i=>monthOf(i.date)).filter(Boolean))].sort();
+  ms.forEach(m=>{
+    const rows = S.items.filter(i=>monthOf(i.date)===m).sort((a,b)=>(a.date||"").localeCompare(b.date||""))
+      .map(i=>[i.date, i.name, i.buy, i.sell, i.payout, profitOf(i), i.platform, i.soldDate, i.note]);
+    const ws = XLSX.utils.aoa_to_sheet([["Datum","Sache","Einkaufspreis","Verkaufspreis","Auszahlung","Gewinn","Plattform","Verkauft am","Sonstiges"], ...rows]);
+    ws["!cols"] = [{wch:11},{wch:30},{wch:13},{wch:13},{wch:11},{wch:10},{wch:14},{wch:11},{wch:30}];
+    XLSX.utils.book_append_sheet(wb, ws, monthName(m).slice(0,31));
+  });
+  const ex = [["Datum","Wofür","Betrag","Notiz"], ...[...S.expenses].sort((a,b)=>(a.date||"").localeCompare(b.date||"")).map(x=>[x.date,x.text,x.amount,x.note])];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(ex), "Nebenkosten");
+  const sh = [["Produkt","Stück","EK RMB","bis DE €/Stk","VK €/Stk","Status"], ...S.shanghai.map(r=>[r.name,r.qty,r.rmb,r.rmb!=null?+landed(r.rmb).toFixed(2):null,r.expSell,r.status])];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(sh), "Shanghai");
+  const buf = XLSX.write(wb, {type:"array", bookType:"xlsx"});
+  if (!S.dl){ S.error="Speichern von Dateien ist in dieser Ansicht nicht verfügbar."; render(); return; }
+  try { await S.dl.save({ filename:"Resell-Buch_"+today()+".xlsx", data:new Blob([buf]) }); }
+  catch(e){ if (e?.code!=="declined"){ S.error="Export nicht möglich ("+(e?.code||"Fehler")+")."; render(); } }
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", e=>{
+  const t = e.target.closest("button, tr[data-sh]"); if (!t) return;
+  if (t.dataset.tab){ S.tab = t.dataset.tab; try{localStorage.setItem("rb-tab",S.tab)}catch(_){}; render(); window.scrollTo(0,0); return; }
+  if (t.dataset.month){ S.month = t.dataset.month; render(); return; }
+  if (t.dataset.edit){ openItemDialog(S.items.find(i=>i.id===t.dataset.edit)); return; }
+  if (t.dataset.sh){ openShDialog(S.shanghai.find(r=>r.id===t.dataset.sh)); return; }
+  if (t.dataset.exp){ openExpDialog(S.expenses.find(x=>x.id===t.dataset.exp)); return; }
+  if (t.id==="btn-exp-add"){ openExpDialog(null); return; }
+  if (t.id==="btn-parse") parse();
+  else if (t.id==="btn-manual") openItemDialog(null);
+  else if (t.id==="btn-apply") applyProposal();
+  else if (t.id==="btn-discard"){ S.proposal=null; render(); }
+  else if (t.id==="btn-export") exportXlsx();
+  else if (t.id==="btn-sh-add") openShDialog(null);
+  else if (t.dataset.ebf){ S.ebFilter = t.dataset.ebf; render(); }
+  else if (t.dataset.ebedit) openEbDialog(t.dataset.ebedit);
+  else if (t.id==="btn-eb-all"){ const f = S.ebFilter, l = ebGroups().filter(g => f==="alle" ? true : f==="exportiert" ? !!g.L?.exportedAt : !g.L?.exportedAt); const all = l.length && l.every(g=>S.ebSel.has(g.key)); l.forEach(g=> all ? S.ebSel.delete(g.key) : S.ebSel.add(g.key)); render(); }
+  else if (t.id==="btn-eb-fill") ebFill();
+  else if (t.id==="btn-eb-csv") ebExport();
+  else if (t.id==="btn-eb-set") openEbSettings();
+  else if (t.id==="btn-eb-factor") ebFactor();
+});
+document.addEventListener("input", e=>{ if (e.target.id==="input") S.draft = e.target.value; if (e.target.id==="eb-title"){ const c = $("#eb-tlen"); if (c) c.textContent = e.target.value.length+"/80"; } });
+document.addEventListener("change", async e=>{
+  if (e.target.dataset?.ebsel){ const k = e.target.dataset.ebsel; e.target.checked ? S.ebSel.add(k) : S.ebSel.delete(k); render(); return; }
+  if (e.target.dataset?.ebprice && S.db){ try { await ebSave(e.target.dataset.ebprice, {price:num(e.target.value)}); } catch(err){ alertMsg(err); } return; }
+  if ((e.target.id==="set-fx" || e.target.id==="set-fr") && S.db){
+    const fx = num($("#set-fx").value), fr = num($("#set-fr").value);
+    if (fx && fr!=null) { try { await S.db.doc("settings/main").set({fx, freight:fr}); } catch(err){ alertMsg(err); } }
+  }
+});
+
+/* ---------- boot ---------- */
+render();
+(async()=>{
+  if (!window.claude?.use){ S.loaded = true; $("#status").textContent = "nur Ansicht"; render(); return; }
+  const [db, sample, dl] = await Promise.all([claude.use("db"), claude.use("sample"), claude.use("downloads")]);
+  S.db = db; S.sample = sample; S.dl = dl; S.loaded = true;
+  $("#status").textContent = db ? "" : "nur Ansicht";
+  if (!db){ render(); return; }
+  db.collection("items").onSnapshot(s=>{ S.items = s.docs.map(d=>({id:d.id, ...d.data()})); render(); }, err=>{ $("#status").textContent="Verbindung verloren"; });
+  db.collection("expenses").onSnapshot(s=>{ S.expenses = s.docs.map(d=>({id:d.id, ...d.data()})); if (S.tab!=="erfassen") render(); });
+  db.collection("shanghai").onSnapshot(s=>{ S.shanghai = s.docs.map(d=>({id:d.id, ...d.data()})); if (S.tab==="shanghai") render(); });
+  db.collection("ebay").onSnapshot(s=>{ const o = {}; s.docs.forEach(d=>{ o[d.id] = {id:d.id, ...d.data()}; }); S.ebay = o; if (S.tab==="ebay") render(); });
+  db.doc("settings/ebay").onSnapshot(s=>{ S.ebSettings = s.exists ? s.data() : null; if (S.tab==="ebay") render(); });
+  db.doc("settings/main").onSnapshot(s=>{ if (s.exists) { S.settings = {fx:7.374, freight:3, ...s.data()}; if (S.tab==="shanghai") render(); } });
+})();
+</script>
+
+</body></html>

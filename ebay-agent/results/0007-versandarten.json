@@ -1,0 +1,690 @@
+{
+  "batch": "0007-versandarten",
+  "mode": "shipping",
+  "time": "2026-11-26T20:46:51+00:00",
+  "shipping": {
+    "ack": "Success",
+    "errors": [],
+    "services": [
+      {
+        "code": "DE_DEPOST_BRIEF_GROSS",
+        "name": "Deutsche Post Brief Groß",
+        "international": false,
+        "carrier": "DeutschePost",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_DEPOST_BRIEF_MAXI",
+        "name": "Deutsche Post Brief Maxi",
+        "international": false,
+        "carrier": "DeutschePost",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_DEPOST_BRIEF_STANDARD",
+        "name": "Deutsche Post Brief Standard",
+        "international": false,
+        "carrier": "DeutschePost",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_DEPOST_BRIEF_KOMPAKT",
+        "name": "Deutsche Post Brief Kompakt",
+        "international": false,
+        "carrier": "DeutschePost",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_DEPOST_BUECHER_WAREN_MAXI",
+        "name": "Deutsche Post Warensendung 1000g",
+        "international": false,
+        "carrier": "DeutschePost",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_DEPOST_BRIEF_INTL_GROSS",
+        "name": "DP Großbrief Intern. bis 500 g",
+        "international": true,
+        "carrier": "DeutschePost",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_DEPOST_BRIEF_INTL_KOMPAKT",
+        "name": "DP Kompaktbrief Intern. bis 50 g",
+        "international": true,
+        "carrier": "DeutschePost",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_DEPOST_BRIEF_INTL_MAXI",
+        "name": "DP Maxibrief Intern. bis 1.000 g",
+        "international": true,
+        "carrier": "DeutschePost",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DHL_DE_PAKCHEN_M",
+        "name": "DHL Päckchen M",
+        "international": false,
+        "carrier": "",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DHL_DE_PAKET_BIS_2",
+        "name": "DHL Paket bis 2 kg",
+        "international": false,
+        "carrier": "",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DHL_DE_PAKET_BIS_5",
+        "name": "DHL Paket bis 5 kg",
+        "international": false,
+        "carrier": "",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DHL_DE_PAKET_BIS_10",
+        "name": "DHL Paket bis 10 kg",
+        "international": false,
+        "carrier": "",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DHL_DE_PAKCHEN_S",
+        "name": "DHL Päckchen S",
+        "international": false,
+        "carrier": "",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DHL_DE_PAKET_BIS_31_5",
+        "name": "DHL Paket bis 31,5 kg",
+        "international": false,
+        "carrier": "",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DHL_DE_PAKET_EU_BIS_2",
+        "name": "DHL Paket EU bis 2 kg",
+        "international": true,
+        "carrier": "",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DHL_DE_PAKCHEN_M_2",
+        "name": "DHL Päckchen M EU bis 2kg",
+        "international": true,
+        "carrier": "",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_HERMES_PAKET_NAT_SMALL",
+        "name": "Hermes S-Paket",
+        "international": false,
+        "carrier": "Hermes",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_HERMES_PAKET_NAT_MEDIUM",
+        "name": "Hermes M-Paket",
+        "international": false,
+        "carrier": "Hermes",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_HERMES_PAKET_NAT_LARGE",
+        "name": "Hermes L-Paket",
+        "international": false,
+        "carrier": "Hermes",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_DEPOST_BUECHER_WAREN_MAXI2",
+        "name": "Deutsche Post Warensendung 2000g",
+        "international": false,
+        "carrier": "DeutschePost",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DHL_DE_PAKET_BIS_20",
+        "name": "DHL Paket bis 20 kg",
+        "international": false,
+        "carrier": "",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_DEPOST_BRIEF_INTL_MAXI_PLUS",
+        "name": "Deutsche Post Brief International Maxi Plus",
+        "international": true,
+        "carrier": "DeutschePost",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_Pickup",
+        "name": "Selbstabholung",
+        "international": false,
+        "carrier": "",
+        "tracking": "PICKUP"
+      },
+      {
+        "code": "DE_DeutschePostBriefInternational",
+        "name": "Deutsche Post Brief International",
+        "international": true,
+        "carrier": "DeutschePost",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_DHLPackchenInternational",
+        "name": "DHL Päckchen International",
+        "international": true,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_DHLPaketInternational",
+        "name": "DHL Paket International",
+        "international": true,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_DHLPaketIntlExpress",
+        "name": "DHL Express Paket International",
+        "international": true,
+        "carrier": "DHL",
+        "tracking": "NONE"
+      },
+      {
+        "code": "DE_HermesPaketInternational",
+        "name": "Hermes Paket International",
+        "international": true,
+        "carrier": "Hermes",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_deutschePostWarenpostInternational",
+        "name": "Warenpost International",
+        "international": true,
+        "carrier": "DeutschePost",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_deutschePostWarenpostInternationalPremium",
+        "name": "Warenpost International Premium",
+        "international": true,
+        "carrier": "DeutschePost",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_DeutschePostBrief",
+        "name": "Deutsche Post Brief",
+        "international": false,
+        "carrier": "DeutschePost",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_deutschePostWarenpost",
+        "name": "DHL Kleinpaket",
+        "international": false,
+        "carrier": "DHL",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_SonstigerVersandInternational",
+        "name": "Sonstiger Versand international",
+        "international": true,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_DPBuecherWarensendung",
+        "name": "Deutsche Post Warensendung",
+        "international": false,
+        "carrier": "DeutschePost",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_DHLPackchen",
+        "name": "DHL Päckchen",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_PaketInternational",
+        "name": "Standard International",
+        "international": true,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_ExpressInternational",
+        "name": "Express International",
+        "international": true,
+        "carrier": "",
+        "tracking": "EXPRESS"
+      },
+      {
+        "code": "DE_SonstigeInternational",
+        "name": "Economy Int'l Versand",
+        "international": true,
+        "carrier": "",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_DHLPaket",
+        "name": "DHL Paket",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_DHLAlterssichtprüfung18",
+        "name": "DHL Paket mit Alterssichtprüfung ab 18 Jahre",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_HermesPackchen",
+        "name": "Hermes Päckchen",
+        "international": false,
+        "carrier": "Hermes",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DHL_DE_PAKET_ALTERSSICHT18_2",
+        "name": "DHL Paket bis 2 kg mit Alterssichtprüfung ab 18 Jahre",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DHL_DE_PAKET_ALTERSSICHT18_5",
+        "name": "DHL Paket bis 5 kg mit Alterssichtprüfung ab 18 Jahre",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DHL_DE_PAKET_ALTERSSICHT18_10",
+        "name": "DHL Paket bis 10 kg mit Alterssichtprüfung ab 18 Jahre",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DHL_DE_PAKET_ALTERSSICHT18_20",
+        "name": "DHL Paket bis 20 kg mit Alterssichtprüfung ab 18 Jahre",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DHL_DE_PAKET_ALTERSSICHT18_31_5",
+        "name": "DHL Paket bis 31,5 kg mit Alterssichtprüfung ab 18 Jahre",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_HermesPaket",
+        "name": "Hermes Paket",
+        "international": false,
+        "carrier": "Hermes",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_HermesProfiPaket",
+        "name": "Hermes Business-Paket",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_IloxxTransport",
+        "name": "iloxx Transport",
+        "international": false,
+        "carrier": "iLoxx",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_DPDClassic",
+        "name": "DPD Classic",
+        "international": false,
+        "carrier": "DPD",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_GLSPaket",
+        "name": "GLS Paket",
+        "international": false,
+        "carrier": "GLS",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_UPSStandard",
+        "name": "UPS Standard",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_Paket",
+        "name": "Paketversand",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_Einschreiben",
+        "name": "Einschreiben",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_SonstigeDomestic",
+        "name": "Sonstige",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_LieferungBordsteinkante",
+        "name": "Lieferung bis Bordsteinkante",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_LieferungBordsteinkanteAltgeräterücknahme",
+        "name": "Lieferung bis Bordsteinkante + Altgeräterücknahme ",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_HomeDelivery",
+        "name": "Lieferung an den Wunschort",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_LieferungWunschort",
+        "name": "Lieferung an den Wunschort + Altgeräterücknahme",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_DeliveryConnection",
+        "name": "Lieferung an den Wunschort + Installation",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_DeliveryConnectionRecycling",
+        "name": "Lieferung an den Wunschort + Installation + Altgeräterücknahme",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_SpecialDelivery",
+        "name": "Sonder-/Speditionsversand",
+        "international": false,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_StandardversandAusDemAusland",
+        "name": "Standardversand aus dem Ausland",
+        "international": false,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_SparversandAusDemAusland",
+        "name": "Sparversand aus dem Ausland",
+        "international": false,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_ExpressversandAusDemAusland",
+        "name": "Expressversand aus dem Ausland",
+        "international": false,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_FedExIntlEconomy",
+        "name": "FedEx International Economy",
+        "international": false,
+        "carrier": "FedEx",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_TntIntlExp",
+        "name": "TNT International Express",
+        "international": false,
+        "carrier": "Other",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_TrackedDeliveryFromAbroad",
+        "name": "Versand mit Nachverfolgung aus dem Ausland",
+        "international": false,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_MiniPakFromAbroad",
+        "name": "MiniPak aus dem Ausland",
+        "international": false,
+        "carrier": "BELGIANPOST",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_DPDExpress",
+        "name": "DPD Express",
+        "international": false,
+        "carrier": "DPD",
+        "tracking": "EXPEDITED"
+      },
+      {
+        "code": "DE_TrakPakFromAbroad",
+        "name": "TrakPak aus dem Ausland",
+        "international": false,
+        "carrier": "BELGIANPOST",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_DHLExpress",
+        "name": "DHL Express ",
+        "international": false,
+        "carrier": "DHL",
+        "tracking": "EXPEDITED"
+      },
+      {
+        "code": "DE_glsExpress",
+        "name": "GLS Express",
+        "international": false,
+        "carrier": "GLS",
+        "tracking": "EXPRESS"
+      },
+      {
+        "code": "DE_UPSExpress",
+        "name": "UPS Express",
+        "international": false,
+        "carrier": "",
+        "tracking": "EXPEDITED"
+      },
+      {
+        "code": "DE_DHLExpressWorldwide",
+        "name": "DHL Express Worldwide",
+        "international": false,
+        "carrier": "DHL",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_IntexPaketdienst",
+        "name": "Intex Paketdienst",
+        "international": false,
+        "carrier": "",
+        "tracking": "EXPEDITED"
+      },
+      {
+        "code": "DE_Express",
+        "name": "Sonstige (1 Werktag)",
+        "international": false,
+        "carrier": "",
+        "tracking": "EXPEDITED"
+      },
+      {
+        "code": "DE_DHLFreightDomestic",
+        "name": " DHL Freight Domestic",
+        "international": false,
+        "carrier": "DHL",
+        "tracking": "EXPEDITED"
+      },
+      {
+        "code": "DE_FlatRateFreight",
+        "name": "Pauschale für Sperrgutversand",
+        "international": false,
+        "carrier": "",
+        "tracking": "FREIGHT"
+      },
+      {
+        "code": "DE_speedpakInternationalStandardExport",
+        "name": "eBay SpeedPAK",
+        "international": true,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_DPDClassicInternational",
+        "name": "DPD Classic",
+        "international": true,
+        "carrier": "DPD",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_IntlEconomySppedPAK",
+        "name": "eBay Sparversand mit SpeedPAK",
+        "international": true,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_EconomySppedPAK",
+        "name": "eBay Sparversand mit SpeedPAK",
+        "international": false,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_StandardSppedPAK",
+        "name": "eBay Standardversand mit SpeedPAK",
+        "international": false,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_ExpeditedSppedPAK",
+        "name": "eBay Schneller Versand mit SpeedPAK",
+        "international": false,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_IntlStandardSppedPAK",
+        "name": "eBay Standardversand mit SpeedPAK",
+        "international": true,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_SPEEDPAK_EU_DDU_VERSANDSERVICE_INT",
+        "name": "SpeedPAK DDU Versandservice",
+        "international": true,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_SPEEDPAK_EU_DDU_VERSANDSERVICE_DOM",
+        "name": "SpeedPAK DDU Versandservice",
+        "international": false,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_ExpressSpeedPAK",
+        "name": "eBay Expressversand mit SpeedPAK",
+        "international": false,
+        "carrier": "",
+        "tracking": "EXPRESS_SHIPPING_FROM_OUTSIDE"
+      },
+      {
+        "code": "DE_IntlExpeditedSppedPAK",
+        "name": "eBay Schneller Versand mit SpeedPAK",
+        "international": true,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_IntlExpressSpeedPAK",
+        "name": "eBay Expressversand mit SpeedPAK",
+        "international": true,
+        "carrier": "",
+        "tracking": "EXPRESS_SHIPPING_FROM_OUTSIDE"
+      },
+      {
+        "code": "DE_EconomyShippingFromGC",
+        "name": "Weltweiter Sparversand aus der Großregion China",
+        "international": false,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_IntlEconomyShippingFromGC",
+        "name": "Sparversand von Greater China to worldwide",
+        "international": true,
+        "carrier": "",
+        "tracking": "ECONOMY"
+      },
+      {
+        "code": "DE_StandardShippingFromGC",
+        "name": "Weltweiter Standardversand aus der Großregion China",
+        "international": false,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_IntlStandardShippingFromGC",
+        "name": "Standardversand von Greater China to worldwide",
+        "international": true,
+        "carrier": "",
+        "tracking": "STANDARD"
+      },
+      {
+        "code": "DE_ExpeditedShippingFromGC",
+        "name": "Weltweiter Expressversand aus der Großregion China",
+        "international": false,
+        "carrier": "",
+        "tracking": "OTHER"
+      },
+      {
+        "code": "DE_IntlExpeditedShippingFromGC",
+        "name": "Expressversand von Greater China to worldwide",
+        "international": true,
+        "carrier": "",
+        "tracking": "EXPEDITED"
+      }
+    ]
+  }
+}

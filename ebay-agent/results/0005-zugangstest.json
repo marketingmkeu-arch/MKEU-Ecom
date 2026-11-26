@@ -1,0 +1,33 @@
+{
+  "batch": "0005-zugangstest",
+  "mode": "check",
+  "time": "2026-11-26T20:39:56+00:00",
+  "check": {
+    "ack": "Failure",
+    "user": "",
+    "site": "",
+    "business_type": "",
+    "store": "",
+    "errors": [
+      {
+        "severity": "Error",
+        "code": "163",
+        "message": "Nicht aktive Anwendung bzw. nicht aktiver Programmierer."
+      }
+    ],
+    "diagnose": {
+      "token_uebergabe": "IAF-Header",
+      "token_laenge": 96,
+      "token_beginnt_mit": "v^1.1#",
+      "app_id_endung": "94f8",
+      "app_id_ist_sandbox": false,
+      "app_id_ist_production": true,
+      "secrets_vorhanden": {
+        "EBAY_APP_ID": true,
+        "EBAY_DEV_ID": true,
+        "EBAY_CERT_ID": true,
+        "EBAY_AUTH_TOKEN": true
+      }
+    }
+  }
+}

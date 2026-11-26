@@ -1,0 +1,30 @@
+{
+  "mode": "verify",
+  "listings": [
+    {
+      "sku": "PKM-30TH-DISPLAY-CN",
+      "type": "sealed",
+      "title": "Pokémon 30th Celebration Booster Display Box Chinesisch Simplified Neu OVP",
+      "price": 80,
+      "quantity": 1,
+      "specifics": {
+        "Spiel": "Pokémon TCG",
+        "Edition": "30th Celebration",
+        "Hersteller": "The Pokémon Company",
+        "Sprache": "Chinesisch",
+        "Produktart": "Booster-Display",
+        "Herstellungsjahr": "2026"
+      },
+      "intro": "Verkauft wird ein originalverschweißtes Booster Display zum 30. Jubiläum von Pokémon (30th Celebration) in vereinfachtem Chinesisch.",
+      "bullets": [
+        "Zustand: neu, originalverschweißt (OVP)",
+        "Sprache: vereinfachtes Chinesisch (Festland-China-Version)",
+        "6 Karten pro Booster, laut Verpackung jede Karte in Holo-Ausführung",
+        "Das Foto zeigt genau das Display, das du bekommst"
+      ],
+      "images": [
+        "ebay-agent/queue/0008-pkm-30th-cn/1.jpg"
+      ]
+    }
+  ]
+}
