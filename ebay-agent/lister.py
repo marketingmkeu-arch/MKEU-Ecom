@@ -262,6 +262,21 @@ def run_shipping_list():
     return {"ack": ack, "errors": errors, "services": out}
 
 
+LOG = ROOT / "inserate.csv"
+
+
+def log_listing(L, res):
+    """Hängt jedes Live-Inserat an ebay-agent/inserate.csv an (zum Mitzählen der Gratis-Inserate)."""
+    import csv
+    new = not LOG.exists()
+    with LOG.open("a", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, delimiter=";")
+        if new:
+            w.writerow(["datum", "item_id", "link", "titel", "preis", "menge", "gebuehr_eur"])
+        w.writerow([datetime.now(timezone.utc).date().isoformat(), res["item_id"], res["url"], L.get("title"),
+                    f"{float(L['price']):.2f}", L.get("quantity", 1), f"{sum(res.get('fees', {}).values()):.2f}"])
+
+
 def run_listing(L, mode):
     res = {"sku": L.get("sku"), "title": L.get("title"), "price": L.get("price")}
     try:
@@ -275,6 +290,7 @@ def run_listing(L, mode):
         if mode == "live" and item_id:
             res["item_id"] = item_id
             res["url"] = f"https://www.ebay.de/itm/{item_id}"
+            log_listing(L, res)
     except Exception as e:  # noqa: BLE001
         res.update({"ack": "Failure", "errors": [{"severity": "Error", "code": "local", "message": str(e)}]})
     return res
