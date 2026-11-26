@@ -209,6 +209,12 @@ def run_check():
             "app_id_endung": env("EBAY_APP_ID")[-4:],
             "app_id_ist_sandbox": "-SBX-" in env("EBAY_APP_ID"),
             "app_id_ist_production": "-PRD-" in env("EBAY_APP_ID"),
+            "dev_id_format_ok": bool(__import__("re").fullmatch(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", env("EBAY_DEV_ID"))),
+            "dev_id_laenge": len(env("EBAY_DEV_ID")),
+            "cert_id_beginnt_mit_PRD": env("EBAY_CERT_ID").startswith("PRD-"),
+            "cert_id_laenge": len(env("EBAY_CERT_ID")),
+            "app_id_laenge": len(env("EBAY_APP_ID")),
+            "app_und_cert_vertauscht": env("EBAY_CERT_ID").count("-PRD-") > 0 or env("EBAY_APP_ID").startswith("PRD-"),
             "secrets_vorhanden": {n: bool(env(n)) for n in ("EBAY_APP_ID", "EBAY_DEV_ID", "EBAY_CERT_ID", "EBAY_AUTH_TOKEN")},
         },
     }
