@@ -1,0 +1,33 @@
+{
+  "batch": "0006-zugangstest",
+  "mode": "check",
+  "time": "2026-11-26T20:42:56+00:00",
+  "check": {
+    "ack": "Success",
+    "user": "dala_9976",
+    "site": "Germany",
+    "business_type": "Private",
+    "store": "false",
+    "errors": [],
+    "diagnose": {
+      "token_uebergabe": "IAF-Header",
+      "token_laenge": 96,
+      "token_beginnt_mit": "v^1.1#",
+      "app_id_endung": "94f8",
+      "app_id_ist_sandbox": false,
+      "app_id_ist_production": true,
+      "dev_id_format_ok": true,
+      "dev_id_laenge": 36,
+      "cert_id_beginnt_mit_PRD": true,
+      "cert_id_laenge": 36,
+      "app_id_laenge": 40,
+      "app_und_cert_vertauscht": false,
+      "secrets_vorhanden": {
+        "EBAY_APP_ID": true,
+        "EBAY_DEV_ID": true,
+        "EBAY_CERT_ID": true,
+        "EBAY_AUTH_TOKEN": true
+      }
+    }
+  }
+}
