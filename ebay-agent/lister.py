@@ -50,7 +50,10 @@ def env(name):
 
 
 TOKEN = env("EBAY_AUTH_TOKEN")
-OAUTH = TOKEN.startswith("v^")  # OAuth-User-Token (2 h gültig) statt Auth'n'Auth (18 Monate)
+# Neue Tokens beginnen mit "v^" und gehen meist in den IAF-Header, alte (AgAAAA…) in den Request-Body.
+# Klappt eine Variante nicht (Fehler 931), wird automatisch die andere probiert.
+OAUTH = TOKEN.startswith("v^")
+_SWITCHED = False
 
 
 def x(s):
@@ -90,7 +93,12 @@ def parse(resp):
 def call(name, body):
     xml = f'<?xml version="1.0" encoding="utf-8"?><{name}Request xmlns="urn:ebay:apis:eBLBaseComponents">{creds()}<ErrorLanguage>de_DE</ErrorLanguage><WarningLevel>High</WarningLevel>{body}</{name}Request>'
     r = requests.post(API, data=xml.encode("utf-8"), headers={**headers(name), "Content-Type": "text/xml"}, timeout=120)
-    return parse(r)
+    root, ack, errors = parse(r)
+    global OAUTH, _SWITCHED
+    if not _SWITCHED and any(e["code"] in ("931", "21916984") for e in errors):
+        _SWITCHED, OAUTH = True, not OAUTH
+        return call(name, body)
+    return root, ack, errors
 
 
 def upload_picture(path):
@@ -195,7 +203,7 @@ def run_check():
         "store": root.findtext("e:User/e:SellerInfo/e:StoreOwner", "", NS),
         "errors": errors,
         "diagnose": {
-            "token_art": "OAuth (nur 2 Stunden gültig)" if OAUTH else "Auth'n'Auth",
+            "token_uebergabe": "IAF-Header" if OAUTH else "eBayAuthToken im Body",
             "token_laenge": len(TOKEN),
             "token_beginnt_mit": TOKEN[:6],
             "app_id_endung": env("EBAY_APP_ID")[-4:],
