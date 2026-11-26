@@ -241,11 +241,8 @@ def run_shipping_list():
 def run_listing(L, mode):
     res = {"sku": L.get("sku"), "title": L.get("title"), "price": L.get("price")}
     try:
-        pics = []
-        if mode == "live":
-            pics = [upload_picture(p) for p in L.get("images", [])]
-        elif not L.get("images"):
-            res.setdefault("notes", []).append("keine Bilder angegeben")
+        pics = [upload_picture(p) for p in L.get("images", [])]
+        res["pictures"] = pics
         callname = "AddFixedPriceItem" if mode == "live" else "VerifyAddFixedPriceItem"
         root, ack, errors = call(callname, item_xml(L, pics))
         res.update({"ack": ack, "errors": errors, "fees": fees(root)})
