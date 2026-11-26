@@ -241,6 +241,7 @@ def main():
         return
     RESULTS.mkdir(exist_ok=True)
     DONE.mkdir(exist_ok=True)
+    call("GetUser", "")  # legt fest, wie das Token übergeben wird, bevor Bilder hochgeladen werden
     failed = False
     for b in batches:
         data = json.loads(b.read_text(encoding="utf-8"))
