@@ -45,27 +45,38 @@ NS = {"e": "urn:ebay:apis:eBLBaseComponents"}
 COMPAT = "1349"
 
 
+def env(name):
+    return (os.environ.get(name) or "").strip().strip('"').strip("'").strip()
+
+
+TOKEN = env("EBAY_AUTH_TOKEN")
+OAUTH = TOKEN.startswith("v^")  # OAuth-User-Token (2 h gültig) statt Auth'n'Auth (18 Monate)
+
+
 def x(s):
     return html.escape(str(s), quote=False)
 
 
 def headers(call):
-    return {
+    h = {
         "X-EBAY-API-COMPATIBILITY-LEVEL": COMPAT,
-        "X-EBAY-API-DEV-NAME": os.environ["EBAY_DEV_ID"],
-        "X-EBAY-API-APP-NAME": os.environ["EBAY_APP_ID"],
-        "X-EBAY-API-CERT-NAME": os.environ["EBAY_CERT_ID"],
+        "X-EBAY-API-DEV-NAME": env("EBAY_DEV_ID"),
+        "X-EBAY-API-APP-NAME": env("EBAY_APP_ID"),
+        "X-EBAY-API-CERT-NAME": env("EBAY_CERT_ID"),
         "X-EBAY-API-CALL-NAME": call,
         "X-EBAY-API-SITEID": CFG["site_id"],
     }
+    if OAUTH:
+        h["X-EBAY-API-IAF-TOKEN"] = TOKEN
+    return h
 
 
 def creds():
-    return f"<RequesterCredentials><eBayAuthToken>{x(os.environ['EBAY_AUTH_TOKEN'])}</eBayAuthToken></RequesterCredentials>"
+    return "" if OAUTH else f"<RequesterCredentials><eBayAuthToken>{x(TOKEN)}</eBayAuthToken></RequesterCredentials>"
 
 
-def parse(resp_text):
-    root = ET.fromstring(resp_text)
+def parse(resp):
+    root = ET.fromstring(resp.content)
     errors = []
     for e in root.findall("e:Errors", NS):
         errors.append({
@@ -79,7 +90,7 @@ def parse(resp_text):
 def call(name, body):
     xml = f'<?xml version="1.0" encoding="utf-8"?><{name}Request xmlns="urn:ebay:apis:eBLBaseComponents">{creds()}<ErrorLanguage>de_DE</ErrorLanguage><WarningLevel>High</WarningLevel>{body}</{name}Request>'
     r = requests.post(API, data=xml.encode("utf-8"), headers={**headers(name), "Content-Type": "text/xml"}, timeout=120)
-    return parse(r.text)
+    return parse(r)
 
 
 def upload_picture(path):
@@ -91,7 +102,7 @@ def upload_picture(path):
         "image": (p.name, p.read_bytes(), "application/octet-stream"),
     }
     r = requests.post(API, files=files, headers=headers("UploadSiteHostedPictures"), timeout=180)
-    root, ack, errors = parse(r.text)
+    root, ack, errors = parse(r)
     url = root.findtext("e:SiteHostedPictureDetails/e:FullURL", "", NS)
     if not url:
         raise RuntimeError(f"Bild {path}: " + "; ".join(e["message"] for e in errors))
@@ -183,6 +194,15 @@ def run_check():
         "business_type": root.findtext("e:User/e:SellerInfo/e:SellerBusinessType", "", NS),
         "store": root.findtext("e:User/e:SellerInfo/e:StoreOwner", "", NS),
         "errors": errors,
+        "diagnose": {
+            "token_art": "OAuth (nur 2 Stunden gültig)" if OAUTH else "Auth'n'Auth",
+            "token_laenge": len(TOKEN),
+            "token_beginnt_mit": TOKEN[:6],
+            "app_id_endung": env("EBAY_APP_ID")[-4:],
+            "app_id_ist_sandbox": "-SBX-" in env("EBAY_APP_ID"),
+            "app_id_ist_production": "-PRD-" in env("EBAY_APP_ID"),
+            "secrets_vorhanden": {n: bool(env(n)) for n in ("EBAY_APP_ID", "EBAY_DEV_ID", "EBAY_CERT_ID", "EBAY_AUTH_TOKEN")},
+        },
     }
 
 
