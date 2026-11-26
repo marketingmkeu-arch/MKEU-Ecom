@@ -101,20 +101,42 @@ def call(name, body):
     return root, ack, errors
 
 
+def _picture_url(root, errors, how):
+    url = root.findtext("e:SiteHostedPictureDetails/e:FullURL", "", NS) if root is not None else ""
+    if not url:
+        raise RuntimeError(f"{how}: " + ("; ".join(e["message"] for e in errors) or "keine Bild-URL zurückbekommen"))
+    return url
+
+
 def upload_picture(path):
+    """Lädt ein Bild zu eBay. Erst direkt als Datei, sonst lässt eBay es sich von GitHub holen."""
     p = REPO / path
+    problems = []
     xml = (f'<?xml version="1.0" encoding="utf-8"?><UploadSiteHostedPicturesRequest xmlns="urn:ebay:apis:eBLBaseComponents">'
            f'{creds()}<PictureName>{x(p.stem)}</PictureName><PictureSet>Supersize</PictureSet></UploadSiteHostedPicturesRequest>')
-    files = {
-        "XML Payload": ("payload.xml", xml.encode("utf-8"), "text/xml"),
-        "image": (p.name, p.read_bytes(), "application/octet-stream"),
-    }
-    r = requests.post(API, files=files, headers=headers("UploadSiteHostedPictures"), timeout=180)
-    root, ack, errors = parse(r)
-    url = root.findtext("e:SiteHostedPictureDetails/e:FullURL", "", NS)
-    if not url:
-        raise RuntimeError(f"Bild {path}: " + "; ".join(e["message"] for e in errors))
-    return url
+    try:
+        files = [
+            ("XML Payload", (None, xml.encode("utf-8"), "text/xml")),
+            ("image", (p.name, p.read_bytes(), "image/jpeg")),
+        ]
+        r = requests.post(API, files=files, headers=headers("UploadSiteHostedPictures"), timeout=180)
+        try:
+            root, ack, errors = parse(r)
+            return _picture_url(root, errors, "Datei-Upload")
+        except ET.ParseError:
+            problems.append(f"Datei-Upload: HTTP {r.status_code}, Antwort: {r.text[:300]!r}")
+    except RuntimeError as e:
+        problems.append(str(e))
+    sha, repo = os.environ.get("GITHUB_SHA"), os.environ.get("GITHUB_REPOSITORY")
+    if sha and repo:
+        ext = f"https://raw.githubusercontent.com/{repo}/{sha}/{path}"
+        root, ack, errors = call("UploadSiteHostedPictures",
+                                 f"<ExternalPictureURL>{x(ext)}</ExternalPictureURL><PictureSet>Supersize</PictureSet>")
+        try:
+            return _picture_url(root, errors, "Upload per Link")
+        except RuntimeError as e:
+            problems.append(str(e))
+    raise RuntimeError(f"Bild {path}: " + " | ".join(problems))
 
 
 def description(L):
