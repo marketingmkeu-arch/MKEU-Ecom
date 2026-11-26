@@ -79,7 +79,11 @@ def creds():
 
 
 def parse(resp):
-    root = ET.fromstring(resp.content)
+    try:
+        root = ET.fromstring(resp.content)
+    except ET.ParseError:
+        hdr = {k: v for k, v in resp.headers.items() if k.lower().startswith(("x-ebay", "content-type", "www-auth"))}
+        raise RuntimeError(f"eBay-Antwort nicht lesbar: HTTP {resp.status_code}, Header {hdr}, Inhalt {resp.text[:400]!r}")
     errors = []
     for e in root.findall("e:Errors", NS):
         errors.append({
@@ -123,16 +127,16 @@ def upload_picture(path):
         try:
             root, ack, errors = parse(r)
             return _picture_url(root, errors, "Datei-Upload")
-        except ET.ParseError:
-            problems.append(f"Datei-Upload: HTTP {r.status_code}, Antwort: {r.text[:300]!r}")
+        except RuntimeError as e:
+            problems.append(f"Datei-Upload: {e}")
     except RuntimeError as e:
         problems.append(str(e))
     sha, repo = os.environ.get("GITHUB_SHA"), os.environ.get("GITHUB_REPOSITORY")
     if sha and repo:
         ext = f"https://raw.githubusercontent.com/{repo}/{sha}/{path}"
-        root, ack, errors = call("UploadSiteHostedPictures",
-                                 f"<ExternalPictureURL>{x(ext)}</ExternalPictureURL><PictureSet>Supersize</PictureSet>")
         try:
+            root, ack, errors = call("UploadSiteHostedPictures",
+                                     f"<ExternalPictureURL>{x(ext)}</ExternalPictureURL><PictureSet>Supersize</PictureSet>")
             return _picture_url(root, errors, "Upload per Link")
         except RuntimeError as e:
             problems.append(str(e))
