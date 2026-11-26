@@ -1,0 +1,33 @@
+{
+  "batch": "0002-zugangstest",
+  "mode": "check",
+  "time": "2026-11-26T20:13:46+00:00",
+  "check": {
+    "ack": "Failure",
+    "user": "",
+    "site": "",
+    "business_type": "",
+    "store": "",
+    "errors": [
+      {
+        "severity": "Error",
+        "code": "931",
+        "message": "Die Prüfung des Authentifizierungs-Tokens in der API-Anforderung war nicht erfolgreich."
+      }
+    ],
+    "diagnose": {
+      "token_art": "Auth'n'Auth",
+      "token_laenge": 0,
+      "token_beginnt_mit": "",
+      "app_id_endung": "",
+      "app_id_ist_sandbox": false,
+      "app_id_ist_production": false,
+      "secrets_vorhanden": {
+        "EBAY_APP_ID": false,
+        "EBAY_DEV_ID": false,
+        "EBAY_CERT_ID": false,
+        "EBAY_AUTH_TOKEN": false
+      }
+    }
+  }
+}
