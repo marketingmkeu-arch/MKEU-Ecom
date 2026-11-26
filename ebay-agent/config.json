@@ -13,13 +13,13 @@
     "sealed": {
       "service": "DE_DHLPaket",
       "cost": "6.19",
-      "intl_service": "DE_PaketInternational",
+      "intl_service": "DE_DHLPaketInternational",
       "intl_cost": "20.00"
     },
     "single": {
-      "service": "DE_DHLPackchen",
+      "service": "DE_Einschreiben",
       "cost": "4.00",
-      "intl_service": "DE_PaketInternational",
+      "intl_service": "DE_DeutschePostBriefInternational",
       "intl_cost": "20.00"
     }
   },
