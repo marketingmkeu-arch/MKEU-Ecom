@@ -112,34 +112,32 @@ def _picture_url(root, errors, how):
     return url
 
 
+MEDIA = "https://apim.ebay.com/commerce/media/v1_beta"
+
+
 def upload_picture(path):
-    """Lädt ein Bild zu eBay. Erst direkt als Datei, sonst lässt eBay es sich von GitHub holen."""
+    """Lädt ein Bild über eBays Media API hoch. Klappt das nicht, bekommt eBay den öffentlichen GitHub-Link,
+    den es beim Einstellen selbst kopiert. Gibt (URL, Weg) zurück."""
     p = REPO / path
     problems = []
-    xml = (f'<?xml version="1.0" encoding="utf-8"?><UploadSiteHostedPicturesRequest xmlns="urn:ebay:apis:eBLBaseComponents">'
-           f'{creds()}<PictureName>{x(p.stem)}</PictureName><PictureSet>Supersize</PictureSet></UploadSiteHostedPicturesRequest>')
     try:
-        files = [
-            ("XML Payload", (None, xml.encode("utf-8"), "text/xml")),
-            ("image", (p.name, p.read_bytes(), "image/jpeg")),
-        ]
-        r = requests.post(API, files=files, headers=headers("UploadSiteHostedPictures"), timeout=180)
-        try:
-            root, ack, errors = parse(r)
-            return _picture_url(root, errors, "Datei-Upload")
-        except RuntimeError as e:
-            problems.append(f"Datei-Upload: {e}")
-    except RuntimeError as e:
-        problems.append(str(e))
+        r = requests.post(f"{MEDIA}/image/create_image_from_file", headers={"Authorization": f"Bearer {TOKEN}"},
+                          files={"image": (p.name, p.read_bytes(), "image/jpeg")}, timeout=180)
+        if r.status_code in (200, 201):
+            loc = r.headers.get("Location", "")
+            data = r.json() if r.content else {}
+            url = data.get("imageUrl")
+            if not url and loc:
+                g = requests.get(loc, headers={"Authorization": f"Bearer {TOKEN}"}, timeout=60)
+                url = g.json().get("imageUrl") if g.ok else None
+            if url:
+                return url, "eBay Media API"
+        problems.append(f"Media API: HTTP {r.status_code} {r.text[:300]!r}")
+    except Exception as e:  # noqa: BLE001
+        problems.append(f"Media API: {e}")
     sha, repo = os.environ.get("GITHUB_SHA"), os.environ.get("GITHUB_REPOSITORY")
     if sha and repo:
-        ext = f"https://raw.githubusercontent.com/{repo}/{sha}/{path}"
-        try:
-            root, ack, errors = call("UploadSiteHostedPictures",
-                                     f"<ExternalPictureURL>{x(ext)}</ExternalPictureURL><PictureSet>Supersize</PictureSet>")
-            return _picture_url(root, errors, "Upload per Link")
-        except RuntimeError as e:
-            problems.append(str(e))
+        return f"https://raw.githubusercontent.com/{repo}/{sha}/{path}", "GitHub-Link (" + "; ".join(problems) + ")"
     raise RuntimeError(f"Bild {path}: " + " | ".join(problems))
 
 
@@ -267,8 +265,9 @@ def run_shipping_list():
 def run_listing(L, mode):
     res = {"sku": L.get("sku"), "title": L.get("title"), "price": L.get("price")}
     try:
-        pics = [upload_picture(p) for p in L.get("images", [])]
-        res["pictures"] = pics
+        up = [upload_picture(p) for p in L.get("images", [])]
+        pics = [u for u, _ in up]
+        res["pictures"] = [{"url": u, "weg": w} for u, w in up]
         callname = "AddFixedPriceItem" if mode == "live" else "VerifyAddFixedPriceItem"
         root, ack, errors = call(callname, item_xml(L, pics))
         res.update({"ack": ack, "errors": errors, "fees": fees(root)})
