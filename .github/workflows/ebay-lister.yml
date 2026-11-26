@@ -28,10 +28,10 @@ jobs:
 
       - name: Inserate einstellen
         env:
-          EBAY_APP_ID: ${{ secrets.EBAY_APP_ID }}
-          EBAY_DEV_ID: ${{ secrets.EBAY_DEV_ID }}
-          EBAY_CERT_ID: ${{ secrets.EBAY_CERT_ID }}
-          EBAY_AUTH_TOKEN: ${{ secrets.EBAY_AUTH_TOKEN }}
+          EBAY_APP_ID: ${{ secrets.APP_ID_EBAY_API || secrets.EBAY_APP_ID }}
+          EBAY_DEV_ID: ${{ secrets.DEV_ID_EBAY_API || secrets.EBAY_DEV_ID }}
+          EBAY_CERT_ID: ${{ secrets.CERT_ID_EBAY_API || secrets.EBAY_CERT_ID }}
+          EBAY_AUTH_TOKEN: ${{ secrets.TOKEN_EBAY_API || secrets.AUTH_TOKEN_EBAY_API || secrets.USER_TOKEN_EBAY_API || secrets.AUTHNAUTH_TOKEN_EBAY_API || secrets.OAUTH_TOKEN_EBAY_API || secrets.EBAY_API_TOKEN || secrets.EBAY_TOKEN || secrets.EBAY_AUTH_TOKEN || secrets.EBAY_USER_TOKEN }}
         run: python ebay-agent/lister.py
 
       - name: Ergebnisse speichern
