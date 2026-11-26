@@ -1,0 +1,35 @@
+{
+  "batch": "0012-pkm-30th-cn-verify",
+  "mode": "verify",
+  "time": "2026-11-26T20:52:19+00:00",
+  "listings": [
+    {
+      "sku": "PKM-30TH-DISPLAY-CN",
+      "title": "Pokémon 30th Celebration Booster Display Box Chinesisch Simplified Neu OVP",
+      "price": 80,
+      "pictures": [
+        {
+          "url": "https://raw.githubusercontent.com/marketingmkeu-arch/MKEU-Ecom/6d10d67c2b7da7183a5c09581730745e658bd258/ebay-agent/done/0008-pkm-30th-cn/1.jpg",
+          "weg": "GitHub-Link (Media API: HTTP 403 '{\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}')"
+        }
+      ],
+      "ack": "Warning",
+      "errors": [
+        {
+          "severity": "Warning",
+          "code": "21920376",
+          "message": "Verkaufsprovision erlassen."
+        },
+        {
+          "severity": "Warning",
+          "code": "21920377",
+          "message": "Internationale Gebühren fallen ggf. an."
+        }
+      ],
+      "fees": {
+        "InsertionFee": 0.5,
+        "ListingFee": 0.5
+      }
+    }
+  ]
+}
