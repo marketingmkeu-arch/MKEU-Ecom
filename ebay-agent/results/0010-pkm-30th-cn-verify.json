@@ -1,0 +1,20 @@
+{
+  "batch": "0010-pkm-30th-cn-verify",
+  "mode": "verify",
+  "time": "2026-11-26T20:50:50+00:00",
+  "listings": [
+    {
+      "sku": "PKM-30TH-DISPLAY-CN",
+      "title": "Pokémon 30th Celebration Booster Display Box Chinesisch Simplified Neu OVP",
+      "price": 80,
+      "ack": "Failure",
+      "errors": [
+        {
+          "severity": "Error",
+          "code": "local",
+          "message": "syntax error: line 1, column 0"
+        }
+      ]
+    }
+  ]
+}
