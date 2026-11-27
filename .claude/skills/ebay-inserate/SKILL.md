@@ -19,6 +19,7 @@ Antworte auf Deutsch, kurz und ohne Fachjargon.
 - **Sealed** (Displays, Booster, ETB, Boxen …): DHL Paket 6,19 €, weltweit 20 €. Zustand Neu (1000).
 - **Einzelkarten**: Einschreiben 4,00 €, weltweit 20 €. Zustand „Near Mint oder besser“, außer der Nutzer sagt etwas anderes.
 - Versand weltweit, nicht nur EU. Preisvorschlag immer an.
+- Mehrere Stück: Jeder weitere Artikel kostet die vollen Versandkosten (so gewollt). Käufer sollen sich für Kombiversand melden, das steht im Fußtext.
 - Das alles steht in `ebay-agent/config.json`. Ändert der Nutzer eine Regel dauerhaft, dort anpassen.
 - Gratis-Inserate: Stand 26.11.2026 waren es 303 bis 1.12.2026. Live-Inserate stehen in `ebay-agent/inserate.csv`.
   Nach jedem Stapel sagen, wie viele noch übrig sind (Startwert minus neue Zeilen seit 26.11.).
@@ -45,9 +46,13 @@ Antworte auf Deutsch, kurz und ohne Fachjargon.
 5. **Ergebnis abwarten**: In einer Hintergrund-Schleife `git fetch` ausführen, bis `ebay-agent/results/<NNNN-kurzname>.json` da ist.
    Die Action verschiebt den Stapel nach `ebay-agent/done/`. `Warning` = in Ordnung, `Failure` = Fehler lesen und beheben.
    Gebühren aus dem Probelauf berücksichtigen die Gratis-Aktion **nicht**, also nicht als echte Kosten melden.
-6. **Vorschau zeigen**: Titel, Preis, Menge, Versand und Kurzbeschreibung. Dann auf **„live“** vom Nutzer warten.
-   Ohne ausdrückliches „live“ nichts einstellen.
-7. **Live stellen**: Neue Datei `queue/<NNNN+1-kurzname>-live.json`, gleicher Inhalt, `"mode": "live"`.
+6. **Direkt live stellen**: Der Nutzer hat am 27.11.2026 festgelegt, dass Inserate nach einem erfolgreichen
+   Probelauf (`Success` oder `Warning`) **ohne weitere Rückfrage** live gehen. Nur nachfragen, wenn etwas unklar ist
+   (Produkt, Sprache, Zustand, Echtheit, Preis fehlt) oder der Probelauf fehlschlägt.
+   Fotos, die nach Fälschung oder KI-Bild aussehen (Kauderwelsch-Text, falsches Copyright, falsches Logo), nie einstellen, sondern nachfragen.
+   Wünscht der Nutzer einen weißen Hintergrund: Karte anhand ihrer vier Ecken perspektivisch geraderücken (OpenCV),
+   mit abgerundeten Ecken auf Weiß setzen, die Karte selbst nicht verändern. Das Originalfoto als zweites Bild mitschicken.
+7. **Live-Stapel**: Neue Datei `queue/<NNNN+1-kurzname>-live.json`, gleicher Inhalt, `"mode": "live"`.
    Die Bildpfade zeigen auf `ebay-agent/done/<Probelauf-Ordner>/…`. Ergebnis abwarten und dem Nutzer
    die Links `https://www.ebay.de/itm/<ItemID>` schicken, dazu die Zahl der restlichen Gratis-Inserate.
 

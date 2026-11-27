@@ -1,0 +1,39 @@
+{
+  "batch": "0014-mewtu-ex-sar-cn",
+  "mode": "verify",
+  "time": "2026-11-27T07:49:57+00:00",
+  "listings": [
+    {
+      "sku": "PKM-30TH-MEWTU-EX-SAR-128-CN",
+      "title": "Pokémon Mewtu ex SAR 128/103 30th Celebration Chinesisch Simplified Near Mint",
+      "price": 15,
+      "pictures": [
+        {
+          "url": "https://raw.githubusercontent.com/marketingmkeu-arch/MKEU-Ecom/c2e38b0c7b567f0f15bc9d647a5738eeca486388/ebay-agent/queue/0014-mewtu-ex-sar-cn/1.jpg",
+          "weg": "GitHub-Link (Media API: HTTP 403 '{\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}')"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/marketingmkeu-arch/MKEU-Ecom/c2e38b0c7b567f0f15bc9d647a5738eeca486388/ebay-agent/queue/0014-mewtu-ex-sar-cn/2.jpg",
+          "weg": "GitHub-Link (Media API: HTTP 403 '{\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}')"
+        }
+      ],
+      "ack": "Warning",
+      "errors": [
+        {
+          "severity": "Warning",
+          "code": "21920376",
+          "message": "Verkaufsprovision erlassen."
+        },
+        {
+          "severity": "Warning",
+          "code": "21920377",
+          "message": "Internationale Gebühren fallen ggf. an."
+        }
+      ],
+      "fees": {
+        "InsertionFee": 0.5,
+        "ListingFee": 0.5
+      }
+    }
+  ]
+}

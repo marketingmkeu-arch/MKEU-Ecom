@@ -1,0 +1,36 @@
+{
+  "mode": "verify",
+  "listings": [
+    {
+      "sku": "PKM-30TH-MEWTU-EX-SAR-128-CN",
+      "type": "single",
+      "title": "Pokémon Mewtu ex SAR 128/103 30th Celebration Chinesisch Simplified Near Mint",
+      "price": 15,
+      "quantity": 1,
+      "condition": "NM",
+      "specifics": {
+        "Spiel": "Pokémon TCG",
+        "Edition": "30th Celebration",
+        "Hersteller": "The Pokémon Company",
+        "Sprache": "Chinesisch",
+        "Kartenname": "Mewtu ex",
+        "Kartennummer": "128/103",
+        "Seltenheit": "Special Art Rare (SAR)",
+        "Charakter": "Mewtu",
+        "Illustrator": "Yano Keiji",
+        "Herstellungsjahr": "2026"
+      },
+      "intro": "Verkauft wird die Karte Mewtu ex (超梦ex) als Special Art Rare 128/103 aus dem Set 30th Celebration in vereinfachtem Chinesisch.",
+      "bullets": [
+        "Zustand: Near Mint, direkt aus dem Booster",
+        "Sprache: vereinfachtes Chinesisch (Festland-China-Version)",
+        "Illustration: Yano Keiji",
+        "Versand geschützt in Sleeve und Toploader per Einschreiben"
+      ],
+      "images": [
+        "ebay-agent/queue/0014-mewtu-ex-sar-cn/1.jpg",
+        "ebay-agent/queue/0014-mewtu-ex-sar-cn/2.jpg"
+      ]
+    }
+  ]
+}
