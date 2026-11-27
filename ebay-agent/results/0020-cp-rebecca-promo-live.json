@@ -1,0 +1,34 @@
+{
+  "batch": "0020-cp-rebecca-promo-live",
+  "mode": "live",
+  "time": "2026-11-27T13:48:48+00:00",
+  "listings": [
+    {
+      "sku": "CP-REBECCA-HAM-LEGEND-005",
+      "title": "Cyberpunk TCG Rebecca Having a Moment Legend Promo 005 Foil versiegelt OVP",
+      "price": 140,
+      "pictures": [
+        {
+          "url": "https://raw.githubusercontent.com/marketingmkeu-arch/MKEU-Ecom/a242fa75a9c6c28aaddd090a608d94e418129c64/ebay-agent/done/0019-cp-rebecca-promo/1.jpg",
+          "weg": "GitHub-Link (Media API: HTTP 403 '{\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}')"
+        }
+      ],
+      "ack": "Warning",
+      "errors": [
+        {
+          "severity": "Warning",
+          "code": "21920376",
+          "message": "Verkaufsprovision erlassen."
+        },
+        {
+          "severity": "Warning",
+          "code": "21920377",
+          "message": "Internationale Gebühren fallen ggf. an."
+        }
+      ],
+      "fees": {},
+      "item_id": "366842472714",
+      "url": "https://www.ebay.de/itm/366842472714"
+    }
+  ]
+}

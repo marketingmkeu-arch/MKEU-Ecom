@@ -1,0 +1,35 @@
+{
+  "batch": "0021-solgaleo-gx-cn",
+  "mode": "verify",
+  "time": "2026-11-27T18:51:08+00:00",
+  "listings": [
+    {
+      "sku": "PKM-30TH-SOLGALEO-GX-158-CN",
+      "title": "Pokémon Solgaleo GX 158/103 Secret 30th Celebration Chinesisch Near Mint",
+      "price": 5,
+      "pictures": [
+        {
+          "url": "https://raw.githubusercontent.com/marketingmkeu-arch/MKEU-Ecom/9fe2083c9739ac300779d8094546ea967fda3a73/ebay-agent/queue/0021-solgaleo-gx-cn/1.jpg",
+          "weg": "GitHub-Link (Media API: HTTP 403 '{\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}')"
+        }
+      ],
+      "ack": "Warning",
+      "errors": [
+        {
+          "severity": "Warning",
+          "code": "21920376",
+          "message": "Verkaufsprovision erlassen."
+        },
+        {
+          "severity": "Warning",
+          "code": "21920377",
+          "message": "Internationale Gebühren fallen ggf. an."
+        }
+      ],
+      "fees": {
+        "InsertionFee": 0.5,
+        "ListingFee": 0.5
+      }
+    }
+  ]
+}

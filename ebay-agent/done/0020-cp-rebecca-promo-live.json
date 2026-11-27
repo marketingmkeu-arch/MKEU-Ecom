@@ -1,0 +1,35 @@
+{
+  "mode": "live",
+  "listings": [
+    {
+      "sku": "CP-REBECCA-HAM-LEGEND-005",
+      "type": "single",
+      "title": "Cyberpunk TCG Rebecca Having a Moment Legend Promo 005 Foil versiegelt OVP",
+      "price": 140,
+      "quantity": 1,
+      "condition": "NM",
+      "specifics": {
+        "Spiel": "Cyberpunk TCG",
+        "Edition": "Promo",
+        "Hersteller": "CD PROJEKT",
+        "Sprache": "Englisch",
+        "Kartenname": "Rebecca - Having a Moment",
+        "Kartennummer": "005",
+        "Seltenheit": "Legend",
+        "Charakter": "Rebecca",
+        "Herstellungsjahr": "2026",
+        "Besonderheiten": "Foil, Promo"
+      },
+      "intro": "Verkauft wird die Promokarte Rebecca – Having a Moment (Legend, Nr. 005) aus dem Cyberpunk Trading Card Game, noch versiegelt in der Original-Promohülle.",
+      "bullets": [
+        "Zustand: neu, ungeöffnet in der Original-Promohülle",
+        "Seltenheit: Legend, Foil",
+        "Sprache: Englisch",
+        "Versand geschützt in Toploader per Einschreiben"
+      ],
+      "images": [
+        "ebay-agent/done/0019-cp-rebecca-promo/1.jpg"
+      ]
+    }
+  ]
+}

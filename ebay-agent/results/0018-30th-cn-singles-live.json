@@ -1,0 +1,88 @@
+{
+  "batch": "0018-30th-cn-singles-live",
+  "mode": "live",
+  "time": "2026-11-27T09:28:28+00:00",
+  "listings": [
+    {
+      "sku": "PKM-30TH-MEW-EX-FUR-135-CN",
+      "title": "Pokémon Mew ex FUR 135/103 30th Celebration Chinesisch Simplified Near Mint",
+      "price": 19,
+      "pictures": [
+        {
+          "url": "https://raw.githubusercontent.com/marketingmkeu-arch/MKEU-Ecom/69686082ccbbc4d97bc6a748346e4c25b858436b/ebay-agent/done/0017-30th-cn-singles/mew.jpg",
+          "weg": "GitHub-Link (Media API: HTTP 403 '{\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}')"
+        }
+      ],
+      "ack": "Warning",
+      "errors": [
+        {
+          "severity": "Warning",
+          "code": "21920376",
+          "message": "Verkaufsprovision erlassen."
+        },
+        {
+          "severity": "Warning",
+          "code": "21920377",
+          "message": "Internationale Gebühren fallen ggf. an."
+        }
+      ],
+      "fees": {},
+      "item_id": "366841989101",
+      "url": "https://www.ebay.de/itm/366841989101"
+    },
+    {
+      "sku": "PKM-30TH-RAYQUAZA-EX-154-CN",
+      "title": "Pokémon Rayquaza EX 154/103 Secret 30th Celebration Chinesisch Near Mint",
+      "price": 15,
+      "pictures": [
+        {
+          "url": "https://raw.githubusercontent.com/marketingmkeu-arch/MKEU-Ecom/69686082ccbbc4d97bc6a748346e4c25b858436b/ebay-agent/done/0017-30th-cn-singles/rayquaza.jpg",
+          "weg": "GitHub-Link (Media API: HTTP 403 '{\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}')"
+        }
+      ],
+      "ack": "Warning",
+      "errors": [
+        {
+          "severity": "Warning",
+          "code": "21920376",
+          "message": "Verkaufsprovision erlassen."
+        },
+        {
+          "severity": "Warning",
+          "code": "21920377",
+          "message": "Internationale Gebühren fallen ggf. an."
+        }
+      ],
+      "fees": {},
+      "item_id": "366841989160",
+      "url": "https://www.ebay.de/itm/366841989160"
+    },
+    {
+      "sku": "PKM-30TH-PIKACHU-136-CN",
+      "title": "Pokémon Pikachu 136/103 Secret Classic 30th Celebration Chinesisch Near Mint",
+      "price": 15,
+      "pictures": [
+        {
+          "url": "https://raw.githubusercontent.com/marketingmkeu-arch/MKEU-Ecom/69686082ccbbc4d97bc6a748346e4c25b858436b/ebay-agent/done/0017-30th-cn-singles/pikachu.jpg",
+          "weg": "GitHub-Link (Media API: HTTP 403 '{\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}')"
+        }
+      ],
+      "ack": "Warning",
+      "errors": [
+        {
+          "severity": "Warning",
+          "code": "21920376",
+          "message": "Verkaufsprovision erlassen."
+        },
+        {
+          "severity": "Warning",
+          "code": "21920377",
+          "message": "Internationale Gebühren fallen ggf. an."
+        }
+      ],
+      "fees": {},
+      "item_id": "366841989418",
+      "url": "https://www.ebay.de/itm/366841989418"
+    }
+  ]
+}

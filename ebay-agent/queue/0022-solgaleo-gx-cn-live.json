@@ -1,0 +1,35 @@
+{
+  "mode": "live",
+  "listings": [
+    {
+      "sku": "PKM-30TH-SOLGALEO-GX-158-CN",
+      "type": "single",
+      "title": "Pokémon Solgaleo GX 158/103 Secret 30th Celebration Chinesisch Near Mint",
+      "price": 5,
+      "quantity": 1,
+      "condition": "NM",
+      "specifics": {
+        "Spiel": "Pokémon TCG",
+        "Edition": "30th Celebration",
+        "Hersteller": "The Pokémon Company",
+        "Sprache": "Chinesisch",
+        "Herstellungsjahr": "2026",
+        "Kartenname": "Solgaleo GX",
+        "Kartennummer": "158/103",
+        "Seltenheit": "Secret Rare",
+        "Charakter": "Solgaleo",
+        "Illustrator": "PLANETA"
+      },
+      "intro": "Verkauft wird die Karte Solgaleo GX (索尔迦雷欧GX), Secret-Nummer 158/103, aus dem Set 30th Celebration in vereinfachtem Chinesisch.",
+      "bullets": [
+        "Zustand: Near Mint",
+        "Goldener Glitzer-Rahmen",
+        "Sprache: vereinfachtes Chinesisch (Festland-China-Version)",
+        "Versand geschützt in Sleeve und Toploader per Einschreiben"
+      ],
+      "images": [
+        "ebay-agent/done/0021-solgaleo-gx-cn/1.jpg"
+      ]
+    }
+  ]
+}
