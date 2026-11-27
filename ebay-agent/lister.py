@@ -22,6 +22,7 @@ Batch-Datei (ebay-agent/queue/<name>.json):
 }
 
 check  = nur Zugang testen (GetUser)
+revise = bestehende Inserate ändern: {"mode": "revise", "revisions": [{"item_id": "…", "images": [...], "price": 12, "quantity": 2, "title": "…"}]}
 verify = alles prüfen und Gebühren anzeigen, nichts wird eingestellt (VerifyAddFixedPriceItem)
 live   = Bilder hochladen und Inserate einstellen (AddFixedPriceItem)
 """
@@ -277,6 +278,28 @@ def log_listing(L, res):
                     f"{float(L['price']):.2f}", L.get("quantity", 1), f"{sum(res.get('fees', {}).values()):.2f}"])
 
 
+def run_revise(R):
+    """Ändert ein bestehendes Inserat. R: {"item_id", optional "images", "price", "quantity", "title"}."""
+    res = {"item_id": R.get("item_id"), "aenderung": [k for k in ("images", "price", "quantity", "title") if k in R]}
+    try:
+        parts = [f"<ItemID>{x(R['item_id'])}</ItemID>"]
+        if "title" in R:
+            parts.append(f"<Title>{x(R['title'])}</Title>")
+        if "price" in R:
+            parts.append(f"<StartPrice currencyID=\"EUR\">{float(R['price']):.2f}</StartPrice>")
+        if "quantity" in R:
+            parts.append(f"<Quantity>{int(R['quantity'])}</Quantity>")
+        if "images" in R:
+            up = [upload_picture(p) for p in R["images"]]
+            res["pictures"] = [{"url": u, "weg": w} for u, w in up]
+            parts.append("<PictureDetails>" + "".join(f"<PictureURL>{x(u)}</PictureURL>" for u, _ in up) + "</PictureDetails>")
+        root, ack, errors = call("ReviseFixedPriceItem", "<Item>" + "".join(parts) + "</Item>")
+        res.update({"ack": ack, "errors": errors, "url": f"https://www.ebay.de/itm/{R['item_id']}"})
+    except Exception as e:  # noqa: BLE001
+        res.update({"ack": "Failure", "errors": [{"severity": "Error", "code": "local", "message": str(e)}]})
+    return res
+
+
 def run_listing(L, mode):
     res = {"sku": L.get("sku"), "title": L.get("title"), "price": L.get("price")}
     try:
@@ -310,7 +333,14 @@ def main():
         mode = data.get("mode", "verify")
         print(f"== {b.name} ({mode})")
         out = {"batch": b.stem, "mode": mode, "time": datetime.now(timezone.utc).isoformat(timespec="seconds")}
-        if mode == "shipping":
+        if mode == "revise":
+            out["revisions"] = []
+            for R in data.get("revisions", []):
+                r = run_revise(R)
+                out["revisions"].append(r)
+                print(f"- {r['ack']:8} {r.get('url')}")
+                failed |= r["ack"] not in ("Success", "Warning")
+        elif mode == "shipping":
             out["shipping"] = run_shipping_list()
             print(f"{len(out['shipping']['services'])} Versandarten")
         elif mode == "check":

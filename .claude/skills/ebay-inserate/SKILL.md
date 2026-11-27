@@ -51,7 +51,7 @@ Antworte auf Deutsch, kurz und ohne Fachjargon.
    (Produkt, Sprache, Zustand, Echtheit, Preis fehlt) oder der Probelauf fehlschlägt.
    Fotos, die nach Fälschung oder KI-Bild aussehen (Kauderwelsch-Text, falsches Copyright, falsches Logo), nie einstellen, sondern nachfragen.
    Wünscht der Nutzer einen weißen Hintergrund: Karte anhand ihrer vier Ecken perspektivisch geraderücken (OpenCV),
-   mit abgerundeten Ecken auf Weiß setzen, die Karte selbst nicht verändern. Das Originalfoto als zweites Bild mitschicken.
+   mit abgerundeten Ecken auf Weiß setzen, die Karte selbst nicht verändern. **Nur das weiße Bild** verwenden, kein Originalfoto dazu (Nutzerwunsch 27.11.2026).
 7. **Live-Stapel**: Neue Datei `queue/<NNNN+1-kurzname>-live.json`, gleicher Inhalt, `"mode": "live"`.
    Die Bildpfade zeigen auf `ebay-agent/done/<Probelauf-Ordner>/…`. Ergebnis abwarten und dem Nutzer
    die Links `https://www.ebay.de/itm/<ItemID>` schicken, dazu die Zahl der restlichen Gratis-Inserate.
@@ -59,6 +59,7 @@ Antworte auf Deutsch, kurz und ohne Fachjargon.
 ## Technische Hinweise
 
 - Fotos gehen als öffentlicher GitHub-Link an eBay (das Repo ist öffentlich). eBays Media API verweigert dem Token den Zugriff, das ist normal.
+- Bestehendes Inserat ändern (Fotos, Preis, Menge, Titel): Batch `{ "mode": "revise", "revisions": [{"item_id": "…", "price": 12}] }`. Item-IDs stehen in `ebay-agent/inserate.csv`.
 - Zugang testen: Batch `{ "mode": "check" }`. Versandarten nachschlagen: `{ "mode": "shipping" }`.
 - Die Action pusht Ergebnisse mit `[skip ci]` zurück. Vor jedem eigenen Push `git pull --no-rebase`.
 - `ebay-agent/queue/.gitkeep` muss bleiben, sonst verschwindet der Ordner.
