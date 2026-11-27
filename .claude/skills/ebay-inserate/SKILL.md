@@ -19,6 +19,7 @@ Antworte auf Deutsch, kurz und ohne Fachjargon.
 - **Sealed** (Displays, Booster, ETB, Boxen …): DHL Paket 6,19 €, weltweit 20 €. Zustand Neu (1000).
 - **Einzelkarten**: Einschreiben 4,00 €, weltweit 20 €. Zustand „Near Mint oder besser“, außer der Nutzer sagt etwas anderes.
 - Versand weltweit, nicht nur EU. Preisvorschlag immer an.
+- Mehrere Stück: Jeder weitere Artikel kostet die vollen Versandkosten (so gewollt). Käufer sollen sich für Kombiversand melden, das steht im Fußtext.
 - Das alles steht in `ebay-agent/config.json`. Ändert der Nutzer eine Regel dauerhaft, dort anpassen.
 - Gratis-Inserate: Stand 26.11.2026 waren es 303 bis 1.12.2026. Live-Inserate stehen in `ebay-agent/inserate.csv`.
   Nach jedem Stapel sagen, wie viele noch übrig sind (Startwert minus neue Zeilen seit 26.11.).
