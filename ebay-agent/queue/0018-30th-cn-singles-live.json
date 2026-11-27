@@ -1,0 +1,94 @@
+{
+  "mode": "live",
+  "listings": [
+    {
+      "sku": "PKM-30TH-MEW-EX-FUR-135-CN",
+      "title": "Pokémon Mew ex FUR 135/103 30th Celebration Chinesisch Simplified Near Mint",
+      "price": 19,
+      "specifics": {
+        "Spiel": "Pokémon TCG",
+        "Edition": "30th Celebration",
+        "Hersteller": "The Pokémon Company",
+        "Sprache": "Chinesisch",
+        "Herstellungsjahr": "2026",
+        "Kartenname": "Mew ex",
+        "Kartennummer": "135/103",
+        "Seltenheit": "FUR",
+        "Charakter": "Mew"
+      },
+      "intro": "Verkauft wird die Karte Mew ex (梦幻ex) in der Seltenheit FUR, Nummer 135/103, aus dem Set 30th Celebration in vereinfachtem Chinesisch.",
+      "bullets": [
+        "Zustand: Near Mint",
+        "Mit goldener Pikachu-Prägung, wie auf dem Foto zu sehen",
+        "Sprache: vereinfachtes Chinesisch (Festland-China-Version)",
+        "Versand geschützt in Sleeve und Toploader per Einschreiben"
+      ],
+      "images": [
+        "ebay-agent/done/0017-30th-cn-singles/mew.jpg"
+      ],
+      "type": "single",
+      "quantity": 1,
+      "condition": "NM"
+    },
+    {
+      "sku": "PKM-30TH-RAYQUAZA-EX-154-CN",
+      "title": "Pokémon Rayquaza EX 154/103 Secret 30th Celebration Chinesisch Near Mint",
+      "price": 15,
+      "specifics": {
+        "Spiel": "Pokémon TCG",
+        "Edition": "30th Celebration",
+        "Hersteller": "The Pokémon Company",
+        "Sprache": "Chinesisch",
+        "Herstellungsjahr": "2026",
+        "Kartenname": "Rayquaza EX",
+        "Kartennummer": "154/103",
+        "Seltenheit": "Secret Rare",
+        "Charakter": "Rayquaza",
+        "Illustrator": "Eske Yoshinob"
+      },
+      "intro": "Verkauft wird die Karte Rayquaza EX (烈空坐EX), Secret-Nummer 154/103, aus dem Set 30th Celebration in vereinfachtem Chinesisch.",
+      "bullets": [
+        "Zustand: Near Mint",
+        "Goldener Glitzer-Rahmen mit goldener Pikachu-Prägung, wie auf dem Foto zu sehen",
+        "Sprache: vereinfachtes Chinesisch (Festland-China-Version)",
+        "Versand geschützt in Sleeve und Toploader per Einschreiben"
+      ],
+      "images": [
+        "ebay-agent/done/0017-30th-cn-singles/rayquaza.jpg"
+      ],
+      "type": "single",
+      "quantity": 1,
+      "condition": "NM"
+    },
+    {
+      "sku": "PKM-30TH-PIKACHU-136-CN",
+      "title": "Pokémon Pikachu 136/103 Secret Classic 30th Celebration Chinesisch Near Mint",
+      "price": 15,
+      "specifics": {
+        "Spiel": "Pokémon TCG",
+        "Edition": "30th Celebration",
+        "Hersteller": "The Pokémon Company",
+        "Sprache": "Chinesisch",
+        "Herstellungsjahr": "2026",
+        "Kartenname": "Pikachu",
+        "Kartennummer": "136/103",
+        "Seltenheit": "Secret Rare",
+        "Charakter": "Pikachu",
+        "Illustrator": "Mitsuhiro Arita"
+      },
+      "intro": "Verkauft wird die Karte Pikachu (皮卡丘), Secret-Nummer 136/103, im klassischen Design von Mitsuhiro Arita aus dem Set 30th Celebration in vereinfachtem Chinesisch.",
+      "bullets": [
+        "Zustand: Near Mint",
+        "Klassisches Pikachu-Motiv im Glitzer-Design mit goldener Pikachu-Prägung",
+        "Sprache: vereinfachtes Chinesisch (Festland-China-Version)",
+        "Versand geschützt in Sleeve und Toploader per Einschreiben"
+      ],
+      "images": [
+        "ebay-agent/done/0017-30th-cn-singles/pikachu.jpg"
+      ],
+      "type": "single",
+      "quantity": 1,
+      "condition": "NM"
+    }
+  ]
+}
