@@ -1,0 +1,33 @@
+{
+  "batch": "0016-mewtu-nur-weiss",
+  "mode": "revise",
+  "time": "2026-11-27T08:35:16+00:00",
+  "revisions": [
+    {
+      "item_id": "366841826677",
+      "aenderung": [
+        "images"
+      ],
+      "pictures": [
+        {
+          "url": "https://raw.githubusercontent.com/marketingmkeu-arch/MKEU-Ecom/47ea245fdff22b82ce430c740a277d438bfb2790/ebay-agent/done/0014-mewtu-ex-sar-cn/1.jpg",
+          "weg": "GitHub-Link (Media API: HTTP 403 '{\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}')"
+        }
+      ],
+      "ack": "Warning",
+      "errors": [
+        {
+          "severity": "Warning",
+          "code": "21920376",
+          "message": "Verkaufsprovision erlassen."
+        },
+        {
+          "severity": "Warning",
+          "code": "21920377",
+          "message": "Internationale Gebühren fallen ggf. an."
+        }
+      ],
+      "url": "https://www.ebay.de/itm/366841826677"
+    }
+  ]
+}
