@@ -247,15 +247,30 @@ def run_check():
     }
 
 
+def app_token():
+    """Anwendungs-Token (Client Credentials) für eBays REST-Schnittstellen wie die Taxonomy API."""
+    import base64
+    basic = base64.b64encode(f"{env('EBAY_APP_ID')}:{env('EBAY_CERT_ID')}".encode()).decode()
+    r = requests.post("https://api.ebay.com/identity/v1/oauth2/token",
+                      headers={"Authorization": f"Basic {basic}", "Content-Type": "application/x-www-form-urlencoded"},
+                      data={"grant_type": "client_credentials", "scope": "https://api.ebay.com/oauth/api_scope"}, timeout=60)
+    r.raise_for_status()
+    return r.json()["access_token"]
+
+
 def run_category_search(queries):
+    tok = app_token()
     out = {}
     for q in queries:
-        root, ack, errors = call("GetSuggestedCategories", f"<Query>{x(q)}</Query>")
+        r = requests.get("https://api.ebay.com/commerce/taxonomy/v1/category_tree/77/get_category_suggestions",
+                         params={"q": q}, headers={"Authorization": f"Bearer {tok}", "Accept-Language": "de-DE"}, timeout=60)
+        if not r.ok:
+            out[q] = {"fehler": f"HTTP {r.status_code} {r.text[:300]}"}
+            continue
         out[q] = [{
-            "id": c.findtext("e:Category/e:CategoryID", "", NS),
-            "pfad": " > ".join([n.text for n in c.findall("e:Category/e:CategoryParentName", NS)] + [c.findtext("e:Category/e:CategoryName", "", NS)]),
-            "prozent": c.findtext("e:PercentItemFound", "", NS),
-        } for c in root.findall("e:SuggestedCategoryArray/e:SuggestedCategory", NS)][:8]
+            "id": c["category"]["categoryId"],
+            "pfad": " > ".join([a["categoryName"] for a in reversed(c.get("categoryTreeNodeAncestors", []))] + [c["category"]["categoryName"]]),
+        } for c in r.json().get("categorySuggestions", [])][:8]
     return out
 
 
@@ -346,7 +361,11 @@ def main():
         print(f"== {b.name} ({mode})")
         out = {"batch": b.stem, "mode": mode, "time": datetime.now(timezone.utc).isoformat(timespec="seconds")}
         if mode == "categories":
-            out["categories"] = run_category_search(data.get("queries", []))
+            try:
+                out["categories"] = run_category_search(data.get("queries", []))
+            except Exception as e:  # noqa: BLE001
+                out["categories"] = {"fehler": str(e)}
+                failed = True
             print(json.dumps(out["categories"], ensure_ascii=False, indent=1))
         elif mode == "revise":
             out["revisions"] = []
