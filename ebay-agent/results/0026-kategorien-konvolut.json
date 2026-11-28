@@ -1,0 +1,8 @@
+{
+  "batch": "0026-kategorien-konvolut",
+  "mode": "categories",
+  "time": "2026-11-28T11:44:16+00:00",
+  "categories": {
+    "fehler": "401 Client Error: Unauthorized for url: https://api.ebay.com/identity/v1/oauth2/token"
+  }
+}
