@@ -33,9 +33,9 @@
   },
   "card_condition": {
     "NM": "400010",
-    "EX": "400011",
-    "VG": "400012",
-    "PO": "400013"
+    "EX": "400015",
+    "VG": "400016",
+    "PO": "400017"
   },
   "best_offer_default": true,
   "footer_html": "<p><b>Versand:</b> sicher verpackt, Versand innerhalb von 2 Werktagen aus Düsseldorf, immer mit Sendungsnummer. Weltweiter Versand möglich. Kombiversand bei mehreren Artikeln gerne auf Anfrage.</p><p>Bei Fragen einfach über eBay schreiben.</p>",
