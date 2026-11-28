@@ -1,0 +1,35 @@
+{
+  "batch": "0029-konvolut-300",
+  "mode": "verify",
+  "time": "2026-11-28T11:45:28+00:00",
+  "listings": [
+    {
+      "sku": "PKM-KONVOLUT-300-CN-DE",
+      "title": "Pokémon Karten Konvolut 300 Stück Sammlung Chinesisch Deutsch mit ex Holo Rare",
+      "price": 15,
+      "pictures": [
+        {
+          "url": "https://raw.githubusercontent.com/marketingmkeu-arch/MKEU-Ecom/5a76f04446a74297afd138b98b08cf2e9e10971b/ebay-agent/done/0027-konvolut-300/1.jpg",
+          "weg": "GitHub-Link (Media API: HTTP 403 '{\"errors\":[{\"errorId\":1100,\"domain\":\"ACCESS\",\"category\":\"REQUEST\",\"message\":\"Access denied\",\"longMessage\":\"Insufficient permissions to fulfill the request.\"}]}')"
+        }
+      ],
+      "ack": "Warning",
+      "errors": [
+        {
+          "severity": "Warning",
+          "code": "21920376",
+          "message": "Verkaufsprovision erlassen."
+        },
+        {
+          "severity": "Warning",
+          "code": "21920377",
+          "message": "Internationale Gebühren fallen ggf. an."
+        }
+      ],
+      "fees": {
+        "InsertionFee": 0.5,
+        "ListingFee": 0.5
+      }
+    }
+  ]
+}
