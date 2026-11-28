@@ -152,7 +152,7 @@ def description(L):
 
 def item_xml(L, picture_urls):
     kind = "single" if L.get("type") == "single" else "sealed"
-    ship = CFG["shipping"][kind]
+    ship = CFG["shipping"][L.get("ship_profile") or kind]  # z. B. Konvolut als "sealed" (Paket) versenden
     title = L["title"].strip()
     if len(title) > 80:
         raise ValueError(f"Titel zu lang ({len(title)} Zeichen): {title}")
@@ -247,6 +247,18 @@ def run_check():
     }
 
 
+def run_category_search(queries):
+    out = {}
+    for q in queries:
+        root, ack, errors = call("GetSuggestedCategories", f"<Query>{x(q)}</Query>")
+        out[q] = [{
+            "id": c.findtext("e:Category/e:CategoryID", "", NS),
+            "pfad": " > ".join([n.text for n in c.findall("e:Category/e:CategoryParentName", NS)] + [c.findtext("e:Category/e:CategoryName", "", NS)]),
+            "prozent": c.findtext("e:PercentItemFound", "", NS),
+        } for c in root.findall("e:SuggestedCategoryArray/e:SuggestedCategory", NS)][:8]
+    return out
+
+
 def run_shipping_list():
     root, ack, errors = call("GeteBayDetails", "<DetailName>ShippingServiceDetails</DetailName>")
     out = []
@@ -333,7 +345,10 @@ def main():
         mode = data.get("mode", "verify")
         print(f"== {b.name} ({mode})")
         out = {"batch": b.stem, "mode": mode, "time": datetime.now(timezone.utc).isoformat(timespec="seconds")}
-        if mode == "revise":
+        if mode == "categories":
+            out["categories"] = run_category_search(data.get("queries", []))
+            print(json.dumps(out["categories"], ensure_ascii=False, indent=1))
+        elif mode == "revise":
             out["revisions"] = []
             for R in data.get("revisions", []):
                 r = run_revise(R)
