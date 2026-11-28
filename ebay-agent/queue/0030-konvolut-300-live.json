@@ -1,0 +1,33 @@
+{
+  "mode": "live",
+  "listings": [
+    {
+      "sku": "PKM-KONVOLUT-300-CN-DE",
+      "type": "single",
+      "ship_profile": "sealed",
+      "title": "Pokémon Karten Konvolut 300 Stück Sammlung Chinesisch Deutsch mit ex Holo Rare",
+      "price": 15,
+      "quantity": 1,
+      "condition": "EX",
+      "specifics": {
+        "Spiel": "Pokémon TCG",
+        "Edition": "Gemischt",
+        "Hersteller": "The Pokémon Company",
+        "Sprache": "Chinesisch, Deutsch",
+        "Kartenanzahl": "300",
+        "Produktart": "Konvolut",
+        "Besonderheiten": "Konvolut, Holo, Reverse Holo"
+      },
+      "intro": "Verkauft wird ein Konvolut aus rund 300 Pokémon-Karten, überwiegend vereinfachtes Chinesisch aus 30th Celebration, dazu deutsche Karten.",
+      "bullets": [
+        "Ca. 300 Karten, gemischt, darunter Holos, Reverse Holos und ex-Karten (z. B. Quajutsu ex, Lugia, Lapras, Arktos)",
+        "Sprachen: überwiegend vereinfachtes Chinesisch, dazu Deutsch",
+        "Zustand: gut erhalten; bei einem Konvolut nicht jede Karte einzeln geprüft, das Foto zeigt einen Ausschnitt",
+        "Versand als DHL Paket"
+      ],
+      "images": [
+        "ebay-agent/done/0027-konvolut-300/1.jpg"
+      ]
+    }
+  ]
+}
