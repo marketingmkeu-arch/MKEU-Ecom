@@ -58,6 +58,11 @@ Antworte auf Deutsch, kurz und ohne Fachjargon.
 
 ## Technische Hinweise
 
+- **Konvolute/Lots**: `type` = `single`, `ship_profile` = `sealed` (DHL Paket statt Einschreiben), `condition` = `EX`,
+  in der Beschreibung sagen, dass nicht jede Karte einzeln geprüft ist. Foto nicht freistellen.
+- Kartenzustand-Codes (eBay 40001): NM 400010, EX 400015, VG 400016, PO 400017 (stehen in `config.json`).
+- eBays REST-APIs (Taxonomy, Media) brauchen OAuth am Keyset; das ist aus. Trading API reicht fürs Einstellen.
+
 - Fotos gehen als öffentlicher GitHub-Link an eBay (das Repo ist öffentlich). eBays Media API verweigert dem Token den Zugriff, das ist normal.
 - Bestehendes Inserat ändern (Fotos, Preis, Menge, Titel): Batch `{ "mode": "revise", "revisions": [{"item_id": "…", "price": 12}] }`. Item-IDs stehen in `ebay-agent/inserate.csv`.
 - Zugang testen: Batch `{ "mode": "check" }`. Versandarten nachschlagen: `{ "mode": "shipping" }`.
